@@ -1,0 +1,22 @@
+import type { Metadata } from "next";
+
+import { AuthForm } from "@/components/template/auth-form";
+import { AuthVisual } from "@/components/template/auth-visual";
+
+export const metadata: Metadata = {
+  title: "Entrar",
+  description: "Entre na sua conta mytek.",
+};
+
+export default function LoginPage() {
+  return (
+    <main className="grid min-h-svh lg:grid-cols-2">
+      <div className="flex items-center justify-center px-6 py-16">
+        <div className="w-full max-w-sm">
+          <AuthForm mode="login" />
+        </div>
+      </div>
+      <AuthVisual />
+    </main>
+  );
+}
