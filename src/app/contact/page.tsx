@@ -25,7 +25,8 @@ const channels = [
     icon: <MailIcon className="size-5" />,
     title: "E-mail",
     body: "Pra propostas comerciais e parcerias.",
-    detail: "contato@mytek.app",
+    detail: "contato@mytek.com.br",
+    href: "mailto:contato@mytek.com.br",
   },
   {
     icon: <UsersIcon className="size-5" />,
