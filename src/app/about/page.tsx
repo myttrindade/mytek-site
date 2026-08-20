@@ -62,7 +62,7 @@ export default function AboutPage() {
             <span className="text-primary">É uma plataforma só.</span>
           </>
         }
-        description="mytek nasce como CRM, Landing Page e Dashboard integrados, pra quem precisa dos três, sem juntar quatro fornecedores diferentes e torcer pra eles conversarem entre si."
+        description="mytek nasce como CRM, Landing Page e Dashboard integrados, pra quem precisa dos três, sem juntar fornecedores diferentes e torcer pra eles conversarem entre si."
       />
 
       {/* Story */}

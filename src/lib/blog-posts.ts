@@ -32,7 +32,7 @@ export const blogPosts: BlogPost[] = [
   },
   {
     slug: "retheme-in-one-token-block",
-    title: "'Visitantes do site' não paga conta. Vendas sim.",
+    title: "“Visitantes do site” não paga conta. Vendas sim.",
     excerpt:
       "Por que o Dashboard da mytek abre com vendas, leads e satisfação, não com um número de tráfego que ninguém usa pra decidir nada.",
     date: "16 de julho de 2026",

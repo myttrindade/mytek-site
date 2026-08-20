@@ -258,8 +258,8 @@ export default function PricingPage() {
           <BlurFade delay={0.15}>
             <p className="mt-6 text-sm text-muted-foreground">
               Já é cliente CRM? Adicione o Dashboard por{" "}
-              <strong className="text-card-foreground">R$99/mês</strong> (sem
-              suporte) ou <strong className="text-card-foreground">R$199/mês</strong>{" "}
+              <strong className="text-card-foreground">+R$99/mês</strong> (sem
+              suporte) ou <strong className="text-card-foreground">+R$199/mês</strong>{" "}
               (com suporte): valor extra sobre a mensalidade do CRM Normal
               ou Plus.
             </p>

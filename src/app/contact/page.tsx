@@ -43,7 +43,7 @@ export default function ContactPage() {
         eyebrow="Contato"
         title={
           <>
-            Fale com um <span className="text-primary">humano</span>
+            Fale com <span className="text-primary">nosso time</span>
           </>
         }
         description="Dúvidas sobre o funil, a automação ou o programa fundador? Manda uma mensagem, a gente lê tudo."

@@ -25,9 +25,6 @@ export function SiteHeader() {
           <Link href="/#como-funciona" className="transition-colors hover:text-foreground">
             Como funciona
           </Link>
-          <Link href="/pricing" className="transition-colors hover:text-foreground">
-            Preço
-          </Link>
           <Link href="/about" className="transition-colors hover:text-foreground">
             Sobre
           </Link>
@@ -35,7 +32,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             href="/login"
-            className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-block"
+            className="hidden text-sm font-medium text-primary transition-colors hover:text-primary/80 sm:inline-block"
           >
             Entrar
           </Link>

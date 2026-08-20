@@ -7,9 +7,9 @@ export function MytekLogo({ className }: { className?: string }) {
     <Image
       src="/brand/logo.png"
       alt="mytek"
-      width={28}
-      height={24}
-      className={cn("h-6 w-auto object-contain", className)}
+      width={37}
+      height={32}
+      className={cn("h-8 w-auto object-contain", className)}
       priority
     />
   );
