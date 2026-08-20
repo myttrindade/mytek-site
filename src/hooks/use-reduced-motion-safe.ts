@@ -1,27 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useReducedMotion } from "motion/react";
+import { useSyncExternalStore } from "react";
+
+const QUERY = "(prefers-reduced-motion: reduce)";
+
+function subscribe(callback: () => void) {
+  const mql = window.matchMedia(QUERY);
+  mql.addEventListener("change", callback);
+  return () => mql.removeEventListener("change", callback);
+}
+
+function getSnapshot() {
+  return window.matchMedia(QUERY).matches;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 /**
- * Hydration-safe replacement for Motion's `useReducedMotion()`.
+ * Hydration-safe reduced-motion read.
  *
- * The raw hook reads `matchMedia` synchronously on the client but returns
- * `null` on the server, so components that branch their JSX on its value
- * render different markup during SSR vs. the client's first paint whenever
- * a visitor actually has reduced motion enabled — a hydration mismatch.
- *
- * This mirrors the server's `false` on the client's first render too, then
- * syncs to the real preference in an effect (after hydration commits, where
- * a state change is safe).
+ * `matchMedia` isn't available during SSR, so the server snapshot is always
+ * `false`. `useSyncExternalStore` keeps that same value on the client's
+ * first paint and only switches to the real preference after hydration
+ * commits, avoiding the mismatch a plain `useEffect` + `setState` would
+ * cause if it rendered synchronously.
  */
 export function useReducedMotionSafe(): boolean {
-  const prefersReducedMotion = useReducedMotion();
-  const [reducedMotion, setReducedMotion] = useState(false);
-
-  useEffect(() => {
-    setReducedMotion(!!prefersReducedMotion);
-  }, [prefersReducedMotion]);
-
-  return reducedMotion;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }

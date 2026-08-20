@@ -315,11 +315,10 @@ export default function Home() {
       <section id="problema" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
-            <span className="text-sm font-medium text-primary">
-              O problema
-            </span>
-            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Seus leads estão esfriando antes de virar venda
+            <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+              Seus leads estão{" "}
+              <span className="text-primary">esfriando</span> antes de virar
+              venda
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
               O problema não é só gerar interesse. É responder, acompanhar e
@@ -346,18 +345,21 @@ export default function Home() {
               },
             ].map((pain, i) => (
               <BlurFade key={pain.num} delay={i * 0.1}>
-                <div className="rounded-2xl border bg-card p-7">
-                  <span className="text-sm font-semibold tracking-wide text-primary">
-                    {pain.num}
-                  </span>
-                  <p className="mt-4 text-sm text-muted-foreground">
-                    <strong className="font-semibold text-card-foreground">
-                      {pain.title}
-                    </strong>
-                    <br />
-                    {pain.body}
-                  </p>
-                </div>
+                <TiltCard maxTilt={6}>
+                  <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-card p-7 shadow-xl shadow-primary/5">
+                    <BorderBeam size={70} duration={8} delay={i * 2} />
+                    <span className="text-sm font-semibold tracking-wide text-primary">
+                      {pain.num}
+                    </span>
+                    <p className="mt-4 text-sm text-muted-foreground">
+                      <strong className="font-semibold text-card-foreground">
+                        {pain.title}
+                      </strong>
+                      <br />
+                      {pain.body}
+                    </p>
+                  </div>
+                </TiltCard>
               </BlurFade>
             ))}
           </div>
@@ -452,7 +454,7 @@ export default function Home() {
                 <p className="mt-4 text-muted-foreground">
                   Do primeiro contato ao pós-venda: funil visual em Kanban,
                   atendimento via WhatsApp direto na plataforma, e histórico
-                  completo de cada cliente. Ninguém precisa "lembrar" de
+                  completo de cada cliente. Ninguém precisa “lembrar” de
                   nada.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm">
@@ -780,9 +782,9 @@ export default function Home() {
                   Programa fundador
                 </span>
                 <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
-                  "Estamos abrindo o programa fundador, com condições
+                  “Estamos abrindo o programa fundador, com condições
                   especiais em troca do seu feedback direto pra moldar o
-                  produto."
+                  produto.”
                 </p>
                 <div className="mt-6 flex justify-center gap-1.5">
                   {[true, true, false, false, false].map((filled, i) => (

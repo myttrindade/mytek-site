@@ -354,9 +354,9 @@ export default function PricingPage() {
                   Programa fundador
                 </span>
                 <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
-                  "Estamos abrindo o programa fundador, com condições
+                  “Estamos abrindo o programa fundador, com condições
                   especiais em troca do seu feedback direto pra moldar o
-                  produto."
+                  produto.”
                 </p>
                 <div className="mt-6 flex justify-center gap-1.5">
                   {[true, true, false, false, false].map((filled, i) => (
