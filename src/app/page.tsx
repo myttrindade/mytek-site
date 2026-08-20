@@ -344,9 +344,9 @@ export default function Home() {
                 body: "respondendo Instagram, WhatsApp e telefone ao mesmo tempo, sem prioridade clara.",
               },
             ].map((pain, i) => (
-              <BlurFade key={pain.num} delay={i * 0.1}>
-                <TiltCard maxTilt={6}>
-                  <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-card p-7 shadow-xl shadow-primary/5">
+              <BlurFade key={pain.num} delay={i * 0.1} className="h-full">
+                <TiltCard maxTilt={6} className="h-full">
+                  <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-primary/30 bg-card p-7 shadow-xl shadow-primary/5">
                     <BorderBeam size={70} duration={8} delay={i * 2} />
                     <span className="text-sm font-semibold tracking-wide text-primary">
                       {pain.num}
