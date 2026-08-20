@@ -639,7 +639,7 @@ export default function Home() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {features.map((f, i) => (
               <BlurFade key={f.title} delay={i * 0.1}>
-                <div className="h-full rounded-2xl border bg-card p-6">
+                <SpotlightCard className="h-full p-6">
                   <div className="mb-4 w-fit rounded-xl bg-primary/10 p-2.5 text-primary">
                     {f.icon}
                   </div>
@@ -647,7 +647,7 @@ export default function Home() {
                   <p className="mt-2 text-sm text-muted-foreground">
                     {f.body}
                   </p>
-                </div>
+                </SpotlightCard>
               </BlurFade>
             ))}
           </div>

@@ -13,6 +13,9 @@ export function SiteHeader() {
           {siteConfig.name}
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
+          <Link href="/" className="transition-colors hover:text-foreground">
+            Home
+          </Link>
           <Link href="/#produtos" className="transition-colors hover:text-foreground">
             Produtos
           </Link>

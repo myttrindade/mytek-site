@@ -14,6 +14,7 @@ import { PageHeader } from "@/components/page-header";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { TiltCard } from "@/components/velora/tilt-card";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Preço",
@@ -47,12 +48,14 @@ const dashboardPlans = [
     name: "Dashboard Avulso",
     price: "R$199",
     unit: "/mês",
+    highlight: false,
     features: ["Painéis personalizáveis", "Relatórios exportáveis", "Sem suporte incluso"],
   },
   {
     name: "Dashboard Avulso + Suporte",
     price: "R$399",
     unit: "/mês",
+    highlight: true,
     features: ["Painéis personalizáveis", "Relatórios exportáveis", "Suporte incluso"],
   },
 ];
@@ -61,11 +64,13 @@ const landingPagePlans = [
   {
     name: "Landing Page Essencial",
     price: "R$899",
+    highlight: false,
     features: ["Template customizado", "1 integração", "Sem copy profissional"],
   },
   {
     name: "Landing Page Completa",
     price: "R$1.799",
+    highlight: true,
     features: [
       "Design sob medida",
       "Copy profissional",
@@ -148,13 +153,12 @@ export default function PricingPage() {
           </BlurFade>
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             {crmPlans.map((plan, i) => (
-              <BlurFade key={plan.name} delay={i * 0.1}>
+              <BlurFade key={plan.name} delay={i * 0.1} className="h-full">
                 <div
-                  className={
-                    plan.highlight
-                      ? "relative overflow-hidden rounded-2xl border border-primary/40 bg-card p-7"
-                      : "rounded-2xl border bg-card p-7"
-                  }
+                  className={cn(
+                    "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7",
+                    plan.highlight && "border-primary/40"
+                  )}
                 >
                   {plan.highlight && <BorderBeam size={72} duration={8} />}
                   <div className="flex items-center justify-between">
@@ -171,7 +175,7 @@ export default function PricingPage() {
                       {plan.unit}
                     </span>
                   </p>
-                  <ul className="mt-6 space-y-2.5 text-sm">
+                  <ul className="mt-6 flex-1 space-y-2.5 text-sm">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-center gap-2.5">
                         <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -208,16 +212,29 @@ export default function PricingPage() {
           </BlurFade>
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             {dashboardPlans.map((plan, i) => (
-              <BlurFade key={plan.name} delay={i * 0.1}>
-                <div className="rounded-2xl border bg-card p-7">
-                  <h3 className="text-lg font-semibold">{plan.name}</h3>
+              <BlurFade key={plan.name} delay={i * 0.1} className="h-full">
+                <div
+                  className={cn(
+                    "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7",
+                    plan.highlight && "border-primary/40"
+                  )}
+                >
+                  {plan.highlight && <BorderBeam size={72} duration={8} />}
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold">{plan.name}</h3>
+                    {plan.highlight && (
+                      <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-medium text-primary">
+                        Com suporte
+                      </span>
+                    )}
+                  </div>
                   <p className="mt-3 text-4xl font-semibold tracking-tight">
                     {plan.price}
                     <span className="text-base font-normal text-muted-foreground">
                       {plan.unit}
                     </span>
                   </p>
-                  <ul className="mt-6 space-y-2.5 text-sm">
+                  <ul className="mt-6 flex-1 space-y-2.5 text-sm">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-center gap-2.5">
                         <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -227,7 +244,11 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button variant="outline" className="mt-6 w-full rounded-full" asChild>
+                  <Button
+                    variant={plan.highlight ? "default" : "outline"}
+                    className="mt-6 w-full rounded-full"
+                    asChild
+                  >
                     <a href="/contact">Quero este</a>
                   </Button>
                 </div>
@@ -259,16 +280,29 @@ export default function PricingPage() {
           </BlurFade>
           <div className="mt-6 grid gap-6 sm:grid-cols-2">
             {landingPagePlans.map((plan, i) => (
-              <BlurFade key={plan.name} delay={i * 0.1}>
-                <div className="rounded-2xl border bg-card p-7">
-                  <span className="inline-block rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-                    Pagamento único
-                  </span>
+              <BlurFade key={plan.name} delay={i * 0.1} className="h-full">
+                <div
+                  className={cn(
+                    "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7",
+                    plan.highlight && "border-primary/40"
+                  )}
+                >
+                  {plan.highlight && <BorderBeam size={72} duration={8} />}
+                  <div className="flex items-center justify-between">
+                    <span className="inline-block rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
+                      Pagamento único
+                    </span>
+                    {plan.highlight && (
+                      <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-medium text-primary">
+                        Mais completa
+                      </span>
+                    )}
+                  </div>
                   <h3 className="mt-3 text-lg font-semibold">{plan.name}</h3>
                   <p className="mt-3 text-4xl font-semibold tracking-tight">
                     {plan.price}
                   </p>
-                  <ul className="mt-6 space-y-2.5 text-sm">
+                  <ul className="mt-6 flex-1 space-y-2.5 text-sm">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-center gap-2.5">
                         <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
@@ -278,7 +312,11 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
-                  <Button variant="outline" className="mt-6 w-full rounded-full" asChild>
+                  <Button
+                    variant={plan.highlight ? "default" : "outline"}
+                    className="mt-6 w-full rounded-full"
+                    asChild
+                  >
                     <a href="/contact">Quero este</a>
                   </Button>
                 </div>
