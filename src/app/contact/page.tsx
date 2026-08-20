@@ -18,7 +18,8 @@ const channels = [
     icon: <MessageCircleIcon className="size-5" />,
     title: "WhatsApp",
     body: "Pra dúvidas rápidas sobre o produto ou a configuração.",
-    detail: "(11) 90000-0000",
+    detail: "(11) 91454-3016",
+    href: "https://wa.me/5511914543016",
   },
   {
     icon: <MailIcon className="size-5" />,
@@ -66,9 +67,20 @@ export default function ContactPage() {
                     <p className="mt-1 text-sm text-muted-foreground">
                       {channel.body}
                     </p>
-                    <p className="mt-2 text-sm font-medium text-primary">
-                      {channel.detail}
-                    </p>
+                    {channel.href ? (
+                      <a
+                        href={channel.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-2 inline-block text-sm font-medium text-primary hover:underline"
+                      >
+                        {channel.detail}
+                      </a>
+                    ) : (
+                      <p className="mt-2 text-sm font-medium text-primary">
+                        {channel.detail}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
