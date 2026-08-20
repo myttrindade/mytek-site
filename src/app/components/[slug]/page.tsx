@@ -65,7 +65,7 @@ export default async function ComponentPage({
       <h1 className="text-3xl font-semibold tracking-tight">{meta.title}</h1>
       <p className="mt-2 max-w-2xl text-muted-foreground">{meta.description}</p>
 
-      {/* Receipts — generated at build time by scripts/component-stats.mjs */}
+      {/* Receipts: generated at build time by scripts/component-stats.mjs */}
       {(() => {
         const stats = (
           componentStats as Record<

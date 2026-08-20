@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 
 import { BorderBeam } from "@/components/velora/border-beam";
 import { cn } from "@/lib/utils";
-import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe";
 
 const stages = [
   { label: "Novos leads", value: 48, width: 100, tone: "bg-primary" },
@@ -13,12 +12,10 @@ const stages = [
 ];
 
 /**
- * CRM sales funnel preview — bars fill in on scroll, staying at their
- * final width once revealed. Pure markup, no images.
+ * CRM sales funnel preview: bars fill in every time they scroll into
+ * view (not just once), collapsing again on exit so the fill replays.
  */
 export function FunnelPreview({ className }: { className?: string }) {
-  const reducedMotion = useReducedMotionSafe();
-
   return (
     <div className={cn("relative mx-auto w-full max-w-md", className)}>
       <div
@@ -44,12 +41,8 @@ export function FunnelPreview({ className }: { className?: string }) {
                   className={cn("h-full rounded-full", s.tone)}
                   initial={{ width: "0%" }}
                   whileInView={{ width: `${s.width}%` }}
-                  viewport={{ once: true }}
-                  transition={
-                    reducedMotion
-                      ? { duration: 0 }
-                      : { duration: 0.9, delay: i * 0.15, ease: "easeOut" }
-                  }
+                  viewport={{ once: false, margin: "0px 0px -10% 0px" }}
+                  transition={{ duration: 0.9, delay: i * 0.15, ease: "easeOut" }}
                 />
               </div>
               <span className="text-right text-sm font-semibold">

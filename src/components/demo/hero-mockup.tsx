@@ -14,7 +14,6 @@ import { BorderBeam } from "@/components/velora/border-beam";
 import { BrowserMockup } from "@/components/velora/browser-mockup";
 import { NumberTicker } from "@/components/velora/number-ticker";
 import { cn } from "@/lib/utils";
-import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe";
 
 const navItems = [
   { icon: LayoutDashboardIcon, label: "Visão geral", active: true },
@@ -37,8 +36,6 @@ const bars = [38, 62, 48, 74, 56, 88, 66, 92, 60, 78, 84, 98];
  * no images. Gives the hero a product to look at.
  */
 export function HeroMockup({ className }: { className?: string }) {
-  const reducedMotion = useReducedMotionSafe();
-
   return (
     <div className={cn("relative mx-auto w-full max-w-5xl", className)}>
       {/* Glow */}
@@ -121,23 +118,15 @@ export function HeroMockup({ className }: { className?: string }) {
                   <motion.div
                     key={i}
                     initial={{ scaleY: 0 }}
-                    animate={
-                      reducedMotion
-                        ? { scaleY: 1 }
-                        : { scaleY: [0, 1, 0.9, 1, 0.94, 1] }
-                    }
-                    transition={
-                      reducedMotion
-                        ? { duration: 0 }
-                        : {
-                            duration: 3,
-                            times: [0, 0.16, 0.45, 0.6, 0.85, 1],
-                            repeat: Infinity,
-                            repeatDelay: 1.2,
-                            delay: 0.3 + i * 0.08,
-                            ease: "easeInOut",
-                          }
-                    }
+                    animate={{ scaleY: [0, 1, 0.9, 1, 0.94, 1] }}
+                    transition={{
+                      duration: 3,
+                      times: [0, 0.16, 0.45, 0.6, 0.85, 1],
+                      repeat: Infinity,
+                      repeatDelay: 1.2,
+                      delay: 0.3 + i * 0.08,
+                      ease: "easeInOut",
+                    }}
                     className="flex-1 origin-bottom rounded-t-sm bg-gradient-to-t from-brand-from to-brand-via"
                     style={{ height: `${height}%`, opacity: 0.5 + height / 200 }}
                   />

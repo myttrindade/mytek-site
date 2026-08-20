@@ -12,7 +12,7 @@ import { blogPosts } from "@/lib/blog-posts";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notas de produto, decisões de design e novidades da mytek — escritas enquanto construímos a plataforma.",
+    "Notas de produto, decisões de design e novidades da mytek, escritas enquanto construímos a plataforma.",
 };
 
 export default function BlogPage() {
@@ -27,7 +27,7 @@ export default function BlogPage() {
             Notas do <span className="text-primary">time mytek</span>
           </>
         }
-        description="Decisões de produto, automações e a métrica certa — escritas enquanto construímos CRM, Landing Page e Dashboard."
+        description="Decisões de produto, automações e a métrica certa, escritas enquanto construímos CRM, Landing Page e Dashboard."
       />
 
       <section className="pb-28">

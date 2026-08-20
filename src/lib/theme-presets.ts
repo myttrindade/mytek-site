@@ -44,7 +44,7 @@ export const themePresets: ThemePreset[] = [
   {
     id: "aurora-violet",
     name: "Aurora Violet",
-    description: "The classic wide sweep — violet through fuchsia to cyan. Maximum aurora energy.",
+    description: "The classic wide sweep: violet through fuchsia to cyan. Maximum aurora energy.",
     light: {
       primary: "oklch(0.541 0.247 287)",
       primaryForeground: white,
@@ -63,7 +63,7 @@ export const themePresets: ThemePreset[] = [
   {
     id: "emerald",
     name: "Emerald",
-    description: "Green-to-teal. Calm, financial, trustworthy — great for fintech and dev tools.",
+    description: "Green-to-teal. Calm, financial, trustworthy, great for fintech and dev tools.",
     light: {
       primary: "oklch(0.596 0.145 163.225)",
       primaryForeground: white,
@@ -82,7 +82,7 @@ export const themePresets: ThemePreset[] = [
   {
     id: "rose",
     name: "Rose",
-    description: "Rose-to-pink. Warm and confident — consumer apps and creative tools.",
+    description: "Rose-to-pink. Warm and confident: consumer apps and creative tools.",
     light: {
       primary: "oklch(0.586 0.253 17.585)",
       primaryForeground: white,
@@ -101,7 +101,7 @@ export const themePresets: ThemePreset[] = [
   {
     id: "amber",
     name: "Amber",
-    description: "Amber-to-gold. High energy — launches, waitlists and anything that ships fast.",
+    description: "Amber-to-gold. High energy: launches, waitlists and anything that ships fast.",
     light: {
       primary: "oklch(0.666 0.179 58.318)",
       primaryForeground: white,

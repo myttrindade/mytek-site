@@ -23,7 +23,7 @@ export default function NotFound() {
             </h1>
             <p className="mx-auto mt-4 max-w-md text-muted-foreground">
               A página que você procura não existe ou foi movida. Pelo menos
-              essa aqui não vai esfriar — sem lead pra perder.
+              essa aqui não vai esfriar: sem lead pra perder.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Button size="lg" className="rounded-full" asChild>

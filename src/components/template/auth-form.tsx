@@ -15,7 +15,7 @@ interface AuthFormProps {
 }
 
 /**
- * Frontend-only demo auth form — wire it to your auth provider
+ * Frontend-only demo auth form. Wire it to your auth provider
  * (Auth.js, Clerk, Supabase…) when you ship.
  */
 export function AuthForm({ mode }: AuthFormProps) {
@@ -32,7 +32,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           {isLogin ? "Bem-vinda de volta" : "Conta criada"}
         </h2>
         <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-          Este é um formulário de demonstração — conecte seu provedor de
+          Este é um formulário de demonstração. Conecte seu provedor de
           autenticação pra ativar de verdade.
         </p>
         <Button variant="ghost" className="mt-6" onClick={() => setDone(false)}>

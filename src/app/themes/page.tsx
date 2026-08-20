@@ -24,7 +24,7 @@ export default function ThemesPage() {
             Rebranding em <span className="text-primary">sete variáveis</span>
           </>
         }
-        description="Os componentes nunca têm cor fixa no código — eles leem a paleta de marca a partir de tokens CSS. Escolha um preset, veja cada efeito seguir, depois copie o bloco pro globals.css."
+        description="Os componentes nunca têm cor fixa no código: eles leem a paleta de marca a partir de tokens CSS. Escolha um preset, veja cada efeito seguir, depois copie o bloco pro globals.css."
       />
 
       <section className="pb-28">

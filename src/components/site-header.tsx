@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { MytekLogo } from "@/components/mytek-logo";
 import { siteConfig } from "@/lib/site-config";
 
@@ -31,7 +30,6 @@ export function SiteHeader() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <ThemeToggle />
           <Link
             href="/login"
             className="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:inline-block"

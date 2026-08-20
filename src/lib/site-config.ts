@@ -13,5 +13,5 @@ export const siteConfig = {
     "https://github.com/myttrindade/mytek-site",
   tagline: "Dashboards, landing pages e CRM numa plataforma só",
   description:
-    "mytek reúne as ferramentas que seu negócio precisa pra atrair cliente, acompanhar resultado e organizar venda — tudo num só lugar. Contrate separado ou combine e economize.",
+    "mytek reúne as ferramentas que seu negócio precisa pra atrair cliente, acompanhar resultado e organizar venda, tudo num só lugar. Contrate separado ou combine e economize.",
 } as const;

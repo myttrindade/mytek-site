@@ -5,7 +5,6 @@ import { motion } from "motion/react";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { NumberTicker } from "@/components/velora/number-ticker";
 import { cn } from "@/lib/utils";
-import { useReducedMotionSafe } from "@/hooks/use-reduced-motion-safe";
 
 const AREA_PATH =
   "M0,90 L40,75 L80,80 L120,55 L160,60 L200,35 L240,40 L300,10 L300,110 L0,110 Z";
@@ -18,8 +17,6 @@ const LINE_LENGTH = 420;
  * that draws itself in on scroll. Pure markup, no images.
  */
 export function LandingPageMockup({ className }: { className?: string }) {
-  const reducedMotion = useReducedMotionSafe();
-
   return (
     <div className={cn("relative mx-auto w-full max-w-md", className)}>
       <div
@@ -66,12 +63,8 @@ export function LandingPageMockup({ className }: { className?: string }) {
               fill="url(#lpGrad)"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={
-                reducedMotion
-                  ? { duration: 0 }
-                  : { duration: 0.6, delay: 0.9 }
-              }
+              viewport={{ once: false, margin: "0px 0px -10% 0px" }}
+              transition={{ duration: 0.6, delay: 0.9 }}
             />
             <motion.path
               d={LINE_PATH}
@@ -82,17 +75,9 @@ export function LandingPageMockup({ className }: { className?: string }) {
               strokeLinejoin="round"
               initial={{ pathLength: 0 }}
               whileInView={{ pathLength: 1 }}
-              viewport={{ once: true }}
-              transition={
-                reducedMotion
-                  ? { duration: 0 }
-                  : { duration: 1.3, ease: "easeInOut" }
-              }
-              style={
-                reducedMotion
-                  ? undefined
-                  : { strokeDasharray: LINE_LENGTH }
-              }
+              viewport={{ once: false, margin: "0px 0px -10% 0px" }}
+              transition={{ duration: 1.3, ease: "easeInOut" }}
+              style={{ strokeDasharray: LINE_LENGTH }}
             />
           </svg>
         </div>

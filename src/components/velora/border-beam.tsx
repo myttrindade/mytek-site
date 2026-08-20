@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
@@ -20,6 +20,8 @@ interface BorderBeamProps {
 /**
  * Animated beam that travels around the border of its nearest
  * positioned ancestor. Parent needs `position: relative` and a border.
+ * Always animates, regardless of prefers-reduced-motion: it's the
+ * signature detail on the CRM/Dashboard/Landing Page previews.
  */
 export function BorderBeam({
   className,
@@ -30,16 +32,11 @@ export function BorderBeam({
   colorFrom = "var(--brand-from)",
   colorTo = "var(--brand-to)",
 }: BorderBeamProps) {
-  // Hide via CSS + skip the animation under reduced motion; never branch the
-  // rendered tree on it — the server can't know the preference and would
-  // mismatch on hydration.
-  const reducedMotion = useReducedMotion();
-
   return (
     <div
       aria-hidden
       data-slot="border-beam"
-      className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)] motion-reduce:hidden"
+      className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]"
     >
       <motion.div
         className={cn(
@@ -55,11 +52,7 @@ export function BorderBeam({
           } as React.CSSProperties
         }
         initial={{ offsetDistance: reverse ? "100%" : "0%" }}
-        animate={
-          reducedMotion
-            ? undefined
-            : { offsetDistance: reverse ? "0%" : "100%" }
-        }
+        animate={{ offsetDistance: reverse ? "0%" : "100%" }}
         transition={{
           repeat: Infinity,
           ease: "linear",

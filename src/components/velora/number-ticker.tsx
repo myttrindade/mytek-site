@@ -1,12 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import {
-  useInView,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "motion/react";
+import { useInView, useMotionValue, useSpring } from "motion/react";
 
 import { cn } from "@/lib/utils";
 
@@ -20,6 +15,12 @@ interface NumberTickerProps extends React.HTMLAttributes<HTMLSpanElement> {
   suffix?: string;
 }
 
+/**
+ * Counts up every time it scrolls into view, not just the first time
+ * (`once: false`) — it resets to `startValue` on exit so the count-up
+ * replays on the next pass, and it always animates regardless of
+ * prefers-reduced-motion since the count itself is the point.
+ */
 export function NumberTicker({
   value,
   startValue = 0,
@@ -36,8 +37,7 @@ export function NumberTicker({
     damping: 60,
     stiffness: 100,
   });
-  const isInView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
-  const reducedMotion = useReducedMotion();
+  const isInView = useInView(ref, { once: false, margin: "0px 0px -10% 0px" });
 
   const format = (n: number) =>
     `${prefix}${Intl.NumberFormat("en-US", {
@@ -46,14 +46,13 @@ export function NumberTicker({
     }).format(n)}${suffix}`;
 
   useEffect(() => {
-    if (!isInView) return;
-    if (reducedMotion) {
-      motionValue.jump(value);
+    if (!isInView) {
+      motionValue.jump(startValue);
       return;
     }
     const timeout = setTimeout(() => motionValue.set(value), delay * 1000);
     return () => clearTimeout(timeout);
-  }, [isInView, reducedMotion, motionValue, value, delay]);
+  }, [isInView, motionValue, value, startValue, delay]);
 
   useEffect(
     () =>

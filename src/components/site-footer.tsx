@@ -41,7 +41,7 @@ export function SiteFooter() {
             {siteConfig.name}
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            Dashboards, landing pages e CRM numa plataforma só — feita pra
+            Dashboards, landing pages e CRM numa plataforma só, feita pra
             negócios que querem crescer com organização.
           </p>
           <p className="mt-4 text-xs text-muted-foreground">

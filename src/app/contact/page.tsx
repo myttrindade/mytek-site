@@ -46,7 +46,7 @@ export default function ContactPage() {
             Fale com um <span className="text-primary">humano</span>
           </>
         }
-        description="Dúvidas sobre o funil, a automação ou o programa fundador? Manda uma mensagem — a gente lê tudo."
+        description="Dúvidas sobre o funil, a automação ou o programa fundador? Manda uma mensagem, a gente lê tudo."
       />
 
       <section className="pb-28">

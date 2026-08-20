@@ -16,14 +16,14 @@ import { SpotlightCard } from "@/components/velora/spotlight-card";
 export const metadata: Metadata = {
   title: "Sobre",
   description:
-    "mytek reúne CRM, Landing Page e Dashboard numa plataforma só — pra negócio que precisa dos três, sem juntar ferramentas diferentes e torcer pra elas conversarem entre si.",
+    "mytek reúne CRM, Landing Page e Dashboard numa plataforma só, pra negócio que precisa dos três, sem juntar ferramentas diferentes e torcer pra elas conversarem entre si.",
 };
 
 const principles = [
   {
     icon: <LinkIcon className="size-6" />,
     title: "Tudo conectado, não colado",
-    body: "Lead cai no funil, funil alimenta o dashboard — sem exportar planilha, sem copiar e colar entre sistemas diferentes.",
+    body: "Lead cai no funil, funil alimenta o dashboard, sem exportar planilha, sem copiar e colar entre sistemas diferentes.",
   },
   {
     icon: <ZapIcon className="size-6" />,
@@ -62,7 +62,7 @@ export default function AboutPage() {
             <span className="text-primary">É uma plataforma só.</span>
           </>
         }
-        description="mytek nasce como CRM, Landing Page e Dashboard integrados — pra quem precisa dos três, sem juntar quatro fornecedores diferentes e torcer pra eles conversarem entre si."
+        description="mytek nasce como CRM, Landing Page e Dashboard integrados, pra quem precisa dos três, sem juntar quatro fornecedores diferentes e torcer pra eles conversarem entre si."
       />
 
       {/* Story */}
@@ -74,7 +74,7 @@ export default function AboutPage() {
               ninguém responde a tempo, ele fecha com a concorrência. CRMs
               genéricos são pesados, pensados pra time de vendas dedicado.
               A landing page vem de uma agência, o dashboard de outra
-              ferramenta — e nenhuma conversa com a outra.
+              ferramenta, e nenhuma conversa com a outra.
             </p>
           </BlurFade>
           <BlurFade delay={0.1}>
@@ -84,7 +84,7 @@ export default function AboutPage() {
               atendimento e histórico de WhatsApp), <strong className="text-foreground">Landing Page</strong>{" "}
               (página pronta, conectada ao funil) e <strong className="text-foreground">Dashboard</strong>{" "}
               (vendas, leads e atendimento em tempo real). Três produtos, um
-              funil só — separados ou juntos, no seu ritmo.
+              funil só, separados ou juntos, no seu ritmo.
             </p>
           </BlurFade>
         </div>

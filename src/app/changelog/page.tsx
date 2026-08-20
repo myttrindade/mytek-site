@@ -60,7 +60,7 @@ const releases: Release[] = [
     title: "CRM com funil visual e atendimento via WhatsApp",
     tag: "Novo",
     items: [
-      "Funil de vendas em Kanban — arraste e solte entre etapas",
+      "Funil de vendas em Kanban, arraste e solte entre etapas",
       "Atendimento e histórico de WhatsApp direto na plataforma",
       "Times de até 3 pessoas incluídos no plano",
     ],
@@ -89,7 +89,7 @@ export default function ChangelogPage() {
             O que há de <span className="text-primary">novo</span>
           </>
         }
-        description="CRM, Landing Page, Dashboard e o programa fundador — cada entrega, documentada."
+        description="CRM, Landing Page, Dashboard e o programa fundador: cada entrega, documentada."
       />
 
       <section className="pb-28">

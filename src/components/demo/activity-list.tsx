@@ -24,7 +24,7 @@ const notifications = [
     icon: UserPlusIcon,
     tone: "bg-blue-500/15 text-blue-500",
     title: "Lead recebido",
-    description: "João Pedro — orçamento novo projeto",
+    description: "João Pedro: orçamento novo projeto",
     time: "2min atrás",
   },
   {
@@ -38,21 +38,21 @@ const notifications = [
     icon: CalendarCheckIcon,
     tone: "bg-violet-500/15 text-violet-500",
     title: "Reunião agendada",
-    description: "Maria Clara — apresentação de proposta",
+    description: "Maria Clara: apresentação de proposta",
     time: "12min atrás",
   },
   {
     icon: CheckCircle2Icon,
     tone: "bg-pink-500/15 text-pink-500",
     title: "Negócio fechado",
-    description: "Maria Clara — contrato assinado",
+    description: "Maria Clara: contrato assinado",
     time: "18min atrás",
   },
   {
     icon: StarIcon,
     tone: "bg-cyan-500/15 text-cyan-500",
     title: "Cliente novo",
-    description: "Nortec — primeira compra",
+    description: "Nortec: primeira compra",
     time: "24min atrás",
   },
 ];

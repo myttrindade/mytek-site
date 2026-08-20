@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site-config";
 export const dynamic = "force-static";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
+export const alt = `${siteConfig.name} · ${siteConfig.tagline}`;
 
 // Branded social card. Self-contained (next/og default font, no network) so
 // it renders at build time and every shared link previews on-brand.
@@ -71,7 +71,7 @@ export default function OpengraphImage() {
               lineHeight: 1.3,
             }}
           >
-            Atraia cliente, acompanhe resultado e organize venda — tudo num
+            Atraia cliente, acompanhe resultado e organize venda, tudo num
             só lugar.
           </div>
         </div>

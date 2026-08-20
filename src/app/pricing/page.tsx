@@ -13,6 +13,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { PageHeader } from "@/components/page-header";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
+import { TiltCard } from "@/components/velora/tilt-card";
 
 export const metadata: Metadata = {
   title: "Preço",
@@ -88,7 +89,7 @@ const faqs = [
   },
   {
     q: "A Landing Page é cobrada todo mês?",
-    a: "Não — é pagamento único. Você paga uma vez pela página pronta. Cliente ativo de CRM ou Dashboard tem 20% de desconto: Essencial por R$719 e Completa por R$1.439.",
+    a: "Não. É pagamento único. Você paga uma vez pela página pronta. Cliente ativo de CRM ou Dashboard tem 20% de desconto: Essencial por R$719 e Completa por R$1.439.",
   },
   {
     q: "Qual a diferença entre o CRM Normal e o Plus?",
@@ -238,7 +239,7 @@ export default function PricingPage() {
               Já é cliente CRM? Adicione o Dashboard por{" "}
               <strong className="text-card-foreground">R$99/mês</strong> (sem
               suporte) ou <strong className="text-card-foreground">R$199/mês</strong>{" "}
-              (com suporte) — valor extra sobre a mensalidade do CRM Normal
+              (com suporte): valor extra sobre a mensalidade do CRM Normal
               ou Plus.
             </p>
           </BlurFade>
@@ -346,37 +347,40 @@ export default function PricingPage() {
       <section className="pb-24">
         <div className="mx-auto max-w-2xl px-4 lg:px-8">
           <BlurFade>
-            <div className="rounded-2xl border bg-card p-10 text-center">
-              <span className="text-xs font-semibold tracking-wide text-primary uppercase">
-                Programa fundador
-              </span>
-              <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
-                "Estamos abrindo o programa fundador pros primeiros clientes
-                — condições especiais em troca do seu feedback direto pra
-                moldar o produto."
-              </p>
-              <div className="mt-6 flex justify-center gap-1.5">
-                {[true, true, false, false, false].map((filled, i) => (
-                  <span
-                    key={i}
-                    className={
-                      filled
-                        ? "size-2.5 rounded-full bg-primary"
-                        : "size-2.5 rounded-full bg-muted"
-                    }
-                  />
-                ))}
+            <TiltCard maxTilt={5}>
+              <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-card p-10 text-center shadow-xl shadow-primary/5">
+                <BorderBeam size={100} duration={9} />
+                <span className="text-xs font-semibold tracking-wide text-primary uppercase">
+                  Programa fundador
+                </span>
+                <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
+                  "Estamos abrindo o programa fundador, com condições
+                  especiais em troca do seu feedback direto pra moldar o
+                  produto."
+                </p>
+                <div className="mt-6 flex justify-center gap-1.5">
+                  {[true, true, false, false, false].map((filled, i) => (
+                    <span
+                      key={i}
+                      className={
+                        filled
+                          ? "size-2.5 rounded-full bg-primary"
+                          : "size-2.5 rounded-full bg-muted"
+                      }
+                    />
+                  ))}
+                </div>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  2 de 5 vagas do programa fundador preenchidas
+                </p>
+                <Button size="lg" className="mt-6 rounded-full" asChild>
+                  <a href="/contact">
+                    <MessageCircleIcon className="size-4" />
+                    Falar com o time fundador
+                  </a>
+                </Button>
               </div>
-              <p className="mt-3 text-xs text-muted-foreground">
-                2 de 5 vagas do programa fundador preenchidas
-              </p>
-              <Button size="lg" className="mt-6 rounded-full" asChild>
-                <a href="/contact">
-                  <MessageCircleIcon className="size-4" />
-                  Falar com o time fundador
-                </a>
-              </Button>
-            </div>
+            </TiltCard>
           </BlurFade>
         </div>
       </section>

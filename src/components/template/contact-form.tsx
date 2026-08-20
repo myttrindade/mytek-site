@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
 /**
- * Frontend-only demo form — swap the submit handler for your API route
+ * Frontend-only demo form. Swap the submit handler for your API route
  * or form service when you ship.
  */
 export function ContactForm() {
@@ -23,7 +23,7 @@ export function ContactForm() {
         </span>
         <h2 className="mt-4 text-lg font-semibold">Mensagem enviada</h2>
         <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-          Obrigado pelo contato — respondemos em até um dia útil.
+          Obrigado pelo contato. Respondemos em até um dia útil.
         </p>
         <Button
           variant="ghost"
@@ -75,7 +75,7 @@ export function ContactForm() {
         Enviar mensagem
       </Button>
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        Formulário de demonstração — nenhum dado sai do seu navegador.
+        Formulário de demonstração. Nenhum dado sai do seu navegador.
       </p>
     </form>
   );

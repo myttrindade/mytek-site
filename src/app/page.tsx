@@ -9,6 +9,7 @@ import {
   ShieldIcon,
   SparklesIcon,
   StarIcon,
+  Wand2Icon,
   ZapIcon,
 } from "lucide-react";
 
@@ -25,10 +26,12 @@ import { SiteFooter } from "@/components/site-footer";
 import { HeroMockup } from "@/components/demo/hero-mockup";
 import { FunnelPreview } from "@/components/demo/funnel-preview";
 import { LandingPageMockup } from "@/components/demo/landing-page-mockup";
+import { IntegrationsBeam } from "@/components/demo/integrations-beam";
 import { AnimatedGradientText } from "@/components/velora/animated-gradient-text";
 import { AuroraBackground } from "@/components/velora/aurora-background";
 import { AvatarCircles } from "@/components/velora/avatar-circles";
 import { BlurFade } from "@/components/velora/blur-fade";
+import { BorderBeam } from "@/components/velora/border-beam";
 import { Dock, DockIcon } from "@/components/velora/dock";
 import { GridPattern } from "@/components/velora/grid-pattern";
 import { Marquee } from "@/components/velora/marquee";
@@ -40,15 +43,15 @@ import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { SpotlightCard } from "@/components/velora/spotlight-card";
 import { TiltCard } from "@/components/velora/tilt-card";
 
-const logos = [
-  "Nortec",
-  "Vidraçaria Aurora",
-  "Grupo Meridian",
-  "Clínica Bellavie",
-  "Estúdio Fora",
-  "Construtora Vale",
-  "Ateliê Lima",
-  "Distribuidora Rota",
+const differentiators = [
+  { icon: <FilterIcon className="size-4" />, label: "Funil visual em Kanban" },
+  { icon: <MessageCircleIcon className="size-4" />, label: "WhatsApp direto na plataforma" },
+  { icon: <GlobeIcon className="size-4" />, label: "Landing page conectada ao funil" },
+  { icon: <GaugeIcon className="size-4" />, label: "Métrica em tempo real" },
+  { icon: <ZapIcon className="size-4" />, label: "Configuração em minutos" },
+  { icon: <ShieldIcon className="size-4" />, label: "Controle de acesso por usuário" },
+  { icon: <SparklesIcon className="size-4" />, label: "Módulo de IA sobre os dados" },
+  { icon: <Wand2Icon className="size-4" />, label: "Orçamento sob medida pra projeto personalizado" },
 ];
 
 const stats = [
@@ -71,7 +74,7 @@ const products = [
     icon: <GlobeIcon className="size-6" />,
     name: "Landing Page",
     description:
-      "Sua própria página, conectada ao mesmo funil — pronta pra converter visitante em lead sem depender de agência.",
+      "Sua própria página, conectada ao mesmo funil, pronta pra converter visitante em lead sem depender de agência.",
   },
   {
     id: "dashboard",
@@ -91,7 +94,7 @@ const features = [
   {
     icon: <MousePointerClickIcon className="size-5" />,
     title: "Interface intuitiva",
-    body: "Pensada para quem não é técnico, com curva de aprendizado curta.",
+    body: "Pensada para quem não é técnico. Você aprende em minutos, não em semanas.",
   },
   {
     icon: <ShieldIcon className="size-5" />,
@@ -100,7 +103,7 @@ const features = [
   },
   {
     icon: <MessageCircleIcon className="size-5" />,
-    title: "Suporte próximo",
+    title: "Suporte de verdade",
     body: "Atendimento direto pelo WhatsApp, sem burocracia.",
   },
 ];
@@ -132,7 +135,7 @@ const testimonials = [
   },
   {
     quote:
-      "Configuração foi literalmente 10 minutos. O funil já veio pronto pro nosso jeito de trabalhar — não precisei montar nada do zero.",
+      "Configuração foi literalmente 10 minutos. O funil já veio pronto pro nosso jeito de trabalhar, não precisei montar nada do zero.",
     name: "Camila Duarte",
     role: "Gerente comercial, Nortec",
   },
@@ -156,7 +159,7 @@ const testimonials = [
   },
   {
     quote:
-      "O programa fundador valeu muito a pena — condições especiais e o time realmente ouviu nosso feedback pra moldar o produto.",
+      "O programa fundador valeu muito a pena: condições especiais e o time realmente ouviu nosso feedback pra moldar o produto.",
     name: "Juliana Prado",
     role: "Sócia, Ateliê Lima",
   },
@@ -165,11 +168,11 @@ const testimonials = [
 const faqs = [
   {
     q: "CRM, Landing Page e Dashboard são vendidos separados?",
-    a: "Sim. Cada módulo tem seu próprio preço e pode ser contratado sozinho. Quando você combina CRM e Dashboard, o preço de cada um já sai menor — é o incentivo pra usar os módulos juntos.",
+    a: "Sim. Cada módulo tem seu próprio preço e pode ser contratado sozinho. Quando você combina CRM e Dashboard, o preço de cada um já sai menor. É o incentivo pra usar os módulos juntos.",
   },
   {
     q: "A mytek é feita só pra um tipo de negócio?",
-    a: "Não. CRM, Landing Page e Dashboard servem pra qualquer negócio que precise de funil, página ou métrica em tempo real — comércio, serviço, indústria, o que for. Você escolhe os módulos que fazem sentido pro seu momento.",
+    a: "Não. CRM, Landing Page e Dashboard servem pra qualquer negócio que precise de funil, página ou métrica em tempo real: comércio, serviço, indústria, o que for. Você escolhe os módulos que fazem sentido pro seu momento.",
   },
   {
     q: "Preciso de equipe técnica pra configurar?",
@@ -183,6 +186,7 @@ const faqs = [
 
 const pricingTeasers = [
   {
+    icon: <FilterIcon className="size-6" />,
     name: "CRM",
     price: "R$129/mês",
     unit: "a partir de · 3 usuários incluídos",
@@ -190,6 +194,7 @@ const pricingTeasers = [
       "Funil de vendas visual, atendimento via WhatsApp e automação de lead parado.",
   },
   {
+    icon: <GlobeIcon className="size-6" />,
     name: "Landing Page",
     price: "R$899",
     unit: "pagamento único",
@@ -197,6 +202,7 @@ const pricingTeasers = [
       "Página conectada ao funil, pronta em poucos dias após aprovação do conteúdo.",
   },
   {
+    icon: <GaugeIcon className="size-6" />,
     name: "Dashboard",
     price: "R$199/mês",
     unit: "a partir de · avulso, sem precisar de CRM",
@@ -241,7 +247,7 @@ export default function Home() {
           <BlurFade delay={0.35}>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground text-pretty">
               mytek reúne as ferramentas que seu negócio precisa pra atrair
-              cliente, acompanhar resultado e organizar venda — tudo num só
+              cliente, acompanhar resultado e organizar venda, tudo num só
               lugar, sem complicação.
             </p>
           </BlurFade>
@@ -358,26 +364,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logo marquee */}
+      {/* Diferenciais marquee */}
       <section className="border-y border-border/40 py-12">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <p className="mb-8 text-center text-sm text-muted-foreground">
-            Negócios que confiam na mytek
+            Diferenciais da mytek
           </p>
           <Marquee pauseOnHover className="[--duration:30s]">
-            {logos.map((logo) => (
+            {differentiators.map((d) => (
               <span
-                key={logo}
-                className="mx-8 text-xl font-semibold tracking-tight text-muted-foreground/60 transition-colors hover:text-foreground"
+                key={d.label}
+                className="mx-3 flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
-                {logo}
+                <span className="text-primary">{d.icon}</span>
+                {d.label}
               </span>
             ))}
           </Marquee>
         </div>
       </section>
 
-      {/* Produtos — visão geral */}
+      {/* Produtos: visão geral */}
       <section id="produtos" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
@@ -386,7 +393,7 @@ export default function Home() {
               <span className="text-primary">uma plataforma só</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
-              CRM, Landing Page e Dashboard — trabalham juntos ou de forma
+              CRM, Landing Page e Dashboard trabalham juntos ou de forma
               independente, no seu ritmo.
             </p>
           </BlurFade>
@@ -415,7 +422,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Módulos — o que cada um faz, na prática */}
+      {/* Módulos: o que cada um faz, na prática */}
       <section id="modulos" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
@@ -424,7 +431,7 @@ export default function Home() {
               O que cada módulo faz, na prática
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
-              Três soluções pensadas para trabalhar juntas — ou de forma
+              Três soluções pensadas para trabalhar juntas, ou de forma
               independente, no seu ritmo.
             </p>
           </BlurFade>
@@ -445,7 +452,7 @@ export default function Home() {
                 <p className="mt-4 text-muted-foreground">
                   Do primeiro contato ao pós-venda: funil visual em Kanban,
                   atendimento via WhatsApp direto na plataforma, e histórico
-                  completo de cada cliente — ninguém precisa "lembrar" de
+                  completo de cada cliente. Ninguém precisa "lembrar" de
                   nada.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm">
@@ -493,8 +500,8 @@ export default function Home() {
                   Uma página feita para converter visitante em cliente
                 </h3>
                 <p className="mt-4 text-muted-foreground">
-                  Criamos a página do zero — ou você escolhe o modelo
-                  essencial pronto — com foco em captar contato. Cada lead
+                  Criamos a página do zero, ou você escolhe o modelo
+                  essencial pronto, com foco em captar contato. Cada lead
                   que preenche o formulário cai direto no seu funil de
                   vendas.
                 </p>
@@ -525,6 +532,46 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Todo canal, um lugar só */}
+      <section className="relative py-24 lg:py-32">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-2 lg:gap-20 lg:px-8">
+          <BlurFade direction="right">
+            <div>
+              <span className="text-sm font-medium text-primary">
+                Tudo integrado
+              </span>
+              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
+                Todo canal,{" "}
+                <span className="text-primary">um lugar só</span>
+              </h2>
+              <p className="mt-4 text-muted-foreground">
+                Redes sociais, telefone, agenda, e-mail e pagamento: tudo
+                cai no mesmo funil, com o WhatsApp como centro do
+                atendimento. Nada de aba trocada, nada de copiar e colar
+                entre sistemas.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm">
+                {[
+                  "Todo canal cai no mesmo funil, sem planilha",
+                  "WhatsApp como centro do atendimento",
+                  "Nenhum lead se perde entre uma ferramenta e outra",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                      <CheckIcon className="size-3" />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </BlurFade>
+          <BlurFade direction="left" delay={0.15}>
+            <IntegrationsBeam />
+          </BlurFade>
+        </div>
+      </section>
+
       {/* Dashboard */}
       <section id="dashboard" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
@@ -538,7 +585,7 @@ export default function Home() {
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
               O Dashboard reúne vendas, leads e atendimento em painéis
-              visuais que qualquer pessoa da equipe entende — sem planilha,
+              visuais que qualquer pessoa da equipe entende, sem planilha,
               sem pedir relatório pra ninguém.
             </p>
           </BlurFade>
@@ -567,7 +614,7 @@ export default function Home() {
               </h2>
               <p className="mt-4 text-muted-foreground">
                 Novo lead, resposta enviada, alerta de atraso, negócio
-                fechado — um feed ao vivo do que está acontecendo na
+                fechado: um feed ao vivo do que está acontecendo na
                 equipe, sem precisar abrir planilha nenhuma.
               </p>
               <p className="mt-4 text-muted-foreground">
@@ -641,9 +688,6 @@ export default function Home() {
             <h2 className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
               Negócios <span className="text-primary">confiam</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
-              Passe o mouse nos cards — eles inclinam em 3D.
-            </p>
           </BlurFade>
           <div className="mt-16 columns-1 gap-6 md:columns-2 lg:columns-3 [&>*]:mb-6">
             {testimonials.map((t, i) => (
@@ -683,7 +727,7 @@ export default function Home() {
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
               CRM, Landing Page e Dashboard podem ser contratados separados
-              ou juntos — quanto mais módulos, menor o preço de cada um.
+              ou juntos. Quanto mais módulos, menor o preço de cada um.
             </p>
           </BlurFade>
 
@@ -691,6 +735,9 @@ export default function Home() {
             {pricingTeasers.map((p, i) => (
               <BlurFade key={p.name} delay={i * 0.1}>
                 <div className="flex h-full flex-col rounded-2xl border bg-card p-6">
+                  <div className="mb-4 w-fit rounded-xl bg-primary/10 p-3 text-primary">
+                    {p.icon}
+                  </div>
                   <span className="text-sm font-medium text-primary">
                     {p.name}
                   </span>
@@ -723,37 +770,40 @@ export default function Home() {
           </BlurFade>
 
           <BlurFade delay={0.1}>
-            <div
-              id="fundador"
-              className="mx-auto mt-16 max-w-2xl rounded-2xl border bg-card p-10 text-center"
-            >
-              <span className="text-xs font-semibold tracking-wide text-primary uppercase">
-                Programa fundador
-              </span>
-              <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
-                "Estamos abrindo o programa fundador pros primeiros clientes
-                — condições especiais em troca do seu feedback direto pra
-                moldar o produto."
-              </p>
-              <div className="mt-6 flex justify-center gap-1.5">
-                {[true, true, false, false, false].map((filled, i) => (
-                  <span
-                    key={i}
-                    className={
-                      filled
-                        ? "size-2.5 rounded-full bg-primary"
-                        : "size-2.5 rounded-full bg-muted"
-                    }
-                  />
-                ))}
+            <TiltCard className="mx-auto mt-16 max-w-2xl" maxTilt={5}>
+              <div
+                id="fundador"
+                className="relative overflow-hidden rounded-2xl border border-primary/30 bg-card p-10 text-center shadow-xl shadow-primary/5"
+              >
+                <BorderBeam size={100} duration={9} />
+                <span className="text-xs font-semibold tracking-wide text-primary uppercase">
+                  Programa fundador
+                </span>
+                <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
+                  "Estamos abrindo o programa fundador, com condições
+                  especiais em troca do seu feedback direto pra moldar o
+                  produto."
+                </p>
+                <div className="mt-6 flex justify-center gap-1.5">
+                  {[true, true, false, false, false].map((filled, i) => (
+                    <span
+                      key={i}
+                      className={
+                        filled
+                          ? "size-2.5 rounded-full bg-primary"
+                          : "size-2.5 rounded-full bg-muted"
+                      }
+                    />
+                  ))}
+                </div>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  2 de 5 vagas do programa fundador preenchidas
+                </p>
+                <Button variant="outline" size="lg" className="mt-6 rounded-full">
+                  Falar com o time fundador
+                </Button>
               </div>
-              <p className="mt-3 text-xs text-muted-foreground">
-                2 de 5 vagas do programa fundador preenchidas
-              </p>
-              <Button variant="outline" size="lg" className="mt-6 rounded-full">
-                Falar com o time fundador
-              </Button>
-            </div>
+            </TiltCard>
           </BlurFade>
         </div>
       </section>
