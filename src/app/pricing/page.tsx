@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CheckIcon, GiftIcon, MessageCircleIcon } from "lucide-react";
+import { CheckIcon, GiftIcon, MessageCircleIcon, Wand2Icon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -365,13 +365,18 @@ export default function PricingPage() {
       <section className="pb-20">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
           <BlurFade>
-            <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-dashed bg-muted/30 p-8">
-              <div>
-                <h3 className="font-semibold">Não achou o que precisa?</h3>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Se seu negócio precisa de algo fora desses planos, montamos
-                  um orçamento sob medida pra você.
-                </p>
+            <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-primary/20 bg-primary/5 p-8">
+              <div className="flex items-start gap-4">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
+                  <Wand2Icon className="size-5" />
+                </span>
+                <div>
+                  <h3 className="font-semibold">Não achou o que precisa?</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Se seu negócio precisa de algo fora desses planos,
+                    montamos um orçamento sob medida pra você.
+                  </p>
+                </div>
               </div>
               <Button className="shrink-0 rounded-full" asChild>
                 <a href="/contact">Pedir orçamento personalizado</a>
