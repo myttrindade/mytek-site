@@ -1,12 +1,13 @@
 /**
- * Single source of truth for external URLs. Override at build time with
- * NEXT_PUBLIC_SITE_URL / NEXT_PUBLIC_GITHUB_URL when the real domain and
- * repo are wired up.
+ * Single source of truth for external URLs. The default below must always
+ * match a domain that actually resolves to this deployment — it feeds the
+ * sitemap, robots.txt, canonical tags, and Open Graph URLs. Override at
+ * build time with NEXT_PUBLIC_SITE_URL once a custom domain is connected.
  */
 export const siteConfig = {
   name: "mytek",
   url: (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mytek.app"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mytek-site.pages.dev"
   ).replace(/\/$/, ""),
   github:
     process.env.NEXT_PUBLIC_GITHUB_URL ??
