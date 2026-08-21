@@ -1,13 +1,12 @@
 {
-  "name": "velora-ui",
+  "name": "mytek-site",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "registry:build": "node scripts/component-stats.mjs && node scripts/build-registry.mjs && shadcn build"
+    "lint": "eslint"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

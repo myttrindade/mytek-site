@@ -11,7 +11,7 @@ export interface BlogPost {
 /** Listing metadata for /blog. The content lives in src/app/blog/(posts)/<slug>/page.mdx */
 export const blogPosts: BlogPost[] = [
   {
-    slug: "introducing-velora-ui",
+    slug: "por-que-tres-produtos",
     title: "Por que viramos três produtos, não um CRM genérico",
     excerpt:
       "CRM, Landing Page e Dashboard resolvem problemas diferentes. Por isso não empacotamos tudo num produto só. Você contrata o que precisa, quando precisa, e paga menos quando combina.",
