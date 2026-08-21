@@ -4,11 +4,6 @@
   Content-Type: image/png
   Cache-Control: public, max-age=3600
 
-# Registry JSON is fetched cross-origin by installers and web playgrounds.
-/r/*
-  Access-Control-Allow-Origin: *
-  Cache-Control: public, max-age=3600
-
 # AI-agent discovery file.
 /llms.txt
   Content-Type: text/plain; charset=utf-8
