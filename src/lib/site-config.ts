@@ -7,7 +7,7 @@
 export const siteConfig = {
   name: "mytek",
   url: (
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mytek-site.pages.dev"
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://mytek.com.br"
   ).replace(/\/$/, ""),
   github:
     process.env.NEXT_PUBLIC_GITHUB_URL ??
