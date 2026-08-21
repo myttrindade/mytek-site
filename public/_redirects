@@ -1,5 +1,0 @@
-# Send visitors and search engines from the default Cloudflare Pages
-# domain to the real one. mytek.com.br is the only domain used in
-# metadata, sitemap, and links — this keeps mytek-site.pages.dev from
-# being treated as a second, duplicate copy of the site.
-https://mytek-site.pages.dev/*  https://mytek.com.br/:splat  301
