@@ -190,6 +190,16 @@ const faqs = [
   },
 ];
 
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
+
 const pricingTeasers = [
   {
     icon: <FilterIcon className="size-6" />,
@@ -818,6 +828,10 @@ export default function Home() {
 
       {/* FAQ */}
       <section id="faq" className="py-24 lg:py-32">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <BlurFade>
             <h2 className="text-center text-3xl font-semibold tracking-tight lg:text-4xl">
