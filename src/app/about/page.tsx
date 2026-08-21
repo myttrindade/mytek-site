@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   title: "Sobre",
   description:
     "mytek reúne CRM, Landing Page e Dashboard numa plataforma só, pra negócio que precisa dos três, sem juntar ferramentas diferentes e torcer pra elas conversarem entre si.",
+  alternates: { canonical: "/about" },
 };
 
 const principles = [

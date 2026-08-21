@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Notas de produto, decisões de design e novidades da mytek, escritas enquanto construímos a plataforma.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogPage() {

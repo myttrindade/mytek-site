@@ -21,7 +21,7 @@ export const blogPosts: BlogPost[] = [
     readingTime: "4 min de leitura",
   },
   {
-    slug: "animations-with-receipts",
+    slug: "alerta-de-lead-sem-resposta",
     title: "A automação que vende sozinha: o alerta de lead sem resposta",
     excerpt:
       "Cliente manda mensagem, ninguém responde a tempo, ele fecha com a concorrência. Construímos uma automação pra resolver exatamente essa dor, nenhuma outra.",
@@ -31,7 +31,7 @@ export const blogPosts: BlogPost[] = [
     readingTime: "3 min de leitura",
   },
   {
-    slug: "retheme-in-one-token-block",
+    slug: "metricas-que-importam-no-dashboard",
     title: "“Visitantes do site” não paga conta. Vendas sim.",
     excerpt:
       "Por que o Dashboard da mytek abre com vendas, leads e satisfação, não com um número de tráfego que ninguém usa pra decidir nada.",

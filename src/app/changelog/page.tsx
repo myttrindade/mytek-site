@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Changelog",
   description:
     "Cada entrega da mytek: CRM, Landing Page, Dashboard e o que vem a seguir no roadmap.",
+  alternates: { canonical: "/changelog" },
 };
 
 interface Release {

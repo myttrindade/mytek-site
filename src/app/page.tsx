@@ -43,6 +43,12 @@ import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { SpotlightCard } from "@/components/velora/spotlight-card";
 import { TiltCard } from "@/components/velora/tilt-card";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 const differentiators = [
   { icon: <FilterIcon className="size-4" />, label: "Funil visual em Kanban" },
   { icon: <MessageCircleIcon className="size-4" />, label: "WhatsApp direto na plataforma" },

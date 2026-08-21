@@ -11,6 +11,7 @@ export const metadata: Metadata = {
   title: "Contato",
   description:
     "Dúvidas sobre a mytek, o programa fundador ou o plano padrão? Fale com a gente.",
+  alternates: { canonical: "/contact" },
 };
 
 const channels = [

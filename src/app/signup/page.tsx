@@ -6,6 +6,7 @@ import { AuthVisual } from "@/components/template/auth-visual";
 export const metadata: Metadata = {
   title: "Criar conta",
   description: "Crie sua conta mytek e comece a usar CRM, Landing Page ou Dashboard.",
+  alternates: { canonical: "/signup" },
 };
 
 export default function SignupPage() {

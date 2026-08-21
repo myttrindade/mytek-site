@@ -6,6 +6,7 @@ import { AuthVisual } from "@/components/template/auth-visual";
 export const metadata: Metadata = {
   title: "Entrar",
   description: "Entre na sua conta mytek.",
+  alternates: { canonical: "/login" },
 };
 
 export default function LoginPage() {

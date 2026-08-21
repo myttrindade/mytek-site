@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Preço",
   description:
     "CRM a partir de R$129/mês, Dashboard a partir de R$199/mês e Landing Page a partir de R$899 (pagamento único). Combine e economize.",
+  alternates: { canonical: "/pricing" },
 };
 
 const crmPlans = [

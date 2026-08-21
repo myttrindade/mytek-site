@@ -17,8 +17,6 @@ const groups = [
     title: "Empresa",
     links: [
       { text: "Sobre", href: "/about" },
-      { text: "Blog", href: "/blog" },
-      { text: "Changelog", href: "/changelog" },
       { text: "Contato", href: "/contact" },
     ],
   },
@@ -68,7 +66,6 @@ export function SiteFooter() {
       </div>
       <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-2 border-t border-border/40 px-4 pt-6 text-xs text-muted-foreground md:flex-row lg:px-8">
         <span>© {new Date().getFullYear()} mytek. Todos os direitos reservados.</span>
-        <span>Preço por produto, sem letra miúda.</span>
       </div>
     </footer>
   );
