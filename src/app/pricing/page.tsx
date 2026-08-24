@@ -14,6 +14,7 @@ import { PageHeader } from "@/components/page-header";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { TiltCard } from "@/components/velora/tilt-card";
+import { checkoutHref } from "@/lib/checkout";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -23,9 +24,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/pricing" },
 };
 
+// `slug` casa com os planos de src/lib/checkout.ts: é o que leva o botão ao
+// checkout certo. Ao renomear um plano aqui, renomeie lá também.
 const crmPlans = [
   {
     name: "CRM Normal",
+    slug: "crm-normal",
     price: "R$129",
     unit: "/mês",
     highlight: false,
@@ -33,6 +37,7 @@ const crmPlans = [
   },
   {
     name: "CRM Plus",
+    slug: "crm-plus",
     price: "R$249",
     unit: "/mês",
     highlight: true,
@@ -47,6 +52,7 @@ const crmPlans = [
 const dashboardPlans = [
   {
     name: "Dashboard Avulso",
+    slug: "dashboard-avulso",
     price: "R$199",
     unit: "/mês",
     highlight: false,
@@ -54,6 +60,7 @@ const dashboardPlans = [
   },
   {
     name: "Dashboard Avulso + Suporte",
+    slug: "dashboard-suporte",
     price: "R$399",
     unit: "/mês",
     highlight: true,
@@ -64,12 +71,14 @@ const dashboardPlans = [
 const landingPagePlans = [
   {
     name: "Landing Page Essencial",
+    slug: "lp-essencial",
     price: "R$899",
     highlight: false,
     features: ["Template customizado", "1 integração", "Sem copy profissional"],
   },
   {
     name: "Landing Page Completa",
+    slug: "lp-completa",
     price: "R$1.799",
     highlight: true,
     features: [
@@ -191,7 +200,7 @@ export default function PricingPage() {
                     className="mt-6 w-full rounded-full"
                     asChild
                   >
-                    <a href="/contact">Quero este</a>
+                    <a href={checkoutHref(plan.slug)}>Quero este</a>
                   </Button>
                 </div>
               </BlurFade>
@@ -250,7 +259,7 @@ export default function PricingPage() {
                     className="mt-6 w-full rounded-full"
                     asChild
                   >
-                    <a href="/contact">Quero este</a>
+                    <a href={checkoutHref(plan.slug)}>Quero este</a>
                   </Button>
                 </div>
               </BlurFade>
@@ -318,7 +327,7 @@ export default function PricingPage() {
                     className="mt-6 w-full rounded-full"
                     asChild
                   >
-                    <a href="/contact">Quero este</a>
+                    <a href={checkoutHref(plan.slug)}>Quero este</a>
                   </Button>
                 </div>
               </BlurFade>

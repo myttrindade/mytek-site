@@ -186,3 +186,15 @@ export const checkoutGroups: CheckoutGroup[] = [
 export const hasCheckoutLinks = checkoutGroups.some((group) =>
   group.plans.some((plan) => plan.url !== "")
 );
+
+/**
+ * Destino do botão de um plano na página de preços.
+ *
+ * Enquanto não houver link de pagamento, continua indo direto ao contato:
+ * mandar para um checkout que ainda não cobra nada só colocaria um clique a
+ * mais antes do mesmo formulário. Assim que o primeiro link for preenchido,
+ * todos os botões passam a levar ao plano correspondente sozinhos.
+ */
+export function checkoutHref(planSlug: string): string {
+  return hasCheckoutLinks ? `/pagamento#${planSlug}` : "/contact";
+}
