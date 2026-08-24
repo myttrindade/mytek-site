@@ -1,0 +1,41 @@
+name: Deploy para Cloudflare Pages
+
+# Publica o site a cada push na main. O projeto Pages e do tipo Direct
+# Upload, entao o deploy sai daqui via wrangler em vez da integracao Git
+# nativa (que a Cloudflare so permite em projetos criados ja conectados).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-producao
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ff459b1c4bd0109bb9e2956ac0426aee
+          command: pages deploy out --project-name=mytek-site --branch=main
