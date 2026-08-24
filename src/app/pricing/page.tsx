@@ -20,7 +20,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Preço",
   description:
-    "CRM a partir de R$129/mês, Dashboard a partir de R$199/mês e Landing Page a partir de R$899 (pagamento único). Combine e economize.",
+    "CRM a partir de R$197/mês, Dashboard a partir de R$397/mês e Landing Page a partir de R$1.497 (pagamento único). Combine e economize.",
   alternates: { canonical: "/pricing" },
 };
 
@@ -30,7 +30,7 @@ const crmPlans = [
   {
     name: "CRM Normal",
     slug: "crm-normal",
-    price: "R$129",
+    price: "R$197",
     unit: "/mês",
     highlight: false,
     features: ["3 usuários incluídos", "Funil de vendas visual (Kanban)", "Atendimento via WhatsApp"],
@@ -38,7 +38,7 @@ const crmPlans = [
   {
     name: "CRM Plus",
     slug: "crm-plus",
-    price: "R$249",
+    price: "R$367",
     unit: "/mês",
     highlight: true,
     features: [
@@ -53,7 +53,7 @@ const dashboardPlans = [
   {
     name: "Dashboard Avulso",
     slug: "dashboard-avulso",
-    price: "R$199",
+    price: "R$397",
     unit: "/mês",
     highlight: false,
     features: ["Painéis personalizáveis", "Relatórios exportáveis", "Sem suporte incluso"],
@@ -61,10 +61,14 @@ const dashboardPlans = [
   {
     name: "Dashboard Avulso + Suporte",
     slug: "dashboard-suporte",
-    price: "R$399",
+    price: "R$697",
     unit: "/mês",
     highlight: true,
-    features: ["Painéis personalizáveis", "Relatórios exportáveis", "Suporte incluso"],
+    features: [
+      "Painéis personalizáveis",
+      "Relatórios exportáveis",
+      "Suporte incluso (até 5 solicitações/mês)",
+    ],
   },
 ];
 
@@ -72,14 +76,14 @@ const landingPagePlans = [
   {
     name: "Landing Page Essencial",
     slug: "lp-essencial",
-    price: "R$899",
+    price: "R$1.497",
     highlight: false,
     features: ["Template customizado", "1 integração", "Sem copy profissional"],
   },
   {
     name: "Landing Page Completa",
     slug: "lp-completa",
-    price: "R$1.799",
+    price: "R$2.997",
     highlight: true,
     features: [
       "Design sob medida",
@@ -91,20 +95,20 @@ const landingPagePlans = [
 ];
 
 const combos = [
-  { label: "CRM Normal + Dashboard sem suporte", price: "R$228/mês" },
-  { label: "CRM Normal + Dashboard com suporte", price: "R$328/mês" },
-  { label: "CRM Plus + Dashboard sem suporte", price: "R$348/mês" },
-  { label: "CRM Plus + Dashboard com suporte", price: "R$448/mês" },
+  { label: "CRM Normal + Dashboard sem suporte", price: "R$394/mês" },
+  { label: "CRM Normal + Dashboard com suporte", price: "R$544/mês" },
+  { label: "CRM Plus + Dashboard sem suporte", price: "R$564/mês" },
+  { label: "CRM Plus + Dashboard com suporte", price: "R$714/mês" },
 ];
 
 const faqs = [
   {
     q: "Preciso ter CRM pra contratar o Dashboard?",
-    a: "Não. O Dashboard pode ser contratado avulso, por qualquer negócio, mesmo sem usar o CRM da mytek. Quem já é do CRM paga menos, como add-on: +R$99/mês sem suporte ou +R$199/mês com suporte.",
+    a: "Não. O Dashboard pode ser contratado avulso, por qualquer negócio, mesmo sem usar o CRM da mytek. Quem já é do CRM paga menos, como add-on: +R$197/mês sem suporte ou +R$347/mês com suporte.",
   },
   {
     q: "A Landing Page é cobrada todo mês?",
-    a: "Não. É pagamento único. Você paga uma vez pela página pronta. Cliente ativo de CRM ou Dashboard tem 20% de desconto: Essencial por R$719 e Completa por R$1.439.",
+    a: "Não. É pagamento único. Você paga uma vez pela página pronta. Cliente ativo de CRM ou Dashboard tem 20% de desconto: Essencial por R$1.197 e Completa por R$2.397.",
   },
   {
     q: "Qual a diferença entre o CRM Normal e o Plus?",
@@ -112,7 +116,7 @@ const faqs = [
   },
   {
     q: "Como funciona a manutenção gratuita?",
-    a: "Contratando Landing Page ou Dashboard, você ganha 1 mês de manutenção grátis (até 5 solicitações). Depois, converte para suporte mensal ou manutenção avulsa a partir de R$150/mês.",
+    a: "Contratando Landing Page ou Dashboard, você ganha 1 mês de manutenção grátis (até 5 solicitações). Depois, converte para suporte mensal ou manutenção avulsa a partir de R$297/mês.",
   },
   {
     q: "E se eu precisar de algo fora desses planos?",
@@ -143,7 +147,7 @@ export default function PricingPage() {
                   1 mês de manutenção grátis
                 </strong>{" "}
                 (até 5 solicitações). Depois, converte para suporte mensal ou
-                manutenção avulsa a partir de R$150/mês.
+                manutenção avulsa a partir de R$297/mês.
               </p>
             </div>
           </BlurFade>
@@ -268,8 +272,8 @@ export default function PricingPage() {
           <BlurFade delay={0.15}>
             <p className="mt-6 text-sm text-muted-foreground">
               Já é cliente CRM? Adicione o Dashboard por{" "}
-              <strong className="text-card-foreground">+R$99/mês</strong> (sem
-              suporte) ou <strong className="text-card-foreground">+R$199/mês</strong>{" "}
+              <strong className="text-card-foreground">+R$197/mês</strong> (sem
+              suporte) ou <strong className="text-card-foreground">+R$347/mês</strong>{" "}
               (com suporte): valor extra sobre a mensalidade do CRM Normal
               ou Plus.
             </p>
@@ -337,7 +341,7 @@ export default function PricingPage() {
             <p className="mt-6 text-sm text-muted-foreground">
               Cliente ativo de CRM ou Dashboard tem{" "}
               <strong className="text-card-foreground">20% de desconto</strong>:
-              Essencial por R$719 e Completa por R$1.439.
+              Essencial por R$1.197 e Completa por R$2.397.
             </p>
           </BlurFade>
         </div>

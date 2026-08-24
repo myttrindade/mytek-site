@@ -63,7 +63,7 @@ const differentiators = [
 const stats = [
   { value: 18, suffix: "%", prefix: "", label: "Taxa de conversão" },
   { value: 96, suffix: "%", prefix: "", label: "Satisfação" },
-  { value: 129, suffix: "/mês", prefix: "R$", label: "CRM a partir de" },
+  { value: 197, suffix: "/mês", prefix: "R$", label: "CRM a partir de" },
   { value: 10, suffix: " min", prefix: "", label: "Pra configurar" },
 ];
 
@@ -204,7 +204,7 @@ const pricingTeasers = [
   {
     icon: <FilterIcon className="size-6" />,
     name: "CRM",
-    price: "R$129/mês",
+    price: "R$197/mês",
     unit: "a partir de · 3 usuários incluídos",
     description:
       "Funil de vendas visual, atendimento via WhatsApp e automação de lead parado.",
@@ -212,7 +212,7 @@ const pricingTeasers = [
   {
     icon: <GlobeIcon className="size-6" />,
     name: "Landing Page",
-    price: "R$899",
+    price: "R$1.497",
     unit: "pagamento único",
     description:
       "Página conectada ao funil, pronta em poucos dias após aprovação do conteúdo.",
@@ -220,7 +220,7 @@ const pricingTeasers = [
   {
     icon: <GaugeIcon className="size-6" />,
     name: "Dashboard",
-    price: "R$199/mês",
+    price: "R$397/mês",
     unit: "a partir de · avulso, sem precisar de CRM",
     description:
       "Vendas, leads e atendimento em tempo real. Mais barato como add-on de quem já é do CRM.",
@@ -777,7 +777,7 @@ export default function Home() {
             <div className="mx-auto mt-6 flex max-w-4xl flex-col items-center justify-between gap-4 rounded-2xl border border-primary/30 bg-primary/5 px-8 py-6 text-center sm:flex-row sm:text-left">
               <p className="text-sm text-card-foreground">
                 <strong className="font-semibold">
-                  CRM + Dashboard a partir de R$228/mês.
+                  CRM + Dashboard a partir de R$394/mês.
                 </strong>{" "}
                 Combine os módulos e o preço já sai com o desconto aplicado.
               </p>

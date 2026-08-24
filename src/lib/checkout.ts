@@ -49,7 +49,7 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "crm-normal",
         name: "CRM Normal",
-        price: "R$129",
+        price: "R$197",
         unit: "/mês",
         features: [
           "3 usuários incluídos",
@@ -61,7 +61,7 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "crm-plus",
         name: "CRM Plus",
-        price: "R$249",
+        price: "R$367",
         unit: "/mês",
         features: [
           "3 usuários incluídos",
@@ -82,7 +82,7 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "dashboard-avulso",
         name: "Dashboard Avulso",
-        price: "R$199",
+        price: "R$397",
         unit: "/mês",
         features: [
           "Painéis personalizáveis",
@@ -94,12 +94,12 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "dashboard-suporte",
         name: "Dashboard Avulso + Suporte",
-        price: "R$399",
+        price: "R$697",
         unit: "/mês",
         features: [
           "Painéis personalizáveis",
           "Relatórios exportáveis",
-          "Suporte incluso",
+          "Suporte incluso (até 5 solicitações/mês)",
         ],
         url: "",
       },
@@ -115,33 +115,33 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "combo-normal-sem-suporte",
         name: "CRM Normal + Dashboard sem suporte",
-        price: "R$228",
+        price: "R$394",
         unit: "/mês",
-        features: ["Economia de R$100/mês"],
+        features: ["Economia de R$200/mês"],
         url: "",
       },
       {
         slug: "combo-normal-com-suporte",
         name: "CRM Normal + Dashboard com suporte",
-        price: "R$328",
+        price: "R$544",
         unit: "/mês",
-        features: ["Economia de R$200/mês"],
+        features: ["Economia de R$350/mês"],
         url: "",
       },
       {
         slug: "combo-plus-sem-suporte",
         name: "CRM Plus + Dashboard sem suporte",
-        price: "R$348",
+        price: "R$564",
         unit: "/mês",
-        features: ["Economia de R$100/mês"],
+        features: ["Economia de R$200/mês"],
         url: "",
       },
       {
         slug: "combo-plus-com-suporte",
         name: "CRM Plus + Dashboard com suporte",
-        price: "R$448",
+        price: "R$714",
         unit: "/mês",
-        features: ["Economia de R$200/mês"],
+        features: ["Economia de R$350/mês"],
         url: "",
       },
     ],
@@ -156,7 +156,7 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "lp-essencial",
         name: "Landing Page Essencial",
-        price: "R$899",
+        price: "R$1.497",
         unit: null,
         features: ["Template customizado", "1 integração", "Sem copy profissional"],
         url: "",
@@ -164,7 +164,7 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "lp-completa",
         name: "Landing Page Completa",
-        price: "R$1.799",
+        price: "R$2.997",
         unit: null,
         features: [
           "Design sob medida",
