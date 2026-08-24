@@ -57,6 +57,7 @@ export function ContactForm() {
             body: JSON.stringify({
               name: dados.get("name"),
               email: dados.get("email"),
+              phone: dados.get("phone"),
               message: dados.get("message"),
             }),
           });
@@ -87,6 +88,24 @@ export function ContactForm() {
             required
           />
         </div>
+      </div>
+      <div className="mt-5 grid gap-2">
+        <Label htmlFor="phone">
+          Telefone{" "}
+          <span className="font-normal text-muted-foreground">(opcional)</span>
+        </Label>
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          placeholder="(11) 91234-5678"
+        />
+        <p className="text-xs text-muted-foreground">
+          Com o número a gente responde pelo WhatsApp, que costuma ser bem mais
+          rápido que o e-mail.
+        </p>
       </div>
       <div className="mt-5 grid gap-2">
         <Label htmlFor="message">Mensagem</Label>

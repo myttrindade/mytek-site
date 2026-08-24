@@ -56,6 +56,7 @@ export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
 
   const nome = texto(corpo.name, 200);
   const email = texto(corpo.email, 200);
+  const telefone = texto(corpo.phone, 40);
   const mensagem = texto(corpo.message, 2000);
 
   if (!nome || !email) return json({ erro: "nome_e_email_obrigatorios" }, 400);
@@ -68,6 +69,10 @@ export async function onRequestPost({ request, env }: Ctx): Promise<Response> {
     // reconhece o mesmo envio e devolve o lead existente em vez de duplicar.
     external_id: crypto.randomUUID(),
   });
+
+  // Telefone é opcional no formulário; só vai ao CRM quando preenchido. Mandar
+  // vazio poderia apagar um número já cadastrado para o mesmo contato.
+  if (telefone) params.set("phone", telefone);
 
   let resposta: Response;
   try {
