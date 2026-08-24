@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { MytekLogo } from "@/components/mytek-logo";
+import { hasCheckoutLinks } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
 
 const groups = [
@@ -11,6 +12,10 @@ const groups = [
       { text: "Landing Page", href: "/#landing-page" },
       { text: "Dashboard", href: "/#dashboard" },
       { text: "Preço", href: "/pricing" },
+      // Aparece só quando o checkout estiver de fato cobrando.
+      ...(hasCheckoutLinks
+        ? [{ text: "Pagamento", href: "/pagamento" }]
+        : []),
     ],
   },
   {
