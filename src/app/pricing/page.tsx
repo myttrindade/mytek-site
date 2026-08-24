@@ -33,7 +33,7 @@ const crmPlans = [
     price: "R$197",
     unit: "/mês",
     highlight: false,
-    features: ["3 usuários incluídos", "Funil de vendas visual (Kanban)", "Atendimento via WhatsApp"],
+    features: ["Até 3 membros do time", "Funil de vendas visual (Kanban)", "Atendimento via WhatsApp"],
   },
   {
     name: "CRM Plus",
@@ -42,7 +42,7 @@ const crmPlans = [
     unit: "/mês",
     highlight: true,
     features: [
-      "3 usuários incluídos",
+      "Até 3 membros do time",
       "Módulo Conhecimento com IA",
       "Treinamento obrigatório incluído",
     ],

@@ -44,7 +44,7 @@ export const checkoutGroups: CheckoutGroup[] = [
     title: "CRM",
     billing: "Assinatura mensal",
     description:
-      "Funil de vendas visual e atendimento por WhatsApp. Três usuários inclusos nos dois planos.",
+      "Funil de vendas visual e atendimento por WhatsApp. Até 3 membros do time em ambos os planos.",
     plans: [
       {
         slug: "crm-normal",
@@ -52,7 +52,7 @@ export const checkoutGroups: CheckoutGroup[] = [
         price: "R$197",
         unit: "/mês",
         features: [
-          "3 usuários incluídos",
+          "Até 3 membros do time",
           "Funil de vendas visual (Kanban)",
           "Atendimento via WhatsApp",
         ],
@@ -64,7 +64,7 @@ export const checkoutGroups: CheckoutGroup[] = [
         price: "R$367",
         unit: "/mês",
         features: [
-          "3 usuários incluídos",
+          "Até 3 membros do time",
           "Módulo Conhecimento com IA",
           "Treinamento obrigatório incluído",
         ],
