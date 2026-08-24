@@ -188,6 +188,17 @@ export const hasCheckoutLinks = checkoutGroups.some((group) =>
 );
 
 /**
+ * Link de valor aberto do Mercado Pago: a tela pede que o cliente digite
+ * quanto vai pagar.
+ *
+ * Serve SÓ para orçamento combinado antes, onde o valor varia por definição.
+ * Não use nos planos: o cliente poderia digitar qualquer quantia, o
+ * pagamento não identifica o que foi comprado e não há recorrência — os
+ * planos mensais precisam de assinatura, não de link avulso.
+ */
+export const valorCombinadoUrl = "https://link.mercadopago.com.br/mytek";
+
+/**
  * Destino do botão de um plano na página de preços.
  *
  * Enquanto não houver link de pagamento, continua indo direto ao contato:

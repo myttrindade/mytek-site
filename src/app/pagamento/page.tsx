@@ -12,7 +12,11 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { PageHeader } from "@/components/page-header";
 import { BlurFade } from "@/components/velora/blur-fade";
-import { checkoutGroups, hasCheckoutLinks } from "@/lib/checkout";
+import {
+  checkoutGroups,
+  hasCheckoutLinks,
+  valorCombinadoUrl,
+} from "@/lib/checkout";
 
 export const metadata: Metadata = {
   title: "Pagamento",
@@ -148,6 +152,35 @@ export default function PagamentoPage() {
               </section>
             ))}
           </div>
+
+          <BlurFade>
+            <section
+              id="valor-combinado"
+              className="mt-16 scroll-mt-28 rounded-2xl border border-dashed p-8"
+            >
+              <h2 className="text-xl font-semibold tracking-tight">
+                Já combinou um valor com a gente?
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
+                Para orçamento sob medida, o pagamento é feito por aqui: você
+                digita exatamente o valor que combinamos e escolhe entre
+                cartão, Pix ou boleto.{" "}
+                <span className="font-medium text-foreground">
+                  Use esta opção só depois de fechar o valor com o time
+                </span>{" "}
+                — para os planos da tabela, escolha o plano acima.
+              </p>
+              <Button variant="outline" className="mt-6 rounded-full" asChild>
+                <a
+                  href={valorCombinadoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Pagar um valor combinado
+                </a>
+              </Button>
+            </section>
+          </BlurFade>
 
           <BlurFade>
             <section className="mt-20 border-t pt-14">
