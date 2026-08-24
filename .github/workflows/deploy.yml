@@ -34,8 +34,11 @@ jobs:
 
       - run: pnpm build
 
-      - uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ff459b1c4bd0109bb9e2956ac0426aee
-          command: pages deploy out --project-name=mytek-site --branch=main
+      # Chamada direta ao wrangler em vez de cloudflare/wrangler-action: a
+      # action fixa o wrangler 3.90 e instala com pnpm, que falha em
+      # ERR_PNPM_IGNORED_BUILDS por causa dos scripts do esbuild e do workerd.
+      - name: Publicar no Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ff459b1c4bd0109bb9e2956ac0426aee
+        run: npx -y wrangler@4 pages deploy out --project-name=mytek-site --branch=main
