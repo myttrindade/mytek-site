@@ -192,6 +192,86 @@ export default function PagamentoPage() {
               </Button>
             </section>
           </BlurFade>
+
+          <BlurFade>
+            <section className="mt-20 border-t pt-14">
+              <h2 className="text-2xl font-semibold tracking-tight">
+                Dúvidas frequentes
+              </h2>
+              <div className="mt-8 space-y-6">
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    Como funciona o cancelamento?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Sem fidelidade. É só chamar a gente pelo WhatsApp ou pelo formulário de contato. O cancelamento vale a partir do próximo ciclo da assinatura — você ainda tem acesso até o fim do mês que pagou.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    Quanto tempo leva pra ativar minha conta?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    A gente entra em contato em até um dia útil após o pagamento confirmado. A configuração é feita direto com você pelo WhatsApp ou por chamada. Dependendo do seu plano, pode levar entre algumas horas e um dia.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    Posso trocar de plano depois?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Sim. Se você começar com CRM Normal e quiser evoluir para CRM Plus ou adicionar o Dashboard, é fácil. A gente adapta sua cobrança no próximo ciclo.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    Quais são as formas de pagamento?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Cartão de crédito, Pix ou boleto. Todos são processados pelo Mercado Pago. Assinatura no cartão é renovada automaticamente no início de cada mês.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    Preciso de nota fiscal?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Sim, a gente emite. Basta pedir pelo contato ou WhatsApp. Você recebe em até 2 dias úteis.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    E se eu quiser pagar de outra forma?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Temos opções. Pode ser transferência bancária, depósito em conta ou até parcelamento fora do Mercado Pago — é só chamar a gente no contato.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    Meu pagamento não foi aprovado. E agora?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Tente novamente com outro cartão ou forma de pagamento. Se continuar com problema, entre em contato e a gente ajuda a resolver — pode ser limite da operadora ou dados do cartão.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">
+                    Vocês oferecem desconto anual?
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Hoje temos pagamento mensal. Mas se você tiver interesse em contratar vários usuários ou um projeto customizado, conversamos sobre opções — é só pedir orçamento.
+                  </p>
+                </div>
+              </div>
+              <Button variant="outline" className="mt-8 rounded-full" asChild>
+                <a href="/contact">
+                  <MessageCircleIcon className="size-4" />
+                  Não encontrou sua dúvida? Fale com a gente
+                </a>
+              </Button>
+            </section>
+          </BlurFade>
         </div>
       </main>
       <SiteFooter />
