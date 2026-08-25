@@ -115,19 +115,34 @@ export async function POST(req: NextRequest) {
 }
 
 /**
- * Autentica no CRM usando Supabase Service Key.
- * O service key tem acesso total e pode ser usado direto como Bearer token.
+ * Autentica no CRM usando credenciais de email/senha.
+ * Faz login e obtém um session token válido.
  */
 async function getCRMServiceToken(email: string, password: string): Promise<string | null> {
   try {
-    const serviceKey = process.env.SUPABASE_SERVICE_KEY;
-    if (!serviceKey) {
+    const crmApiUrl = process.env.CRM_API_URL || 'https://crm.mytek.com.br/api/v1';
+    const baseUrl = crmApiUrl.replace('/api/v1', '');
+
+    // Tenta fazer login no CRM
+    const loginResponse = await fetch(`${baseUrl}/auth/v1/token?grant_type=password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': process.env.SUPABASE_SERVICE_KEY || '',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    if (!loginResponse.ok) {
+      console.error('CRM login failed:', loginResponse.status);
       return null;
     }
 
-    // Service key do Supabase funciona como Bearer token de service role
-    // Tem permissão total para criar contatos
-    return serviceKey;
+    const loginData = await loginResponse.json();
+    return loginData.access_token || loginData.session?.access_token;
 
   } catch (error) {
     console.error('CRM authentication error:', error);
