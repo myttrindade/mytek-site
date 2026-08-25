@@ -101,7 +101,7 @@ export const checkoutGroups: CheckoutGroup[] = [
           "Relatórios exportáveis",
           "Suporte incluso (até 5 solicitações/mês)",
         ],
-        url: "https://mpago.la/2FqrZJj",
+        url: "https://mpago.la/2Enr7Yj",
       },
     ],
   },
