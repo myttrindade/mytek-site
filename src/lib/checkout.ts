@@ -56,7 +56,7 @@ export const checkoutGroups: CheckoutGroup[] = [
           "Funil de vendas visual (Kanban)",
           "Atendimento via WhatsApp",
         ],
-        url: "https://mpago.la/2V8U8uH",
+        url: "https://mpago.la/1CDuG1z",
       },
       {
         slug: "crm-plus",
