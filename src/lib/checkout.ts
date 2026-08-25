@@ -142,7 +142,7 @@ export const checkoutGroups: CheckoutGroup[] = [
         price: "R$714",
         unit: "/mês",
         features: ["Economia de R$350/mês"],
-        url: "https://mpago.la/1J7JbMU",
+        url: "https://mpago.la/1r2iBNU",
       },
     ],
   },
