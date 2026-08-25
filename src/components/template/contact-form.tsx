@@ -27,6 +27,11 @@ const maskEmail = (value: string) => {
   return value.toLowerCase();
 };
 
+const isValidEmail = (email: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 /**
  * Envia o contato para o CRM através de `/api/contact` (Pages Function).
  *
@@ -41,6 +46,7 @@ export function ContactForm() {
   const [failed, setFailed] = useState(false);
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
 
   if (sent) {
     return (
@@ -68,6 +74,12 @@ export function ContactForm() {
       className="rounded-2xl border bg-card p-8"
       onSubmit={async (e) => {
         e.preventDefault();
+
+        if (!isValidEmail(email)) {
+          setEmailError(true);
+          return;
+        }
+
         const dados = new FormData(e.currentTarget);
         setSending(true);
         setFailed(false);
@@ -111,9 +123,22 @@ export function ContactForm() {
             type="email"
             placeholder="ana@suaclinica.com.br"
             value={email}
-            onChange={(e) => setEmail(maskEmail(e.target.value))}
+            onChange={(e) => {
+              const newEmail = maskEmail(e.target.value);
+              setEmail(newEmail);
+              setEmailError(newEmail !== "" && !isValidEmail(newEmail));
+            }}
+            onBlur={() => {
+              if (email === "") setEmailError(false);
+            }}
+            className={emailError ? "border-red-500" : ""}
             required
           />
+          {emailError && (
+            <p className="text-xs text-red-500">
+              E-mail inválido. Use o formato: exemplo@dominio.com
+            </p>
+          )}
         </div>
       </div>
       <div className="mt-5 grid gap-2">
