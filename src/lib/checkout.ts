@@ -172,7 +172,7 @@ export const checkoutGroups: CheckoutGroup[] = [
           "Integração com CRM/e-mail",
           "SEO básico",
         ],
-        url: "https://mpago.la/1QAQNf",
+        url: "https://mpago.la/1QAQNtf",
       },
     ],
   },
