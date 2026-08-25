@@ -96,11 +96,15 @@ export function ContactForm() {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="grid gap-2">
-          <Label htmlFor="name">Nome</Label>
+          <Label htmlFor="name">
+            Nome <span className="text-red-500">*</span>
+          </Label>
           <Input id="name" name="name" placeholder="Ana Ribeiro" required />
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="email">E-mail</Label>
+          <Label htmlFor="email">
+            E-mail <span className="text-red-500">*</span>
+          </Label>
           <Input
             id="email"
             name="email"
@@ -114,8 +118,7 @@ export function ContactForm() {
       </div>
       <div className="mt-5 grid gap-2">
         <Label htmlFor="phone">
-          Telefone{" "}
-          <span className="font-normal text-muted-foreground">(opcional)</span>
+          Telefone <span className="text-red-500">*</span>
         </Label>
         <Input
           id="phone"
@@ -126,6 +129,7 @@ export function ContactForm() {
           placeholder="(11) 91234-5678"
           value={phone}
           onChange={(e) => setPhone(maskPhone(e.target.value))}
+          required
         />
         <p className="text-xs text-muted-foreground">
           Com o número a gente responde pelo WhatsApp, que costuma ser bem mais
