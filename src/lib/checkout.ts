@@ -49,14 +49,14 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "crm-normal",
         name: "CRM Normal",
-        price: "R$197",
+        price: "R$179",
         unit: "/mês",
         features: [
           "Até 3 membros do time",
           "Funil de vendas visual (Kanban)",
           "Atendimento via WhatsApp",
         ],
-        url: "https://mpago.la/1CDq91z",
+        url: "https://mpago.la/2V8U8uH",
       },
       {
         slug: "crm-plus",
