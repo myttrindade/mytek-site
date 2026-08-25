@@ -159,7 +159,7 @@ export const checkoutGroups: CheckoutGroup[] = [
         price: "R$1.497",
         unit: null,
         features: ["Template customizado", "1 integração", "Sem copy profissional"],
-        url: "https://mpago.la/2Yjojg",
+        url: "https://mpago.la/2iYqiqi",
       },
       {
         slug: "lp-completa",
