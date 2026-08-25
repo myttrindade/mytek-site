@@ -138,36 +138,42 @@ const testimonials = [
       "A gente perdia lead porque a mensagem no Instagram só era vista horas depois. Com a mytek, o alerta de lead parado mudou isso na primeira semana.",
     name: "Ana Ribeiro",
     role: "Sócia, Estúdio Fora",
+    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=AnaRibeiro&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
   },
   {
     quote:
       "Configuração foi literalmente 10 minutos. O funil já veio pronto pro nosso jeito de trabalhar, não precisei montar nada do zero.",
     name: "Camila Duarte",
     role: "Gerente comercial, Nortec",
+    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=CamilaDuarte&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
   },
   {
     quote:
       "Finalmente um dashboard que a equipe inteira entende sem explicação. É a métrica que eu realmente uso pra decidir.",
     name: "Patrícia Nunes",
     role: "Sócia, Vidraçaria Aurora",
+    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=PatriciaNunes&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
   },
   {
     quote:
       "Minha equipe usa o CRM sozinha, sem treinamento de uma semana. Isso sozinho já pagou a assinatura.",
     name: "Rafael Souza",
     role: "Diretor comercial, Grupo Meridian",
+    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=RafaelSouza&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
   },
   {
     quote:
       "Publicamos a landing page em uma tarde e os leads já caíam direto no funil. Nenhuma agência resolveu isso tão rápido.",
     name: "Beatriz Lima",
     role: "Marketing, Distribuidora Rota",
+    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=BeatrizLima&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
   },
   {
     quote:
       "O programa fundador valeu muito a pena: condições especiais e o time realmente ouviu nosso feedback pra moldar o produto.",
     name: "Juliana Prado",
     role: "Sócia, Ateliê Lima",
+    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=JulianaPrado&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
   },
 ];
 
@@ -721,7 +727,11 @@ export default function Home() {
                       “{t.quote}”
                     </blockquote>
                     <figcaption className="mt-4 flex items-center gap-3">
-                      <AvatarCircles people={[t.name]} className="[&>span]:size-8 [&>span]:text-[10px]" />
+                      <img
+                        src={t.image}
+                        alt={t.name}
+                        className="size-8 rounded-full"
+                      />
                       <div>
                         <p className="text-sm font-medium">{t.name}</p>
                         <p className="text-xs text-muted-foreground">{t.role}</p>
