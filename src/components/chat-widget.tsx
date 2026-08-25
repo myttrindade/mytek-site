@@ -3,6 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 
+import {
+  emailValido,
+  mascaraEmail,
+  mascaraNome,
+  mascaraTelefone,
+  telefoneValido,
+} from "@/lib/masks";
+
 /**
  * Chat do site, ligado ao canal `webchat` do CRM.
  *
@@ -62,10 +70,19 @@ export function ChatWidget() {
   // e o intervalo precisa enxergar sempre o valor mais recente.
   const desdeRef = useRef<string | null>(null);
 
-  useEffect(() => {
-    const salva = sessionStorage.getItem(STORAGE_KEY);
-    if (salva) setSessao(salva);
-  }, []);
+  /**
+   * A sessão é lida ao ABRIR, não num efeito de montagem. Dois motivos: o site
+   * é estático, e ler `sessionStorage` durante a hidratação faz o servidor e o
+   * cliente discordarem do primeiro render; e a sessão só tem serventia quando
+   * a pessoa abre o chat — antes disso é trabalho jogado fora em toda visita.
+   */
+  function abrirWidget() {
+    setAberto(true);
+    if (!sessao) {
+      const salva = sessionStorage.getItem(STORAGE_KEY);
+      if (salva) setSessao(salva);
+    }
+  }
 
   useEffect(() => {
     fimRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -118,6 +135,22 @@ export function ChatWidget() {
 
   async function abrirConversa(e: React.FormEvent) {
     e.preventDefault();
+
+    // Validação antes da rede: o CRM recusaria com 400 e o visitante veria um
+    // erro genérico sem saber QUAL campo consertar.
+    if (mascaraNome(form.name).trim().length < 2) {
+      setErro("Escreva seu nome.");
+      return;
+    }
+    if (!emailValido(form.email)) {
+      setErro("Esse e-mail não parece completo. Confira o formato.");
+      return;
+    }
+    if (!telefoneValido(form.phone)) {
+      setErro("Telefone incompleto. Use DDD + número, ou deixe em branco.");
+      return;
+    }
+
     setErro(null);
     setEnviando(true);
     try {
@@ -185,7 +218,7 @@ export function ChatWidget() {
   if (!aberto) {
     return (
       <button
-        onClick={() => setAberto(true)}
+        onClick={abrirWidget}
         className="fixed bottom-6 right-6 size-14 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-all flex items-center justify-center z-50"
         aria-label="Abrir chat"
       >
@@ -242,25 +275,31 @@ export function ChatWidget() {
         <form onSubmit={abrirConversa} className="border-t p-4 space-y-3">
           <input
             type="text"
+            inputMode="text"
+            autoComplete="name"
             placeholder="Seu nome"
             value={form.name}
-            onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+            onChange={(e) => setForm((f) => ({ ...f, name: mascaraNome(e.target.value) }))}
             className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
             required
           />
           <input
             type="email"
+            inputMode="email"
+            autoComplete="email"
             placeholder="Seu email"
             value={form.email}
-            onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+            onChange={(e) => setForm((f) => ({ ...f, email: mascaraEmail(e.target.value) }))}
             className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
             required
           />
           <input
             type="tel"
+            inputMode="tel"
+            autoComplete="tel"
             placeholder="Seu telefone (opcional)"
             value={form.phone}
-            onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+            onChange={(e) => setForm((f) => ({ ...f, phone: mascaraTelefone(e.target.value) }))}
             className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
           />
           <button

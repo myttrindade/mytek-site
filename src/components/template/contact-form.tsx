@@ -7,30 +7,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { emailValido, mascaraEmail, mascaraNome, mascaraTelefone } from "@/lib/masks";
 
-const maskPhone = (value: string) => {
-  const digits = value.replace(/\D/g, "");
-  if (digits.length <= 10) {
-    return digits
-      .replace(/(\d{0,2})/, "($1")
-      .replace(/(\(\d{2})(\d{0,5})/, "$1) $2")
-      .replace(/(\(\d{2}\) \d{5})(\d{0,4})/, "$1-$2");
-  }
-  return digits
-    .replace(/(\d{0,2})/, "($1")
-    .replace(/(\(\d{2})(\d{0,5})/, "$1) $2")
-    .replace(/(\(\d{2}\) \d{5})(\d{0,4})/, "$1-$2")
-    .substring(0, 15);
-};
-
-const maskEmail = (value: string) => {
-  return value.toLowerCase();
-};
-
-const isValidEmail = (email: string) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+// As máscaras saíram daqui para `@/lib/masks` quando o chat passou a precisar
+// das mesmas. Copiar levaria junto o defeito da versão antiga do telefone, que
+// aplicava o padrão de celular a qualquer número e transformava um fixo de 10
+// dígitos em `(11) 33334-444`.
+const maskPhone = mascaraTelefone;
+const maskEmail = mascaraEmail;
+const isValidEmail = emailValido;
 
 /**
  * Envia o contato para o CRM através de `/api/contact` (Pages Function).
@@ -44,6 +29,7 @@ export function ContactForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -111,7 +97,15 @@ export function ContactForm() {
           <Label htmlFor="name">
             Nome <span className="text-red-500">*</span>
           </Label>
-          <Input id="name" name="name" placeholder="Ana Ribeiro" required />
+          <Input
+            id="name"
+            name="name"
+            placeholder="Ana Ribeiro"
+            autoComplete="name"
+            value={name}
+            onChange={(e) => setName(mascaraNome(e.target.value))}
+            required
+          />
         </div>
         <div className="grid gap-2">
           <Label htmlFor="email">
