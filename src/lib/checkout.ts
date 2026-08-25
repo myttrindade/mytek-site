@@ -89,7 +89,7 @@ export const checkoutGroups: CheckoutGroup[] = [
           "Relatórios exportáveis",
           "Sem suporte incluso",
         ],
-        url: "https://mpago.la/1SJUZGm",
+        url: "https://mpago.la/152UZ6m",
       },
       {
         slug: "dashboard-suporte",
