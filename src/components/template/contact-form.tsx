@@ -8,6 +8,25 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
+const maskPhone = (value: string) => {
+  const digits = value.replace(/\D/g, "");
+  if (digits.length <= 10) {
+    return digits
+      .replace(/(\d{0,2})/, "($1")
+      .replace(/(\(\d{2})(\d{0,5})/, "$1) $2")
+      .replace(/(\(\d{2}\) \d{5})(\d{0,4})/, "$1-$2");
+  }
+  return digits
+    .replace(/(\d{0,2})/, "($1")
+    .replace(/(\(\d{2})(\d{0,5})/, "$1) $2")
+    .replace(/(\(\d{2}\) \d{5})(\d{0,4})/, "$1-$2")
+    .substring(0, 15);
+};
+
+const maskEmail = (value: string) => {
+  return value.toLowerCase();
+};
+
 /**
  * Envia o contato para o CRM através de `/api/contact` (Pages Function).
  *
@@ -20,6 +39,8 @@ export function ContactForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
   if (sent) {
     return (
@@ -85,6 +106,8 @@ export function ContactForm() {
             name="email"
             type="email"
             placeholder="ana@suaclinica.com.br"
+            value={email}
+            onChange={(e) => setEmail(maskEmail(e.target.value))}
             required
           />
         </div>
@@ -101,6 +124,8 @@ export function ContactForm() {
           inputMode="tel"
           autoComplete="tel"
           placeholder="(11) 91234-5678"
+          value={phone}
+          onChange={(e) => setPhone(maskPhone(e.target.value))}
         />
         <p className="text-xs text-muted-foreground">
           Com o número a gente responde pelo WhatsApp, que costuma ser bem mais
