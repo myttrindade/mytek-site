@@ -135,6 +135,87 @@ export default function PricingPage() {
         description="Cada módulo funciona separado, ou combine CRM e Dashboard com preço especial."
       />
 
+      {/* Comparison Table */}
+      <section className="pb-20">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <BlurFade>
+            <div className="overflow-x-auto rounded-2xl border bg-card">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b">
+                    <th className="p-4 text-left font-semibold text-foreground">Recurso</th>
+                    <th className="p-4 text-center font-semibold text-foreground">CRM</th>
+                    <th className="p-4 text-center font-semibold text-foreground">Landing Page</th>
+                    <th className="p-4 text-center font-semibold text-foreground">Dashboard</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/40">
+                  <tr>
+                    <td className="p-4 font-medium">Funil de vendas visual</td>
+                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center">-</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Atendimento via WhatsApp</td>
+                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center">-</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Painéis personalizáveis</td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Relatórios em tempo real</td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Página pronta para converter</td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
+                    <td className="p-4 text-center">-</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Módulo de IA (Plus)</td>
+                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center">-</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Suporte incluso</td>
+                    <td className="p-4 text-center">-</td>
+                    <td className="p-4 text-center">Mês 1 grátis</td>
+                    <td className="p-4 text-center">Opcional (+suporte)</td>
+                  </tr>
+                  <tr className="bg-primary/5">
+                    <td className="p-4 font-semibold">Preço inicial</td>
+                    <td className="p-4 text-center font-semibold">R$197/mês</td>
+                    <td className="p-4 text-center font-semibold">R$1.497</td>
+                    <td className="p-4 text-center font-semibold">R$397/mês</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Renovação</td>
+                    <td className="p-4 text-center text-sm text-muted-foreground">Mensal</td>
+                    <td className="p-4 text-center text-sm text-muted-foreground">Único</td>
+                    <td className="p-4 text-center text-sm text-muted-foreground">Mensal</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.1}>
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              💡 <strong>Dica:</strong> Combine CRM + Dashboard e pague menos. Veja as opções de combo abaixo.
+            </p>
+          </BlurFade>
+        </div>
+      </section>
+
       {/* Promo banner */}
       <section className="pb-4">
         <div className="mx-auto max-w-4xl px-4 lg:px-8">
