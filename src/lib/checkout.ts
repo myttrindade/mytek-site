@@ -134,7 +134,7 @@ export const checkoutGroups: CheckoutGroup[] = [
         price: "R$564",
         unit: "/mês",
         features: ["Economia de R$200/mês"],
-        url: "https://mpago.la/2o8AYkp",
+        url: "https://mpago.la/2oSAYKm",
       },
       {
         slug: "combo-plus-com-suporte",
