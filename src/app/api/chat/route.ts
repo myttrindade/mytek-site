@@ -48,17 +48,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Autenticar no CRM (se necessário, ajuste conforme o fluxo real)
-    // Por enquanto, vamos assumir que há um token de serviço disponível
+    // Autenticar no CRM
     const authToken = await getCRMServiceToken(crmEmail, crmPassword);
 
     if (!authToken) {
-      console.error('Failed to authenticate with CRM');
+      console.error('Failed to authenticate with CRM - no token returned');
       return NextResponse.json(
-        { error: 'Serviço temporariamente indisponível', response: 'Sua mensagem foi recebida. Entraremos em contato em breve!' },
+        { response: 'Sua mensagem foi recebida. Entraremos em contato em breve!' },
         { status: 200 }
       );
     }
+
+    console.log('[CHAT] Got auth token, attempting to create contact...');
 
     // Criar contato
     const contactResponse = await fetch(`${crmApiUrl}/contacts`, {
@@ -66,6 +67,7 @@ export async function POST(req: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${authToken}`,
+        'apikey': process.env.SUPABASE_ANON_KEY || '',
       },
       body: JSON.stringify({
         name: body.name.trim(),
@@ -116,33 +118,40 @@ export async function POST(req: NextRequest) {
 
 /**
  * Autentica no CRM usando credenciais de email/senha.
- * Faz login e obtém um session token válido.
+ * Faz login via Supabase Auth e obtém um access token.
  */
 async function getCRMServiceToken(email: string, password: string): Promise<string | null> {
   try {
-    const crmApiUrl = process.env.CRM_API_URL || 'https://crm.mytek.com.br/api/v1';
-    const baseUrl = crmApiUrl.replace('/api/v1', '');
+    const supabaseUrl = 'https://glnpsisgmytkcrhmxkxf.supabase.co';
+    const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
-    // Tenta fazer login no CRM
-    const loginResponse = await fetch(`${baseUrl}/auth/v1/token?grant_type=password`, {
+    if (!anonKey) {
+      console.error('SUPABASE_ANON_KEY not configured');
+      return null;
+    }
+
+    // Faz login no Supabase Auth com credenciais do service account
+    const loginResponse = await fetch(`${supabaseUrl}/auth/v1/token?grant_type=password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'apikey': process.env.SUPABASE_SERVICE_KEY || '',
+        'apikey': anonKey,
       },
       body: JSON.stringify({
         email,
         password,
+        gotrue_meta_security: {},
       }),
     });
 
     if (!loginResponse.ok) {
-      console.error('CRM login failed:', loginResponse.status);
+      const errorData = await loginResponse.json();
+      console.error('CRM login failed:', errorData);
       return null;
     }
 
     const loginData = await loginResponse.json();
-    return loginData.access_token || loginData.session?.access_token;
+    return loginData.access_token;
 
   } catch (error) {
     console.error('CRM authentication error:', error);
