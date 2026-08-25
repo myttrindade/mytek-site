@@ -115,27 +115,19 @@ export async function POST(req: NextRequest) {
 }
 
 /**
- * Autentica no CRM usando credenciais de serviço.
- * TODO: Em produção, usar um token pré-gerado ou JWT, não credenciais.
+ * Autentica no CRM usando Supabase Service Key.
+ * O service key tem acesso total e pode ser usado direto como Bearer token.
  */
 async function getCRMServiceToken(email: string, password: string): Promise<string | null> {
   try {
-    // Este é um exemplo simplificado.
-    // O fluxo real depende de como o CRM expõe autenticação de serviço.
-    // Opções:
-    // 1. Usar Supabase Admin API direto (requer SUPABASE_SERVICE_KEY)
-    // 2. Ter um endpoint de login de serviço no CRM
-    // 3. Usar JWT pré-assinado
-
-    // Por enquanto, vamos usar SUPABASE_SERVICE_KEY se disponível
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY;
-    if (!supabaseServiceKey) {
+    const serviceKey = process.env.SUPABASE_SERVICE_KEY;
+    if (!serviceKey) {
       return null;
     }
 
-    // Bearer token do serviço = service role JWT do Supabase
-    // Nota: isso é uma simplificação. Em produção real, seria mais seguro.
-    return supabaseServiceKey;
+    // Service key do Supabase funciona como Bearer token de service role
+    // Tem permissão total para criar contatos
+    return serviceKey;
 
   } catch (error) {
     console.error('CRM authentication error:', error);
