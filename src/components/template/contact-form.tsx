@@ -139,7 +139,6 @@ export function ContactForm() {
           name="message"
           placeholder="Conte um pouco sobre sua clínica…"
           className="min-h-36"
-          required
         />
       </div>
       <Button
