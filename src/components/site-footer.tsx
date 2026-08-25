@@ -69,8 +69,16 @@ export function SiteFooter() {
           </nav>
         ))}
       </div>
-      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-2 border-t border-border/40 px-4 pt-6 text-xs text-muted-foreground md:flex-row lg:px-8">
+      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-border/40 px-4 pt-6 text-xs text-muted-foreground md:flex-row lg:px-8">
         <span>© {new Date().getFullYear()} mytek. Todos os direitos reservados.</span>
+        <div className="flex gap-4">
+          <Link href="/politica-privacidade" className="transition-colors hover:text-foreground">
+            Política de Privacidade
+          </Link>
+          <Link href="/termos" className="transition-colors hover:text-foreground">
+            Termos de Serviço
+          </Link>
+        </div>
       </div>
     </footer>
   );
