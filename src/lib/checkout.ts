@@ -66,7 +66,7 @@ export const checkoutGroups: CheckoutGroup[] = [
         features: [
           "Até 3 membros do time",
           "Módulo Conhecimento com IA",
-          "Treinamento obrigatório incluído",
+          "Sessão de treinamento incluída",
         ],
         url: "https://mpago.la/1GUmzTq",
       },
@@ -87,7 +87,7 @@ export const checkoutGroups: CheckoutGroup[] = [
         features: [
           "Painéis personalizáveis",
           "Relatórios exportáveis",
-          "Sem suporte incluso",
+          "Suporte opcional a partir de +R$300/mês",
         ],
         url: "https://mpago.la/152UZ6m",
       },
@@ -158,7 +158,11 @@ export const checkoutGroups: CheckoutGroup[] = [
         name: "Landing Page Essencial",
         price: "R$1.497",
         unit: null,
-        features: ["Template customizado", "1 integração", "Sem copy profissional"],
+        features: [
+          "Template customizado",
+          "1 integração",
+          "Textos por sua conta (ou contrate a Completa)",
+        ],
         url: "https://mpago.la/2iYqiqi",
       },
       {

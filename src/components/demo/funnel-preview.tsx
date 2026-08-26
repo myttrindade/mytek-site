@@ -51,6 +51,12 @@ export function FunnelPreview({ className }: { className?: string }) {
             </div>
           ))}
         </div>
+
+        {/* Mesma legenda dos outros mockups: nenhum número da home fica sem
+            dizer de onde veio. */}
+        <p className="mt-4 text-[11px] text-muted-foreground">
+          Dados de exemplo, para ilustrar a interface.
+        </p>
       </div>
     </div>
   );

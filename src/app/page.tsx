@@ -8,7 +8,6 @@ import {
   RocketIcon,
   ShieldIcon,
   SparklesIcon,
-  StarIcon,
   Wand2Icon,
   ZapIcon,
 } from "lucide-react";
@@ -27,9 +26,7 @@ import { HeroMockup } from "@/components/demo/hero-mockup";
 import { FunnelPreview } from "@/components/demo/funnel-preview";
 import { LandingPageMockup } from "@/components/demo/landing-page-mockup";
 import { IntegrationsBeam } from "@/components/demo/integrations-beam";
-import { AnimatedGradientText } from "@/components/velora/animated-gradient-text";
 import { AuroraBackground } from "@/components/velora/aurora-background";
-import { AvatarCircles } from "@/components/velora/avatar-circles";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { Dock, DockIcon } from "@/components/velora/dock";
@@ -60,11 +57,19 @@ const differentiators = [
   { icon: <Wand2Icon className="size-4" />, label: "Orçamento sob medida pra projeto personalizado" },
 ];
 
-const stats = [
-  { value: 18, suffix: "%", prefix: "", label: "Taxa de conversão" },
-  { value: 96, suffix: "%", prefix: "", label: "Satisfação" },
-  { value: 197, suffix: "/mês", prefix: "R$", label: "CRM a partir de" },
-  { value: 10, suffix: " min", prefix: "", label: "Pra configurar" },
+/**
+ * Só o primeiro item é um número que conta — os outros três são fatos
+ * comerciais, não métricas. Nada aqui pode ser uma média inventada: a versão
+ * anterior anunciava "18% de taxa de conversão" e "96% de satisfação" sem
+ * nenhuma base, o que é publicidade enganosa (CDC art. 37).
+ */
+const heroStats: Array<
+  { label: string } & ({ value: number; suffix: string } | { text: string })
+> = [
+  { value: 10, suffix: " min", label: "do cadastro ao primeiro lead" },
+  { text: "R$197/mês", label: "CRM completo, 3 usuários" },
+  { text: "3 módulos", label: "contrate separado ou junto" },
+  { text: "Sem fidelidade", label: "cancele quando quiser" },
 ];
 
 const products = [
@@ -73,7 +78,7 @@ const products = [
     icon: <FilterIcon className="size-6" />,
     name: "CRM",
     description:
-      "Funil de vendas visual e uma automação que avisa quando um lead esfria no WhatsApp. Zero venda perdida por demora.",
+      "Funil de vendas visual e uma automação que avisa quando um lead esfria no WhatsApp. Nenhum lead esquecido por mais de 24 horas.",
   },
   {
     id: "landing-page",
@@ -109,7 +114,7 @@ const features = [
   },
   {
     icon: <MessageCircleIcon className="size-5" />,
-    title: "Suporte de verdade",
+    title: "Resposta no WhatsApp em até 4h úteis",
     body: "Atendimento direto pelo WhatsApp, sem burocracia.",
   },
 ];
@@ -132,67 +137,56 @@ const steps = [
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "A gente perdia lead porque a mensagem no Instagram só era vista horas depois. Com a mytek, o alerta de lead parado mudou isso na primeira semana.",
-    name: "Ana Ribeiro",
-    role: "Sócia, Estúdio Fora",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=AnaRibeiro&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
-  },
-  {
-    quote:
-      "Configuração foi literalmente 10 minutos. O funil já veio pronto pro nosso jeito de trabalhar, não precisei montar nada do zero.",
-    name: "Camila Duarte",
-    role: "Gerente comercial, Nortec",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=CamilaDuarte&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
-  },
-  {
-    quote:
-      "Finalmente um dashboard que a equipe inteira entende sem explicação. É a métrica que eu realmente uso pra decidir.",
-    name: "Patrícia Nunes",
-    role: "Sócia, Vidraçaria Aurora",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=PatriciaNunes&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
-  },
-  {
-    quote:
-      "Minha equipe usa o CRM sozinha, sem treinamento de uma semana. Isso sozinho já pagou a assinatura.",
-    name: "Rafael Souza",
-    role: "Diretor comercial, Grupo Meridian",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=RafaelSouza&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
-  },
-  {
-    quote:
-      "Publicamos a landing page em uma tarde e os leads já caíam direto no funil. Nenhuma agência resolveu isso tão rápido.",
-    name: "Beatriz Lima",
-    role: "Marketing, Distribuidora Rota",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=BeatrizLima&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
-  },
-  {
-    quote:
-      "O programa fundador valeu muito a pena: condições especiais e o time realmente ouviu nosso feedback pra moldar o produto.",
-    name: "Juliana Prado",
-    role: "Sócia, Ateliê Lima",
-    image: "https://api.dicebear.com/7.x/avataaars/svg?seed=JulianaPrado&backgroundColor=b6e3f5,c0aede,d1d4f9,ffd5dc,ffdfbf",
-  },
-];
+// A seção de depoimentos foi removida em 26/08/2026. Os seis que estavam aqui
+// eram inventados, com avatares gerados pela api.dicebear.com, e contradiziam
+// o "2 de 5 vagas do programa fundador preenchidas" logo abaixo na mesma
+// página. Depoimento fabricado é publicidade enganosa (CDC art. 37).
+//
+// Formato de depoimento aprovado (usar só com cliente real e consentimento):
+// "Antes a gente respondia lead do Instagram no dia seguinte. Hoje o alerta
+//  chega em 15 minutos."
+// — Nome, cargo, empresa · setor, cidade
+// Se o cliente não quiser expor a marca, anonimize a EMPRESA, nunca a pessoa
+// e a métrica.
 
 const faqs = [
   {
     q: "CRM, Landing Page e Dashboard são vendidos separados?",
-    a: "Sim. Cada módulo tem seu próprio preço e pode ser contratado sozinho. Quando você combina CRM e Dashboard, o preço de cada um já sai menor. É o incentivo pra usar os módulos juntos.",
+    a: "São. Cada módulo funciona sozinho e você contrata só o que faz sentido agora. Quem junta CRM e Dashboard paga menos nos dois: a partir de R$394/mês contra R$594/mês contratando avulso. A Landing Page é pagamento único e não tem mensalidade.",
   },
   {
     q: "A mytek é feita só pra um tipo de negócio?",
-    a: "Não. CRM, Landing Page e Dashboard servem pra qualquer negócio que precise de funil, página ou métrica em tempo real: comércio, serviço, indústria, o que for. Você escolhe os módulos que fazem sentido pro seu momento.",
+    a: "Não. Ela serve pra qualquer negócio que receba lead por WhatsApp, Instagram ou formulário e precise acompanhar o que acontece depois — comércio, serviço, clínica, escritório, distribuidora. Se o seu processo de venda hoje mora numa planilha ou na cabeça de alguém, é pra você. Se a sua venda é 100% automática, sem conversa no meio, provavelmente não é.",
   },
   {
     q: "Preciso de equipe técnica pra configurar?",
-    a: "Não. A implantação leva minutos e a interface foi pensada pra quem não é técnico. Se usar WhatsApp, ajudamos na conexão do seu número comercial durante a configuração.",
+    a: "Não. O cadastro leva cerca de 10 minutos e o funil já vem com etapas padrão que dá pra usar do jeito que está ou renomear arrastando. Conectar o WhatsApp é escanear um QR Code. A Landing Page e o Dashboard, esses sim, a gente configura pra você antes de entregar.",
   },
   {
+    // Versão B, confirmada em 26/08/2026: não existe teste gratuito. Se um
+    // trial for lançado, troque por: "Tem. Você usa o CRM por 14 dias sem
+    // cartão de crédito..." — e o CTA do hero e a microcopy abaixo dele
+    // precisam mudar junto, senão a página promete duas coisas diferentes.
     q: "Existe algum benefício gratuito?",
-    a: "Sim. Landing Page e Dashboard incluem 1 mês de manutenção e ajustes gratuitos (até 5 solicitações). Depois desse período, dá pra migrar pro Dashboard com suporte ou contratar manutenção avulsa.",
+    a: "Não temos teste gratuito por enquanto, mas também não temos fidelidade: você paga o primeiro mês, testa de verdade com seus dados e cancela quando quiser. Contratando Landing Page ou Dashboard, o primeiro mês de manutenção vem incluso (até 5 solicitações). Se quiser ver a plataforma antes de decidir, a gente faz uma demonstração ao vivo no WhatsApp.",
+  },
+  {
+    q: "A mytek é uma empresa nova?",
+    a: "É. Estamos no primeiro ano de operação e não escondemos isso — é justamente por isso que existe o programa fundador, com preço travado e acesso direto a quem constrói o produto. Somos uma empresa registrada, com CNPJ e contrato, e seus dados ficam em servidores no Brasil sob a LGPD.",
+  },
+  {
+    q: "Tem fidelidade ou multa de cancelamento?",
+    a: "Não. Os planos mensais são mês a mês e o cancelamento é feito pelo próprio WhatsApp do suporte, sem carência. A Landing Page, por ser pagamento único, é entregue e é sua.",
+  },
+  {
+    // A exportação em CSV ainda não existe no produto (confirmado em
+    // 26/08/2026), então a resposta promete só o que a gente cumpre hoje:
+    // entregar a base quando o cliente pedir. Quando o botão de exportar
+    // existir, troque por: "Não. Você exporta sua base de leads, clientes e
+    // histórico em CSV a qualquer momento, inclusive nos 30 dias após o
+    // cancelamento. Os dados são seus."
+    q: "E se eu cancelar, perco meus dados?",
+    a: "Não. Os dados são seus: é só pedir e a gente entrega sua base de leads, clientes e histórico, inclusive nos 30 dias após o cancelamento. A exportação por conta própria, direto na plataforma, está no nosso roteiro e ainda não está disponível.",
   },
 ];
 
@@ -253,83 +247,130 @@ export default function Home() {
             <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-sm backdrop-blur">
               <SparklesIcon className="size-3.5 text-primary" />
               <span className="font-medium">
-                Novo · Módulo Conhecimento com IA
+                Programa fundador · 3 vagas restantes
               </span>
             </span>
           </BlurFade>
 
+          {/*
+            Duas redações da mesma manchete: a longa segura melhor no desktop,
+            a curta cabe no celular sem virar quatro linhas. Ambas ficam no
+            HTML e o CSS escolhe qual mostrar — trocar por JavaScript deixaria
+            o H1 vazio no HTML exportado, que é justamente o bug da Tarefa 1.
+          */}
           <BlurFade delay={0.15}>
-            <h1 className="mx-auto mt-8 max-w-3xl text-5xl font-semibold tracking-tight text-balance lg:text-7xl">
-              Dashboards, landing pages e{" "}
-              <AnimatedGradientText>CRM</AnimatedGradientText> numa
-              plataforma só
+            <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-7xl">
+              <span className="sm:hidden">
+                Lead respondido 6 horas depois{" "}
+                <span className="text-muted-foreground">não vira venda.</span>
+              </span>
+              <span className="hidden sm:block">
+                Seu lead respondeu no Instagram.
+                <span className="mt-1 block font-normal text-muted-foreground">
+                  Sua equipe viu 6 horas depois.
+                </span>
+              </span>
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.35}>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground text-pretty">
-              mytek reúne as ferramentas que seu negócio precisa pra atrair
-              cliente, acompanhar resultado e organizar venda, tudo num só
-              lugar, sem complicação.
+              <span className="sm:hidden">
+                A mytek avisa quando um lead para de andar no funil e
+                centraliza o WhatsApp num lugar só.
+              </span>
+              <span className="hidden sm:inline">
+                A mytek avisa quando um lead para de andar no funil,
+                centraliza o WhatsApp num lugar só e mostra em tempo real o
+                que virou venda. CRM, landing page e dashboard na mesma
+                plataforma.
+              </span>
             </p>
           </BlurFade>
 
+          {/*
+            O CTA primário aponta para /contact, não para /signup: o cadastro
+            de src/components/template/auth-form.tsx é do template Velora e
+            só faz `e.preventDefault(); setDone(true);` — mostra sucesso sem
+            criar conta nenhuma e sem avisar ninguém. Quando o cadastro for
+            real, é aqui que ele volta.
+          */}
           <BlurFade delay={0.5}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <ShimmerButton href="/pricing">
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+              <ShimmerButton href="/contact">
                 <RocketIcon className="size-4" />
-                Começar agora
+                Começar agora →
               </ShimmerButton>
-              <Button variant="ghost" size="lg" asChild>
-                <a href="#produtos">Ver produtos</a>
+              {/* No celular o secundário vira link de texto, não um segundo botão. */}
+              <Button
+                variant="ghost"
+                size="lg"
+                className="hidden sm:inline-flex"
+                asChild
+              >
+                <a href="#produtos">Ver como funciona ↓</a>
               </Button>
+              <a
+                href="#produtos"
+                className="text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground sm:hidden"
+              >
+                Ver como funciona ↓
+              </a>
             </div>
           </BlurFade>
 
           <BlurFade delay={0.6}>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <AvatarCircles
-                people={[
-                  "Ana Ribeiro",
-                  "Camila Duarte",
-                  "Patrícia Nunes",
-                  "Rafael Souza",
-                  "Beatriz Lima",
-                ]}
-                extra={180}
-              />
-              <div className="flex flex-col items-center gap-0.5 sm:items-start">
-                <span className="flex gap-0.5 text-amber-400">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <StarIcon key={i} className="size-4 fill-current" />
-                  ))}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  Usado por 180+ negócios em todo o Brasil
-                </span>
-              </div>
-            </div>
+            <p className="mt-5 text-sm text-muted-foreground">
+              Sem fidelidade · configuração em 10 minutos · suporte no WhatsApp
+            </p>
           </BlurFade>
 
           {/* Stats */}
-          <div className="mx-auto mt-20 grid max-w-4xl grid-cols-2 gap-8 lg:grid-cols-4">
-            {stats.map((stat, i) => (
+          <div className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-8 lg:grid-cols-4">
+            {heroStats.map((stat, i) => (
               <BlurFade key={stat.label} delay={i * 0.1}>
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-4xl font-semibold tracking-tight">
-                    <NumberTicker
-                      value={stat.value}
-                      prefix={stat.prefix}
-                      suffix={stat.suffix}
-                    />
+                  <span className="text-3xl font-semibold tracking-tight lg:text-4xl">
+                    {"value" in stat ? (
+                      <NumberTicker value={stat.value} suffix={stat.suffix} />
+                    ) : (
+                      stat.text
+                    )}
                   </span>
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm text-muted-foreground text-balance">
                     {stat.label}
                   </span>
                 </div>
               </BlurFade>
             ))}
           </div>
+
+          <BlurFade delay={0.5}>
+            <p className="mt-8 text-sm text-muted-foreground">
+              Em operação desde 2026, com os primeiros negócios do programa
+              fundador.
+            </p>
+          </BlurFade>
+
+          {/*
+            TODO(imagem): trocar este slot por um screenshot real do Kanban do
+            CRM — colunas "Novos leads / Em contato / Fechados" e um card com
+            o badge "Parado há 2 dias" bem visível, que é o produto em si.
+            Exportar em 2400×1500 (proporção 8:5) para /public/brand/, com
+            `alt` descrevendo o alerta. Não recriar como mockup em HTML: o
+            anterior era falso e enchia o HTML de zeros.
+          */}
+          <BlurFade delay={0.7}>
+            <div
+              className="mx-auto mt-16 flex aspect-[8/5] w-full max-w-4xl items-center justify-center rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 text-center"
+              role="presentation"
+            >
+              <span className="max-w-sm text-sm text-muted-foreground">
+                Espaço reservado para o screenshot do funil em Kanban, com o
+                alerta de lead parado.
+              </span>
+            </div>
+          </BlurFade>
         </div>
       </section>
 
@@ -705,43 +746,55 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="relative py-24 lg:py-32">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      {/* Programa fundador — no lugar dos depoimentos inventados */}
+      <section id="fundador" className="relative py-24 lg:py-32">
+        <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <BlurFade>
-            <h2 className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Negócios <span className="text-primary">confiam</span>
+            <h2 className="text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+              Somos novos.{" "}
+              <span className="text-primary">Por isso o programa fundador.</span>
             </h2>
           </BlurFade>
-          <div className="mt-16 columns-1 gap-6 md:columns-2 lg:columns-3 [&>*]:mb-6">
-            {testimonials.map((t, i) => (
-              <BlurFade key={t.name} delay={(i % 3) * 0.1} className="break-inside-avoid">
-                <TiltCard>
-                  <figure className="rounded-2xl border bg-card p-6">
-                    <span className="flex gap-0.5 text-amber-400">
-                      {Array.from({ length: 5 }).map((_, s) => (
-                        <StarIcon key={s} className="size-3.5 fill-current" />
-                      ))}
-                    </span>
-                    <blockquote className="mt-4 text-sm text-card-foreground">
-                      “{t.quote}”
-                    </blockquote>
-                    <figcaption className="mt-4 flex items-center gap-3">
-                      <img
-                        src={t.image}
-                        alt={t.name}
-                        className="size-8 rounded-full"
-                      />
-                      <div>
-                        <p className="text-sm font-medium">{t.name}</p>
-                        <p className="text-xs text-muted-foreground">{t.role}</p>
-                      </div>
-                    </figcaption>
-                  </figure>
-                </TiltCard>
-              </BlurFade>
-            ))}
-          </div>
+
+          <BlurFade delay={0.15}>
+            <p className="mt-6 text-lg text-muted-foreground text-pretty">
+              A mytek foi construída resolvendo um problema que a gente via
+              todo dia: lead do Instagram e do WhatsApp esfriando porque
+              ninguém tinha um lugar único pra acompanhar.
+            </p>
+            <p className="mt-4 text-lg text-muted-foreground text-pretty">
+              Estamos abrindo <strong className="font-semibold text-foreground">5 vagas</strong>{" "}
+              pra negócios que topem usar a plataforma de perto e dizer o que
+              falta. Em troca: preço travado enquanto for cliente, acesso
+              direto a quem constrói o produto, e prioridade nas
+              funcionalidades que você pedir.
+            </p>
+          </BlurFade>
+
+          <BlurFade delay={0.3}>
+            <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
+              <div className="flex items-center gap-3">
+                <span className="flex gap-1.5" aria-hidden="true">
+                  {[true, true, false, false, false].map((filled, i) => (
+                    <span
+                      key={i}
+                      className={
+                        filled
+                          ? "size-2.5 rounded-full bg-primary"
+                          : "size-2.5 rounded-full bg-muted"
+                      }
+                    />
+                  ))}
+                </span>
+                <p className="text-sm font-medium">
+                  2 das 5 vagas preenchidas.
+                </p>
+              </div>
+              <Button size="lg" className="rounded-full" asChild>
+                <a href="/contact">Falar com o time fundador</a>
+              </Button>
+            </div>
+          </BlurFade>
         </div>
       </section>
 
@@ -797,42 +850,13 @@ export default function Home() {
             </div>
           </BlurFade>
 
-          <BlurFade delay={0.1}>
-            <TiltCard className="mx-auto mt-16 max-w-2xl" maxTilt={5}>
-              <div
-                id="fundador"
-                className="relative overflow-hidden rounded-2xl border border-primary/30 bg-card p-10 text-center shadow-xl shadow-primary/5"
-              >
-                <BorderBeam size={100} duration={9} />
-                <span className="text-xs font-semibold tracking-wide text-primary uppercase">
-                  Programa fundador
-                </span>
-                <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
-                  “Estamos abrindo o programa fundador, com condições
-                  especiais em troca do seu feedback direto pra moldar o
-                  produto.”
-                </p>
-                <div className="mt-6 flex justify-center gap-1.5">
-                  {[true, true, false, false, false].map((filled, i) => (
-                    <span
-                      key={i}
-                      className={
-                        filled
-                          ? "size-2.5 rounded-full bg-primary"
-                          : "size-2.5 rounded-full bg-muted"
-                      }
-                    />
-                  ))}
-                </div>
-                <p className="mt-3 text-xs text-muted-foreground">
-                  2 de 5 vagas do programa fundador preenchidas
-                </p>
-                <Button variant="outline" size="lg" className="mt-6 rounded-full">
-                  Falar com o time fundador
-                </Button>
-              </div>
-            </TiltCard>
-          </BlurFade>
+          {/*
+            O card do programa fundador que ficava aqui foi removido: a seção
+            "Somos novos. Por isso o programa fundador." acima já conta essa
+            história inteira, com o mesmo contador de vagas. Dois blocos
+            dizendo "2 de 5 vagas" na mesma página enfraqueciam os dois — e o
+            botão daqui nem era um link, não levava a lugar nenhum.
+          */}
         </div>
       </section>
 

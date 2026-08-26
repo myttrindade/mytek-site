@@ -38,16 +38,24 @@ const principles = [
   },
   {
     icon: <MessageCircleIcon className="size-6" />,
-    title: "Suporte de verdade",
+    title: "Resposta no WhatsApp em até 4h úteis",
     body: "Atendimento direto pelo WhatsApp, sem central de tickets nem burocracia.",
   },
 ];
 
-const stats = [
-  { value: 180, suffix: "+", label: "Negócios usando a mytek" },
-  { value: 18, suffix: "%", label: "Taxa média de conversão" },
-  { value: 96, suffix: "%", label: "Satisfação média" },
-  { value: 10, suffix: " min", label: "Pra configurar" },
+/**
+ * Mesma regra da home: nada aqui pode ser métrica inventada. Os três números
+ * que estavam neste lugar — "180+ negócios usando a mytek", "18% de taxa
+ * média de conversão" e "96% de satisfação média" — não tinham base nenhuma
+ * e contradiziam o programa fundador de 5 vagas. Só sobra o que é fato.
+ */
+const stats: Array<
+  { label: string } & ({ value: number; suffix: string } | { text: string })
+> = [
+  { value: 10, suffix: " min", label: "do cadastro ao primeiro lead" },
+  { text: "3 módulos", label: "CRM, Landing Page e Dashboard" },
+  { text: "R$197/mês", label: "CRM completo, 3 usuários" },
+  { text: "Sem fidelidade", label: "cancele quando quiser" },
 ];
 
 export default function AboutPage() {
@@ -97,8 +105,12 @@ export default function AboutPage() {
           {stats.map((stat, i) => (
             <BlurFade key={stat.label} delay={i * 0.08}>
               <div className="flex flex-col items-center gap-1 text-center">
-                <span className="text-4xl font-semibold tracking-tight">
-                  <NumberTicker value={stat.value} suffix={stat.suffix} />
+                <span className="text-3xl font-semibold tracking-tight lg:text-4xl">
+                  {"value" in stat ? (
+                    <NumberTicker value={stat.value} suffix={stat.suffix} />
+                  ) : (
+                    stat.text
+                  )}
                 </span>
                 <span className="text-sm text-muted-foreground">
                   {stat.label}

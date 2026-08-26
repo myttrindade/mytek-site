@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { company, isFilled } from "@/lib/company";
 import { siteConfig } from "@/lib/site-config";
 import { ChatWidget } from "@/components/chat-widget";
 
@@ -22,16 +23,8 @@ export const metadata: Metadata = {
     template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  keywords: [
-    "CRM com WhatsApp",
-    "funil de vendas",
-    "landing page pronta",
-    "dashboard em tempo real",
-    "automação de WhatsApp",
-    "CRM com IA",
-    "gestão de leads",
-    "plataforma de vendas",
-  ],
+  // `keywords` foi removido de propósito: nenhum buscador relevante lê
+  // <meta name="keywords"> há mais de uma década. Não readicione.
   authors: [{ name: siteConfig.name }],
   openGraph: {
     type: "website",
@@ -47,6 +40,11 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * Um único bloco Organization para o site inteiro. Os campos jurídicos só
+ * entram depois de preenchidos em src/lib/company.ts — declarar
+ * `"cnpj": "00.000.000/0001-00"` para o Google é pior que omitir.
+ */
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -54,7 +52,20 @@ const organizationJsonLd = {
   url: siteConfig.url,
   logo: `${siteConfig.url}/brand/logo.png`,
   description: siteConfig.description,
+  email: company.email,
   sameAs: [siteConfig.github],
+  ...(isFilled(company.legalName) && { legalName: company.legalName }),
+  ...(isFilled(company.cnpj) && { taxID: company.cnpj }),
+  ...(isFilled(company.phone) && { telephone: company.phone }),
+  ...(isFilled(company.addressStreet) && {
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: company.addressStreet,
+      addressLocality: company.addressLocality,
+      addressRegion: company.addressRegion,
+      addressCountry: company.addressCountry,
+    },
+  }),
 };
 
 export default function RootLayout({

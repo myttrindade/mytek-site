@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -15,11 +14,20 @@ interface NumberTickerProps extends React.HTMLAttributes<HTMLSpanElement> {
   suffix?: string;
 }
 
+const DURATION_MS = 900;
+
 /**
- * Counts up every time it scrolls into view, not just the first time
- * (`once: false`) — it resets to `startValue` on exit so the count-up
- * replays on the next pass, and it always animates regardless of
- * prefers-reduced-motion since the count itself is the point.
+ * Counts up when it scrolls into view — but the **final** value is what gets
+ * rendered on the server and on the first client pass. O zero só aparece no
+ * instante em que a animação de fato começa.
+ *
+ * Isso é deliberado: como o site é `output: "export"`, o HTML que o
+ * Cloudflare serve é o que o Google, o preview de link e quem está com JS
+ * lento enxergam. Inicializar em `startValue` fazia esse HTML dizer
+ * "R$0/mês CRM a partir de", contradizendo o preço real.
+ *
+ * Respeita `prefers-reduced-motion`: nesse caso o número simplesmente fica
+ * parado no valor certo, que já é o estado inicial.
  */
 export function NumberTicker({
   value,
@@ -32,36 +40,52 @@ export function NumberTicker({
   ...props
 }: NumberTickerProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(startValue);
-  const springValue = useSpring(motionValue, {
-    damping: 60,
-    stiffness: 100,
-  });
-  const isInView = useInView(ref, { once: false, margin: "0px 0px -10% 0px" });
-
-  const format = (n: number) =>
-    `${prefix}${Intl.NumberFormat("en-US", {
-      minimumFractionDigits: decimalPlaces,
-      maximumFractionDigits: decimalPlaces,
-    }).format(n)}${suffix}`;
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
-    if (!isInView) {
-      motionValue.jump(startValue);
-      return;
-    }
-    const timeout = setTimeout(() => motionValue.set(value), delay * 1000);
-    return () => clearTimeout(timeout);
-  }, [isInView, motionValue, value, startValue, delay]);
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  useEffect(
-    () =>
-      springValue.on("change", (latest) => {
-        if (ref.current) ref.current.textContent = format(latest);
-      }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [springValue, prefix, suffix, decimalPlaces]
-  );
+    let frame = 0;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+
+        const run = () => {
+          const start = performance.now();
+          const tick = (now: number) => {
+            const p = Math.min((now - start) / DURATION_MS, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setDisplay(startValue + (value - startValue) * eased);
+            if (p < 1) frame = requestAnimationFrame(tick);
+          };
+          setDisplay(startValue);
+          frame = requestAnimationFrame(tick);
+        };
+
+        if (delay > 0) timeout = setTimeout(run, delay * 1000);
+        else run();
+      },
+      { threshold: 0.4 }
+    );
+
+    observer.observe(el);
+
+    return () => {
+      observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [value, startValue, delay]);
+
+  const formatted = `${prefix}${Intl.NumberFormat("en-US", {
+    minimumFractionDigits: decimalPlaces,
+    maximumFractionDigits: decimalPlaces,
+  }).format(display)}${suffix}`;
 
   return (
     <span
@@ -70,7 +94,7 @@ export function NumberTicker({
       className={cn("inline-block tabular-nums", className)}
       {...props}
     >
-      {format(startValue)}
+      {formatted}
     </span>
   );
 }

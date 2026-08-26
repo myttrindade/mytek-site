@@ -55,6 +55,19 @@ function AccordionTrigger({
   )
 }
 
+/**
+ * `forceMount` é obrigatório aqui, não uma preferência de estilo.
+ *
+ * Sem ele o Radix desmonta o painel fechado, e o texto da resposta some do
+ * HTML exportado — que é o único HTML que existe neste site (`output:
+ * "export"`). O resultado era uma página cheia de perguntas e sem nenhuma
+ * resposta: sem rich snippet de FAQ e sem o único conteúdo textual longo do
+ * site para o buscador ler.
+ *
+ * O painel fechado é escondido por CSS (`display: none`), e o `aria-expanded`
+ * do trigger continua sendo emitido pelo Radix, então leitor de tela e
+ * teclado não mudam de comportamento.
+ */
 function AccordionContent({
   className,
   children,
@@ -63,12 +76,13 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up"
+      forceMount
+      className="overflow-hidden text-sm data-[state=closed]:hidden"
       {...props}
     >
       <div
         className={cn(
-          "h-(--radix-accordion-content-height) pt-0 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
+          "pt-0 pb-2.5 [&_a]:underline [&_a]:underline-offset-3 [&_a]:hover:text-foreground [&_p:not(:last-child)]:mb-4",
           className
         )}
       >

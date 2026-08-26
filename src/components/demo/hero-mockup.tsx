@@ -101,6 +101,16 @@ export function HeroMockup({ className }: { className?: string }) {
               ))}
             </div>
 
+            {/*
+              A legenda fica colada nos números de propósito. Depois que os
+              contadores passaram a renderizar o valor final no HTML, estes
+              "R$48.2k" e "96%" viraram texto indexável — sem a legenda, um
+              "96%" solto na home é lido como índice de satisfação real.
+            */}
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              Dados de exemplo, para ilustrar a interface.
+            </p>
+
             {/* Bar chart */}
             <div className="mt-3 rounded-xl border border-border/60 bg-background/40 p-4">
               <div className="mb-3 flex items-center justify-between">

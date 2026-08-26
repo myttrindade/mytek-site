@@ -2,7 +2,9 @@ import Link from "next/link";
 
 import { MytekLogo } from "@/components/mytek-logo";
 import { hasCheckoutLinks } from "@/lib/checkout";
+import { company, hasLegalIdentity, isFilled } from "@/lib/company";
 import { siteConfig } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
 const groups = [
   {
@@ -69,9 +71,60 @@ export function SiteFooter() {
           </nav>
         ))}
       </div>
-      <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-border/40 px-4 pt-6 text-xs text-muted-foreground md:flex-row lg:px-8">
+      {/*
+        Identidade jurídica. Só aparece depois que os TODO de src/lib/company.ts
+        forem preenchidos — em B2B, um CNPJ falso pesa mais contra do que a
+        ausência dele.
+      */}
+      {hasLegalIdentity && (
+        <address className="mx-auto mt-12 max-w-6xl border-t border-border/40 px-4 pt-6 text-xs leading-relaxed text-muted-foreground not-italic lg:px-8">
+          <span className="block">
+            mytek
+            {isFilled(company.legalName) && <> — {company.legalName}</>}
+            {isFilled(company.cnpj) && <> · CNPJ {company.cnpj}</>}
+          </span>
+          {isFilled(company.addressStreet) && (
+            <span className="block">
+              {company.addressStreet} · {company.addressLocality}/
+              {company.addressRegion}
+            </span>
+          )}
+          <span className="block">
+            <a
+              href={`mailto:${company.email}`}
+              className="transition-colors hover:text-foreground"
+            >
+              {company.email}
+            </a>
+            {isFilled(company.phone) && (
+              <>
+                {" · "}
+                <a
+                  href={`tel:+55${company.phone.replace(/\D/g, "")}`}
+                  className="transition-colors hover:text-foreground"
+                >
+                  {company.phone}
+                </a>
+              </>
+            )}
+          </span>
+          <span className="block">{company.businessHours}</span>
+        </address>
+      )}
+
+      <div
+        className={cn(
+          "mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-border/40 px-4 pt-6 text-xs text-muted-foreground md:flex-row lg:px-8",
+          // Sem o bloco jurídico acima, esta é a primeira divisória do rodapé
+          // e precisa do respiro maior.
+          hasLegalIdentity ? "mt-6" : "mt-12"
+        )}
+      >
         <span>© {new Date().getFullYear()} mytek. Todos os direitos reservados.</span>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+          {company.dataHostedInBrazil && (
+            <span>Dados hospedados no Brasil, sob a LGPD</span>
+          )}
           <Link href="/politica-privacidade" className="transition-colors hover:text-foreground">
             Política de Privacidade
           </Link>

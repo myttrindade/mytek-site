@@ -17,11 +17,24 @@ import { TiltCard } from "@/components/velora/tilt-card";
 import { checkoutHref } from "@/lib/checkout";
 import { cn } from "@/lib/utils";
 
+const pricingDescription =
+  "CRM a partir de R$197/mês, Dashboard a partir de R$397/mês e Landing Page a partir de R$1.497 (pagamento único). Combine CRM e Dashboard e pague menos nos dois. Sem fidelidade.";
+
 export const metadata: Metadata = {
   title: "Preço",
-  description:
-    "CRM a partir de R$197/mês, Dashboard a partir de R$397/mês e Landing Page a partir de R$1.497 (pagamento único). Combine e economize.",
+  description: pricingDescription,
   alternates: { canonical: "/pricing" },
+  // Sem isto a página herdava o OG genérico da home, e quem compartilhava o
+  // link dos planos anunciava outra coisa.
+  openGraph: {
+    title: "Preço · mytek",
+    description: pricingDescription,
+    url: "/pricing",
+  },
+  twitter: {
+    title: "Preço · mytek",
+    description: pricingDescription,
+  },
 };
 
 // `slug` casa com os planos de src/lib/checkout.ts: é o que leva o botão ao
@@ -44,7 +57,7 @@ const crmPlans = [
     features: [
       "Até 3 membros do time",
       "Módulo Conhecimento com IA",
-      "Treinamento obrigatório incluído",
+      "Sessão de treinamento incluída",
     ],
   },
 ];
@@ -56,7 +69,13 @@ const dashboardPlans = [
     price: "R$397",
     unit: "/mês",
     highlight: false,
-    features: ["Painéis personalizáveis", "Relatórios exportáveis", "Sem suporte incluso"],
+    // Os bullets descrevem o que o plano tem. A ausência de suporte fica na
+    // tabela comparativa acima — bullet em negativo vende contra o produto.
+    features: [
+      "Painéis personalizáveis",
+      "Relatórios exportáveis",
+      "Suporte opcional a partir de +R$300/mês",
+    ],
   },
   {
     name: "Dashboard Avulso + Suporte",
@@ -78,7 +97,11 @@ const landingPagePlans = [
     slug: "lp-essencial",
     price: "R$1.497",
     highlight: false,
-    features: ["Template customizado", "1 integração", "Sem copy profissional"],
+    features: [
+      "Template customizado",
+      "1 integração",
+      "Textos por sua conta (ou contrate a Completa)",
+    ],
   },
   {
     name: "Landing Page Completa",
@@ -101,28 +124,43 @@ const combos = [
   { label: "CRM Plus + Dashboard com suporte", price: "R$714/mês" },
 ];
 
+/**
+ * A primeira frase de cada resposta já é a resposta direta — é o formato que
+ * o Google puxa para featured snippet. Ao editar, mantenha a resposta na
+ * abertura e o detalhe depois.
+ */
 const faqs = [
   {
     q: "Preciso ter CRM pra contratar o Dashboard?",
-    a: "Não. O Dashboard pode ser contratado avulso, por qualquer negócio, mesmo sem usar o CRM da mytek. Quem já é do CRM paga menos, como add-on: +R$197/mês sem suporte ou +R$347/mês com suporte.",
+    a: "Não. O Dashboard avulso custa R$397/mês e funciona sozinho, conectado às suas fontes de dados. Se você já é cliente de CRM, ele entra como add-on por R$197/mês, porque os dados já estão dentro da plataforma e o trabalho de integração não se repete.",
   },
   {
     q: "A Landing Page é cobrada todo mês?",
-    a: "Não. É pagamento único. Você paga uma vez pela página pronta. Cliente ativo de CRM ou Dashboard tem 20% de desconto: Essencial por R$1.197 e Completa por R$2.397.",
+    a: "Não. É pagamento único: R$1.497 na Essencial e R$2.997 na Completa. A página é sua e continua no ar sem mensalidade. O que é opcional e mensal é a manutenção depois do primeiro mês, a partir de R$297/mês, pra quem quer alterações recorrentes.",
   },
   {
     q: "Qual a diferença entre o CRM Normal e o Plus?",
-    a: "O Plus inclui o módulo Conhecimento com IA e treinamento obrigatório incluído. Os dois planos cobrem 3 usuários e têm o funil e o atendimento via WhatsApp completos.",
+    a: "O Plus adiciona o módulo Conhecimento com IA, que responde perguntas sobre a sua própria base — histórico de clientes, negociações, atendimentos — em vez de você garimpar isso no funil. Como ele depende de como a sua empresa organiza a informação, o plano inclui uma sessão de treinamento com a gente antes de liberar o acesso. O resto (funil, WhatsApp, 3 usuários) é igual nos dois.",
   },
   {
     q: "Como funciona a manutenção gratuita?",
-    a: "Contratando Landing Page ou Dashboard, você ganha 1 mês de manutenção grátis (até 5 solicitações). Depois, converte para suporte mensal ou manutenção avulsa a partir de R$297/mês.",
+    a: "Contratando Landing Page ou Dashboard, o primeiro mês inclui até 5 solicitações de ajuste sem custo: trocar texto, imagem, campo de formulário, métrica do painel. Depois desse mês, você escolhe entre suporte mensal a partir de R$297 ou pedidos avulsos, sem obrigação de contratar nada.",
   },
   {
     q: "E se eu precisar de algo fora desses planos?",
-    a: "A gente monta um orçamento sob medida. É só falar com o time.",
+    a: "A gente monta orçamento sob medida. Integração com um sistema que você já usa, painel com uma métrica específica, fluxo de venda que não cabe no funil padrão — é só descrever no formulário de contato que respondemos com escopo e valor.",
   },
 ];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
+  })),
+};
 
 export default function PricingPage() {
   return (
@@ -525,6 +563,10 @@ export default function PricingPage() {
 
       {/* FAQ */}
       <section className="pb-28">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <BlurFade>
             <h2 className="text-center text-3xl font-semibold tracking-tight">

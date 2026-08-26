@@ -50,6 +50,11 @@ export function LandingPageMockup({ className }: { className?: string }) {
           </div>
         </div>
 
+        {/* Mesma razão do hero-mockup: os KPIs agora existem no HTML. */}
+        <p className="mt-2 text-[11px] text-muted-foreground">
+          Dados de exemplo, para ilustrar a interface.
+        </p>
+
         <div className="mt-4 h-28">
           <svg viewBox="0 0 300 110" className="size-full" preserveAspectRatio="none">
             <defs>

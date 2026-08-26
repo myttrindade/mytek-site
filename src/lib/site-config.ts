@@ -12,7 +12,14 @@ export const siteConfig = {
   github:
     process.env.NEXT_PUBLIC_GITHUB_URL ??
     "https://github.com/myttrindade/mytek-site",
-  tagline: "Dashboards, landing pages e CRM numa plataforma só",
+  /**
+   * Alimenta o title padrão, o OG e a imagem de compartilhamento. Mantém a
+   * palavra "CRM" na frente porque é o termo que as pessoas de fato buscam,
+   * mesmo com o gancho da página sendo o alerta de lead parado — e acompanha
+   * o H1 da home, senão o Google mostra uma promessa e a página entrega
+   * outra.
+   */
+  tagline: "CRM com WhatsApp, alerta de lead parado e dashboard em tempo real",
   description:
-    "mytek reúne as ferramentas que seu negócio precisa pra atrair cliente, acompanhar resultado e organizar venda, tudo num só lugar. Contrate separado ou combine e economize.",
+    "A mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda. A partir de R$197/mês, sem fidelidade.",
 } as const;
