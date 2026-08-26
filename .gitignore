@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...e o exemplo é o opt-in: ele não tem segredo nenhum e é o único lugar onde
+# quem faz o deploy descobre que NEXT_PUBLIC_WEBCHAT_TOKEN precisa existir.
+!.env.example
 
 # vercel
 .vercel
