@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CheckIcon, GiftIcon, MessageCircleIcon, Wand2Icon } from "lucide-react";
+import { CheckIcon, GiftIcon, Wand2Icon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -13,26 +13,30 @@ import { SiteFooter } from "@/components/site-footer";
 import { PageHeader } from "@/components/page-header";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
-import { TiltCard } from "@/components/velora/tilt-card";
+import { FounderProgram } from "@/components/founder-program";
 import { checkoutHref } from "@/lib/checkout";
+import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
+const pricingTitle = "Preço · mytek — CRM a partir de R$197/mês, sem fidelidade";
 const pricingDescription =
-  "CRM a partir de R$197/mês, Dashboard a partir de R$397/mês e Landing Page a partir de R$1.497 (pagamento único). Combine CRM e Dashboard e pague menos nos dois. Sem fidelidade.";
+  "CRM a partir de R$197/mês, Dashboard a partir de R$397/mês e Landing Page a partir de R$1.497 (pagamento único). Combine os módulos e pague menos.";
 
 export const metadata: Metadata = {
-  title: "Preço",
+  // `title.absolute` ignora o template "%s · mytek" do layout — sem ele o
+  // title sairia "Preço · mytek — ... · mytek".
+  title: { absolute: pricingTitle },
   description: pricingDescription,
   alternates: { canonical: "/pricing" },
   // Sem isto a página herdava o OG genérico da home, e quem compartilhava o
   // link dos planos anunciava outra coisa.
   openGraph: {
-    title: "Preço · mytek",
+    title: pricingTitle,
     description: pricingDescription,
     url: "/pricing",
   },
   twitter: {
-    title: "Preço · mytek",
+    title: pricingTitle,
     description: pricingDescription,
   },
 };
@@ -161,6 +165,54 @@ const faqJsonLd = {
     acceptedAnswer: { "@type": "Answer", text: faq.a },
   })),
 };
+
+/**
+ * Um `Product` por plano, com o `Offer` correspondente.
+ *
+ * O preço vem parseado das mesmas strings que a página exibe, e não de uma
+ * segunda lista de números: duas fontes divergiriam na primeira mudança de
+ * tabela, e aí o Google anunciaria um preço que a página não pratica.
+ *
+ * `UnitPriceSpecification` com `billingDuration` distingue a mensalidade do
+ * pagamento único da Landing Page — sem isso os R$1.497 apareceriam como se
+ * fossem por mês.
+ */
+const paraNumero = (preco: string) =>
+  Number(preco.replace(/[^\d,]/g, "").replace(",", "."));
+
+const planosParaJsonLd = [
+  { grupo: "CRM", planos: crmPlans, mensal: true },
+  { grupo: "Dashboard", planos: dashboardPlans, mensal: true },
+  { grupo: "Landing Page", planos: landingPagePlans, mensal: false },
+];
+
+const produtosJsonLd = planosParaJsonLd.flatMap(({ grupo, planos, mensal }) =>
+  planos.map((plano) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `mytek ${plano.name}`,
+    category: grupo,
+    brand: { "@type": "Brand", name: "mytek" },
+    description: plano.features.join(" · "),
+    offers: {
+      "@type": "Offer",
+      url: `${siteConfig.url}/pricing`,
+      priceCurrency: "BRL",
+      price: paraNumero(plano.price),
+      availability: "https://schema.org/InStock",
+      ...(mensal && {
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          priceCurrency: "BRL",
+          price: paraNumero(plano.price),
+          billingDuration: 1,
+          billingIncrement: 1,
+          unitCode: "MON",
+        },
+      }),
+    },
+  }))
+);
 
 export default function PricingPage() {
   return (
@@ -397,6 +449,23 @@ export default function PricingPage() {
               ou Plus.
             </p>
           </BlurFade>
+          {/*
+            Sem esta nota, R$397 avulso contra R$197 como add-on parecia preço
+            arbitrário — metade do valor pela mesma coisa. Confirmado com o
+            time em 26/08/2026: a diferença é o trabalho de conectar e manter
+            a integração com as fontes de dados do cliente, que não existe
+            quando os dados já estão dentro da plataforma.
+          */}
+          <BlurFade delay={0.2}>
+            <p className="mt-3 text-sm text-muted-foreground">
+              <strong className="text-card-foreground">
+                Por que o avulso custa mais?
+              </strong>{" "}
+              No avulso, a gente conecta o Dashboard às suas fontes de dados e
+              mantém essa integração. Como add-on do CRM, os dados já estão
+              dentro da plataforma e esse trabalho não se repete.
+            </p>
+          </BlurFade>
         </div>
       </section>
 
@@ -519,53 +588,20 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Founder program */}
-      <section className="pb-24">
-        <div className="mx-auto max-w-2xl px-4 lg:px-8">
-          <BlurFade>
-            <TiltCard maxTilt={5}>
-              <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-card p-10 text-center shadow-xl shadow-primary/5">
-                <BorderBeam size={100} duration={9} />
-                <span className="text-xs font-semibold tracking-wide text-primary uppercase">
-                  Programa fundador
-                </span>
-                <p className="mx-auto mt-4 max-w-lg text-lg text-card-foreground italic">
-                  “Estamos abrindo o programa fundador, com condições
-                  especiais em troca do seu feedback direto pra moldar o
-                  produto.”
-                </p>
-                <div className="mt-6 flex justify-center gap-1.5">
-                  {[true, true, false, false, false].map((filled, i) => (
-                    <span
-                      key={i}
-                      className={
-                        filled
-                          ? "size-2.5 rounded-full bg-primary"
-                          : "size-2.5 rounded-full bg-muted"
-                      }
-                    />
-                  ))}
-                </div>
-                <p className="mt-3 text-xs text-muted-foreground">
-                  2 de 5 vagas do programa fundador preenchidas
-                </p>
-                <Button size="lg" className="mt-6 rounded-full" asChild>
-                  <a href="/contact">
-                    <MessageCircleIcon className="size-4" />
-                    Falar com o time fundador
-                  </a>
-                </Button>
-              </div>
-            </TiltCard>
-          </BlurFade>
-        </div>
-      </section>
+      {/* Programa fundador — mesmo componente e mesma contagem de vagas
+          da home. Antes esta página tinha uma redação própria e um "2 de 5"
+          escrito à mão, que dessincronizariam na primeira venda. */}
+      <FounderProgram className="pb-24" />
 
       {/* FAQ */}
       <section className="pb-28">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(produtosJsonLd) }}
         />
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <BlurFade>

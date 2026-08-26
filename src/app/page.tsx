@@ -12,6 +12,8 @@ import {
   ZapIcon,
 } from "lucide-react";
 
+import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -20,6 +22,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ActivityList } from "@/components/demo/activity-list";
+import { FounderProgram, founderEyebrow } from "@/components/founder-program";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { HeroMockup } from "@/components/demo/hero-mockup";
@@ -39,6 +42,11 @@ import { ScrollProgress } from "@/components/velora/scroll-progress";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { SpotlightCard } from "@/components/velora/spotlight-card";
 import { TiltCard } from "@/components/velora/tilt-card";
+import {
+  HERO_SCREENSHOT,
+  HERO_SCREENSHOT_ALT,
+  HERO_SCREENSHOT_SIZE,
+} from "@/lib/site-config";
 
 import type { Metadata } from "next";
 
@@ -66,7 +74,8 @@ const differentiators = [
 const heroStats: Array<
   { label: string } & ({ value: number; suffix: string } | { text: string })
 > = [
-  { value: 10, suffix: " min", label: "do cadastro ao primeiro lead" },
+  // Cenário B: a conversa é a porta de entrada, não um cadastro.
+  { value: 10, suffix: " min", label: "da conversa ao funil configurado" },
   { text: "R$197/mês", label: "CRM completo, 3 usuários" },
   { text: "3 módulos", label: "contrate separado ou junto" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
@@ -100,7 +109,8 @@ const features = [
   {
     icon: <ZapIcon className="size-5" />,
     title: "Implantação rápida",
-    body: "Comece a usar em minutos, sem precisar de equipe técnica.",
+    // Cenário B: não prometer "comece a usar" quando a entrada é comercial.
+    body: "Configuramos com você em uma conversa. Sem projeto de três meses.",
   },
   {
     icon: <MousePointerClickIcon className="size-5" />,
@@ -114,26 +124,29 @@ const features = [
   },
   {
     icon: <MessageCircleIcon className="size-5" />,
-    title: "Resposta no WhatsApp em até 4h úteis",
-    body: "Atendimento direto pelo WhatsApp, sem burocracia.",
+    // O SLA vive na descrição, não no título: os outros três cards têm duas
+    // palavras, e sete aqui quebravam o ritmo da grade.
+    title: "Suporte no WhatsApp",
+    body: "Atendimento direto pelo WhatsApp, sem burocracia. Resposta em até 4h úteis.",
   },
 ];
 
+// Cenário B: o passo 1 descreve o que acontece de verdade hoje.
 const steps = [
   {
     num: "1",
-    title: "Crie sua conta",
-    body: "Cadastre seu negócio e escolha os módulos que fazem sentido pro seu momento.",
+    title: "Fale com o time",
+    body: "A gente entende seu processo de venda e monta o funil com você.",
   },
   {
     num: "2",
     title: "Personalize",
-    body: "Configure seu dashboard, sua landing page e seu funil de vendas do seu jeito.",
+    body: "Ajuste dashboard, landing page e etapas do funil do seu jeito.",
   },
   {
     num: "3",
     title: "Acompanhe os resultados",
-    body: "Veja tudo em tempo real e ajuste sua estratégia com base em dados de verdade.",
+    body: "Veja tudo em tempo real e decida com dado de verdade.",
   },
 ];
 
@@ -246,60 +259,61 @@ export default function Home() {
           <BlurFade delay={0} direction="down">
             <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-sm backdrop-blur">
               <SparklesIcon className="size-3.5 text-primary" />
-              <span className="font-medium">
-                Programa fundador · 3 vagas restantes
-              </span>
+              <span className="font-medium">{founderEyebrow}</span>
             </span>
           </BlurFade>
 
           {/*
-            Duas redações da mesma manchete: a longa segura melhor no desktop,
-            a curta cabe no celular sem virar quatro linhas. Ambas ficam no
-            HTML e o CSS escolhe qual mostrar — trocar por JavaScript deixaria
-            o H1 vazio no HTML exportado, que é justamente o bug da Tarefa 1.
+            Um H1 só, e uma subhead só, no DOM.
+
+            A versão anterior mantinha as duas redações no HTML e escondia uma
+            por CSS. O texto servido virava "Lead respondido 6 horas depois não
+            vira venda.Seu lead respondeu no Instagram.Sua equipe viu 6 horas
+            depois." — duas manchetes concorrentes para o buscador e uma
+            loteria para o preview de link. A quebra em duas linhas agora é do
+            CSS (`block`), não de um segundo texto.
           */}
           <BlurFade delay={0.15}>
             <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-7xl">
-              <span className="sm:hidden">
-                Lead respondido 6 horas depois{" "}
-                <span className="text-muted-foreground">não vira venda.</span>
-              </span>
-              <span className="hidden sm:block">
-                Seu lead respondeu no Instagram.
-                <span className="mt-1 block font-normal text-muted-foreground">
-                  Sua equipe viu 6 horas depois.
-                </span>
+              Seu lead respondeu no Instagram.{" "}
+              <span className="mt-1 block font-normal text-muted-foreground">
+                Sua equipe viu 6 horas depois.
               </span>
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.35}>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground text-pretty">
-              <span className="sm:hidden">
-                A mytek avisa quando um lead para de andar no funil e
-                centraliza o WhatsApp num lugar só.
-              </span>
+              A mytek avisa quando um lead para de andar no funil e centraliza
+              o WhatsApp num lugar só.
+              {/* A segunda frase some no celular por CSS, sem duplicar texto. */}
               <span className="hidden sm:inline">
-                A mytek avisa quando um lead para de andar no funil,
-                centraliza o WhatsApp num lugar só e mostra em tempo real o
-                que virou venda. CRM, landing page e dashboard na mesma
-                plataforma.
+                {" "}
+                Mostra em tempo real o que virou venda: CRM, landing page e
+                dashboard na mesma plataforma.
               </span>
             </p>
           </BlurFade>
 
           {/*
-            O CTA primário aponta para /contact, não para /signup: o cadastro
-            de src/components/template/auth-form.tsx é do template Velora e
-            só faz `e.preventDefault(); setDone(true);` — mostra sucesso sem
-            criar conta nenhuma e sem avisar ninguém. Quando o cadastro for
-            real, é aqui que ele volta.
+            A entrada é sempre pelo time comercial, então o CTA diz isso — e a
+            página inteira (microcopy, stat, "Como funciona", card de
+            Recursos) fala a mesma língua. Prometer "crie sua conta" e entregar
+            um formulário de contato é a contradição que essa rodada corrige.
+
+            TODO(produto): o cadastro self-service existe no produto, mas a
+            tela deste site é falsa — src/components/template/auth-form.tsx faz
+            `e.preventDefault(); setDone(true);` e mostra sucesso sem criar
+            conta nem avisar ninguém. Quando ela for religada de verdade, o
+            caminho de volta é: CTA para /signup com o rótulo "Começar agora →",
+            e reverter os quatro pontos de copy marcados com "Cenário B" nesta
+            página.
           */}
           <BlurFade delay={0.5}>
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
               <ShimmerButton href="/contact">
                 <RocketIcon className="size-4" />
-                Começar agora →
+                Falar com o time →
               </ShimmerButton>
               {/* No celular o secundário vira link de texto, não um segundo botão. */}
               <Button
@@ -320,8 +334,10 @@ export default function Home() {
           </BlurFade>
 
           <BlurFade delay={0.6}>
+            {/* Cenário B: "com a gente" deixa explícito que a configuração é feita junto. */}
             <p className="mt-5 text-sm text-muted-foreground">
-              Sem fidelidade · configuração em 10 minutos · suporte no WhatsApp
+              Sem fidelidade · configuração em 10 minutos com a gente · suporte
+              no WhatsApp
             </p>
           </BlurFade>
 
@@ -353,24 +369,21 @@ export default function Home() {
           </BlurFade>
 
           {/*
-            TODO(imagem): trocar este slot por um screenshot real do Kanban do
-            CRM — colunas "Novos leads / Em contato / Fechados" e um card com
-            o badge "Parado há 2 dias" bem visível, que é o produto em si.
-            Exportar em 2400×1500 (proporção 8:5) para /public/brand/, com
-            `alt` descrevendo o alerta. Não recriar como mockup em HTML: o
-            anterior era falso e enchia o HTML de zeros.
+            Enquanto HERO_SCREENSHOT for null nada é renderizado aqui — nem
+            moldura, nem espaço reservado. Ver src/lib/site-config.ts.
           */}
-          <BlurFade delay={0.7}>
-            <div
-              className="mx-auto mt-16 flex aspect-[8/5] w-full max-w-4xl items-center justify-center rounded-2xl border border-dashed border-border/60 bg-card/40 px-6 text-center"
-              role="presentation"
-            >
-              <span className="max-w-sm text-sm text-muted-foreground">
-                Espaço reservado para o screenshot do funil em Kanban, com o
-                alerta de lead parado.
-              </span>
-            </div>
-          </BlurFade>
+          {HERO_SCREENSHOT && (
+            <BlurFade delay={0.7}>
+              <Image
+                src={HERO_SCREENSHOT}
+                alt={HERO_SCREENSHOT_ALT}
+                width={HERO_SCREENSHOT_SIZE.width}
+                height={HERO_SCREENSHOT_SIZE.height}
+                priority
+                className="mx-auto mt-16 w-full max-w-4xl rounded-2xl border shadow-2xl"
+              />
+            </BlurFade>
+          )}
         </div>
       </section>
 
@@ -512,7 +525,7 @@ export default function Home() {
                   Módulo · CRM
                 </span>
                 <h3 className="mt-3 text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
-                  Organize sua base e nunca mais perca uma venda
+                  Organize sua base e pare de perder venda por demora
                 </h3>
                 <p className="mt-4 text-muted-foreground">
                   Do primeiro contato ao pós-venda: funil visual em Kanban,
@@ -746,57 +759,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Programa fundador — no lugar dos depoimentos inventados */}
-      <section id="fundador" className="relative py-24 lg:py-32">
-        <div className="mx-auto max-w-3xl px-4 lg:px-8">
-          <BlurFade>
-            <h2 className="text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Somos novos.{" "}
-              <span className="text-primary">Por isso o programa fundador.</span>
-            </h2>
-          </BlurFade>
-
-          <BlurFade delay={0.15}>
-            <p className="mt-6 text-lg text-muted-foreground text-pretty">
-              A mytek foi construída resolvendo um problema que a gente via
-              todo dia: lead do Instagram e do WhatsApp esfriando porque
-              ninguém tinha um lugar único pra acompanhar.
-            </p>
-            <p className="mt-4 text-lg text-muted-foreground text-pretty">
-              Estamos abrindo <strong className="font-semibold text-foreground">5 vagas</strong>{" "}
-              pra negócios que topem usar a plataforma de perto e dizer o que
-              falta. Em troca: preço travado enquanto for cliente, acesso
-              direto a quem constrói o produto, e prioridade nas
-              funcionalidades que você pedir.
-            </p>
-          </BlurFade>
-
-          <BlurFade delay={0.3}>
-            <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-              <div className="flex items-center gap-3">
-                <span className="flex gap-1.5" aria-hidden="true">
-                  {[true, true, false, false, false].map((filled, i) => (
-                    <span
-                      key={i}
-                      className={
-                        filled
-                          ? "size-2.5 rounded-full bg-primary"
-                          : "size-2.5 rounded-full bg-muted"
-                      }
-                    />
-                  ))}
-                </span>
-                <p className="text-sm font-medium">
-                  2 das 5 vagas preenchidas.
-                </p>
-              </div>
-              <Button size="lg" className="rounded-full" asChild>
-                <a href="/contact">Falar com o time fundador</a>
-              </Button>
-            </div>
-          </BlurFade>
-        </div>
-      </section>
+      {/* Programa fundador — no lugar dos depoimentos inventados.
+          O bloco e a contagem de vagas vivem em founder-program.tsx,
+          compartilhados com a /pricing. */}
+      <FounderProgram className="relative py-24 lg:py-32" />
 
       {/* Pricing */}
       <section id="preco" className="relative py-24 lg:py-32">

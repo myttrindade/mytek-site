@@ -31,7 +31,10 @@ const groups = [
     title: "Conta",
     links: [
       { text: "Entrar", href: "/login" },
-      { text: "Criar conta", href: "/signup" },
+      // Aponta para /contact enquanto a entrada for sempre pelo time
+      // comercial. Ver o TODO(produto) no hero de src/app/page.tsx: a tela de
+      // cadastro deste site é do template e finge sucesso sem criar conta.
+      { text: "Criar conta", href: "/contact" },
     ],
   },
 ];
@@ -46,8 +49,8 @@ export function SiteFooter() {
             {siteConfig.name}
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            Dashboards, landing pages e CRM numa plataforma só, feita pra
-            negócios que querem crescer com organização.
+            CRM com WhatsApp, landing page e dashboard. Nenhum lead esquecido
+            no caminho.
           </p>
           <p className="mt-4 text-xs text-muted-foreground">
             Implantação em minutos, sem precisar de equipe técnica
