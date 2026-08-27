@@ -25,22 +25,51 @@ export const siteConfig = {
 } as const;
 
 /**
- * Screenshot do funil em Kanban que ocupa a primeira dobra da home.
+ * Capturas de tela do produto.
  *
- * TODO(imagem): trocar por um caminho em /public (ex.: "/brand/funil-kanban.png")
- * quando o screenshot real existir — colunas "Novos leads / Em contato /
- * Fechados" e um card com o badge "Parado há 2 dias" bem visível, que é o
- * produto em si. Exportar em 2400×1500 para casar com HERO_SCREENSHOT_SIZE.
+ * São telas do CRM real em operação (confirmado com o time em 27/08/2026),
+ * com dados de demonstração fictícios dentro. Por isso cada uma é publicada
+ * com a legenda "Dados de exemplo" — os números que aparecem nelas (taxa de
+ * resposta, conversão, receita no funil) seriam lidos como resultado da
+ * plataforma se ficassem sem ressalva, que é o mesmo problema das métricas
+ * inventadas que este site já teve.
  *
- * Enquanto for `null`, o hero **não renderiza nada** no lugar: nem moldura,
- * nem texto, nem espaço reservado. Uma caixa tracejada dizendo "espaço
- * reservado" na primeira dobra comunica site inacabado, e isso é pior do que
- * não ter imagem nenhuma.
+ * Enquanto `src` for `null`, a peça correspondente **não renderiza nada** —
+ * nem moldura, nem legenda, nem espaço reservado. Uma caixa tracejada
+ * dizendo "espaço reservado" comunica site inacabado, e isso é pior do que
+ * não ter imagem.
+ *
+ * TODO(imagem): salvar os PNGs em /public/brand/produto/ e apontar cada `src`.
+ * Conferir `size` com as dimensões reais do arquivo — o `next/image` precisa
+ * delas para reservar o espaço e não causar layout shift.
  */
-export const HERO_SCREENSHOT: string | null = null;
+export type ProductShot = {
+  src: string | null;
+  alt: string;
+  size: { width: number; height: number };
+};
 
-/** Dimensões fixas do screenshot, para o `next/image` não causar layout shift. */
-export const HERO_SCREENSHOT_SIZE = { width: 2400, height: 1500 } as const;
+export const productShots = {
+  /** Primeira dobra: o funil, porque é onde o alerta de lead parado aparece. */
+  funil: {
+    src: "/brand/produto/funil-kanban.png",
+    alt: "Funil de vendas em Kanban da mytek: colunas Novo lead, Qualificando, Proposta, Negociação e Fechado, com cards mostrando valor do negócio e etiquetas de Radar e follow-up",
+    size: { width: 2880, height: 1800 },
+  },
+  /** Atendimento: a conversa com o histórico e a ficha do negócio ao lado. */
+  inbox: {
+    src: "/brand/produto/inbox-whatsapp.png",
+    alt: "Caixa de entrada da mytek: conversa de WhatsApp com o lead à esquerda, histórico no centro e ficha do negócio à direita, com funil, etapa, valor e origem",
+    size: { width: 2880, height: 1800 },
+  },
+  /** Dashboard: leads por dia, funil e atividade recente. */
+  dashboard: {
+    src: "/brand/produto/dashboard.png",
+    alt: "Visão geral da mytek: indicadores de leads do dia, taxa de resposta e conversão, gráfico de leads por dia e feed de atividade recente da equipe",
+    size: { width: 2880, height: 1800 },
+  },
+} satisfies Record<string, ProductShot>;
 
-export const HERO_SCREENSHOT_ALT =
-  "Funil de vendas em Kanban da mytek, com alerta de lead parado há 2 dias";
+export const hasProductShots = Object.values(productShots).some(
+  (s) => s.src !== null
+);

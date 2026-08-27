@@ -12,8 +12,6 @@ import {
   ZapIcon,
 } from "lucide-react";
 
-import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -26,6 +24,7 @@ import { FounderProgram, founderEyebrow } from "@/components/founder-program";
 import { JourneyFlow } from "@/components/journey/journey-flow";
 import { LeadLifecycle } from "@/components/journey/lead-lifecycle";
 import { RoiCalculator } from "@/components/roi-calculator";
+import { ProductShot } from "@/components/product-shot";
 import { SocialProof } from "@/components/social-proof";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -45,11 +44,7 @@ import { ScrollProgress } from "@/components/velora/scroll-progress";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { SpotlightCard } from "@/components/velora/spotlight-card";
 import { TiltCard } from "@/components/velora/tilt-card";
-import {
-  HERO_SCREENSHOT,
-  HERO_SCREENSHOT_ALT,
-  HERO_SCREENSHOT_SIZE,
-} from "@/lib/site-config";
+import { productShots } from "@/lib/site-config";
 
 import { cn } from "@/lib/utils";
 
@@ -404,21 +399,17 @@ export default function Home() {
           </BlurFade>
 
           {/*
-            Enquanto HERO_SCREENSHOT for null nada é renderizado aqui — nem
-            moldura, nem espaço reservado. Ver src/lib/site-config.ts.
+            O funil na primeira dobra: é a tela onde o alerta de lead parado
+            aparece, então ela prova o argumento do H1 em vez de só ilustrar.
+            Some inteira enquanto productShots.funil.src for null.
           */}
-          {HERO_SCREENSHOT && (
-            <BlurFade delay={0.7}>
-              <Image
-                src={HERO_SCREENSHOT}
-                alt={HERO_SCREENSHOT_ALT}
-                width={HERO_SCREENSHOT_SIZE.width}
-                height={HERO_SCREENSHOT_SIZE.height}
-                priority
-                className="mx-auto mt-16 w-full max-w-4xl rounded-2xl border shadow-2xl"
-              />
-            </BlurFade>
-          )}
+          <BlurFade delay={0.7}>
+            <ProductShot
+              shot={productShots.funil}
+              priority
+              className="mt-16 max-w-5xl"
+            />
+          </BlurFade>
         </div>
       </section>
 
@@ -758,6 +749,58 @@ export default function Home() {
           </BlurFade>
         </div>
       </section>
+
+      {/*
+        Atendimento e Dashboard, provados pela tela em vez de descritos.
+        Cada bloco some inteiro enquanto a captura correspondente não existir
+        em src/lib/site-config.ts — inclusive o título e o texto, para a
+        página não ficar com uma seção órfã falando de uma imagem ausente.
+      */}
+      {productShots.inbox.src && (
+        <section id="atendimento" className="relative py-24 lg:py-32">
+          <div className="mx-auto max-w-6xl px-4 lg:px-8">
+            <BlurFade>
+              <span className="text-sm font-medium text-primary">
+                Atendimento
+              </span>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+                Converse com o lead{" "}
+                <span className="text-primary">sem perder o contexto</span>
+              </h2>
+              <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
+                A conversa do WhatsApp e a ficha do negócio na mesma tela:
+                funil, etapa, valor e origem. Ninguém precisa perguntar “quem
+                é essa pessoa mesmo?” antes de responder.
+              </p>
+            </BlurFade>
+            <BlurFade delay={0.15}>
+              <ProductShot shot={productShots.inbox} className="mt-12" />
+            </BlurFade>
+          </div>
+        </section>
+      )}
+
+      {productShots.dashboard.src && (
+        <section id="painel" className="relative border-y border-border/40 py-24 lg:py-32">
+          <div className="mx-auto max-w-6xl px-4 lg:px-8">
+            <BlurFade>
+              <span className="text-sm font-medium text-primary">Dashboard</span>
+              <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+                O dia da sua operação{" "}
+                <span className="text-primary">numa tela só</span>
+              </h2>
+              <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
+                Leads do dia, taxa de resposta, conversão e o que a equipe
+                acabou de fazer. Sem pedir relatório para ninguém e sem abrir
+                planilha.
+              </p>
+            </BlurFade>
+            <BlurFade delay={0.15}>
+              <ProductShot shot={productShots.dashboard} className="mt-12" />
+            </BlurFade>
+          </div>
+        </section>
+      )}
 
       {/* IA — mostrada pelo que ela responde, não pela sigla */}
       <section id="ia" className="relative border-y border-border/40 py-24 lg:py-32">
