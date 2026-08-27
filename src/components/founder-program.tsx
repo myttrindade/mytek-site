@@ -1,3 +1,5 @@
+import { CheckIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { BlurFade } from "@/components/velora/blur-fade";
 
@@ -16,6 +18,18 @@ import { BlurFade } from "@/components/velora/blur-fade";
 export const FOUNDER_SLOTS_TOTAL = 5;
 export const FOUNDER_SLOTS_TAKEN = 2;
 export const FOUNDER_SLOTS_LEFT = FOUNDER_SLOTS_TOTAL - FOUNDER_SLOTS_TAKEN;
+
+/**
+ * Só entra aqui o que a mytek de fato entrega hoje a um fundador. Nada de
+ * benefício aspiracional: cada linha é um compromisso que o time vai ter que
+ * cumprir com cinco clientes reais.
+ */
+const benefits = [
+  "Preço fundador travado enquanto você for cliente",
+  "Acesso direto a quem constrói o produto",
+  "Prioridade nas funcionalidades que você pedir",
+  "Seu feedback entra no rumo do produto",
+];
 
 /** Texto do eyebrow do hero. Deriva do mesmo número da seção. */
 export const founderEyebrow = `Programa fundador · ${FOUNDER_SLOTS_LEFT} ${
@@ -55,31 +69,41 @@ export function FounderProgram({ className }: { className?: string }) {
           <p className="mt-6 text-lg text-muted-foreground text-pretty">
             A mytek foi construída resolvendo um problema que a gente via todo
             dia: lead do Instagram e do WhatsApp esfriando porque ninguém tinha
-            um lugar único pra acompanhar.
-          </p>
-          <p className="mt-4 text-lg text-muted-foreground text-pretty">
-            Estamos abrindo{" "}
+            um lugar único pra acompanhar. Estamos abrindo{" "}
             <strong className="font-semibold text-foreground">
               {FOUNDER_SLOTS_TOTAL} vagas
             </strong>{" "}
             pra negócios que topem usar a plataforma de perto e dizer o que
-            falta. Em troca: preço travado enquanto for cliente, acesso direto a
-            quem constrói o produto, e prioridade nas funcionalidades que você
-            pedir.
+            falta.
           </p>
         </BlurFade>
 
-        <BlurFade delay={0.3}>
+        {/* O que o fundador leva, item a item — antes isso era uma frase
+            corrida no meio do parágrafo e a oferta passava batida. */}
+        <BlurFade delay={0.25}>
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {benefits.map((b) => (
+              <li key={b} className="flex items-start gap-3 text-sm">
+                <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                  <CheckIcon className="size-3" />
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </BlurFade>
+
+        <BlurFade delay={0.35}>
           <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
             <div className="flex items-center gap-3">
               <SlotDots />
               <p className="text-sm font-medium">
-                {FOUNDER_SLOTS_TAKEN} das {FOUNDER_SLOTS_TOTAL} vagas
-                preenchidas.
+                {FOUNDER_SLOTS_LEFT} de {FOUNDER_SLOTS_TOTAL}{" "}
+                {FOUNDER_SLOTS_LEFT === 1 ? "vaga restante" : "vagas restantes"}
               </p>
             </div>
             <Button size="lg" className="rounded-full" asChild>
-              <a href="/contact">Falar com o time fundador</a>
+              <a href="/contact">Quero ser fundador</a>
             </Button>
           </div>
         </BlurFade>

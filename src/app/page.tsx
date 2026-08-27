@@ -8,7 +8,6 @@ import {
   RocketIcon,
   ShieldIcon,
   SparklesIcon,
-  Wand2Icon,
   ZapIcon,
 } from "lucide-react";
 
@@ -54,15 +53,21 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+/**
+ * O alerta de lead parado vem primeiro de propósito: é o que a mytek faz que
+ * um CRM comum não faz, e estava diluído no meio de sete itens genéricos.
+ *
+ * A lista encolheu de 8 para 5. Os que saíram continuam ditos em outro lugar
+ * da página — landing page nos módulos, controle de acesso em Recursos,
+ * configuração em minutos na microcopy do hero, orçamento sob medida na FAQ —
+ * e repetir aqui só engordava a página sem acrescentar informação.
+ */
 const differentiators = [
-  { icon: <FilterIcon className="size-4" />, label: "Funil visual em Kanban" },
+  { icon: <ZapIcon className="size-4" />, label: "Alerta de lead parado" },
   { icon: <MessageCircleIcon className="size-4" />, label: "WhatsApp direto na plataforma" },
-  { icon: <GlobeIcon className="size-4" />, label: "Landing page conectada ao funil" },
+  { icon: <FilterIcon className="size-4" />, label: "Funil visual em Kanban" },
   { icon: <GaugeIcon className="size-4" />, label: "Métrica em tempo real" },
-  { icon: <ZapIcon className="size-4" />, label: "Configuração em minutos" },
-  { icon: <ShieldIcon className="size-4" />, label: "Controle de acesso por usuário" },
   { icon: <SparklesIcon className="size-4" />, label: "Módulo de IA sobre os dados" },
-  { icon: <Wand2Icon className="size-4" />, label: "Orçamento sob medida pra projeto personalizado" },
 ];
 
 /**
@@ -79,30 +84,6 @@ const heroStats: Array<
   { text: "R$197/mês", label: "CRM completo, 3 usuários" },
   { text: "3 módulos", label: "contrate separado ou junto" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
-];
-
-const products = [
-  {
-    id: "crm",
-    icon: <FilterIcon className="size-6" />,
-    name: "CRM",
-    description:
-      "Funil de vendas visual e uma automação que avisa quando um lead esfria no WhatsApp. Nenhum lead esquecido por mais de 24 horas.",
-  },
-  {
-    id: "landing-page",
-    icon: <GlobeIcon className="size-6" />,
-    name: "Landing Page",
-    description:
-      "Sua própria página, conectada ao mesmo funil, pronta pra converter visitante em lead sem depender de agência.",
-  },
-  {
-    id: "dashboard",
-    icon: <GaugeIcon className="size-6" />,
-    name: "Dashboard",
-    description:
-      "Vendas, leads e atendimento num painel só, em tempo real. A métrica certa, sem planilha e sem pedir relatório pra ninguém.",
-  },
 ];
 
 const features = [
@@ -173,7 +154,10 @@ const faqs = [
   },
   {
     q: "Preciso de equipe técnica pra configurar?",
-    a: "Não. O cadastro leva cerca de 10 minutos e o funil já vem com etapas padrão que dá pra usar do jeito que está ou renomear arrastando. Conectar o WhatsApp é escanear um QR Code. A Landing Page e o Dashboard, esses sim, a gente configura pra você antes de entregar.",
+    // Cenário B também aqui: esta resposta ainda dizia "o cadastro leva cerca
+    // de 10 minutos", que era o quinto ponto de auto-serviço da página e tinha
+    // escapado da rodada anterior.
+    a: "Não. A configuração leva cerca de 10 minutos e a gente faz junto com você: o funil já vem com etapas padrão que dá pra usar do jeito que está ou renomear arrastando, e conectar o WhatsApp é escanear um QR Code. A Landing Page e o Dashboard a gente configura antes de entregar.",
   },
   {
     // Versão B, confirmada em 26/08/2026: não existe teste gratuito. Se um
@@ -220,7 +204,7 @@ const pricingTeasers = [
     price: "R$197/mês",
     unit: "a partir de · 3 usuários incluídos",
     description:
-      "Funil de vendas visual, atendimento via WhatsApp e automação de lead parado.",
+      "Funil, WhatsApp e alerta de lead parado.",
   },
   {
     icon: <GlobeIcon className="size-6" />,
@@ -228,7 +212,7 @@ const pricingTeasers = [
     price: "R$1.497",
     unit: "pagamento único",
     description:
-      "Página conectada ao funil, pronta em poucos dias após aprovação do conteúdo.",
+      "Página conectada ao funil, pronta em poucos dias.",
   },
   {
     icon: <GaugeIcon className="size-6" />,
@@ -236,7 +220,7 @@ const pricingTeasers = [
     price: "R$397/mês",
     unit: "a partir de · avulso, sem precisar de CRM",
     description:
-      "Vendas, leads e atendimento em tempo real. Mais barato como add-on de quem já é do CRM.",
+      "Vendas e atendimento em tempo real. Mais barato como add-on do CRM.",
   },
 ];
 
@@ -448,7 +432,9 @@ export default function Home() {
           <p className="mb-8 text-center text-sm text-muted-foreground">
             Diferenciais da mytek
           </p>
-          <Marquee pauseOnHover className="[--duration:30s]">
+          {/* repeat=2 é o mínimo para o loop fechar sem emenda. O padrão do
+              componente é 4, o que triplicava o mesmo texto no HTML à toa. */}
+          <Marquee pauseOnHover repeat={2} className="[--duration:30s]">
             {differentiators.map((d) => (
               <span
                 key={d.label}
@@ -462,56 +448,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Produtos: visão geral */}
-      <section id="produtos" className="relative py-24 lg:py-32">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <BlurFade>
-            <h2 className="mx-auto max-w-2xl text-center text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Três produtos,{" "}
-              <span className="text-primary">uma plataforma só</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
-              CRM, Landing Page e Dashboard trabalham juntos ou de forma
-              independente, no seu ritmo.
-            </p>
-          </BlurFade>
-
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {products.map((product, i) => (
-              <BlurFade key={product.id} delay={i * 0.12}>
-                <SpotlightCard className="h-full p-8">
-                  <div className="mb-4 w-fit rounded-xl bg-primary/10 p-3 text-primary">
-                    {product.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold">{product.name}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {product.description}
-                  </p>
-                  <a
-                    href={`#${product.id}`}
-                    className="mt-4 inline-block text-sm font-medium text-primary underline-offset-4 hover:underline"
-                  >
-                    Ver como funciona ↓
-                  </a>
-                </SpotlightCard>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/*
+        A seção "Três produtos, uma plataforma só" foi removida: ela
+        apresentava CRM/Landing Page/Dashboard em três cards e a seção
+        seguinte apresentava os mesmos três de novo, com mais detalhe.
+        Duas introduções seguidas para o mesmo assunto. A âncora
+        #produtos, usada pelo menu, pelo hero e por três posts do blog,
+        passou para a seção que sobreviveu.
+      */}
       {/* Módulos: o que cada um faz, na prática */}
-      <section id="modulos" className="relative py-24 lg:py-32">
+      <section id="produtos" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
             <span className="text-sm font-medium text-primary">Produtos</span>
             <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
               O que cada módulo faz, na prática
             </h2>
-            <p className="mt-4 max-w-xl text-muted-foreground">
-              Três soluções pensadas para trabalhar juntas, ou de forma
-              independente, no seu ritmo.
-            </p>
           </BlurFade>
 
           {/* Módulo · CRM */}
@@ -628,10 +580,10 @@ export default function Home() {
                 atendimento. Nada de aba trocada, nada de copiar e colar
                 entre sistemas.
               </p>
+              {/* Os três bullets que ficavam aqui parafraseavam o parágrafo
+                  logo acima, palavra por palavra. Sobrou o que acrescenta. */}
               <ul className="mt-6 space-y-3 text-sm">
                 {[
-                  "Todo canal cai no mesmo funil, sem planilha",
-                  "WhatsApp como centro do atendimento",
                   "Nenhum lead se perde entre uma ferramenta e outra",
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3">
@@ -709,7 +661,7 @@ export default function Home() {
           <BlurFade>
             <span className="text-sm font-medium text-primary">Recursos</span>
             <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Simples de usar hoje, pronto para crescer amanhã
+              Simples hoje, pronto para crescer
             </h2>
           </BlurFade>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -773,8 +725,7 @@ export default function Home() {
               <span className="text-primary">Combine e economize.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
-              CRM, Landing Page e Dashboard podem ser contratados separados
-              ou juntos. Quanto mais módulos, menor o preço de cada um.
+              Quanto mais módulos, menor o preço de cada um.
             </p>
           </BlurFade>
 

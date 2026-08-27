@@ -121,11 +121,22 @@ const landingPagePlans = [
   },
 ];
 
+/**
+ * Quatro combos com preços parecidos deixam a escolha por conta do visitante,
+ * e quem não sabe escolher não escolhe. `featured` marca o ponto de entrada
+ * que a gente recomenda — o mais barato dos quatro.
+ *
+ * `featured` é recomendação, não estatística: enquanto forem 2 clientes, dizer
+ * "o mais escolhido" seria inventar um dado. Quando houver base para afirmar,
+ * é só trocar o rótulo em FEATURED_LABEL.
+ */
+const FEATURED_LABEL = "Recomendado para começar";
+
 const combos = [
-  { label: "CRM Normal + Dashboard sem suporte", price: "R$394/mês" },
-  { label: "CRM Normal + Dashboard com suporte", price: "R$544/mês" },
-  { label: "CRM Plus + Dashboard sem suporte", price: "R$564/mês" },
-  { label: "CRM Plus + Dashboard com suporte", price: "R$714/mês" },
+  { label: "CRM Normal + Dashboard sem suporte", price: "R$394/mês", featured: true },
+  { label: "CRM Normal + Dashboard com suporte", price: "R$544/mês", featured: false },
+  { label: "CRM Plus + Dashboard sem suporte", price: "R$564/mês", featured: false },
+  { label: "CRM Plus + Dashboard com suporte", price: "R$714/mês", featured: false },
 ];
 
 /**
@@ -551,8 +562,27 @@ export default function PricingPage() {
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {combos.map((c, i) => (
               <BlurFade key={c.label} delay={i * 0.06}>
-                <div className="flex items-center justify-between gap-4 rounded-2xl border bg-card p-5 transition-transform hover:-translate-y-0.5">
-                  <span className="text-sm text-muted-foreground">{c.label}</span>
+                <div
+                  className={cn(
+                    "relative flex h-full items-center justify-between gap-4 rounded-2xl border bg-card p-5 transition-transform hover:-translate-y-0.5",
+                    c.featured && "border-primary/40 shadow-lg shadow-primary/5"
+                  )}
+                >
+                  {c.featured && (
+                    <span className="absolute -top-2.5 left-5 rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground">
+                      ⭐ {FEATURED_LABEL}
+                    </span>
+                  )}
+                  <span
+                    className={cn(
+                      "text-sm",
+                      c.featured
+                        ? "font-medium text-card-foreground"
+                        : "text-muted-foreground"
+                    )}
+                  >
+                    {c.label}
+                  </span>
                   <span className="shrink-0 text-lg font-semibold tracking-tight">
                     {c.price}
                   </span>
