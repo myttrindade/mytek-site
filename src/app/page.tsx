@@ -1,3 +1,5 @@
+import { Fragment } from "react";
+
 import {
   BellRingIcon,
   CheckIcon,
@@ -5,11 +7,9 @@ import {
   GaugeIcon,
   GlobeIcon,
   MessageCircleIcon,
-  MousePointerClickIcon,
   RocketIcon,
   ShieldIcon,
   SparklesIcon,
-  ZapIcon,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,8 @@ import { ActivityList } from "@/components/demo/activity-list";
 import { FounderProgram, founderEyebrow } from "@/components/founder-program";
 import { JourneyFlow } from "@/components/journey/journey-flow";
 import { LeadLifecycle } from "@/components/journey/lead-lifecycle";
+import { StalledPanel } from "@/components/journey/stalled-panel";
+import { AiAnswers } from "@/components/ai-answer";
 import { RoiCalculator } from "@/components/roi-calculator";
 import { ProductShot } from "@/components/product-shot";
 import { SocialProof } from "@/components/social-proof";
@@ -34,7 +36,6 @@ import { LandingPageMockup } from "@/components/demo/landing-page-mockup";
 import { IntegrationsBeam } from "@/components/demo/integrations-beam";
 import { AuroraBackground } from "@/components/velora/aurora-background";
 import { BlurFade } from "@/components/velora/blur-fade";
-import { BorderBeam } from "@/components/velora/border-beam";
 import { Dock, DockIcon } from "@/components/velora/dock";
 import { GridPattern } from "@/components/velora/grid-pattern";
 import { NumberTicker } from "@/components/velora/number-ticker";
@@ -43,7 +44,6 @@ import { RetroGrid } from "@/components/velora/retro-grid";
 import { ScrollProgress } from "@/components/velora/scroll-progress";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { SpotlightCard } from "@/components/velora/spotlight-card";
-import { TiltCard } from "@/components/velora/tilt-card";
 import { productShots } from "@/lib/site-config";
 
 import { cn } from "@/lib/utils";
@@ -93,6 +93,16 @@ const benefits = [
     title: "Perguntas sobre seus dados",
     body: "Pergunte em português e a IA responde sobre a sua base, sem você garimpar no funil.",
   },
+  {
+    icon: <ShieldIcon className="size-5" />,
+    title: "Cada um vê o que deve",
+    body: "Controle de acesso por usuário: você define o que administrador e vendedor enxergam.",
+  },
+  {
+    icon: <MessageCircleIcon className="size-5" />,
+    title: "Suporte que responde",
+    body: "Atendimento direto no WhatsApp, sem central de tickets. Resposta em até 4h úteis.",
+  },
 ];
 
 /**
@@ -101,6 +111,64 @@ const benefits = [
  * anterior anunciava "18% de taxa de conversão" e "96% de satisfação" sem
  * nenhuma base, o que é publicidade enganosa (CDC art. 37).
  */
+/**
+ * Quatro fatos defensáveis, logo abaixo do CTA. A Novus faz isso e funciona:
+ * responde à objeção antes de ela ser formulada. Cada item aqui precisa ser
+ * verdade hoje — se algum deixar de ser, tire, não reescreva mais bonito.
+ */
+/**
+ * Cada dor é uma frase que uma equipe comercial de fato diz, seguida do que
+ * a mytek faz a respeito. O formato veio de observar que dor em terceira
+ * pessoa ("mensagem no Instagram ignorada") não gera reconhecimento — a
+ * pessoa precisa se ouvir falando.
+ *
+ * São falas genéricas do setor, não depoimentos: por isso sem nome, sem
+ * empresa e sem aspas de autoria.
+ */
+/** A cadeia da captura, do visitante à venda. Elo por elo, sem metáfora. */
+const captureChain = [
+  "Visitante",
+  "Landing page",
+  "Lead no funil",
+  "Vendedor",
+  "Venda",
+];
+
+const pains = [
+  {
+    quote: "Respondi esse cliente semana passada e esqueci de voltar.",
+    title: "O alerta lembra por você",
+    answer:
+      "Quando um negócio para de andar numa etapa, o responsável é avisado — antes de a oportunidade esfriar.",
+  },
+  {
+    quote:
+      "Cliente chama no Instagram, no WhatsApp e pelo site, e a equipe se perde.",
+    title: "Um funil só, com o histórico junto",
+    answer:
+      "Todo lead entra na mesma fila, com a conversa e a ficha do negócio na mesma tela.",
+  },
+  {
+    quote: "Não sei quantos leads viraram venda esse mês.",
+    title: "O número existe sem ninguém montar planilha",
+    answer:
+      "Vendas, conversão e origem em tempo real, sem depender de alguém preencher célula.",
+  },
+  {
+    quote: "O vendedor saiu e levou o histórico dos clientes com ele.",
+    title: "O histórico é da empresa",
+    answer:
+      "Conversas e negociações ficam na plataforma, com controle de acesso por usuário.",
+  },
+];
+
+const trustPoints = [
+  "Sem fidelidade",
+  "Configuração em 10 minutos com a gente",
+  "Dados no Brasil, sob a LGPD",
+  "Suporte no WhatsApp em até 4h úteis",
+];
+
 const heroStats: Array<
   { label: string } & ({ value: number; suffix: string } | { text: string })
 > = [
@@ -109,32 +177,6 @@ const heroStats: Array<
   { text: "R$197/mês", label: "CRM completo, 3 usuários" },
   { text: "3 módulos", label: "contrate separado ou junto" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
-];
-
-const features = [
-  {
-    icon: <ZapIcon className="size-5" />,
-    title: "Implantação rápida",
-    // Cenário B: não prometer "comece a usar" quando a entrada é comercial.
-    body: "Configuramos com você em uma conversa. Sem projeto de três meses.",
-  },
-  {
-    icon: <MousePointerClickIcon className="size-5" />,
-    title: "Interface intuitiva",
-    body: "Pensada para quem não é técnico. Você aprende em minutos, não em semanas.",
-  },
-  {
-    icon: <ShieldIcon className="size-5" />,
-    title: "Controle de acesso",
-    body: "Defina o que cada administrador ou usuário pode ver e fazer.",
-  },
-  {
-    icon: <MessageCircleIcon className="size-5" />,
-    // O SLA vive na descrição, não no título: os outros três cards têm duas
-    // palavras, e sete aqui quebravam o ritmo da grade.
-    title: "Suporte no WhatsApp",
-    body: "Atendimento direto pelo WhatsApp, sem burocracia. Resposta em até 4h úteis.",
-  },
 ];
 
 // Cenário B: o passo 1 descreve o que acontece de verdade hoje.
@@ -146,9 +188,7 @@ const features = [
  * funcionar, tire daqui em vez de deixar o site prometer.
  */
 const aiQuestions = [
-  "Quais leads estão parados há mais de 24 horas?",
   "Qual vendedor está convertendo mais?",
-  "Qual canal trouxe mais vendas esse mês?",
   "Quais oportunidades têm maior chance de fechar?",
 ];
 
@@ -240,6 +280,7 @@ const pricingTeasers = [
   {
     icon: <FilterIcon className="size-6" />,
     name: "CRM",
+    audience: "Para quem já recebe lead e perde venda por demora",
     price: "R$197/mês",
     unit: "a partir de · 3 usuários incluídos",
     description:
@@ -251,6 +292,7 @@ const pricingTeasers = [
   {
     icon: <GlobeIcon className="size-6" />,
     name: "Landing Page",
+    audience: "Para quem não tem onde mandar o tráfego",
     price: "R$1.497",
     unit: "pagamento único",
     description:
@@ -261,6 +303,7 @@ const pricingTeasers = [
   {
     icon: <GaugeIcon className="size-6" />,
     name: "Dashboard",
+    audience: "Para quem decide no achismo por falta de número",
     price: "R$397/mês",
     unit: "a partir de · avulso, sem precisar de CRM",
     description:
@@ -364,11 +407,20 @@ export default function Home() {
           </BlurFade>
 
           <BlurFade delay={0.6}>
-            {/* Cenário B: "com a gente" deixa explícito que a configuração é feita junto. */}
-            <p className="mt-5 text-sm text-muted-foreground">
-              Sem fidelidade · configuração em 10 minutos com a gente · suporte
-              no WhatsApp
-            </p>
+            {/*
+              Barra de confiança: quatro fatos verificáveis na primeira dobra,
+              cada um respondendo a uma objeção de compra antes de ela ser
+              feita. Só entra aqui o que a empresa sustenta hoje — nada de
+              "líder de mercado" ou número de clientes.
+            */}
+            <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              {trustPoints.map((t) => (
+                <li key={t} className="flex items-center gap-1.5">
+                  <CheckIcon className="size-3.5 text-primary" />
+                  {t}
+                </li>
+              ))}
+            </ul>
           </BlurFade>
 
           {/* Stats */}
@@ -413,55 +465,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dor */}
+      {/* Dor — dita na voz de quem sente, não na terceira pessoa */}
       <section id="problema" className="relative py-24 lg:py-32">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+        <div className="mx-auto max-w-5xl px-4 lg:px-8">
           <BlurFade>
             <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Seus leads estão{" "}
-              <span className="text-primary">esfriando</span> antes de virar
-              venda
+              Você já ouviu isso{" "}
+              <span className="text-primary">na sua empresa</span>
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
-              O problema não é só gerar interesse. É responder, acompanhar e
-              transformar cada conversa numa oportunidade fechada.
+              Se alguma dessas frases parece familiar, o problema não é falta
+              de lead. É o que acontece depois que ele chega.
             </p>
           </BlurFade>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                num: "01",
-                title: "Mensagem no Instagram ignorada",
-                body: "a equipe só vê horas depois, quando alguém lembra de abrir o app.",
-              },
-              {
-                num: "02",
-                title: "Planilha desatualizada",
-                body: "ninguém sabe quantos leads viraram venda esse mês.",
-              },
-              {
-                num: "03",
-                title: "Equipe sobrecarregada",
-                body: "respondendo Instagram, WhatsApp e telefone ao mesmo tempo, sem prioridade clara.",
-              },
-            ].map((pain, i) => (
-              <BlurFade key={pain.num} delay={i * 0.1} className="h-full">
-                <TiltCard maxTilt={6} className="h-full">
-                  <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-primary/30 bg-card p-7 shadow-xl shadow-primary/5">
-                    <BorderBeam size={70} duration={8} delay={i * 2} />
-                    <span className="text-sm font-semibold tracking-wide text-primary">
-                      {pain.num}
-                    </span>
-                    <p className="mt-4 text-sm text-muted-foreground">
-                      <strong className="font-semibold text-card-foreground">
-                        {pain.title}
-                      </strong>
-                      <br />
-                      {pain.body}
+          {/*
+            Aspas de cliente em vez de cards em terceira pessoa. A frase gera
+            reconhecimento — "isso acontece aqui" — e a resposta logo abaixo
+            mostra o que muda. As falas são o tipo de coisa que qualquer
+            equipe comercial diz; não são depoimentos e não têm autoria, por
+            isso não aparecem com nome nem empresa.
+          */}
+          <div className="mt-14 space-y-4">
+            {pains.map((pain, i) => (
+              <BlurFade key={pain.quote} delay={i * 0.08}>
+                <div className="grid gap-4 rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur md:grid-cols-[1.1fr_1fr] md:items-center md:gap-10 md:p-8">
+                  <p className="text-lg text-card-foreground text-pretty italic lg:text-xl">
+                    “{pain.quote}”
+                  </p>
+                  <div className="border-t border-border/60 pt-4 md:border-t-0 md:border-l md:pt-0 md:pl-10">
+                    <p className="font-semibold text-balance">{pain.title}</p>
+                    <p className="mt-1.5 text-sm text-muted-foreground text-pretty">
+                      {pain.answer}
                     </p>
                   </div>
-                </TiltCard>
+                </div>
               </BlurFade>
             ))}
           </div>
@@ -514,11 +552,23 @@ export default function Home() {
               Sem o alerta, essa história termina na etapa 4.
             </p>
           </BlurFade>
+
+          {/* O argumento vira painel: é assim que a informação chega ao time. */}
+          <BlurFade delay={0.4}>
+            <h3 className="mt-16 text-2xl font-semibold tracking-tight text-balance lg:text-3xl">
+              Quantas oportunidades estão paradas agora?
+            </h3>
+            <StalledPanel className="mt-6" />
+            <p className="mt-6 text-lg font-medium text-balance">
+              Você não precisa lembrar.{" "}
+              <span className="text-primary">A mytek lembra.</span>
+            </p>
+          </BlurFade>
         </div>
       </section>
 
       {/* Diferenciais: cada funcionalidade dita como benefício */}
-      <section id="diferenciais" className="relative border-y border-border/40 py-24 lg:py-32">
+      <section id="recursos" className="relative border-y border-border/40 py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
             <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
@@ -657,23 +707,79 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Todo canal, um lugar só */}
+      {/* Landing Page como elo, não como produto avulso */}
+      <section id="captura" className="relative py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          <BlurFade>
+            <span className="text-sm font-medium text-primary">Captura</span>
+            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+              A landing page não é{" "}
+              <span className="text-primary">um produto à parte</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
+              Ela é a porta de entrada da mesma máquina. Quem preenche o
+              formulário já nasce como card no funil, com origem registrada —
+              sem exportar planilha, sem alguém digitar de novo.
+            </p>
+          </BlurFade>
+
+          {/* A cadeia inteira em cinco elos. Diagrama, não captura de tela. */}
+          <BlurFade delay={0.15}>
+            <ol className="mt-12 flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
+              {captureChain.map((step, i) => (
+                <Fragment key={step}>
+                  <li className="flex-1 rounded-xl border border-border/60 bg-card/60 px-4 py-3 text-center text-sm font-medium backdrop-blur">
+                    {step}
+                  </li>
+                  {i < captureChain.length - 1 && (
+                    <li
+                      aria-hidden="true"
+                      className="flex shrink-0 items-center justify-center text-muted-foreground"
+                    >
+                      <span className="sm:hidden">↓</span>
+                      <span className="hidden sm:inline">→</span>
+                    </li>
+                  )}
+                </Fragment>
+              ))}
+            </ol>
+          </BlurFade>
+
+          <BlurFade delay={0.3}>
+            <p className="mt-8 text-sm text-muted-foreground">
+              A gente cria a página, ou você usa o modelo essencial pronto.
+              Nos dois casos o formulário já sai ligado no funil.
+            </p>
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* Todo lead, no mesmo funil */}
       <section className="relative py-24 lg:py-32">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-2 lg:gap-20 lg:px-8">
           <BlurFade direction="right">
             <div>
               <span className="text-sm font-medium text-primary">
-                Tudo integrado
+                Uma fila só
               </span>
+              {/*
+                A versão anterior dizia "Todo canal, um lugar só" e listava
+                redes sociais, telefone, agenda, e-mail e pagamento — nenhuma
+                dessas integrações existe hoje. Promessa maior que o produto
+                é a mesma família de problema dos números inventados, só que
+                mais difícil de detectar. Agora a frase descreve o que a
+                plataforma de fato faz: reunir no funil o lead que chega por
+                WhatsApp, Instagram, site ou formulário.
+              */}
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
-                Todo canal,{" "}
-                <span className="text-primary">um lugar só</span>
+                Todo lead,{" "}
+                <span className="text-primary">no mesmo funil</span>
               </h2>
               <p className="mt-4 text-muted-foreground">
-                Redes sociais, telefone, agenda, e-mail e pagamento: tudo
-                cai no mesmo funil, com o WhatsApp como centro do
-                atendimento. Nada de aba trocada, nada de copiar e colar
-                entre sistemas.
+                WhatsApp, Instagram, formulário do site ou landing page: de
+                onde o lead vier, ele entra na mesma fila, com a conversa e a
+                ficha do negócio na mesma tela. Sem copiar e colar entre
+                sistemas.
               </p>
               {/* Os três bullets que ficavam aqui parafraseavam o parágrafo
                   logo acima, palavra por palavra. Sobrou o que acrescenta. */}
@@ -826,11 +932,15 @@ export default function Home() {
             não diz nada e soa a buzzword vindo de empresa nova.
           */}
           <BlurFade delay={0.15}>
-            <ul className="mt-12 grid gap-3 sm:grid-cols-2">
+            <AiAnswers className="mt-12" />
+          </BlurFade>
+
+          <BlurFade delay={0.25}>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
               {aiQuestions.map((q) => (
                 <li
                   key={q}
-                  className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card/60 p-5 text-sm backdrop-blur"
+                  className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card/60 p-4 text-sm backdrop-blur"
                 >
                   <span
                     aria-hidden="true"
@@ -854,33 +964,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Recursos */}
-      <section id="recursos" className="relative py-24 lg:py-32">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <BlurFade>
-            <span className="text-sm font-medium text-primary">Recursos</span>
-            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Simples hoje, pronto para crescer
-            </h2>
-          </BlurFade>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {features.map((f, i) => (
-              <BlurFade key={f.title} delay={i * 0.1}>
-                <SpotlightCard className="h-full p-6">
-                  <div className="mb-4 w-fit rounded-xl bg-primary/10 p-2.5 text-primary">
-                    {f.icon}
-                  </div>
-                  <h3 className="text-base font-semibold">{f.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {f.body}
-                  </p>
-                </SpotlightCard>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/*
+        A seção "Recursos" foi removida e o que sobreviveu dela virou benefício
+        em #diferenciais. Ela tinha quatro cards — "Implantação rápida",
+        "Interface intuitiva", "Controle de acesso", "Suporte no WhatsApp" —
+        que cabem no site de qualquer software e não diferenciam nada. Os dois
+        que dizem algo verificável (controle de acesso e o SLA do suporte)
+        continuam na página; os outros dois já estavam ditos no hero e na FAQ.
+        A âncora #recursos, usada pelo menu, passou para #diferenciais.
+      */}
       {/* Como funciona */}
       <section id="como-funciona" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
@@ -981,7 +1073,12 @@ export default function Home() {
                   <p className="mt-1 text-xs text-muted-foreground">
                     {p.unit}
                   </p>
-                  <p className="mt-4 flex-1 text-sm text-muted-foreground">
+                  {/* "Para quem é" antes da descrição: o visitante se
+                      reconhece (ou se descarta) antes de ler funcionalidade. */}
+                  <p className="mt-4 text-sm font-medium text-card-foreground text-pretty">
+                    {p.audience}
+                  </p>
+                  <p className="mt-2 flex-1 text-sm text-muted-foreground">
                     {p.description}
                   </p>
                   <Button

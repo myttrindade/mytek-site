@@ -59,22 +59,28 @@ export function FounderProgram({ className }: { className?: string }) {
     <section id="fundador" className={className}>
       <div className="mx-auto max-w-3xl px-4 lg:px-8">
         <BlurFade>
+          {/*
+            Antes começava com "Somos novos", que pedia desculpa antes de
+            oferecer. A empresa continua sendo nova — isso está dito no
+            parágrafo e na FAQ, sem esconder —, mas o título agora vende a
+            vantagem de entrar cedo em vez do tamanho de quem convida.
+          */}
           <h2 className="text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-            Somos novos.{" "}
-            <span className="text-primary">Por isso o programa fundador.</span>
+            Entre cedo.{" "}
+            <span className="text-primary">Ajude a construir a mytek.</span>
           </h2>
         </BlurFade>
 
         <BlurFade delay={0.15}>
           <p className="mt-6 text-lg text-muted-foreground text-pretty">
-            A mytek foi construída resolvendo um problema que a gente via todo
-            dia: lead do Instagram e do WhatsApp esfriando porque ninguém tinha
-            um lugar único pra acompanhar. Estamos abrindo{" "}
+            A mytek nasceu de um problema que a gente via todo dia: lead do
+            Instagram e do WhatsApp esfriando porque ninguém tinha um lugar
+            único pra acompanhar. Estamos no primeiro ano e abrindo{" "}
             <strong className="font-semibold text-foreground">
               {FOUNDER_SLOTS_TOTAL} vagas
             </strong>{" "}
-            pra negócios que topem usar a plataforma de perto e dizer o que
-            falta.
+            pra negócios que queiram usar a plataforma de perto e ter voz no
+            que vem a seguir.
           </p>
         </BlurFade>
 

@@ -18,11 +18,13 @@ type Step = {
 };
 
 const steps: Step[] = [
-  { label: "Novo lead", detail: "entra pelo canal que for", tone: "neutral" },
-  { label: "Atendimento", detail: "conversa no WhatsApp", tone: "neutral" },
-  { label: "Proposta", detail: "enviada, aguardando", tone: "neutral" },
-  { label: "Lead parado", detail: "2 dias sem resposta", tone: "stalled" },
-  { label: "Alerta mytek", detail: "o time é notificado", tone: "alert" },
+  { label: "Novo lead", detail: "chega pelo canal que for", tone: "neutral" },
+  { label: "Entra no CRM", detail: "vira card no funil", tone: "neutral" },
+  { label: "Equipe atende", detail: "conversa no WhatsApp", tone: "neutral" },
+  { label: "Proposta enviada", detail: "aguardando resposta", tone: "neutral" },
+  { label: "Lead fica parado", detail: "2 dias sem andar", tone: "stalled" },
+  { label: "A mytek identifica", detail: "o Radar marca o negócio", tone: "stalled" },
+  { label: "Alerta no vendedor", detail: "o responsável é avisado", tone: "alert" },
   { label: "Follow-up", detail: "alguém retoma a conversa", tone: "neutral" },
   { label: "Venda", detail: "oportunidade recuperada", tone: "win" },
 ];
@@ -53,7 +55,7 @@ export function LeadLifecycle({ className }: { className?: string }) {
             toneStyles[step.tone],
             // O alerta ocupa duas colunas no desktop: é o momento em que a
             // mytek entra, e o layout deve dizer isso antes do texto.
-            step.tone === "alert" && "lg:col-span-2"
+            step.tone === "alert" && "sm:col-span-2 lg:col-span-2"
           )}
         >
           <span
