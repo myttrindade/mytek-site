@@ -61,6 +61,9 @@
   --animate-aurora-3: aurora-3 22s ease-in-out infinite alternate;
   --animate-meteor: meteor 5s linear infinite;
   --animate-retro-grid: retro-grid 18s linear infinite;
+  /* Jornada do lead — ver src/components/journey/ */
+  --animate-flow-line: flow-line 3s linear infinite;
+  --animate-alert-pulse: alert-pulse 2s ease-in-out infinite;
 }
 
 :root {
@@ -262,7 +265,29 @@
   }
 }
 
+/* A linha tracejada que corre entre as etapas da jornada, sugerindo o lead
+   avançando. É decorativa: o diagrama se lê inteiro sem ela. */
+@keyframes flow-line {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+/* O alerta de lead parado pulsa porque é o momento em que a mytek age. É a
+   única animação da página que carrega significado, não enfeite. */
+@keyframes alert-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--primary) 45%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .animate-flow-line,
+  .animate-alert-pulse,
   .animate-meteor,
   .animate-retro-grid,
   .animate-shimmer,

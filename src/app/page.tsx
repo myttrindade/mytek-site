@@ -1,4 +1,5 @@
 import {
+  BellRingIcon,
   CheckIcon,
   FilterIcon,
   GaugeIcon,
@@ -22,6 +23,10 @@ import {
 } from "@/components/ui/accordion";
 import { ActivityList } from "@/components/demo/activity-list";
 import { FounderProgram, founderEyebrow } from "@/components/founder-program";
+import { JourneyFlow } from "@/components/journey/journey-flow";
+import { LeadLifecycle } from "@/components/journey/lead-lifecycle";
+import { RoiCalculator } from "@/components/roi-calculator";
+import { SocialProof } from "@/components/social-proof";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { HeroMockup } from "@/components/demo/hero-mockup";
@@ -33,7 +38,6 @@ import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { Dock, DockIcon } from "@/components/velora/dock";
 import { GridPattern } from "@/components/velora/grid-pattern";
-import { Marquee } from "@/components/velora/marquee";
 import { NumberTicker } from "@/components/velora/number-ticker";
 import { Particles } from "@/components/velora/particles";
 import { RetroGrid } from "@/components/velora/retro-grid";
@@ -47,6 +51,8 @@ import {
   HERO_SCREENSHOT_SIZE,
 } from "@/lib/site-config";
 
+import { cn } from "@/lib/utils";
+
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -54,20 +60,44 @@ export const metadata: Metadata = {
 };
 
 /**
- * O alerta de lead parado vem primeiro de propósito: é o que a mytek faz que
- * um CRM comum não faz, e estava diluído no meio de sete itens genéricos.
+ * Funcionalidade vira benefício: o título diz o que a pessoa ganha, o corpo
+ * diz como. A versão anterior era um marquee de rótulos soltos ("Funil visual
+ * em Kanban", "Módulo de IA sobre os dados") que descrevia o software sem
+ * dizer o que ele resolve.
  *
- * A lista encolheu de 8 para 5. Os que saíram continuam ditos em outro lugar
- * da página — landing page nos módulos, controle de acesso em Recursos,
- * configuração em minutos na microcopy do hero, orçamento sob medida na FAQ —
- * e repetir aqui só engordava a página sem acrescentar informação.
+ * "Alerta de lead parado" vem primeiro porque é o argumento da empresa.
  */
-const differentiators = [
-  { icon: <ZapIcon className="size-4" />, label: "Alerta de lead parado" },
-  { icon: <MessageCircleIcon className="size-4" />, label: "WhatsApp direto na plataforma" },
-  { icon: <FilterIcon className="size-4" />, label: "Funil visual em Kanban" },
-  { icon: <GaugeIcon className="size-4" />, label: "Métrica em tempo real" },
-  { icon: <SparklesIcon className="size-4" />, label: "Módulo de IA sobre os dados" },
+const benefits = [
+  {
+    icon: <BellRingIcon className="size-5" />,
+    title: "Alerta de lead parado",
+    body: "Saiba quais oportunidades estão esfriando antes que seja tarde para agir.",
+  },
+  {
+    icon: <MessageCircleIcon className="size-5" />,
+    title: "WhatsApp com contexto",
+    body: "Converse com o lead sem perder o histórico da oportunidade nem trocar de aba.",
+  },
+  {
+    icon: <FilterIcon className="size-5" />,
+    title: "Funil que a equipe entende",
+    body: "Cada etapa com responsável, valor e última interação. Ninguém precisa lembrar de nada.",
+  },
+  {
+    icon: <GaugeIcon className="size-5" />,
+    title: "Origem das vendas",
+    body: "Descubra quais canais realmente geram venda, e pare de investir no achismo.",
+  },
+  {
+    icon: <GlobeIcon className="size-5" />,
+    title: "Captura conectada",
+    body: "A landing page manda o lead direto para o funil, sem planilha no meio do caminho.",
+  },
+  {
+    icon: <SparklesIcon className="size-5" />,
+    title: "Perguntas sobre seus dados",
+    body: "Pergunte em português e a IA responde sobre a sua base, sem você garimpar no funil.",
+  },
 ];
 
 /**
@@ -113,6 +143,20 @@ const features = [
 ];
 
 // Cenário B: o passo 1 descreve o que acontece de verdade hoje.
+/**
+ * As perguntas que o módulo de IA responde, ditas como o cliente diria.
+ *
+ * TODO(produto): confirmar que o módulo responde exatamente estas quatro. Elas
+ * vieram do briefing, não de um teste na plataforma — se alguma ainda não
+ * funcionar, tire daqui em vez de deixar o site prometer.
+ */
+const aiQuestions = [
+  "Quais leads estão parados há mais de 24 horas?",
+  "Qual vendedor está convertendo mais?",
+  "Qual canal trouxe mais vendas esse mês?",
+  "Quais oportunidades têm maior chance de fechar?",
+];
+
 const steps = [
   {
     num: "1",
@@ -205,6 +249,9 @@ const pricingTeasers = [
     unit: "a partir de · 3 usuários incluídos",
     description:
       "Funil, WhatsApp e alerta de lead parado.",
+    href: "/pricing#crm",
+    cta: "Ver planos do CRM",
+    recommended: true,
   },
   {
     icon: <GlobeIcon className="size-6" />,
@@ -213,6 +260,8 @@ const pricingTeasers = [
     unit: "pagamento único",
     description:
       "Página conectada ao funil, pronta em poucos dias.",
+    href: "/pricing",
+    cta: "Ver opções",
   },
   {
     icon: <GaugeIcon className="size-6" />,
@@ -221,6 +270,8 @@ const pricingTeasers = [
     unit: "a partir de · avulso, sem precisar de CRM",
     description:
       "Vendas e atendimento em tempo real. Mais barato como add-on do CRM.",
+    href: "/pricing",
+    cta: "Ver opções",
   },
 ];
 
@@ -426,25 +477,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Diferenciais marquee */}
-      <section className="border-y border-border/40 py-12">
+      {/* Do primeiro clique ao fechamento — a plataforma em cinco etapas */}
+      <section id="jornada" className="relative border-y border-border/40 py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <p className="mb-8 text-center text-sm text-muted-foreground">
-            Diferenciais da mytek
-          </p>
-          {/* repeat=2 é o mínimo para o loop fechar sem emenda. O padrão do
-              componente é 4, o que triplicava o mesmo texto no HTML à toa. */}
-          <Marquee pauseOnHover repeat={2} className="[--duration:30s]">
-            {differentiators.map((d) => (
-              <span
-                key={d.label}
-                className="mx-3 flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <span className="text-primary">{d.icon}</span>
-                {d.label}
-              </span>
+          <BlurFade>
+            <h2 className="mx-auto max-w-3xl text-center text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+              Do primeiro clique{" "}
+              <span className="text-primary">ao fechamento</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground text-pretty">
+              Captura, funil, alerta, dado e venda no mesmo lugar. Menos
+              ferramenta desconectada, uma operação comercial inteira.
+            </p>
+          </BlurFade>
+          <BlurFade delay={0.15}>
+            <JourneyFlow className="mt-14" />
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* Lead parado — o diferencial de marca, não uma funcionalidade */}
+      <section id="lead-parado" className="relative py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          <BlurFade>
+            <span className="text-sm font-medium text-primary">
+              O que nenhum CRM comum faz
+            </span>
+            <h2 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+              Seu lead não deveria{" "}
+              <span className="text-primary">precisar lembrar de você</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-lg text-muted-foreground text-pretty">
+              Todo CRM registra o que já aconteceu. A mytek olha para o que
+              parou de acontecer: quando uma oportunidade trava numa etapa, o
+              responsável é avisado antes de ela esfriar.
+            </p>
+          </BlurFade>
+
+          <BlurFade delay={0.15}>
+            <LeadLifecycle className="mt-12" />
+          </BlurFade>
+
+          <BlurFade delay={0.3}>
+            <p className="mt-8 text-sm text-muted-foreground">
+              Sem o alerta, essa história termina na etapa 4.
+            </p>
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* Diferenciais: cada funcionalidade dita como benefício */}
+      <section id="diferenciais" className="relative border-y border-border/40 py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <BlurFade>
+            <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
+              O que você ganha, não o que a gente tem
+            </h2>
+          </BlurFade>
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {benefits.map((b, i) => (
+              <BlurFade key={b.title} delay={i * 0.08}>
+                <SpotlightCard className="h-full p-6">
+                  <span className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    {b.icon}
+                  </span>
+                  <h3 className="mt-4 text-base font-semibold">{b.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground text-pretty">
+                    {b.body}
+                  </p>
+                </SpotlightCard>
+              </BlurFade>
             ))}
-          </Marquee>
+          </div>
         </div>
       </section>
 
@@ -655,6 +759,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* IA — mostrada pelo que ela responde, não pela sigla */}
+      <section id="ia" className="relative border-y border-border/40 py-24 lg:py-32">
+        <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          <BlurFade>
+            <span className="text-sm font-medium text-primary">
+              Módulo Conhecimento · plano Plus
+            </span>
+            <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+              Pergunte em português.{" "}
+              <span className="text-primary">A resposta vem da sua base.</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
+              Em vez de garimpar o funil atrás de um dado, você pergunta. A IA
+              lê o histórico da sua própria empresa — clientes, negociações,
+              atendimentos — e responde.
+            </p>
+          </BlurFade>
+
+          {/*
+            Perguntas concretas em vez da palavra "IA". Quem lê entende para
+            que serve em cinco segundos; "módulo de inteligência artificial"
+            não diz nada e soa a buzzword vindo de empresa nova.
+          */}
+          <BlurFade delay={0.15}>
+            <ul className="mt-12 grid gap-3 sm:grid-cols-2">
+              {aiQuestions.map((q) => (
+                <li
+                  key={q}
+                  className="flex items-start gap-3 rounded-2xl border border-border/60 bg-card/60 p-5 text-sm backdrop-blur"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary"
+                  >
+                    <SparklesIcon className="size-3.5" />
+                  </span>
+                  <span className="text-card-foreground">“{q}”</span>
+                </li>
+              ))}
+            </ul>
+          </BlurFade>
+
+          <BlurFade delay={0.3}>
+            <p className="mt-6 text-xs text-muted-foreground">
+              O plano Plus inclui uma sessão de treinamento antes de liberar o
+              acesso: a qualidade da resposta depende de como a sua empresa
+              organiza a informação.
+            </p>
+          </BlurFade>
+        </div>
+      </section>
+
       {/* Recursos */}
       <section id="recursos" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
@@ -714,7 +870,30 @@ export default function Home() {
       {/* Programa fundador — no lugar dos depoimentos inventados.
           O bloco e a contagem de vagas vivem em founder-program.tsx,
           compartilhados com a /pricing. */}
+      {/* Prova social. Não renderiza nada enquanto src/lib/social-proof.ts
+          estiver vazio — ver o comentário no topo daquele arquivo. */}
+      <SocialProof />
+
       <FounderProgram className="relative py-24 lg:py-32" />
+
+      {/* ROI — o custo de não acompanhar, antes de falar do preço */}
+      <section id="roi" className="relative py-24 lg:py-32">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <BlurFade>
+            <h2 className="max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
+              Quanto custa{" "}
+              <span className="text-primary">perder um lead?</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground text-pretty">
+              Mexa nos números do seu negócio. A conta é sua — a gente só
+              mostra o resultado.
+            </p>
+          </BlurFade>
+          <BlurFade delay={0.15}>
+            <RoiCalculator className="mt-12" />
+          </BlurFade>
+        </div>
+      </section>
 
       {/* Pricing */}
       <section id="preco" className="relative py-24 lg:py-32">
@@ -732,7 +911,21 @@ export default function Home() {
           <div className="mx-auto mt-16 grid max-w-4xl gap-6 md:grid-cols-3">
             {pricingTeasers.map((p, i) => (
               <BlurFade key={p.name} delay={i * 0.1}>
-                <div className="flex h-full flex-col rounded-2xl border bg-card p-6">
+                {/* Cada card leva ao checkout do seu plano. Antes eles eram
+                    puramente informativos: o visitante lia o preço e não tinha
+                    o que fazer com a informação sem sair procurando. */}
+                <div
+                  className={cn(
+                    "relative flex h-full flex-col rounded-2xl border bg-card p-6",
+                    p.recommended &&
+                      "border-primary/40 shadow-xl shadow-primary/5"
+                  )}
+                >
+                  {p.recommended && (
+                    <span className="absolute -top-3 left-6 rounded-full bg-primary px-3 py-0.5 text-[11px] font-semibold text-primary-foreground">
+                      Comece por aqui
+                    </span>
+                  )}
                   <div className="mb-4 w-fit rounded-xl bg-primary/10 p-3 text-primary">
                     {p.icon}
                   </div>
@@ -748,6 +941,13 @@ export default function Home() {
                   <p className="mt-4 flex-1 text-sm text-muted-foreground">
                     {p.description}
                   </p>
+                  <Button
+                    variant={p.recommended ? "default" : "outline"}
+                    className="mt-6 w-full rounded-full"
+                    asChild
+                  >
+                    <a href={p.href}>{p.cta}</a>
+                  </Button>
                 </div>
               </BlurFade>
             ))}
@@ -820,12 +1020,23 @@ export default function Home() {
               Fale com nosso time e veja como a mytek se encaixa na rotina
               da sua empresa.
             </p>
-            <div className="mt-10">
-              <ShimmerButton href="/pricing" className="h-14 px-10 text-base">
+            {/*
+              Este é o ponto de maior intenção da página, e até aqui ele
+              mandava para /pricing — uma página de leitura. Agora converte,
+              com o preço logo ao lado para quem ainda quer comparar.
+            */}
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <ShimmerButton href="/contact" className="h-14 px-10 text-base">
                 <RocketIcon className="size-5" />
-                Ver planos e valores
+                Falar com o time →
               </ShimmerButton>
+              <Button variant="ghost" size="lg" asChild>
+                <a href="/pricing">Ver planos e valores</a>
+              </Button>
             </div>
+            <p className="mt-5 text-sm text-muted-foreground">
+              Sem fidelidade · resposta no WhatsApp em até 4h úteis
+            </p>
           </BlurFade>
           <BlurFade delay={0.2}>
             <div className="mt-16">
