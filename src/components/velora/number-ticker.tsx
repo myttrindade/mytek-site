@@ -82,7 +82,10 @@ export function NumberTicker({
     };
   }, [value, startValue, delay]);
 
-  const formatted = `${prefix}${Intl.NumberFormat("en-US", {
+  // pt-BR e não en-US: o site é brasileiro e o separador de milhar muda de
+  // vírgula para ponto. Com "en-US" o Radar servia "R$ 18,400" e o mockup da
+  // landing page servia "1,240 visitas" — número errado para quem lê aqui.
+  const formatted = `${prefix}${Intl.NumberFormat("pt-BR", {
     minimumFractionDigits: decimalPlaces,
     maximumFractionDigits: decimalPlaces,
   }).format(display)}${suffix}`;

@@ -19,7 +19,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ActivityList } from "@/components/demo/activity-list";
 import { FounderProgram, founderEyebrow } from "@/components/founder-program";
 import { JourneyFlow } from "@/components/journey/journey-flow";
 import { LeadLifecycle } from "@/components/journey/lead-lifecycle";
@@ -33,14 +32,12 @@ import { SiteFooter } from "@/components/site-footer";
 import { HeroMockup } from "@/components/demo/hero-mockup";
 import { FunnelPreview } from "@/components/demo/funnel-preview";
 import { LandingPageMockup } from "@/components/demo/landing-page-mockup";
-import { IntegrationsBeam } from "@/components/demo/integrations-beam";
 import { AuroraBackground } from "@/components/velora/aurora-background";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { Dock, DockIcon } from "@/components/velora/dock";
 import { GridPattern } from "@/components/velora/grid-pattern";
 import { NumberTicker } from "@/components/velora/number-ticker";
 import { Particles } from "@/components/velora/particles";
-import { RetroGrid } from "@/components/velora/retro-grid";
 import { ScrollProgress } from "@/components/velora/scroll-progress";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { SpotlightCard } from "@/components/velora/spotlight-card";
@@ -192,23 +189,6 @@ const aiQuestions = [
   "Quais oportunidades têm maior chance de fechar?",
 ];
 
-const steps = [
-  {
-    num: "1",
-    title: "Fale com o time",
-    body: "A gente entende seu processo de venda e monta o funil com você.",
-  },
-  {
-    num: "2",
-    title: "Personalize",
-    body: "Ajuste dashboard, landing page e etapas do funil do seu jeito.",
-  },
-  {
-    num: "3",
-    title: "Acompanhe os resultados",
-    body: "Veja tudo em tempo real e decida com dado de verdade.",
-  },
-];
 
 // A seção de depoimentos foi removida em 26/08/2026. Os seis que estavam aqui
 // eram inventados, com avatares gerados pela api.dicebear.com, e contradiziam
@@ -754,55 +734,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Todo lead, no mesmo funil */}
-      <section className="relative py-24 lg:py-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-2 lg:gap-20 lg:px-8">
-          <BlurFade direction="right">
-            <div>
-              <span className="text-sm font-medium text-primary">
-                Uma fila só
-              </span>
-              {/*
-                A versão anterior dizia "Todo canal, um lugar só" e listava
-                redes sociais, telefone, agenda, e-mail e pagamento — nenhuma
-                dessas integrações existe hoje. Promessa maior que o produto
-                é a mesma família de problema dos números inventados, só que
-                mais difícil de detectar. Agora a frase descreve o que a
-                plataforma de fato faz: reunir no funil o lead que chega por
-                WhatsApp, Instagram, site ou formulário.
-              */}
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
-                Todo lead,{" "}
-                <span className="text-primary">no mesmo funil</span>
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                WhatsApp, Instagram, formulário do site ou landing page: de
-                onde o lead vier, ele entra na mesma fila, com a conversa e a
-                ficha do negócio na mesma tela. Sem copiar e colar entre
-                sistemas.
-              </p>
-              {/* Os três bullets que ficavam aqui parafraseavam o parágrafo
-                  logo acima, palavra por palavra. Sobrou o que acrescenta. */}
-              <ul className="mt-6 space-y-3 text-sm">
-                {[
-                  "Nenhum lead se perde entre uma ferramenta e outra",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3">
-                    <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                      <CheckIcon className="size-3" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </BlurFade>
-          <BlurFade direction="left" delay={0.15}>
-            <IntegrationsBeam />
-          </BlurFade>
-        </div>
-      </section>
-
       {/* Dashboard */}
       <section id="dashboard" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
@@ -824,44 +755,16 @@ export default function Home() {
           <BlurFade delay={0.2} offset={32}>
             <HeroMockup className="mt-16" />
           </BlurFade>
-        </div>
-      </section>
 
-      {/* Live activity */}
-      <section className="relative overflow-hidden py-24 lg:py-32">
-        <RetroGrid />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-2 lg:gap-20 lg:px-8">
-          <BlurFade direction="right" className="order-2 lg:order-1">
-            <ActivityList />
-          </BlurFade>
-          <BlurFade direction="left" delay={0.15} className="order-1 lg:order-2">
-            <div>
-              <span className="text-sm font-medium text-primary">
-                Operação ao vivo
-              </span>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-balance lg:text-4xl">
-                Cada lead, rastreado do{" "}
-                <span className="text-primary">primeiro contato à venda</span>
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                Novo lead, resposta enviada, alerta de atraso, negócio
-                fechado: um feed ao vivo do que está acontecendo na
-                equipe, sem precisar abrir planilha nenhuma.
-              </p>
-              <p className="mt-4 text-muted-foreground">
-                Por trás: os três produtos, alimentando o mesmo funil.
-              </p>
-            </div>
+          {/* A captura vive aqui, junto do texto que a explica. Antes ela
+              tinha seção própria (#painel) logo abaixo desta, e o Dashboard
+              aparecia duas vezes seguidas dizendo a mesma coisa. */}
+          <BlurFade delay={0.2}>
+            <ProductShot shot={productShots.dashboard} className="mt-12" />
           </BlurFade>
         </div>
       </section>
 
-      {/*
-        Atendimento e Dashboard, provados pela tela em vez de descritos.
-        Cada bloco some inteiro enquanto a captura correspondente não existir
-        em src/lib/site-config.ts — inclusive o título e o texto, para a
-        página não ficar com uma seção órfã falando de uma imagem ausente.
-      */}
       {productShots.inbox.src && (
         <section id="atendimento" className="relative py-24 lg:py-32">
           <div className="mx-auto max-w-6xl px-4 lg:px-8">
@@ -886,28 +789,14 @@ export default function Home() {
         </section>
       )}
 
-      {productShots.dashboard.src && (
-        <section id="painel" className="relative border-y border-border/40 py-24 lg:py-32">
-          <div className="mx-auto max-w-6xl px-4 lg:px-8">
-            <BlurFade>
-              <span className="text-sm font-medium text-primary">Dashboard</span>
-              <h2 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-                O dia da sua operação{" "}
-                <span className="text-primary">numa tela só</span>
-              </h2>
-              <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
-                Leads do dia, taxa de resposta, conversão e o que a equipe
-                acabou de fazer. Sem pedir relatório para ninguém e sem abrir
-                planilha.
-              </p>
-            </BlurFade>
-            <BlurFade delay={0.15}>
-              <ProductShot shot={productShots.dashboard} className="mt-12" />
-            </BlurFade>
-          </div>
-        </section>
-      )}
-
+      {/*
+        Três seções saíram daqui em 27/08/2026, todas por repetição medida:
+        "Todo lead, no mesmo funil" dizia o que #captura e #atendimento já
+        dizem; "Cada lead, rastreado" repetia #jornada e #lead-parado; e
+        "Como funciona" era a #jornada de novo com outras palavras — o menu
+        agora aponta para lá. WhatsApp aparecia em 14 das 19 seções e o CRM
+        em 15; um tópico espalhado em toda a página não é ênfase, é ruído.
+      */}
       {/* IA — mostrada pelo que ela responde, não pela sigla */}
       <section id="ia" className="relative border-y border-border/40 py-24 lg:py-32">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
@@ -973,38 +862,6 @@ export default function Home() {
         continuam na página; os outros dois já estavam ditos no hero e na FAQ.
         A âncora #recursos, usada pelo menu, passou para #diferenciais.
       */}
-      {/* Como funciona */}
-      <section id="como-funciona" className="relative py-24 lg:py-32">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <BlurFade>
-            <span className="text-sm font-medium text-primary">
-              Como funciona
-            </span>
-            <h2 className="mx-auto mt-3 max-w-2xl text-center text-3xl font-semibold tracking-tight text-balance lg:text-5xl">
-              Comece a usar em três passos simples
-            </h2>
-          </BlurFade>
-          <div className="mt-14 grid gap-10 md:grid-cols-3">
-            {steps.map((s, i) => (
-              <BlurFade key={s.num} delay={i * 0.12}>
-                <div className="text-center">
-                  <span className="mx-auto flex size-11 items-center justify-center rounded-full bg-primary text-base font-semibold text-primary-foreground">
-                    {s.num}
-                  </span>
-                  <h3 className="mt-4 text-base font-semibold">{s.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {s.body}
-                  </p>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Programa fundador — no lugar dos depoimentos inventados.
-          O bloco e a contagem de vagas vivem em founder-program.tsx,
-          compartilhados com a /pricing. */}
       {/* Prova social. Não renderiza nada enquanto src/lib/social-proof.ts
           estiver vazio — ver o comentário no topo daquele arquivo. */}
       <SocialProof />

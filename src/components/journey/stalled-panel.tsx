@@ -1,3 +1,4 @@
+import { NumberTicker } from "@/components/velora/number-ticker";
 import { cn } from "@/lib/utils";
 
 /**
@@ -11,11 +12,20 @@ import { cn } from "@/lib/utils";
  * a empresa promete recuperar.
  */
 
+/**
+ * Os números contam para cima quando a seção entra na tela. É movimento com
+ * função: o Radar existe para mostrar um número subindo enquanto ninguém
+ * age, e a animação encena exatamente isso.
+ *
+ * O `NumberTicker` serve o valor final no HTML e só encena depois — o zero
+ * nunca chega ao HTML exportado, e quem tem movimento reduzido lê o número
+ * parado no valor certo.
+ */
 const metrics = [
-  { value: "12", label: "leads parados", tone: "stalled" as const },
-  { value: "R$ 18.400", label: "em oportunidades", tone: "money" as const },
-  { value: "5", label: "aguardando follow-up", tone: "neutral" as const },
-  { value: "3", label: "sem contato há +48h", tone: "stalled" as const },
+  { value: 12, label: "leads parados", tone: "stalled" as const },
+  { value: 18400, prefix: "R$ ", label: "em oportunidades", tone: "money" as const },
+  { value: 5, label: "aguardando follow-up", tone: "neutral" as const },
+  { value: 3, label: "sem contato há +48h", tone: "stalled" as const },
 ];
 
 const toneStyles = {
@@ -39,7 +49,7 @@ export function StalledPanel({ className }: { className?: string }) {
         </div>
 
         <dl className="mt-6 grid grid-cols-2 gap-6 lg:grid-cols-4">
-          {metrics.map((m) => (
+          {metrics.map((m, i) => (
             <div key={m.label}>
               <dd
                 className={cn(
@@ -47,7 +57,11 @@ export function StalledPanel({ className }: { className?: string }) {
                   toneStyles[m.tone]
                 )}
               >
-                {m.value}
+                <NumberTicker
+                  value={m.value}
+                  prefix={m.prefix ?? ""}
+                  delay={i * 0.12}
+                />
               </dd>
               <dt className="mt-1 text-sm text-muted-foreground text-balance">
                 {m.label}

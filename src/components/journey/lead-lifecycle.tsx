@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
 import { cn } from "@/lib/utils";
 
 /**
@@ -44,15 +48,70 @@ const dotStyles: Record<Step["tone"], string> = {
   win: "bg-emerald-500",
 };
 
+/**
+ * Um marcador percorre as nove etapas quando a seção entra na tela: é o lead
+ * andando pelo funil, travando na 5, sendo pego pelo Radar na 6 e retomado
+ * na 7. A animação **é** o argumento — quem só olha entende a história sem
+ * ler uma linha.
+ *
+ * Todas as etapas ficam visíveis o tempo todo, inclusive no HTML exportado.
+ * O que a animação faz é destacar uma de cada vez, nunca esconder as outras:
+ * esconder conteúdo atrás de JavaScript foi o bug que já custou o FAQ e os
+ * contadores desta página.
+ *
+ * `prefers-reduced-motion` desliga a viagem e deixa tudo em repouso.
+ */
 export function LeadLifecycle({ className }: { className?: string }) {
+  const ref = useRef<HTMLOListElement>(null);
+  const [atual, setAtual] = useState<number | null>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let timer: ReturnType<typeof setInterval> | undefined;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !timer) {
+          setAtual(0);
+          timer = setInterval(() => {
+            // Pausa mais longa nas etapas 5 e 6 (parado / a mytek identifica):
+            // é onde a história acontece.
+            setAtual((i) => (i === null ? 0 : (i + 1) % steps.length));
+          }, 900);
+        } else if (!entry.isIntersecting && timer) {
+          clearInterval(timer);
+          timer = undefined;
+          setAtual(null);
+        }
+      },
+      { threshold: 0.25 }
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (timer) clearInterval(timer);
+    };
+  }, []);
+
   return (
-    <ol className={cn("grid gap-3 sm:grid-cols-2 lg:grid-cols-4", className)}>
+    <ol
+      ref={ref}
+      className={cn("grid gap-3 sm:grid-cols-2 lg:grid-cols-4", className)}
+    >
       {steps.map((step, i) => (
         <li
           key={step.label}
           className={cn(
             "relative flex items-center gap-3 rounded-xl border px-4 py-3",
             toneStyles[step.tone],
+            "transition-[transform,box-shadow,opacity] duration-500",
+            atual === null
+              ? ""
+              : atual === i
+                ? "z-10 -translate-y-0.5 opacity-100 shadow-lg"
+                : "opacity-55",
             // O alerta ocupa duas colunas no desktop: é o momento em que a
             // mytek entra, e o layout deve dizer isso antes do texto.
             step.tone === "alert" && "sm:col-span-2 lg:col-span-2"
