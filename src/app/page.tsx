@@ -41,6 +41,7 @@ import { Particles } from "@/components/velora/particles";
 import { ScrollProgress } from "@/components/velora/scroll-progress";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { SpotlightCard } from "@/components/velora/spotlight-card";
+import { TiltCard } from "@/components/velora/tilt-card";
 import { productShots } from "@/lib/site-config";
 
 import { cn } from "@/lib/utils";
@@ -136,26 +137,30 @@ const pains = [
     quote: "Respondi esse cliente semana passada e esqueci de voltar.",
     title: "O alerta lembra por você",
     answer:
-      "Quando um negócio para de andar numa etapa, o responsável é avisado — antes de a oportunidade esfriar.",
+      "Quando um negócio para de andar numa etapa, o responsável é avisado — antes que a oportunidade esfrie.",
+    icon: <BellRingIcon className="size-4" />,
   },
   {
     quote:
-      "Cliente chama no Instagram, no WhatsApp e pelo site, e a equipe se perde.",
+      "Cliente chama no Instagram, no WhatsApp e no site, e a equipe se perde.",
     title: "Um funil só, com o histórico junto",
     answer:
       "Todo lead entra na mesma fila, com a conversa e a ficha do negócio na mesma tela.",
+    icon: <FilterIcon className="size-4" />,
   },
   {
     quote: "Não sei quantos leads viraram venda esse mês.",
-    title: "O número existe sem ninguém montar planilha",
+    title: "O número existe sem ninguém precisar montar planilha",
     answer:
       "Vendas, conversão e origem em tempo real, sem depender de alguém preencher célula.",
+    icon: <GaugeIcon className="size-4" />,
   },
   {
     quote: "O vendedor saiu e levou o histórico dos clientes com ele.",
     title: "O histórico é da empresa",
     answer:
       "Conversas e negociações ficam na plataforma, com controle de acesso por usuário.",
+    icon: <ShieldIcon className="size-4" />,
   },
 ];
 
@@ -327,9 +332,15 @@ export default function Home() {
             CSS (`block`), não de um segundo texto.
           */}
           <BlurFade delay={0.15}>
+            {/*
+              A subhead precisa ler como subhead: mesmo com peso e cor mais
+              leves, no mesmo tamanho da linha principal ela competia por
+              atenção em vez de responder à primeira linha. Um tamanho abaixo
+              em cada breakpoint resolve, mantendo tudo dentro do único h1.
+            */}
             <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-7xl">
               Seu lead respondeu no Instagram.{" "}
-              <span className="mt-1 block font-normal text-muted-foreground">
+              <span className="mt-2 block text-3xl font-normal text-muted-foreground sm:text-4xl lg:text-5xl">
                 Sua equipe viu 6 horas depois.
               </span>
             </h1>
@@ -404,11 +415,19 @@ export default function Home() {
           </BlurFade>
 
           {/* Stats */}
+          {/*
+            "Sem fidelidade" é o único valor com duas palavras longas: no
+            tamanho e na largura de coluna dos outros três, ele quebrava
+            linha sozinho e empurrava só a legenda dele pra baixo,
+            desalinhando a fileira inteira. whitespace-nowrap + um tamanho
+            abaixo garante que os quatro fiquem numa linha só em qualquer
+            breakpoint.
+          */}
           <div className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-8 lg:grid-cols-4">
             {heroStats.map((stat, i) => (
               <BlurFade key={stat.label} delay={i * 0.1}>
                 <div className="flex flex-col items-center gap-1">
-                  <span className="text-3xl font-semibold tracking-tight lg:text-4xl">
+                  <span className="text-2xl font-semibold tracking-tight whitespace-nowrap lg:text-3xl">
                     {"value" in stat ? (
                       <NumberTicker value={stat.value} suffix={stat.suffix} />
                     ) : (
@@ -466,20 +485,40 @@ export default function Home() {
             equipe comercial diz; não são depoimentos e não têm autoria, por
             isso não aparecem com nome nem empresa.
           */}
-          <div className="mt-14 space-y-4">
+          <div className="mt-14 space-y-5">
             {pains.map((pain, i) => (
               <BlurFade key={pain.quote} delay={i * 0.08}>
-                <div className="grid gap-4 rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur md:grid-cols-[1.1fr_1fr] md:items-center md:gap-10 md:p-8">
-                  <p className="text-lg text-card-foreground text-pretty italic lg:text-xl">
-                    “{pain.quote}”
-                  </p>
-                  <div className="border-t border-border/60 pt-4 md:border-t-0 md:border-l md:pt-0 md:pl-10">
-                    <p className="font-semibold text-balance">{pain.title}</p>
-                    <p className="mt-1.5 text-sm text-muted-foreground text-pretty">
-                      {pain.answer}
-                    </p>
-                  </div>
-                </div>
+                {/*
+                  Balão de verdade, não só uma citação num card plano: cauda
+                  apontando pra quem "fala", e um ícone temático do lado da
+                  resposta. Tilt 3D + brilho no hover são bônus de desktop —
+                  o visual precisa se sustentar sozinho no celular, onde não
+                  existe hover.
+                */}
+                <TiltCard maxTilt={3}>
+                  <SpotlightCard className="grid gap-6 bg-card/60 p-6 backdrop-blur md:grid-cols-[1.1fr_1fr] md:items-center md:gap-10 md:p-8">
+                    <div className="relative rounded-2xl rounded-bl-md bg-primary/[0.06] px-5 py-4 ring-1 ring-primary/10">
+                      <p className="text-lg text-card-foreground text-pretty italic lg:text-xl">
+                        {pain.quote}
+                      </p>
+                      <span
+                        aria-hidden
+                        className="absolute -bottom-2 left-7 size-4 rotate-45 rounded-[3px] bg-primary/[0.06] ring-1 ring-primary/10"
+                      />
+                    </div>
+                    <div className="border-t border-border/60 pt-5 md:border-t-0 md:border-l md:pt-0 md:pl-10">
+                      <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                        {pain.icon}
+                      </span>
+                      <p className="mt-3 font-semibold text-balance">
+                        {pain.title}
+                      </p>
+                      <p className="mt-1.5 text-sm text-muted-foreground text-pretty">
+                        {pain.answer}
+                      </p>
+                    </div>
+                  </SpotlightCard>
+                </TiltCard>
               </BlurFade>
             ))}
           </div>
@@ -783,7 +822,10 @@ export default function Home() {
               </p>
             </BlurFade>
             <BlurFade delay={0.15}>
-              <ProductShot shot={productShots.inbox} className="mt-12" />
+              {/* priority: sem isso o print só carrega quando entra na tela.
+                  Num scroll rápido ou conexão lenta, aparece como se a seção
+                  tivesse vindo sem imagem. */}
+              <ProductShot shot={productShots.inbox} priority className="mt-12" />
             </BlurFade>
           </div>
         </section>

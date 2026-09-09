@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { BorderBeam } from "@/components/velora/border-beam";
 import type { ProductShot as Shot } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +30,11 @@ export function ProductShot({
 
   return (
     <figure className={cn("mx-auto w-full", className)}>
-      <div className="overflow-hidden rounded-2xl border bg-card shadow-2xl shadow-primary/5">
+      <div className="relative overflow-hidden rounded-2xl border bg-card shadow-2xl shadow-primary/5">
+        {/* Mesmo detalhe animado dos mockups (funil, landing page, dashboard):
+            sem ele, o print real fica parado ao lado dos cartões que ainda
+            se movem. */}
+        <BorderBeam size={96} duration={10} />
         <Image
           src={shot.src}
           alt={shot.alt}
