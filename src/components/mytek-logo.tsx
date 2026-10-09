@@ -1,8 +1,8 @@
-import { MytekAvatar } from "@/components/brand/symbol";
+import { MytekSymbol } from "@/components/brand/symbol";
 import { cn } from "@/lib/utils";
 
 /**
- * Logo da mytek: o símbolo do avatar do Instagram + a assinatura "mytek."
+ * Logo da mytek: o símbolo (sem o quadrado do app) + a assinatura "mytek."
  * com o ponto lima. `iconOnly` mostra só o símbolo.
  */
 export function MytekLogo({
@@ -18,7 +18,7 @@ export function MytekLogo({
       role="img"
       aria-label="mytek"
     >
-      <MytekAvatar />
+      <MytekSymbol className="w-9" />
       {!iconOnly && (
         <span className="font-heading text-2xl font-extrabold leading-none tracking-[-0.055em]">
           mytek<span className="text-lima">.</span>

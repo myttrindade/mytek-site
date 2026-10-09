@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Me3D } from "@/components/brand/me-3d";
 import { MePattern } from "@/components/brand/me-pattern";
+import { MeMarquee, MeTyping } from "@/components/brand/me-motion";
 import { MytekLogo } from "@/components/mytek-logo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -112,6 +113,20 @@ export default function BrandPage() {
             O pattern nasce só da geometria do M/E, em roxo escuro, nunca
             competindo com o conteúdo. Um módulo lima marca o item ativo.
           </p>
+        </section>
+
+        <section className="space-y-6">
+          <Label n="05b">Pattern em movimento · para testar</Label>
+          <div className="grid gap-4 lg:grid-cols-2">
+            <div className="dark space-y-3 rounded-2xl border border-border bg-background p-6 text-foreground">
+              <span className="font-mono text-xs text-muted-foreground">A · correndo</span>
+              <MeMarquee />
+            </div>
+            <div className="dark space-y-3 rounded-2xl border border-border bg-background p-6 text-foreground">
+              <span className="font-mono text-xs text-muted-foreground">B · digitando</span>
+              <MeTyping count={8} />
+            </div>
+          </div>
         </section>
 
         <section className="space-y-6">

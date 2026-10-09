@@ -32,7 +32,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { HeroMockup } from "@/components/demo/hero-mockup";
 import { FunnelPreview } from "@/components/demo/funnel-preview";
 import { LandingPageMockup } from "@/components/demo/landing-page-mockup";
-import { MePattern } from "@/components/brand/me-pattern";
+import { MeMarquee, MeTyping } from "@/components/brand/me-motion";
+import { GridPattern } from "@/components/velora/grid-pattern";
 import { Process, ProductDivider, Solutions } from "@/components/solutions";
 import { Me3D } from "@/components/brand/me-3d";
 import { BlurFade } from "@/components/velora/blur-fade";
@@ -306,7 +307,12 @@ export default function Home() {
 
       {/* Hero */}
       <section className="dark relative overflow-hidden bg-background pt-40 pb-24 text-foreground lg:pt-48 lg:pb-28">
-        <MePattern cols={26} rows={16} tone="#241848" highlight={[41, 210, 331]} className="[mask-image:radial-gradient(ellipse_90%_80%_at_50%_0%,black,transparent_75%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(94,52,247,0.42),transparent_70%)]" />
+        <GridPattern
+          width={56}
+          height={56}
+          className="fill-transparent stroke-white/[0.07] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_10%,black,transparent)]"
+        />
         <div className="relative mx-auto max-w-6xl px-4 text-center lg:px-8">
           <BlurFade delay={0} direction="down">
             <Me3D size={110} className="mx-auto mb-8" />
@@ -441,6 +447,7 @@ export default function Home() {
           </BlurFade>
 
         </div>
+              <MeMarquee className="relative mt-20" />
       </section>
 
       <Solutions />
@@ -1030,7 +1037,7 @@ export default function Home() {
 
       {/* CTA */}
       <section className="relative overflow-hidden bg-primary py-24 text-primary-foreground lg:py-32">
-        <MePattern cols={26} rows={10} tone="#6E48FF" className="opacity-40" />
+        <MeTyping className="absolute inset-x-0 top-10 opacity-60" />
         <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
           <BlurFade>
             <h2 className="text-4xl font-extrabold tracking-[-0.035em] text-balance lg:text-6xl">
