@@ -4,6 +4,36 @@ const LAYERS = 14;
 const SIZE = 150;
 const LETTERS = ["m", "y", "t", "e", "k"];
 
+/** [esquerda %, topo %, tamanho px, atraso s, duração s] — poeira de luz. */
+const DUST: [number, number, number, number, number][] = [
+  [11, 55, 2, 0.3, 2.6],
+  [48, 72, 3, 0.41, 3.1],
+  [85, 89, 4, 0.52, 3.6],
+  [22, 61, 5, 0.63, 4.1],
+  [59, 78, 2, 0.74, 4.6],
+  [96, 95, 3, 0.85, 2.6],
+  [33, 67, 4, 0.96, 3.1],
+  [70, 84, 5, 1.07, 3.6],
+  [7, 56, 2, 1.18, 4.1],
+  [44, 73, 3, 1.29, 4.6],
+  [81, 90, 4, 1.4, 2.6],
+  [18, 62, 5, 1.51, 3.1],
+  [55, 79, 2, 1.62, 3.6],
+  [92, 96, 3, 1.73, 4.1],
+  [29, 68, 4, 1.84, 4.6],
+  [66, 85, 5, 1.95, 2.6],
+  [3, 57, 2, 2.06, 3.1],
+  [40, 74, 3, 2.17, 3.6],
+  [77, 91, 4, 2.28, 4.1],
+  [14, 63, 5, 2.39, 4.6],
+  [51, 80, 2, 0.3, 2.6],
+  [88, 97, 3, 0.41, 3.1],
+  [25, 69, 4, 0.52, 3.6],
+  [62, 86, 5, 0.63, 4.1],
+  [99, 58, 2, 0.74, 4.6],
+  [36, 75, 3, 0.85, 2.6],
+];
+
 /**
  * Abertura do site, em clima cinematográfico: um arco de luz roxa se desenha,
  * um clarão corre pela borda, o símbolo metalizado em 3D surge, o nome entra
@@ -18,6 +48,22 @@ export function IntroSplash() {
   return (
     <div className="intro" aria-hidden>
       <div className="intro-bg" />
+      <div className="intro-dust">
+        {DUST.map(([l, t, s, d, u], i) => (
+          <i
+            key={i}
+            style={{
+              left: `${l}%`,
+              top: `${t}%`,
+              width: s,
+              height: s,
+              animationDelay: `${d}s`,
+              animationDuration: `${u}s`,
+            }}
+          />
+        ))}
+      </div>
+      <div className="intro-vignette" />
 
       <div className="intro-ring">
         <svg viewBox="0 0 1000 760" className="intro-arcs" fill="none">
@@ -41,6 +87,10 @@ export function IntroSplash() {
               <stop offset="1" stopColor="#6E48FF" stopOpacity="0" />
             </radialGradient>
           </defs>
+
+          {/* aros finos: marcas girando e um segundo anel tênue */}
+          <circle className="intro-ticks" cx="500" cy="380" r="366" stroke="#fff" strokeOpacity="0.28" strokeWidth="2" strokeDasharray="1.5 11" />
+          <circle className="intro-ring2" cx="500" cy="380" r="392" stroke="#8D6BFF" strokeOpacity="0.22" strokeWidth="1" />
 
           {/* arco de baixo: desenha da esquerda para a direita */}
           {[
@@ -97,6 +147,7 @@ export function IntroSplash() {
       </div>
 
       <div className="intro-center">
+        <div className="intro-push">
         <div className="intro-mark">
           <div className="intro-spin">
             {Array.from({ length: LAYERS }, (_, i) => {
@@ -121,9 +172,16 @@ export function IntroSplash() {
                         <stop offset="0.72" stopColor="#aeb4c2" />
                         <stop offset="1" stopColor="#eef0f5" />
                       </linearGradient>
+                      <linearGradient id="intro-shine" gradientUnits="userSpaceOnUse" x1="-30" y1="0" x2="10" y2="0">
+                        <stop offset="0" stopColor="#fff" stopOpacity="0" />
+                        <stop offset="0.5" stopColor="#fff" stopOpacity="0.95" />
+                        <stop offset="1" stopColor="#fff" stopOpacity="0" />
+                        <animateTransform attributeName="gradientTransform" type="translate" values="0 0; 170 0" dur="1.1s" begin="2.2s" repeatCount="1" fill="freeze" />
+                      </linearGradient>
                     </defs>
                   )}
                   <path d={SYMBOL_PATH} />
+                  {front && <path d={SYMBOL_PATH} fill="url(#intro-shine)" />}
                 </svg>
               );
             })}
@@ -140,7 +198,10 @@ export function IntroSplash() {
             .
           </span>
         </p>
+        <span className="intro-line" />
         <p className="intro-sub">Software e IA</p>
+        <span className="intro-streak" />
+        </div>
       </div>
     </div>
   );
