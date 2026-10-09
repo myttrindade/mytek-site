@@ -24,21 +24,20 @@ const mono = "font-mono text-[10px] font-bold uppercase tracking-[0.08em]";
 function Card({
   className,
   float,
+  tilt = 0,
   children,
 }: {
   className?: string;
   float: "a" | "b" | "c" | "d";
+  /** Inclinação em graus: deixa a composição solta, não em grade. */
+  tilt?: number;
   children: React.ReactNode;
 }) {
   return (
-    <div
-      className={cn(
-        "absolute h-[172px] w-[270px]",
-        `hero-float-${float}`,
-        className
-      )}
-    >
-      <div className={glass}>{children}</div>
+    <div className={cn("absolute", `hero-float-${float}`, className)}>
+      <div className={glass} style={{ rotate: `${tilt}deg` }}>
+        {children}
+      </div>
     </div>
   );
 }
@@ -65,23 +64,23 @@ export function HeroVisual() {
         {/* brilho e anéis centrados na faixa do meio (x 280, y 256) */}
         <div
           aria-hidden
-          className="absolute left-1/2 top-[256px] size-[430px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(94,52,247,0.55),transparent_68%)]"
+          className="absolute left-1/2 top-[270px] size-[430px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(94,52,247,0.55),transparent_68%)]"
         />
         <div
           aria-hidden
-          className="absolute left-1/2 top-[256px] size-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/15"
+          className="absolute left-1/2 top-[270px] size-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-white/15"
         />
         <div
           aria-hidden
-          className="absolute left-1/2 top-[256px] size-[212px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
+          className="absolute left-1/2 top-[270px] size-[212px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10"
         />
         <Me3D
-          size={150}
-          className="absolute left-1/2 top-[256px] -translate-x-1/2 -translate-y-1/2"
+          size={170}
+          className="absolute left-1/2 top-[270px] -translate-x-1/2 -translate-y-1/2"
         />
 
         {/* fileira de cima */}
-        <Card float="a" className="left-0 top-0">
+        <Card float="a" tilt={-2} className="left-[-6px] top-[14px] h-[150px] w-[246px]">
           <div className="flex h-full flex-col gap-2.5 p-4">
             <Header label="Agente de IA">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2 py-0.5 text-[10px] font-semibold text-white">
@@ -98,7 +97,7 @@ export function HeroVisual() {
           </div>
         </Card>
 
-        <Card float="b" className="right-0 top-0">
+        <Card float="b" tilt={2.2} className="right-[-10px] top-[58px] h-[164px] w-[226px]">
           <div className="flex h-full flex-col gap-3 p-4">
             <Header label="Radar · CRM">
               <BellRingIcon className="size-4 text-lima" />
@@ -121,7 +120,7 @@ export function HeroVisual() {
         </Card>
 
         {/* fileira de baixo */}
-        <Card float="c" className="bottom-[32px] left-0">
+        <Card float="c" tilt={1.8} className="bottom-[78px] left-[-14px] h-[142px] w-[236px]">
           <div className="flex h-full flex-col gap-3 p-4">
             <Header label="Automação">
               <WorkflowIcon className="size-4 text-white/70" />
@@ -145,14 +144,14 @@ export function HeroVisual() {
                 </div>
               ))}
             </div>
-            <div className="mt-auto flex items-center gap-2 rounded-lg bg-white/[0.06] px-3 py-2 text-[11px] text-white/80">
-              <CheckIcon className="size-3.5 text-lima" />
-              Lead novo vira card no funil, sem planilha
+            <div className="mt-auto flex items-center gap-2 rounded-lg bg-white/[0.06] px-3 py-1.5 text-[11px] text-white/80">
+              <CheckIcon className="size-3.5 shrink-0 text-lima" />
+              Lead novo vira card, sem planilha
             </div>
           </div>
         </Card>
 
-        <Card float="d" className="bottom-[32px] right-0">
+        <Card float="d" tilt={-1.6} className="bottom-[20px] right-[6px] h-[170px] w-[268px]">
           <div className="flex h-full flex-col gap-2 p-4">
             <Header label="Previsão de churn">
               <span className="rounded-full bg-lima px-2 py-0.5 text-[10px] font-bold text-lima-foreground">
