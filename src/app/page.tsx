@@ -33,6 +33,7 @@ import { HeroMockup } from "@/components/demo/hero-mockup";
 import { FunnelPreview } from "@/components/demo/funnel-preview";
 import { LandingPageMockup } from "@/components/demo/landing-page-mockup";
 import { MePattern } from "@/components/brand/me-pattern";
+import { Me3D } from "@/components/brand/me-3d";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { Dock, DockIcon } from "@/components/velora/dock";
 import { NumberTicker } from "@/components/velora/number-ticker";
@@ -308,6 +309,7 @@ export default function Home() {
         <MePattern cols={26} rows={16} tone="#241848" highlight={[41, 210, 331]} className="[mask-image:radial-gradient(ellipse_90%_80%_at_50%_0%,black,transparent_75%)]" />
         <div className="relative mx-auto max-w-6xl px-4 text-center lg:px-8">
           <BlurFade delay={0} direction="down">
+            <Me3D size={110} className="mx-auto mb-8" />
             <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/60 px-4 py-1.5 text-sm backdrop-blur">
               <SparklesIcon className="size-3.5 text-primary" />
               <span className="font-medium">{founderEyebrow}</span>

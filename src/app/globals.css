@@ -315,3 +315,28 @@
     animation: none;
   }
 }
+/* Símbolo M/E em 3D (components/brand/me-3d.tsx) */
+.me3d {
+  perspective: 700px;
+  position: relative;
+}
+.me3d-stage {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: me3d-spin 8s ease-in-out infinite alternate;
+}
+@keyframes me3d-spin {
+  from {
+    transform: rotateX(14deg) rotateY(-38deg);
+  }
+  to {
+    transform: rotateX(-10deg) rotateY(38deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .me3d-stage {
+    animation: none;
+    transform: rotateX(8deg) rotateY(-24deg);
+  }
+}
