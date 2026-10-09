@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowRightIcon, CheckIcon } from "lucide-react";
 import type { Metadata } from "next";
 
-import { Eclipse, GlowArc } from "@/components/brand/glow";
+import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { MeMarquee } from "@/components/brand/me-motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -88,7 +88,7 @@ export default async function SolutionPage({ params }: Props) {
               </Button>
             </div>
           </div>
-          <Eclipse size={440} className="absolute -right-20 top-24 hidden opacity-80 lg:block" />
+          <BrandGlyph size={420} className="absolute -right-8 top-24 hidden opacity-90 lg:block" />
           <MeMarquee rows={1} className="relative mt-16 pb-6" />
           <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[70px]" />
         </section>
@@ -163,7 +163,7 @@ export default async function SolutionPage({ params }: Props) {
         {/* CTA */}
         <section className="dark relative overflow-hidden bg-background py-24 text-foreground">
           <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
-          <Eclipse size={520} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-80" />
+          <BrandGlyph size={560} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
           <div className="mx-auto max-w-4xl px-4 text-center lg:px-8">
             <h2 className="text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Vamos conversar sobre{" "}

@@ -634,18 +634,21 @@ html.intro-seen .intro {
 .glow-pulse {
   animation: glow-pulse 5s ease-in-out infinite;
 }
-@keyframes eclipse-rot {
-  to {
-    transform: rotate(360deg);
+@keyframes glyph-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(1deg);
   }
 }
-.eclipse-rot {
-  transform-origin: 200px 200px;
-  animation: eclipse-rot 60s linear infinite;
+.glyph-float {
+  animation: glyph-float 9s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .glow-pulse,
-  .eclipse-rot {
+  .glyph-float {
     animation: none;
   }
 }

@@ -14,7 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-import { Eclipse, GlowArc } from "@/components/brand/glow";
+import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { TiltCard } from "@/components/velora/tilt-card";
@@ -201,7 +201,7 @@ export function Process() {
       className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-32"
     >
       <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[90px]" />
-      <Eclipse size={560} className="absolute -right-32 top-1/2 hidden -translate-y-[62%] opacity-80 md:block" />
+      <BrandGlyph size={520} className="absolute -right-16 top-1/2 hidden -translate-y-1/2 opacity-90 md:block" />
       <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <BlurFade>
           <span className={eyebrow}>Como trabalhamos</span>

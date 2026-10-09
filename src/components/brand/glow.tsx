@@ -1,10 +1,11 @@
 import { useId } from "react";
 
+import { SYMBOL_PATH } from "@/components/brand/symbol";
 import { cn } from "@/lib/utils";
 
 /**
  * Elementos de luz do clima cinematográfico (referência: sites escuros com
- * arcos e eclipses luminosos). Só SVG/CSS, sem JavaScript no cliente, e
+ * arcos e formas luminosas). Só SVG/CSS, sem JavaScript no cliente, e
  * decorativos: `aria-hidden`, sem capturar clique.
  */
 
@@ -50,8 +51,12 @@ export function GlowArc({
   );
 }
 
-/** Eclipse: disco escuro com uma meia-lua de luz, girando bem devagar. */
-export function Eclipse({
+/**
+ * O símbolo da marca em grande escala: preenchimento roxo translúcido, contorno
+ * de luz e um reflexo que cruza de tempos em tempos. Ocupa espaço e dá
+ * identidade às seções escuras sem inventar um desenho que não seja da mytek.
+ */
+export function BrandGlyph({
   size = 460,
   className,
 }: {
@@ -62,37 +67,61 @@ export function Eclipse({
   return (
     <div
       aria-hidden
-      className={cn("pointer-events-none", className)}
-      style={{ width: size, height: size }}
+      className={cn("glyph-float pointer-events-none", className)}
+      style={{ width: size, height: (size * 77) / 83 }}
     >
-      <svg viewBox="0 0 400 400" className="size-full" fill="none">
+      <svg viewBox="8 45 91 85" className="size-full overflow-visible" fill="none">
         <defs>
-          <radialGradient id={`${id}h`}>
-            <stop offset="0" stopColor="#5E34F7" stopOpacity="0.55" />
-            <stop offset="0.55" stopColor="#5E34F7" stopOpacity="0.14" />
-            <stop offset="1" stopColor="#5E34F7" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id={`${id}c`} x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#ffffff" />
-            <stop offset="0.5" stopColor="#c9b8ff" />
-            <stop offset="1" stopColor="#6E48FF" />
+          <linearGradient id={`${id}f`} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#6E48FF" stopOpacity="0.6" />
+            <stop offset="1" stopColor="#5E34F7" stopOpacity="0.06" />
           </linearGradient>
-          <filter id={`${id}glow`} x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="10" />
+          <linearGradient id={`${id}s`} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#ffffff" />
+            <stop offset="0.55" stopColor="#8D6BFF" />
+            <stop offset="1" stopColor="#5E34F7" stopOpacity="0.5" />
+          </linearGradient>
+          <filter id={`${id}b`} x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="3.2" />
           </filter>
-          <mask id={`${id}m`}>
-            <rect width="400" height="400" fill="#fff" />
-            <circle cx="218" cy="200" r="114" fill="#000" />
-          </mask>
+          <linearGradient
+            id={`${id}h`}
+            gradientUnits="userSpaceOnUse"
+            x1="-30"
+            y1="0"
+            x2="10"
+            y2="0"
+          >
+            <stop offset="0" stopColor="#fff" stopOpacity="0" />
+            <stop offset="0.5" stopColor="#fff" stopOpacity="0.55" />
+            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+            <animateTransform
+              attributeName="gradientTransform"
+              type="translate"
+              values="0 0; 150 0; 150 0"
+              keyTimes="0; 0.4; 1"
+              dur="7s"
+              begin="0.8s"
+              repeatCount="indefinite"
+            />
+          </linearGradient>
         </defs>
-        <circle cx="200" cy="200" r="200" fill={`url(#${id}h)`} />
-        <g className="eclipse-rot">
-          <g mask={`url(#${id}m)`}>
-            <circle cx="200" cy="200" r="120" fill={`url(#${id}c)`} filter={`url(#${id}glow)`} opacity="0.85" />
-            <circle cx="200" cy="200" r="120" fill={`url(#${id}c)`} />
-          </g>
-        </g>
-        <circle cx="218" cy="200" r="114" fill="#07040f" />
+        <path d={SYMBOL_PATH} fill={`url(#${id}f)`} />
+        <path
+          d={SYMBOL_PATH}
+          stroke={`url(#${id}s)`}
+          strokeWidth="2.6"
+          strokeLinejoin="round"
+          filter={`url(#${id}b)`}
+          opacity="0.9"
+        />
+        <path
+          d={SYMBOL_PATH}
+          stroke={`url(#${id}s)`}
+          strokeWidth="0.7"
+          strokeLinejoin="round"
+        />
+        <path d={SYMBOL_PATH} fill={`url(#${id}h)`} />
       </svg>
     </div>
   );
