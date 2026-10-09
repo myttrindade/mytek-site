@@ -152,6 +152,16 @@
 }
 
 @layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+  }
+  ::selection {
+    background: var(--lima);
+    color: var(--lima-foreground);
+  }
   * {
     @apply border-border outline-ring/50;
   }
