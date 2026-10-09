@@ -7,11 +7,13 @@ import { cn } from "@/lib/utils";
 
 const groups = [
   {
-    title: "Produto",
+    title: "Soluções",
     links: [
-      { text: "CRM", href: "/#crm" },
-      { text: "Landing Page", href: "/#landing-page" },
-      { text: "Dashboard", href: "/#dashboard" },
+      { text: "Sites e landing pages", href: "/#solucoes" },
+      { text: "CRM", href: "/#produtos" },
+      { text: "Dashboards", href: "/#dashboard" },
+      { text: "Agentes de IA e automação", href: "/#solucoes" },
+      { text: "Previsão de churn", href: "/#solucoes" },
       { text: "Preço", href: "/pricing" },
       // Aparece só quando o checkout estiver de fato cobrando.
       ...(hasCheckoutLinks

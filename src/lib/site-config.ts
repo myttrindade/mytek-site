@@ -19,9 +19,9 @@ export const siteConfig = {
    * o H1 da home, senão o Google mostra uma promessa e a página entrega
    * outra.
    */
-  tagline: "CRM com WhatsApp, alerta de lead parado e dashboard em tempo real",
+  tagline: "Software e IA para negócios que vendem por conversa",
   description:
-    "A mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda. A partir de R$197/mês, sem fidelidade.",
+    "Sites, landing pages, CRM com WhatsApp, dashboards, agentes de IA, automações com n8n e previsão de churn. Software sob medida e produtos por assinatura, CRM a partir de R$197/mês.",
 } as const;
 
 /**

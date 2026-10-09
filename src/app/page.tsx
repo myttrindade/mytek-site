@@ -33,6 +33,7 @@ import { HeroMockup } from "@/components/demo/hero-mockup";
 import { FunnelPreview } from "@/components/demo/funnel-preview";
 import { LandingPageMockup } from "@/components/demo/landing-page-mockup";
 import { MePattern } from "@/components/brand/me-pattern";
+import { Process, ProductDivider, Solutions } from "@/components/solutions";
 import { Me3D } from "@/components/brand/me-3d";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { Dock, DockIcon } from "@/components/velora/dock";
@@ -164,8 +165,8 @@ const pains = [
 ];
 
 const trustPoints = [
-  "Sem fidelidade",
-  "Configuração em 10 minutos com a gente",
+  "Produto pronto ou projeto sob medida",
+  "Escopo e preço combinados antes de começar",
   "Dados no Brasil, sob a LGPD",
   "Suporte no WhatsApp em até 4h úteis",
 ];
@@ -173,11 +174,10 @@ const trustPoints = [
 const heroStats: Array<
   { label: string } & ({ value: number; suffix: string } | { text: string })
 > = [
-  // Cenário B: a conversa é a porta de entrada, não um cadastro.
-  { value: 10, suffix: " min", label: "da conversa ao funil configurado" },
+  { value: 8, suffix: " soluções", label: "para atrair, atender e decidir melhor" },
   { text: "R$197/mês", label: "CRM completo, 3 usuários" },
-  { text: "3 módulos", label: "contrate separado ou junto" },
-  { text: "Sem fidelidade", label: "cancele quando quiser" },
+  { text: "Sob medida", label: "sites, IA, automação e dados" },
+  { text: "Sem fidelidade", label: "nos produtos por assinatura" },
 ];
 
 // Cenário B: o passo 1 descreve o que acontece de verdade hoje.
@@ -334,23 +334,19 @@ export default function Home() {
               em cada breakpoint resolve, mantendo tudo dentro do único h1.
             */}
             <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-extrabold tracking-[-0.035em] text-balance sm:text-5xl lg:text-7xl">
-              Seu lead respondeu no Instagram.{" "}
-              <span className="mt-2 block text-3xl font-medium text-muted-foreground sm:text-4xl lg:text-5xl">
-                Sua equipe viu <mark className="bg-lima px-1 text-lima-foreground">6 horas depois.</mark>
+              Transformamos complexidade em{" "}
+              <span className="text-lima">sistema.</span>
+              <span className="mt-4 block text-2xl font-medium tracking-normal text-muted-foreground sm:text-3xl lg:text-4xl">
+                Software e IA para negócios que vendem por conversa.
               </span>
             </h1>
           </BlurFade>
 
           <BlurFade delay={0.35}>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground text-pretty">
-              A mytek avisa quando um lead para de andar no funil e centraliza
-              o WhatsApp num lugar só.
-              {/* A segunda frase some no celular por CSS, sem duplicar texto. */}
-              <span className="hidden sm:inline">
-                {" "}
-                Mostra em tempo real o que virou venda: CRM, landing page e
-                dashboard na mesma plataforma.
-              </span>
+              Sites, landing pages, CRM, dashboards, agentes de IA, automações
+              com n8n e previsão de churn, para empresas que querem resolver
+              problemas reais, não colecionar ferramentas.
             </p>
           </BlurFade>
 
@@ -381,13 +377,13 @@ export default function Home() {
                 className="hidden sm:inline-flex"
                 asChild
               >
-                <a href="#produtos">Ver como funciona ↓</a>
+                <a href="#solucoes">Ver soluções ↓</a>
               </Button>
               <a
-                href="#produtos"
+                href="#solucoes"
                 className="text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground sm:hidden"
               >
-                Ver como funciona ↓
+                Ver soluções ↓
               </a>
             </div>
           </BlurFade>
@@ -444,20 +440,12 @@ export default function Home() {
             </p>
           </BlurFade>
 
-          {/*
-            O funil na primeira dobra: é a tela onde o alerta de lead parado
-            aparece, então ela prova o argumento do H1 em vez de só ilustrar.
-            Some inteira enquanto productShots.funil.src for null.
-          */}
-          <BlurFade delay={0.7}>
-            <ProductShot
-              shot={productShots.funil}
-              priority
-              className="mt-16 max-w-5xl"
-            />
-          </BlurFade>
         </div>
       </section>
+
+      <Solutions />
+      <Process />
+      <ProductDivider />
 
       {/* Dor — dita na voz de quem sente, não na terceira pessoa */}
       <section id="problema" className="relative py-24 lg:py-32">
