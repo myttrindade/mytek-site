@@ -321,7 +321,6 @@
 /* Símbolo M/E em 3D (components/brand/me-3d.tsx) */
 .me3d {
   perspective: 700px;
-  position: relative;
 }
 .me3d-stage {
   position: absolute;

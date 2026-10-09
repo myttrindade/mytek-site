@@ -11,7 +11,7 @@ export function Me3D({ size = 150, className }: { size?: number; className?: str
   return (
     <div
       aria-hidden
-      className={cn("me3d", className)}
+      className={cn("me3d relative", className)}
       style={{ width: size, height: size }}
     >
       <div className="me3d-stage">
