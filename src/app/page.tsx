@@ -65,7 +65,7 @@ const ways = [
 const faqs = [
   {
     q: "A mytek vende só CRM?",
-    a: "Não. Temos três sistemas próprios, o CRM com WhatsApp, o Mytek Hub (organização do time) e o MyCash (organização financeira), e também criamos sites, landing pages, dashboards, agentes de IA, automações com n8n, modelos de previsão de churn e sistemas sob medida.",
+    a: "Não. Temos três sistemas próprios, o CRM com WhatsApp, o Mytek Hub (organização do time) e o MyCash (organização financeira para empresas), e também criamos sites, landing pages, dashboards, agentes de IA, automações com n8n, modelos de previsão de churn e sistemas sob medida.",
   },
   {
     q: "Como funciona o preço?",

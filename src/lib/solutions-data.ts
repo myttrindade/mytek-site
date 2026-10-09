@@ -165,43 +165,47 @@ export const solutions: Solution[] = [
     href: "/solucoes/mycash",
     tag: "Produto",
     title: "MyCash",
-    problem: "O dinheiro entra e sai e ninguém sabe pra onde foi.",
+    problem: "O dinheiro da empresa entra e sai e ninguém sabe pra onde foi.",
     summary:
-      "App de organização financeira, pessoal ou do negócio: lançamentos, cartões, orçamento e metas, com IA para consultar e lançar.",
-    headline: "As finanças no controle, do cartão à meta, para você ou para o seu negócio.",
+      "Sistema de organização financeira para empresas: lançamentos, cartões, orçamento e metas, com IA para consultar e lançar.",
+    headline: "O financeiro da sua empresa organizado, do cartão à meta.",
     intro:
-      "O MyCash reúne num só app tudo o que entra e sai: contas, cartões com fatura e parcelas, orçamento e metas. Use para as finanças pessoais ou para organizar as do seu negócio. Cada pessoa tem o seu espaço, com os dados isolados dos demais, e dá para consultar e lançar conversando com a IA.",
+      "O MyCash é o sistema de organização financeira da mytek, feito para empresas e negócios. Ele reúne o que entra e o que sai, cartões com fatura e parcelas, orçamento e metas, e deixa o caixa claro para quem decide. Cada conta tem os dados isolados das demais, e dá para consultar e lançar conversando com a IA.",
     includes: [
-      "Lançamentos, contas e categorias, com controle completo do dia a dia",
+      "Lançamentos, contas e categorias, com controle completo do caixa",
       "Cartões com faturas e parcelas, sem perder o que ainda vai cair",
       "Orçamento por categoria e metas para acompanhar",
-      "Lançamentos recorrentes e agenda de contas a pagar",
+      "Lançamentos recorrentes e agenda de contas a pagar e a receber",
       "Importação de extrato, com categorização automática",
       "Painel com totais do mês e gráficos acessíveis",
       "Conector de IA: consulte e lance pelo Claude ou pelo ChatGPT",
-      "Vários usuários, cada um com os dados isolados dos demais",
+      "Vários usuários, cada conta com os dados isolados das demais",
     ],
     steps: [
-      ["Crie seu espaço", "Cadastre contas e cartões, ou importe o extrato e deixe o app categorizar."],
-      ["Acompanhe", "Lançamentos, recorrentes e agenda mantêm o mês organizado, com orçamento e metas."],
-      ["Pergunte à IA", "Conecte o Claude ou o ChatGPT e consulte ou lance gastos conversando."],
+      ["Configuração", "Cadastramos contas, cartões e categorias do jeito da sua empresa."],
+      ["Lançamentos", "A equipe registra, ou você importa o extrato e o sistema categoriza."],
+      ["Visão do caixa", "Acompanhe entradas, saídas, orçamento e metas, e pergunte à IA quando quiser."],
     ],
     faq: [
       {
-        q: "Meus dados ficam misturados com os de outras pessoas?",
-        a: "Não. O MyCash atende vários usuários, e cada um tem os seus dados isolados dos demais.",
+        q: "O MyCash é para pessoa física?",
+        a: "Não. Ele é feito para empresas e negócios, para organizar o financeiro da operação.",
       },
       {
-        q: "Serve para finanças pessoais ou da empresa?",
-        a: "Para os dois usos: o controle de lançamentos, contas, cartões, orçamento e metas funciona tanto para a casa quanto para organizar o caixa de um negócio.",
+        q: "Os dados de uma conta ficam misturados com os de outras?",
+        a: "Não. O MyCash atende várias contas, e cada uma tem os seus dados isolados das demais.",
       },
       {
         q: "Como funciona o conector de IA?",
-        a: "Você conecta o MyCash ao Claude ou ao ChatGPT e passa a consultar suas finanças e lançar gastos por conversa, em vez de abrir o app.",
+        a: "Você conecta o MyCash ao Claude ou ao ChatGPT e passa a consultar o financeiro e lançar movimentações por conversa, em vez de abrir o sistema.",
       },
       {
         q: "Consigo trazer o que já tenho?",
         a: "Sim. Dá para importar o extrato, e os lançamentos entram já categorizados.",
+      },
+      {
+        q: "Substitui o meu contador?",
+        a: "Não. O MyCash organiza o financeiro do dia a dia. A contabilidade formal continua com o seu contador.",
       },
       {
         q: "Quanto custa?",
