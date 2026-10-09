@@ -107,7 +107,7 @@ export default function Home() {
           height={56}
           className="fill-transparent stroke-white/[0.06] [mask-image:radial-gradient(ellipse_70%_70%_at_60%_30%,black,transparent)]"
         />
-        <div className="relative mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-6 lg:grid-cols-[1.05fr_1fr] lg:px-8">
+        <div className="relative mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-6 lg:grid-cols-[1fr_1.1fr] lg:px-8">
           <div>
             <BlurFade delay={0} direction="down">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
@@ -116,7 +116,7 @@ export default function Home() {
               </span>
             </BlurFade>
             <BlurFade delay={0.12}>
-              <h1 className="mt-5 text-5xl font-extrabold leading-[0.98] tracking-[-0.045em] text-balance sm:text-6xl xl:text-7xl">
+              <h1 className="mt-5 text-5xl font-extrabold leading-[0.98] tracking-[-0.045em] text-balance sm:text-6xl xl:text-[4.25rem]">
                 Transformamos complexidade em{" "}
                 <span className="text-lima">sistema.</span>
               </h1>
@@ -165,7 +165,7 @@ export default function Home() {
             </BlurFade>
           </div>
 
-          <BlurFade delay={0.3}>
+          <BlurFade delay={0.3} className="lg:translate-x-14">
             <HeroVisual />
           </BlurFade>
         </div>
