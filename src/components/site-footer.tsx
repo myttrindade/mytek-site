@@ -12,6 +12,8 @@ const groups = [
       { text: "Sites", href: "/solucoes/sites" },
       { text: "Landing pages", href: "/solucoes/landing-pages" },
       { text: "CRM com WhatsApp", href: "/crm" },
+      { text: "Mytek Hub", href: "/solucoes/mytek-hub" },
+      { text: "MyCash", href: "/solucoes/mycash" },
       { text: "Dashboards", href: "/solucoes/dashboards" },
       { text: "Agentes de IA", href: "/solucoes/agentes-de-ia" },
       { text: "Automação com n8n", href: "/solucoes/automacao-n8n" },

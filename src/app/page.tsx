@@ -29,6 +29,8 @@ const quickLinks = [
   ["Sites", "/solucoes/sites"],
   ["Landing pages", "/solucoes/landing-pages"],
   ["CRM", "/crm"],
+  ["Mytek Hub", "/solucoes/mytek-hub"],
+  ["MyCash", "/solucoes/mycash"],
   ["Dashboards", "/solucoes/dashboards"],
   ["Agentes de IA", "/solucoes/agentes-de-ia"],
   ["Automação n8n", "/solucoes/automacao-n8n"],
@@ -37,15 +39,15 @@ const quickLinks = [
 
 const ways = [
   {
-    tag: "Produto por assinatura",
-    title: "CRM com WhatsApp",
-    price: "a partir de R$197/mês",
+    tag: "Produto pronto",
+    title: "CRM, Mytek Hub e MyCash",
+    price: "CRM a partir de R$197/mês",
     points: [
-      "Pronto para usar, configurado junto com você",
-      "Sem fidelidade: cancele quando quiser",
-      "3 usuários incluídos no plano",
+      "Prontos para usar, configurados junto com você",
+      "CRM sem fidelidade: cancele quando quiser",
+      "Hub e MyCash: peça uma demonstração e receba a proposta",
     ],
-    cta: ["Conhecer o CRM", "/crm"],
+    cta: ["Ver os produtos", "/#solucoes"],
   },
   {
     tag: "Projeto sob medida",
@@ -63,11 +65,11 @@ const ways = [
 const faqs = [
   {
     q: "A mytek vende só CRM?",
-    a: "Não. O CRM é o nosso produto por assinatura, mas também criamos sites, landing pages, dashboards, agentes de IA, automações com n8n, modelos de previsão de churn e sistemas sob medida.",
+    a: "Não. Temos três sistemas próprios, o CRM com WhatsApp, o Mytek Hub (organização do time) e o MyCash (organização financeira), e também criamos sites, landing pages, dashboards, agentes de IA, automações com n8n, modelos de previsão de churn e sistemas sob medida.",
   },
   {
     q: "Como funciona o preço?",
-    a: "O CRM tem preço público, a partir de R$197/mês e sem fidelidade. Os demais serviços são projetos: depois de uma conversa curta, você recebe escopo, prazo e valor fechados antes de qualquer trabalho começar.",
+    a: "O CRM tem preço público, a partir de R$197/mês e sem fidelidade. Para o Mytek Hub e o MyCash, você pede uma demonstração e recebe a proposta. Os demais serviços são projetos: depois de uma conversa curta, você recebe escopo, prazo e valor fechados antes de qualquer trabalho começar.",
   },
   {
     q: "Preciso ter equipe técnica?",
@@ -120,10 +122,10 @@ export default function Home() {
             </BlurFade>
             <BlurFade delay={0.25}>
               <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                Software e IA para negócios que vendem por conversa. Sites,
-                CRM, dashboards, agentes de IA, automações e previsão de
-                churn, para resolver problemas reais e não colecionar
-                ferramentas.
+                Software e IA para negócios que vendem por conversa. Sistemas
+                próprios de CRM, equipe e finanças, mais sites, dashboards,
+                agentes de IA, automações e previsão de churn, para resolver
+                problemas reais e não colecionar ferramentas.
               </p>
             </BlurFade>
             <BlurFade delay={0.4}>

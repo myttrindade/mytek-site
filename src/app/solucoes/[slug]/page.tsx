@@ -79,7 +79,7 @@ export default async function SolutionPage({ params }: Props) {
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <ShimmerButton href="/contact">
-                Pedir um orçamento <ArrowRightIcon className="size-4" />
+                {s.kind === "produto" ? "Pedir uma demonstração" : "Pedir um orçamento"} <ArrowRightIcon className="size-4" />
               </ShimmerButton>
               <Button variant="ghost" size="lg" asChild>
                 <a href="#como-funciona">Como funciona ↓</a>

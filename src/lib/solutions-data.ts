@@ -12,6 +12,8 @@
  */
 export type Solution = {
   slug: string;
+  /** Produto pronto (assinatura) ou serviço sob medida. */
+  kind: "produto" | "servico";
   /** Página própria do produto, quando existe (o CRM tem a /crm). */
   href: string;
   tag: string;
@@ -33,6 +35,7 @@ export type Solution = {
 export const solutions: Solution[] = [
   {
     slug: "sites",
+    kind: "servico",
     href: "/solucoes/sites",
     tag: "Presença",
     title: "Sites",
@@ -67,6 +70,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "landing-pages",
+    kind: "servico",
     href: "/solucoes/landing-pages",
     tag: "Captura",
     title: "Landing pages",
@@ -101,6 +105,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "crm",
+    kind: "produto",
     href: "/crm",
     tag: "Produto",
     title: "CRM com WhatsApp",
@@ -115,7 +120,85 @@ export const solutions: Solution[] = [
     highlight: true,
   },
   {
+    slug: "mytek-hub",
+    kind: "produto",
+    href: "/solucoes/mytek-hub",
+    tag: "Produto",
+    title: "Mytek Hub",
+    problem: "Cada um cuida das tarefas num lugar e ninguém sabe o que está andando.",
+    summary:
+      "Sistema de organização do time: tarefas com prazo, progresso visível e conversa no mesmo lugar.",
+    headline: "A equipe inteira organizada num lugar só: tarefas, prazos e conversa.",
+    intro:
+      "O Mytek Hub é o sistema que a própria mytek usa para organizar o trabalho. Cada pessoa vê o que precisa fazer e em que pé está; o líder enxerga o conjunto e pede tarefas direto pelo sistema; e o time conversa ali mesmo, sem trocar de aplicativo.",
+    includes: [
+      "Agendamento de tarefas, com responsável e prazo",
+      "Quadro de progresso (a fazer, em andamento, concluído) atualizado em tempo real",
+      "Visão da equipe e visão do líder sobre o andamento",
+      "O líder solicita tarefas para qualquer pessoa do time pelo próprio sistema",
+      "Chat da equipe com canais e mensagens diretas, no estilo do Discord",
+      "Base de conhecimento (wiki) da equipe, no mesmo login",
+    ],
+    steps: [
+      ["Configuração", "Criamos o espaço da sua empresa, com as pessoas e os times."],
+      ["Adoção", "O time passa a registrar e acompanhar o trabalho ali, com a nossa ajuda nos primeiros dias."],
+      ["Rotina", "O líder acompanha o progresso, pede tarefas e a conversa fica junto do trabalho."],
+    ],
+    faq: [
+      {
+        q: "É um chat como o Discord?",
+        a: "Tem canais e mensagens diretas para o time conversar, no mesmo login das tarefas. A diferença é que a conversa fica junto do trabalho, não solta em outro aplicativo.",
+      },
+      {
+        q: "O líder consegue acompanhar tudo?",
+        a: "Sim. O líder tem a visão do conjunto de tarefas da equipe e pode solicitar uma tarefa a alguém pelo próprio sistema.",
+      },
+      {
+        q: "Quanto custa?",
+        a: "Falamos de valores depois de entender o tamanho do seu time. Peça uma demonstração e a gente responde no WhatsApp.",
+      },
+    ],
+  },
+  {
+    slug: "mycash",
+    kind: "produto",
+    href: "/solucoes/mycash",
+    tag: "Produto",
+    title: "MyCash",
+    problem: "Você não sabe ao certo quanto entrou, quanto saiu e quanto vai sobrar.",
+    summary:
+      "Sistema de organização financeira: entradas, saídas e caixa da empresa num lugar só.",
+    headline: "O dinheiro da empresa organizado, do caixa ao fim do mês.",
+    intro:
+      "O MyCash é o sistema de organização financeira da mytek. Ele reúne o que entra e o que sai, mostra como está o caixa e deixa o financeiro da sua empresa claro para quem decide.",
+    // TODO(conteúdo): lista escrita só a partir da descrição "sistema organizacional
+    // financeiro". Confirmar com o time o que o MyCash faz hoje antes de publicar.
+    includes: [
+      "Registro de entradas e saídas, com categorias",
+      "Contas a pagar e a receber",
+      "Visão do fluxo de caixa por período",
+      "Relatórios simples para decidir, sem planilha",
+      "Acesso por usuário",
+    ],
+    steps: [
+      ["Configuração", "Ajustamos categorias e contas ao jeito da sua empresa."],
+      ["Lançamentos", "Você e o time passam a registrar o dinheiro no sistema."],
+      ["Visão do caixa", "Acompanhe entradas, saídas e o saldo sem montar relatório."],
+    ],
+    faq: [
+      {
+        q: "Substitui o meu contador?",
+        a: "Não. O MyCash organiza o financeiro do dia a dia. A contabilidade formal continua com o seu contador.",
+      },
+      {
+        q: "Quanto custa?",
+        a: "Falamos de valores depois de entender o seu uso. Peça uma demonstração e a gente responde no WhatsApp.",
+      },
+    ],
+  },
+  {
     slug: "dashboards",
+    kind: "servico",
     href: "/solucoes/dashboards",
     tag: "Dados",
     title: "Dashboards",
@@ -150,6 +233,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "agentes-de-ia",
+    kind: "servico",
     href: "/solucoes/agentes-de-ia",
     tag: "IA",
     title: "Agentes de IA",
@@ -184,6 +268,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "automacao-n8n",
+    kind: "servico",
     href: "/solucoes/automacao-n8n",
     tag: "Automação",
     title: "Automação com n8n",
@@ -218,6 +303,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "previsao-de-churn",
+    kind: "servico",
     href: "/solucoes/previsao-de-churn",
     tag: "Machine learning",
     title: "Previsão de churn",
@@ -252,6 +338,7 @@ export const solutions: Solution[] = [
   },
   {
     slug: "sistemas-sob-medida",
+    kind: "servico",
     href: "/solucoes/sistemas-sob-medida",
     tag: "Software",
     title: "Sistemas sob medida",
@@ -285,6 +372,9 @@ export const solutions: Solution[] = [
     ],
   },
 ];
+
+export const products = solutions.filter((s) => s.kind === "produto");
+export const services = solutions.filter((s) => s.kind === "servico");
 
 export const detailSolutions = solutions.filter((s) => s.slug !== "crm");
 

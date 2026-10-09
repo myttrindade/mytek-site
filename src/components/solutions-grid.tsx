@@ -7,19 +7,23 @@ import {
   GlobeIcon,
   LayoutTemplateIcon,
   MessagesSquareIcon,
+  KanbanSquareIcon,
   TrendingDownIcon,
+  WalletIcon,
   WorkflowIcon,
   type LucideIcon,
 } from "lucide-react";
 
 import { BlurFade } from "@/components/velora/blur-fade";
-import { solutions } from "@/lib/solutions-data";
+import { products, services, type Solution } from "@/lib/solutions-data";
 import { cn } from "@/lib/utils";
 
 const icons: Record<string, LucideIcon> = {
   sites: GlobeIcon,
   "landing-pages": LayoutTemplateIcon,
   crm: MessagesSquareIcon,
+  "mytek-hub": KanbanSquareIcon,
+  mycash: WalletIcon,
   dashboards: BarChart3Icon,
   "agentes-de-ia": BotIcon,
   "automacao-n8n": WorkflowIcon,
@@ -41,6 +45,74 @@ export function SolutionIcon({
   return <Icon className={className} />;
 }
 
+function GroupTitle({ title, note }: { title: string; note: string }) {
+  return (
+    <div className="mb-5 mt-14 flex flex-wrap items-baseline justify-between gap-2 border-b border-border pb-3 first-of-type:mt-12">
+      <h3 className="font-heading text-xl font-extrabold tracking-[-0.03em]">
+        {title}
+      </h3>
+      <span className="text-sm text-muted-foreground">{note}</span>
+    </div>
+  );
+}
+
+function SolutionCard({ s, i }: { s: Solution; i: number }) {
+  const product = s.kind === "produto";
+  return (
+    <BlurFade delay={i * 0.04}>
+      <Link
+        href={s.href}
+        className={cn(
+          "group flex h-full flex-col gap-4 rounded-2xl border p-6 transition-all hover:-translate-y-1",
+          product
+            ? "border-primary bg-primary text-primary-foreground"
+            : "border-border bg-card hover:border-primary"
+        )}
+      >
+        <div className="flex items-center justify-between">
+          <span
+            className={cn(
+              "flex size-10 items-center justify-center rounded-xl",
+              product ? "bg-white/15" : "bg-primary/10 text-primary"
+            )}
+          >
+            <SolutionIcon slug={s.slug} className="size-5" />
+          </span>
+          <span
+            className={cn(
+              "font-mono text-[11px] font-bold uppercase tracking-[0.06em]",
+              product ? "text-lima" : "text-muted-foreground"
+            )}
+          >
+            {s.tag}
+          </span>
+        </div>
+        <h3 className="font-heading text-xl font-bold tracking-[-0.02em]">
+          {s.title}
+        </h3>
+        <p className="text-sm font-medium">{s.problem}</p>
+        <p
+          className={cn(
+            "text-sm",
+            product ? "text-primary-foreground/85" : "text-muted-foreground"
+          )}
+        >
+          {s.summary}
+        </p>
+        <span
+          className={cn(
+            "mt-auto inline-flex items-center gap-1 pt-2 text-sm font-semibold",
+            product ? "text-lima" : "text-primary"
+          )}
+        >
+          Ver como funciona
+          <ArrowUpRightIcon className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </span>
+      </Link>
+    </BlurFade>
+  );
+}
+
 /** Grade de soluções: aparece na home e na página /solucoes. */
 export function Solutions({
   id = "solucoes",
@@ -56,71 +128,33 @@ export function Solutions({
           <BlurFade>
             <span className={eyebrow}>O que fazemos</span>
             <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
-              Oito soluções, um só time
+              Produtos prontos e serviços sob medida
               <span className="text-emphasis">.</span>
             </h2>
             <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-              Contrate uma solução ou monte o conjunto. Escolha pelo problema
-              que você quer resolver agora.
+              Escolha pelo problema que você quer resolver agora. Dá para contratar
+              uma solução ou montar o conjunto.
             </p>
           </BlurFade>
         )}
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {solutions.map((s, i) => (
-            <BlurFade key={s.slug} delay={i * 0.04}>
-              <Link
-                href={s.href}
-                className={cn(
-                  "group flex h-full flex-col gap-4 rounded-2xl border p-6 transition-all hover:-translate-y-1",
-                  s.highlight
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-card hover:border-primary"
-                )}
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className={cn(
-                      "flex size-10 items-center justify-center rounded-xl",
-                      s.highlight ? "bg-white/15" : "bg-primary/10 text-primary"
-                    )}
-                  >
-                    <SolutionIcon slug={s.slug} className="size-5" />
-                  </span>
-                  <span
-                    className={cn(
-                      "font-mono text-[11px] font-bold uppercase tracking-[0.06em]",
-                      s.highlight ? "text-lima" : "text-muted-foreground"
-                    )}
-                  >
-                    {s.tag}
-                  </span>
-                </div>
-                <h3 className="font-heading text-xl font-bold tracking-[-0.02em]">
-                  {s.title}
-                </h3>
-                <p className="text-sm font-medium">{s.problem}</p>
-                <p
-                  className={cn(
-                    "text-sm",
-                    s.highlight
-                      ? "text-primary-foreground/85"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  {s.summary}
-                </p>
-                <span
-                  className={cn(
-                    "mt-auto inline-flex items-center gap-1 pt-2 text-sm font-semibold",
-                    s.highlight ? "text-lima" : "text-primary"
-                  )}
-                >
-                  Ver como funciona
-                  <ArrowUpRightIcon className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                </span>
-              </Link>
-            </BlurFade>
+        <GroupTitle
+          title="Produtos prontos"
+          note="Por assinatura ou licença, configurados com você"
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((s, i) => (
+            <SolutionCard key={s.slug} s={s} i={i} />
+          ))}
+        </div>
+
+        <GroupTitle
+          title="Serviços sob medida"
+          note="Escopo, prazo e preço combinados antes de começar"
+        />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {services.map((s, i) => (
+            <SolutionCard key={s.slug} s={s} i={i} />
           ))}
         </div>
       </div>

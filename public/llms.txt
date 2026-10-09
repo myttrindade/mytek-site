@@ -20,6 +20,8 @@
   landing pages, CRM, dashboards, agentes de IA, automação com n8n, previsão
   de churn e sistemas sob medida.
 - [CRM](https://mytek.com.br/crm): o CRM com WhatsApp e alerta de lead parado.
+- [Mytek Hub](https://mytek.com.br/solucoes/mytek-hub): sistema de organização do time (tarefas, progresso, chat).
+- [MyCash](https://mytek.com.br/solucoes/mycash): sistema de organização financeira.
 - [Soluções](https://mytek.com.br/solucoes/sites): uma página para cada serviço.
 - [Preço](https://mytek.com.br/pricing): planos de CRM, Dashboard e Landing
   Page e combos. Os demais serviços são sob orçamento.

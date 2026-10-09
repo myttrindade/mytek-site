@@ -21,7 +21,7 @@ export const siteConfig = {
    */
   tagline: "Software e IA para negócios que vendem por conversa",
   description:
-    "Sites, landing pages, CRM com WhatsApp, dashboards, agentes de IA, automações com n8n e previsão de churn. Software sob medida e produtos por assinatura, CRM a partir de R$197/mês.",
+    "CRM com WhatsApp, Mytek Hub (organização do time), MyCash (organização financeira), sites, landing pages, dashboards, agentes de IA, automações com n8n e previsão de churn. CRM a partir de R$197/mês.",
 } as const;
 
 /**
