@@ -443,53 +443,61 @@
 }
 
 /* Abertura do site (components/brand/intro-splash.tsx) */
+@property --r {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
 .intro {
+  --r: 0px;
+  --cx: 50%;
+  --cy: 50%;
   position: fixed;
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  animation: intro-gone 0s linear 3.6s forwards;
-}
-.intro-curtain {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 50.2%;
   background: #0f0819;
-}
-.intro-curtain-l {
-  left: 0;
-  animation: intro-open-l 0.95s cubic-bezier(0.7, 0, 0.2, 1) 2.45s forwards;
-}
-.intro-curtain-r {
-  right: 0;
-  animation: intro-open-r 0.95s cubic-bezier(0.7, 0, 0.2, 1) 2.45s forwards;
+  /* O "buraco" que se abre a partir da logo do menu. */
+  -webkit-mask-image: radial-gradient(
+    circle at var(--cx) var(--cy),
+    transparent var(--r),
+    #000 calc(var(--r) + 1.5px)
+  );
+  mask-image: radial-gradient(
+    circle at var(--cx) var(--cy),
+    transparent var(--r),
+    #000 calc(var(--r) + 1.5px)
+  );
+  /* Rede de segurança: some sozinho mesmo se o script falhar. */
+  animation: intro-gone 0s linear 5s forwards;
 }
 .intro-stage {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
   background: radial-gradient(
     circle at 50% 50%,
     rgba(94, 52, 247, 0.35),
     transparent 45%
   );
-  animation: intro-stage-out 0.5s ease-in 2.2s forwards;
+  animation: intro-stage-out 0.7s ease-in 2.1s forwards;
+}
+.intro-center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
 }
 .intro-mark {
   perspective: 800px;
   position: relative;
   opacity: 0;
-  animation:
-    intro-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards,
-    intro-shrink 0.65s cubic-bezier(0.6, 0, 0.3, 1) 2.05s forwards;
+  animation: intro-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
 }
 .intro-spin {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  animation: intro-spin 2.3s cubic-bezier(0.3, 0.1, 0.2, 1) 0.1s forwards;
+  animation: intro-spin 2.1s cubic-bezier(0.3, 0.1, 0.2, 1) 0.1s forwards;
 }
 @keyframes intro-in {
   from {
@@ -509,25 +517,9 @@
     transform: rotateX(-6deg) rotateY(18deg);
   }
 }
-@keyframes intro-shrink {
-  to {
-    opacity: 0;
-    transform: scale(0.18);
-  }
-}
 @keyframes intro-stage-out {
   to {
     opacity: 0;
-  }
-}
-@keyframes intro-open-l {
-  to {
-    transform: translateX(-101%);
-  }
-}
-@keyframes intro-open-r {
-  to {
-    transform: translateX(101%);
   }
 }
 @keyframes intro-gone {
