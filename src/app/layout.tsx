@@ -5,6 +5,7 @@ import "./globals.css";
 import { company, isFilled } from "@/lib/company";
 import { siteConfig } from "@/lib/site-config";
 import { ChatWidget } from "@/components/chat-widget";
+import { IntroSplash } from "@/components/brand/intro-splash";
 
 // Corpo: Inter. Títulos: Satoshi no brand book; Plus Jakarta Sans é o
 // substituto do rascunho porque a Satoshi não está no Google Fonts.
@@ -85,9 +86,18 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
+      suppressHydrationWarning
       className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Abertura uma vez por sessão: marca no <html> antes da primeira pintura. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(sessionStorage.getItem('mytek-intro'))document.documentElement.classList.add('intro-seen');else sessionStorage.setItem('mytek-intro','1')}catch(e){}",
+          }}
+        />
+        <IntroSplash />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
