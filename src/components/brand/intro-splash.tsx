@@ -88,10 +88,6 @@ export function IntroSplash() {
             </radialGradient>
           </defs>
 
-          {/* aros finos: marcas girando e um segundo anel tênue */}
-          <circle className="intro-ticks" cx="500" cy="380" r="366" stroke="#fff" strokeOpacity="0.28" strokeWidth="2" strokeDasharray="1.5 11" />
-          <circle className="intro-ring2" cx="500" cy="380" r="392" stroke="#8D6BFF" strokeOpacity="0.22" strokeWidth="1" />
-
           {/* arco de baixo: desenha da esquerda para a direita */}
           {[
             { w: 26, f: "url(#arc-blur-lg)", o: 0.55 },
