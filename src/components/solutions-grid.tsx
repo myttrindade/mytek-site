@@ -60,17 +60,15 @@ function GroupTitle({ title, note }: { title: string; note: string }) {
 }
 
 const slab =
-  "shadow-[1px_1px_0_#4a22d6,2px_2px_0_#4a22d6,3px_3px_0_#4a22d6,4px_4px_0_#3d1bb0,5px_5px_0_#3d1bb0,6px_6px_0_#3d1bb0,7px_7px_0_#321694,8px_8px_0_#321694,0_34px_50px_-14px_rgba(60,30,170,0.55)]";
+  "shadow-[0_24px_40px_-18px_rgba(60,30,170,0.5)] transition-shadow duration-300 group-hover/3d:shadow-[1px_1px_0_#4a22d6,2px_2px_0_#4a22d6,3px_3px_0_#4a22d6,4px_4px_0_#3d1bb0,5px_5px_0_#3d1bb0,6px_6px_0_#3d1bb0,7px_7px_0_#321694,8px_8px_0_#321694,0_34px_50px_-14px_rgba(60,30,170,0.55)]";
 
 const z = (n: number) => `[transform:translateZ(${n}px)]`;
 
 function ProductCard({ s, i }: { s: Solution; i: number }) {
-  // Os três produtos ficam levemente girados, como um leque.
-  const rest = [-7, 0, 7][i] ?? 0;
   return (
     <BlurFade delay={i * 0.06}>
       <div className="h-full [perspective:1200px]">
-        <Card3D className="h-full" maxTilt={13} restTilt={rest}>
+        <Card3D className="h-full" maxTilt={13}>
           <Link
             href={s.href}
             style={{ transformStyle: "preserve-3d" }}
