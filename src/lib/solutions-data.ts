@@ -165,12 +165,12 @@ export const solutions: Solution[] = [
     href: "/solucoes/mycash",
     tag: "Produto",
     title: "MyCash",
-    problem: "O dinheiro entra e sai e você não sabe pra onde foi.",
+    problem: "O dinheiro entra e sai e ninguém sabe pra onde foi.",
     summary:
-      "App de finanças pessoais: lançamentos, cartões, orçamento e metas, com IA para consultar e lançar.",
-    headline: "Suas finanças pessoais no controle, do cartão à meta.",
+      "App de organização financeira, pessoal ou do negócio: lançamentos, cartões, orçamento e metas, com IA para consultar e lançar.",
+    headline: "As finanças no controle, do cartão à meta, para você ou para o seu negócio.",
     intro:
-      "O MyCash reúne num só app tudo o que entra e sai do seu bolso: contas, cartões com fatura e parcelas, orçamento e metas. Cada pessoa tem o seu espaço, com os dados isolados dos demais, e ainda dá para consultar e lançar conversando com a IA.",
+      "O MyCash reúne num só app tudo o que entra e sai: contas, cartões com fatura e parcelas, orçamento e metas. Use para as finanças pessoais ou para organizar as do seu negócio. Cada pessoa tem o seu espaço, com os dados isolados dos demais, e dá para consultar e lançar conversando com a IA.",
     includes: [
       "Lançamentos, contas e categorias, com controle completo do dia a dia",
       "Cartões com faturas e parcelas, sem perder o que ainda vai cair",
@@ -179,7 +179,7 @@ export const solutions: Solution[] = [
       "Importação de extrato, com categorização automática",
       "Painel com totais do mês e gráficos acessíveis",
       "Conector de IA: consulte e lance pelo Claude ou pelo ChatGPT",
-      "Dados de cada pessoa isolados dos demais usuários",
+      "Vários usuários, cada um com os dados isolados dos demais",
     ],
     steps: [
       ["Crie seu espaço", "Cadastre contas e cartões, ou importe o extrato e deixe o app categorizar."],
@@ -189,7 +189,11 @@ export const solutions: Solution[] = [
     faq: [
       {
         q: "Meus dados ficam misturados com os de outras pessoas?",
-        a: "Não. O MyCash atende várias pessoas, e cada uma tem os seus dados isolados dos demais.",
+        a: "Não. O MyCash atende vários usuários, e cada um tem os seus dados isolados dos demais.",
+      },
+      {
+        q: "Serve para finanças pessoais ou da empresa?",
+        a: "Para os dois usos: o controle de lançamentos, contas, cartões, orçamento e metas funciona tanto para a casa quanto para organizar o caixa de um negócio.",
       },
       {
         q: "Como funciona o conector de IA?",

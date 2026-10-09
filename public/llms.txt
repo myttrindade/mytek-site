@@ -21,7 +21,7 @@
   de churn e sistemas sob medida.
 - [CRM](https://mytek.com.br/crm): o CRM com WhatsApp e alerta de lead parado.
 - [Mytek Hub](https://mytek.com.br/solucoes/mytek-hub): sistema de organização do time (tarefas, progresso, chat).
-- [MyCash](https://mytek.com.br/solucoes/mycash): app de finanças pessoais, com conector de IA (Claude e ChatGPT).
+- [MyCash](https://mytek.com.br/solucoes/mycash): app de organização financeira, pessoal ou do negócio, com conector de IA (Claude e ChatGPT).
 - [Soluções](https://mytek.com.br/solucoes/sites): uma página para cada serviço.
 - [Preço](https://mytek.com.br/pricing): planos de CRM, Dashboard e Landing
   Page e combos. Os demais serviços são sob orçamento.
