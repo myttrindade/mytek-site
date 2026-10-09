@@ -13,7 +13,6 @@ import { SiteFooter } from "@/components/site-footer";
 import { PageHeader } from "@/components/page-header";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { BorderBeam } from "@/components/velora/border-beam";
-import { FounderProgram } from "@/components/founder-program";
 import { checkoutHref } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
@@ -618,10 +617,6 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Programa fundador — mesmo componente e mesma contagem de vagas
-          da home. Antes esta página tinha uma redação própria e um "2 de 5"
-          escrito à mão, que dessincronizariam na primeira venda. */}
-      <FounderProgram className="pb-24" />
 
       {/* FAQ */}
       <section className="pb-28">

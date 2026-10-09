@@ -16,14 +16,17 @@
 
 ## Páginas
 
-- [Início](https://mytek.com.br): visão geral dos três produtos, como cada
-  módulo funciona na prática e perguntas frequentes.
+- [Início](https://mytek.com.br): a mytek é uma empresa de software e IA: sites,
+  landing pages, CRM, dashboards, agentes de IA, automação com n8n, previsão
+  de churn e sistemas sob medida.
+- [CRM](https://mytek.com.br/crm): o CRM com WhatsApp e alerta de lead parado.
+- [Soluções](https://mytek.com.br/solucoes/sites): uma página para cada serviço.
 - [Preço](https://mytek.com.br/pricing): planos de CRM, Dashboard e Landing
-  Page, combos e o programa fundador.
+  Page e combos. Os demais serviços são sob orçamento.
 - [Sobre](https://mytek.com.br/about): por que a mytek existe como uma
   plataforma, não uma colcha de retalhos de ferramentas soltas.
 - [Blog](https://mytek.com.br/blog): decisões de produto e automações,
   escritas enquanto a equipe constrói CRM, Landing Page e Dashboard.
 - [Changelog](https://mytek.com.br/changelog): cada entrega documentada.
 - [Contato](https://mytek.com.br/contact): WhatsApp e e-mail diretos com a
-  equipe fundadora.
+  equipe.

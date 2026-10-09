@@ -9,11 +9,14 @@ const groups = [
   {
     title: "Soluções",
     links: [
-      { text: "Sites e landing pages", href: "/#solucoes" },
-      { text: "CRM", href: "/#produtos" },
-      { text: "Dashboards", href: "/#dashboard" },
-      { text: "Agentes de IA e automação", href: "/#solucoes" },
-      { text: "Previsão de churn", href: "/#solucoes" },
+      { text: "Sites", href: "/solucoes/sites" },
+      { text: "Landing pages", href: "/solucoes/landing-pages" },
+      { text: "CRM com WhatsApp", href: "/crm" },
+      { text: "Dashboards", href: "/solucoes/dashboards" },
+      { text: "Agentes de IA", href: "/solucoes/agentes-de-ia" },
+      { text: "Automação com n8n", href: "/solucoes/automacao-n8n" },
+      { text: "Previsão de churn", href: "/solucoes/previsao-de-churn" },
+      { text: "Sistemas sob medida", href: "/solucoes/sistemas-sob-medida" },
       { text: "Preço", href: "/pricing" },
       // Aparece só quando o checkout estiver de fato cobrando.
       ...(hasCheckoutLinks

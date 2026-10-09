@@ -15,7 +15,7 @@ import { MobileNav, type NavLink } from "@/components/mobile-nav";
 const navLinks: readonly NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/#solucoes", label: "Soluções" },
-  { href: "/#produtos", label: "CRM" },
+  { href: "/crm", label: "CRM" },
   { href: "/#processo", label: "Como trabalhamos" },
   { href: "/pricing", label: "Preço" },
   { href: "/about", label: "Sobre" },
@@ -49,7 +49,7 @@ export function SiteHeader() {
             Entrar
           </Link>
           <Button size="sm" asChild>
-            <Link href="/pricing">Ver preços</Link>
+            <Link href="/contact">Falar com o time</Link>
           </Button>
           <MobileNav links={navLinks} />
         </div>

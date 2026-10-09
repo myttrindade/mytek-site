@@ -3,6 +3,7 @@ import type { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog-posts";
 import { hasCheckoutLinks } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
+import { detailSolutions } from "@/lib/solutions-data";
 
 export const dynamic = "force-static";
 
@@ -11,6 +12,8 @@ const BASE = siteConfig.url;
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
+    "/crm",
+    ...detailSolutions.map((x) => `/solucoes/${x.slug}`),
     "/pricing",
     // Só entra no sitemap quando existir link de pagamento de verdade.
     ...(hasCheckoutLinks ? ["/pagamento"] : []),
