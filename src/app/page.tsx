@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { HeroVisual } from "@/components/brand/hero-visual";
-import { MeMarquee, MeTyping } from "@/components/brand/me-motion";
+import { MeMarquee } from "@/components/brand/me-motion";
 import { ProductShot } from "@/components/product-shot";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { TiltCard } from "@/components/velora/tilt-card";
@@ -306,8 +306,7 @@ export default function Home() {
       {/* CTA final */}
       <section className="dark relative overflow-hidden bg-background py-28 text-foreground lg:py-36">
         <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[90px]" />
-        <BrandGlyph size={660} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
-        <MeTyping className="absolute inset-x-0 top-12 opacity-50" />
+        <BrandGlyph still size={600} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.22]" />
         <div className="relative mx-auto max-w-4xl px-4 pt-10 text-center lg:px-8">
           <BlurFade>
             <h2 className="text-4xl font-extrabold tracking-[-0.04em] text-balance lg:text-6xl">

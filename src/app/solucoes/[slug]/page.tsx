@@ -163,7 +163,7 @@ export default async function SolutionPage({ params }: Props) {
         {/* CTA */}
         <section className="dark relative overflow-hidden bg-background py-24 text-foreground">
           <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
-          <BrandGlyph size={560} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-45" />
+          <BrandGlyph still size={520} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.22]" />
           <div className="mx-auto max-w-4xl px-4 text-center lg:px-8">
             <h2 className="text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Vamos conversar sobre{" "}

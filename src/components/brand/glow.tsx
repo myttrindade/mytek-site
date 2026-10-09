@@ -58,16 +58,19 @@ export function GlowArc({
  */
 export function BrandGlyph({
   size = 460,
+  still = false,
   className,
 }: {
   size?: number;
+  /** Parado e reto (sem flutuar); o reflexo de luz continua passando. */
+  still?: boolean;
   className?: string;
 }) {
   const id = useId();
   return (
     <div
       aria-hidden
-      className={cn("glyph-float pointer-events-none", className)}
+      className={cn(!still && "glyph-float", "pointer-events-none", className)}
       style={{ width: size, height: (size * 77) / 83 }}
     >
       <svg viewBox="8 45 91 85" className="size-full overflow-visible" fill="none">
