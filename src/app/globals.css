@@ -46,6 +46,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-emphasis: var(--emphasis);
   --color-lima: var(--lima);
   --color-lima-foreground: var(--lima-foreground);
   --color-brand: var(--brand);
@@ -99,6 +100,7 @@
   --chart-5: oklch(0.269 0 0);
   --lima: #C6FF00;
   --lima-foreground: #0F0819;
+  --emphasis: #5E34F7;
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -141,6 +143,7 @@
   --chart-5: oklch(0.269 0 0);
   --lima: #C6FF00;
   --lima-foreground: #0F0819;
+  --emphasis: #C6FF00;
   --sidebar: #170E2A;
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: #6E48FF;

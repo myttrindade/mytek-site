@@ -31,7 +31,7 @@ const scale = [
 
 function Label({ n, children }: { n: string; children: React.ReactNode }) {
   return (
-    <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+    <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
       {n} · {children}
     </span>
   );
@@ -42,12 +42,12 @@ export default function BrandPage() {
     <>
       <SiteHeader />
       <main className="mx-auto max-w-6xl space-y-24 px-4 pt-36 pb-24 lg:px-8">
-        <header className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 lg:p-14">
+        <header className="dark relative overflow-hidden rounded-3xl border border-border bg-background p-8 text-foreground lg:p-14">
           <MePattern cols={20} rows={10} tone="#241848" highlight={[34, 131]} className="[mask-image:linear-gradient(to_left,black,transparent_70%)]" />
           <div className="relative max-w-2xl space-y-6">
             <Label n="00">Design system · rascunho v0.1</Label>
             <h1 className="font-heading text-5xl font-extrabold tracking-[-0.045em] lg:text-7xl">
-              mytek<span className="text-lima">.</span> Ultravioleta
+              mytek<span className="text-emphasis">.</span> Ultravioleta
             </h1>
             <p className="text-lg text-muted-foreground">
               Tokens, tipografia, símbolo, pattern e componentes que o site

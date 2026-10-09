@@ -95,7 +95,7 @@ const steps = [
 ] as const;
 
 const eyebrow =
-  "font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima";
+  "font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis";
 
 export function Solutions() {
   return (
@@ -105,7 +105,7 @@ export function Solutions() {
           <span className={eyebrow}>Soluções</span>
           <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
             Software e IA para negócios que vendem por conversa
-            <span className="text-lima">.</span>
+            <span className="text-emphasis">.</span>
           </h2>
           <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
             Do site que atrai ao agente que atende, da automação que poupa
@@ -190,14 +190,14 @@ export function Process() {
   return (
     <section
       id="processo"
-      className="relative border-y border-border bg-card py-24 lg:py-32"
+      className="dark relative bg-background py-24 text-foreground lg:py-32"
     >
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
         <BlurFade>
           <span className={eyebrow}>Como trabalhamos</span>
           <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
             Transformamos complexidade em{" "}
-            <span className="text-lima">sistema.</span>
+            <span className="text-emphasis">sistema.</span>
           </h2>
         </BlurFade>
         <ol className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">

@@ -305,7 +305,7 @@ export default function Home() {
       <SiteHeader />
 
       {/* Hero */}
-      <section className="relative overflow-hidden pt-40 pb-24 lg:pt-48 lg:pb-28">
+      <section className="dark relative overflow-hidden bg-background pt-40 pb-24 text-foreground lg:pt-48 lg:pb-28">
         <MePattern cols={26} rows={16} tone="#241848" highlight={[41, 210, 331]} className="[mask-image:radial-gradient(ellipse_90%_80%_at_50%_0%,black,transparent_75%)]" />
         <div className="relative mx-auto max-w-6xl px-4 text-center lg:px-8">
           <BlurFade delay={0} direction="down">
@@ -335,7 +335,7 @@ export default function Home() {
             */}
             <h1 className="mx-auto mt-8 max-w-4xl text-4xl font-extrabold tracking-[-0.035em] text-balance sm:text-5xl lg:text-7xl">
               Transformamos complexidade em{" "}
-              <span className="text-lima">sistema.</span>
+              <span className="text-emphasis">sistema.</span>
               <span className="mt-4 block text-2xl font-medium tracking-normal text-muted-foreground sm:text-3xl lg:text-4xl">
                 Software e IA para negócios que vendem por conversa.
               </span>
@@ -453,7 +453,7 @@ export default function Home() {
           <BlurFade>
             <h2 className="max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Você já ouviu isso{" "}
-              <span className="text-lima">na sua empresa</span>
+              <span className="text-emphasis">na sua empresa</span>
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
               Se alguma dessas frases parece familiar, o problema não é falta
@@ -509,12 +509,12 @@ export default function Home() {
       </section>
 
       {/* Do primeiro clique ao fechamento — a plataforma em cinco etapas */}
-      <section id="jornada" className="relative border-y border-border bg-card py-24 lg:py-32">
+      <section id="jornada" className="relative py-24 lg:py-32 bg-muted">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
             <h2 className="mx-auto max-w-3xl text-center text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Do primeiro clique{" "}
-              <span className="text-lima">ao fechamento</span>
+              <span className="text-emphasis">ao fechamento</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground text-pretty">
               Captura, funil, alerta, dado e venda no mesmo lugar. Menos
@@ -528,15 +528,15 @@ export default function Home() {
       </section>
 
       {/* Lead parado — o diferencial de marca, não uma funcionalidade */}
-      <section id="lead-parado" className="relative py-24 lg:py-32">
+      <section id="lead-parado" className="relative py-24 lg:py-32 dark bg-background text-foreground">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           <BlurFade>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
               O que nenhum CRM comum faz
             </span>
             <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Seu lead não deveria{" "}
-              <span className="text-lima">precisar lembrar de você</span>
+              <span className="text-emphasis">precisar lembrar de você</span>
             </h2>
             <p className="mt-5 max-w-2xl text-lg text-muted-foreground text-pretty">
               Todo CRM registra o que já aconteceu. A mytek olha para o que
@@ -563,14 +563,14 @@ export default function Home() {
             <StalledPanel className="mt-6" />
             <p className="mt-6 text-lg font-medium text-balance">
               Você não precisa lembrar.{" "}
-              <span className="text-lima">A mytek lembra.</span>
+              <span className="text-emphasis">A mytek lembra.</span>
             </p>
           </BlurFade>
         </div>
       </section>
 
       {/* Diferenciais: cada funcionalidade dita como benefício */}
-      <section id="recursos" className="relative border-y border-border bg-card py-24 lg:py-32">
+      <section id="recursos" className="relative py-24 lg:py-32 bg-muted">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
             <h2 className="max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-4xl">
@@ -607,7 +607,7 @@ export default function Home() {
       <section id="produtos" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">Produtos</span>
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">Produtos</span>
             <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               O que cada módulo faz, na prática
             </h2>
@@ -620,7 +620,7 @@ export default function Home() {
           >
             <BlurFade direction="right">
               <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
                   Módulo · CRM
                 </span>
                 <h3 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-4xl">
@@ -670,7 +670,7 @@ export default function Home() {
             </BlurFade>
             <BlurFade direction="left" delay={0.15} className="order-1 lg:order-2">
               <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
                   Módulo · Landing Page
                 </span>
                 <h3 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-4xl">
@@ -710,13 +710,13 @@ export default function Home() {
       </section>
 
       {/* Landing Page como elo, não como produto avulso */}
-      <section id="captura" className="relative py-24 lg:py-32">
+      <section id="captura" className="relative py-24 lg:py-32 bg-muted">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           <BlurFade>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">Captura</span>
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">Captura</span>
             <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               A landing page não é{" "}
-              <span className="text-lima">um produto à parte</span>
+              <span className="text-emphasis">um produto à parte</span>
             </h2>
             <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
               Ela é a porta de entrada da mesma máquina. Quem preenche o
@@ -760,12 +760,12 @@ export default function Home() {
       <section id="dashboard" className="relative py-24 lg:py-32">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
               Módulo · Dashboard
             </span>
             <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Veja os números do seu negócio{" "}
-              <span className="text-lima">em tempo real</span>
+              <span className="text-emphasis">em tempo real</span>
             </h2>
             <p className="mt-4 max-w-xl text-muted-foreground">
               O Dashboard reúne vendas, leads e atendimento em painéis
@@ -788,15 +788,15 @@ export default function Home() {
       </section>
 
       {productShots.inbox.src && (
-        <section id="atendimento" className="relative py-24 lg:py-32">
+        <section id="atendimento" className="relative py-24 lg:py-32 bg-muted">
           <div className="mx-auto max-w-6xl px-4 lg:px-8">
             <BlurFade>
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+              <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
                 Atendimento
               </span>
               <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
                 Converse com o lead{" "}
-                <span className="text-lima">sem perder o contexto</span>
+                <span className="text-emphasis">sem perder o contexto</span>
               </h2>
               <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
                 A conversa do WhatsApp e a ficha do negócio na mesma tela:
@@ -823,15 +823,15 @@ export default function Home() {
         em 15; um tópico espalhado em toda a página não é ênfase, é ruído.
       */}
       {/* IA — mostrada pelo que ela responde, não pela sigla */}
-      <section id="ia" className="relative border-y border-border bg-card py-24 lg:py-32">
+      <section id="ia" className="relative py-24 lg:py-32 dark bg-background text-foreground">
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           <BlurFade>
-            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
               Módulo Conhecimento · plano Plus
             </span>
             <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Pergunte em português.{" "}
-              <span className="text-lima">A resposta vem da sua base.</span>
+              <span className="text-emphasis">A resposta vem da sua base.</span>
             </h2>
             <p className="mt-5 max-w-2xl text-muted-foreground text-pretty">
               Em vez de garimpar o funil atrás de um dado, você pergunta. A IA
@@ -899,7 +899,7 @@ export default function Home() {
           <BlurFade>
             <h2 className="max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Quanto custa{" "}
-              <span className="text-lima">perder um lead?</span>
+              <span className="text-emphasis">perder um lead?</span>
             </h2>
             <p className="mt-4 max-w-2xl text-muted-foreground text-pretty">
               Mexa nos números do seu negócio. A conta é sua — a gente só
@@ -913,12 +913,12 @@ export default function Home() {
       </section>
 
       {/* Pricing */}
-      <section id="preco" className="relative py-24 lg:py-32">
+      <section id="preco" className="relative py-24 lg:py-32 bg-muted">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
             <h2 className="mx-auto max-w-2xl text-center text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
               Um preço por produto.{" "}
-              <span className="text-lima">Combine e economize.</span>
+              <span className="text-emphasis">Combine e economize.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-muted-foreground">
               Quanto mais módulos, menor o preço de cada um.
@@ -946,7 +946,7 @@ export default function Home() {
                   <div className="mb-4 w-fit rounded-xl bg-primary/10 p-3 text-primary">
                     {p.icon}
                   </div>
-                  <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-emphasis">
                     {p.name}
                   </span>
                   <p className="mt-3 text-3xl font-extrabold tracking-[-0.035em]">
@@ -1035,7 +1035,7 @@ export default function Home() {
           <BlurFade>
             <h2 className="text-4xl font-extrabold tracking-[-0.035em] text-balance lg:text-6xl">
               Pronto para organizar e{" "}
-              <span className="text-lima">escalar seu negócio</span>?
+              <span className="text-emphasis">escalar seu negócio</span>?
             </h2>
             <p className="mx-auto mt-6 max-w-xl text-lg text-primary-foreground/85">
               Fale com nosso time e veja como a mytek se encaixa na rotina

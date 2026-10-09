@@ -42,7 +42,7 @@ const groups = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/40 py-14">
+    <footer className="dark border-t border-border bg-background py-14 text-foreground">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
         <div>
           <Link href="/" className="flex items-center gap-2 font-semibold">

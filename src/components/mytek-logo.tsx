@@ -1,17 +1,29 @@
+import { MytekAvatar } from "@/components/brand/symbol";
 import { cn } from "@/lib/utils";
 
-/** Assinatura "mytek." do brand book Ultravioleta: o ponto é sempre lima. */
-export function MytekLogo({ className }: { className?: string }) {
+/**
+ * Logo da mytek: o símbolo do avatar do Instagram + a assinatura "mytek."
+ * com o ponto lima. `iconOnly` mostra só o símbolo.
+ */
+export function MytekLogo({
+  className,
+  iconOnly = false,
+}: {
+  className?: string;
+  iconOnly?: boolean;
+}) {
   return (
     <span
-      className={cn(
-        "font-heading text-2xl font-extrabold leading-none tracking-[-0.055em]",
-        className
-      )}
+      className={cn("inline-flex items-center gap-2.5", className)}
       role="img"
       aria-label="mytek"
     >
-      mytek<span className="text-lima">.</span>
+      <MytekAvatar />
+      {!iconOnly && (
+        <span className="font-heading text-2xl font-extrabold leading-none tracking-[-0.055em]">
+          mytek<span className="text-lima">.</span>
+        </span>
+      )}
     </span>
   );
 }
