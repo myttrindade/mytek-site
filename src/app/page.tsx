@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, RocketIcon } from "lucide-react";
 import type { Metadata } from "next";
 
+import { Eclipse, GlowArc } from "@/components/brand/glow";
 import { HeroVisual } from "@/components/brand/hero-visual";
 import { MeMarquee, MeTyping } from "@/components/brand/me-motion";
 import { ProductShot } from "@/components/product-shot";
@@ -170,7 +171,8 @@ export default function Home() {
           </BlurFade>
         </div>
 
-        <MeMarquee className="relative mt-24 pb-12" />
+        <MeMarquee className="relative mt-24 pb-14" />
+        <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[90px]" />
       </section>
 
       <Solutions />
@@ -221,7 +223,9 @@ export default function Home() {
       <Process />
 
       {/* CRM em destaque */}
-      <section id="crm" className="py-24 lg:py-28">
+      <section id="crm" className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-32">
+        <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[90px]" />
+        <div aria-hidden className="pointer-events-none absolute right-[-10%] top-1/2 size-[640px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(94,52,247,0.35),transparent_65%)]" />
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-[1fr_1.2fr] lg:px-8">
           <BlurFade>
             <span className={eyebrow}>Produto em destaque</span>
@@ -260,7 +264,9 @@ export default function Home() {
             </div>
           </BlurFade>
           <BlurFade delay={0.15}>
-            <ProductShot shot={productShots.funil} className="max-w-none" />
+            <div className="rounded-2xl shadow-[0_0_90px_-15px_rgba(110,72,255,0.7)]">
+              <ProductShot shot={productShots.funil} className="max-w-none" />
+            </div>
           </BlurFade>
         </div>
       </section>
@@ -288,15 +294,17 @@ export default function Home() {
       </section>
 
       {/* CTA final */}
-      <section className="relative overflow-hidden bg-primary py-24 text-primary-foreground lg:py-28">
-        <MeTyping className="absolute inset-x-0 top-10 opacity-60" />
+      <section className="dark relative overflow-hidden bg-background py-28 text-foreground lg:py-36">
+        <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[90px]" />
+        <Eclipse size={620} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-90" />
+        <MeTyping className="absolute inset-x-0 top-12 opacity-50" />
         <div className="relative mx-auto max-w-4xl px-4 pt-10 text-center lg:px-8">
           <BlurFade>
             <h2 className="text-4xl font-extrabold tracking-[-0.04em] text-balance lg:text-6xl">
               Qual problema da sua operação a gente resolve{" "}
               <span className="text-lima">primeiro?</span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-primary-foreground/85">
+            <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
               Conte como o seu processo funciona hoje. A gente responde no
               WhatsApp com um caminho e um preço.
             </p>
@@ -312,7 +320,7 @@ export default function Home() {
                 <Link href="/pricing">Ver preços</Link>
               </Button>
             </div>
-            <p className="mt-5 text-sm text-primary-foreground/75">
+            <p className="mt-5 text-sm text-muted-foreground">
               Sem fidelidade nos produtos por assinatura · resposta em até 4h
               úteis
             </p>

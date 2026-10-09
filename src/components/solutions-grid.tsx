@@ -14,6 +14,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { Eclipse, GlowArc } from "@/components/brand/glow";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { products, services, type Solution } from "@/lib/solutions-data";
 import { cn } from "@/lib/utils";
@@ -174,9 +175,11 @@ export function Process() {
   return (
     <section
       id="processo"
-      className="dark relative bg-background py-24 text-foreground lg:py-28"
+      className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-32"
     >
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[90px]" />
+      <Eclipse size={560} className="absolute -right-32 top-1/2 hidden -translate-y-[62%] opacity-80 md:block" />
+      <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
         <BlurFade>
           <span className={eyebrow}>Como trabalhamos</span>
           <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">

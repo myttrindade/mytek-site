@@ -619,3 +619,32 @@ html.intro-seen .intro {
     display: none;
   }
 }
+
+/* Elementos de luz (components/brand/glow.tsx) */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.glow-pulse {
+  animation: glow-pulse 5s ease-in-out infinite;
+}
+@keyframes eclipse-rot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.eclipse-rot {
+  transform-origin: 200px 200px;
+  animation: eclipse-rot 60s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .glow-pulse,
+  .eclipse-rot {
+    animation: none;
+  }
+}
