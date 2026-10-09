@@ -761,3 +761,48 @@ html.intro-seen .intro {
     animation: none;
   }
 }
+
+/* Visual da capa: escala pela largura E pela altura da tela (hero-visual.tsx) */
+.hero-vis {
+  --s: 0.62;
+  width: calc(560px * var(--s));
+  height: calc(540px * var(--s));
+}
+.hero-vis-in {
+  width: 560px;
+  height: 540px;
+  transform: scale(var(--s));
+  transform-origin: top left;
+}
+@media (min-width: 640px) {
+  .hero-vis {
+    --s: 0.85;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-vis {
+    --s: 1;
+  }
+}
+@media (min-width: 1024px) and (max-height: 860px) {
+  .hero-vis {
+    --s: 0.86;
+  }
+}
+@media (min-width: 1024px) and (max-height: 760px) {
+  .hero-vis {
+    --s: 0.74;
+  }
+}
+@media (min-width: 1024px) and (max-height: 680px) {
+  .hero-vis {
+    --s: 0.64;
+  }
+}
+
+/* Em telas baixas, os atalhos da capa saem para tudo caber na primeira tela. */
+@media (min-width: 1024px) and (max-height: 860px) {
+  .hero-chips {
+    display: none;
+  }
+}

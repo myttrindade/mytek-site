@@ -33,8 +33,8 @@ function Card({
 
 export function HeroVisual() {
   return (
-    <div className="mx-auto h-[335px] w-[348px] sm:h-[460px] sm:w-[476px] lg:h-[540px] lg:w-[560px]">
-      <div className="relative h-[540px] w-[560px] origin-top-left scale-[0.62] sm:scale-[0.85] lg:scale-100">
+    <div className="hero-vis mx-auto">
+      <div className="hero-vis-in relative">
         {/* brilho e anéis atrás do símbolo */}
         <div
           aria-hidden

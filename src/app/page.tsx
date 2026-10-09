@@ -97,7 +97,7 @@ export default function Home() {
       <SiteHeader />
 
       {/* Capa */}
-      <section className="dark relative overflow-hidden bg-background pt-32 pb-0 text-foreground lg:pt-40">
+      <section className="dark relative flex min-h-[100svh] flex-col overflow-hidden bg-background pt-24 pb-0 text-foreground lg:pt-20">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_78%_20%,rgba(94,52,247,0.38),transparent_70%),radial-gradient(ellipse_50%_50%_at_0%_100%,rgba(94,52,247,0.2),transparent_70%)]"
@@ -107,7 +107,7 @@ export default function Home() {
           height={56}
           className="fill-transparent stroke-white/[0.06] [mask-image:radial-gradient(ellipse_70%_70%_at_60%_30%,black,transparent)]"
         />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 lg:grid-cols-[1.05fr_1fr] lg:px-8">
+        <div className="relative mx-auto grid w-full max-w-6xl flex-1 items-center gap-8 px-4 py-6 lg:grid-cols-[1.05fr_1fr] lg:px-8">
           <div>
             <BlurFade delay={0} direction="down">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
@@ -116,21 +116,20 @@ export default function Home() {
               </span>
             </BlurFade>
             <BlurFade delay={0.12}>
-              <h1 className="mt-6 text-5xl font-extrabold leading-[0.98] tracking-[-0.045em] text-balance sm:text-6xl lg:text-7xl">
+              <h1 className="mt-5 text-5xl font-extrabold leading-[0.98] tracking-[-0.045em] text-balance sm:text-6xl xl:text-7xl">
                 Transformamos complexidade em{" "}
                 <span className="text-lima">sistema.</span>
               </h1>
             </BlurFade>
             <BlurFade delay={0.25}>
-              <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                Software e IA para negócios que vendem por conversa. Sistemas
-                próprios de CRM, equipe e finanças, mais sites, dashboards,
-                agentes de IA, automações e previsão de churn, para resolver
-                problemas reais e não colecionar ferramentas.
+              <p className="mt-5 max-w-xl text-lg text-muted-foreground">
+                Software e IA para negócios que vendem por conversa. CRM, equipe
+                e finanças, mais sites, dashboards, agentes de IA, automações
+                e previsão de churn.
               </p>
             </BlurFade>
             <BlurFade delay={0.4}>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-7 flex flex-wrap items-center gap-4">
                 <ShimmerButton href="/contact">
                   <RocketIcon className="size-4" />
                   Falar com o time
@@ -152,7 +151,7 @@ export default function Home() {
               </ul>
             </BlurFade>
             <BlurFade delay={0.55}>
-              <div className="mt-8 flex flex-wrap gap-2">
+              <div className="hero-chips mt-8 flex flex-wrap gap-2">
                 {quickLinks.map(([label, href]) => (
                   <Link
                     key={label}
@@ -171,7 +170,7 @@ export default function Home() {
           </BlurFade>
         </div>
 
-        <MeMarquee className="relative mt-24 pb-14" />
+        <MeMarquee className="relative mt-4 pb-6" />
         <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[90px]" />
       </section>
 
