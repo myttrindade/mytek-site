@@ -1,7 +1,7 @@
 import { SYMBOL_PATH } from "@/components/brand/symbol";
 
 const LAYERS = 14;
-const SIZE = 96;
+const SIZE = 150;
 const LETTERS = ["m", "y", "t", "e", "k"];
 
 /**
@@ -97,7 +97,7 @@ export function IntroSplash() {
       </div>
 
       <div className="intro-center">
-        <div className="intro-mark" style={{ width: SIZE, height: SIZE }}>
+        <div className="intro-mark">
           <div className="intro-spin">
             {Array.from({ length: LAYERS }, (_, i) => {
               const front = i === LAYERS - 1;

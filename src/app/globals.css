@@ -493,11 +493,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  padding-top: 2vh;
+  gap: 22px;
+  padding-top: 1vh;
   animation: intro-center-out 0.5s ease-in 3.3s forwards;
 }
 .intro-mark {
+  width: clamp(120px, 21vw, 190px);
+  aspect-ratio: 1;
   perspective: 800px;
   position: relative;
   opacity: 0;
@@ -514,7 +516,7 @@
   display: flex;
   font-family: var(--font-display), var(--font-sans), sans-serif;
   font-weight: 800;
-  font-size: clamp(30px, 6vw, 58px);
+  font-size: clamp(38px, 8vw, 78px);
   line-height: 1;
   color: #fff;
   letter-spacing: 0.42em;
@@ -534,12 +536,12 @@
 .intro-sub {
   margin: 0;
   font-family: var(--font-geist-mono), monospace;
-  font-size: 11px;
+  font-size: clamp(13px, 2.2vw, 18px);
   font-weight: 700;
-  letter-spacing: 0.5em;
-  margin-right: -0.5em;
+  letter-spacing: 0.45em;
+  margin-right: -0.45em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.72);
   opacity: 0;
   animation: intro-sub 0.8s ease-out 2.35s forwards;
 }
