@@ -165,21 +165,20 @@ export const solutions: Solution[] = [
     href: "/solucoes/mycash",
     tag: "Produto",
     title: "MyCash",
-    problem: "O dinheiro da empresa entra e sai e ninguém sabe pra onde foi.",
+    problem: "Você não sabe quanto a empresa tem em caixa de verdade.",
     summary:
-      "Sistema de organização financeira para empresas: lançamentos, cartões, orçamento e metas, com IA para consultar e lançar.",
-    headline: "O financeiro da sua empresa organizado, do cartão à meta.",
+      "O financeiro da empresa num só lugar: contas, cartões, orçamento e metas, com IA para consultar e lançar.",
+    headline: "O financeiro da empresa organizado, sem planilha e sem susto no fim do mês.",
     intro:
-      "O MyCash é o sistema de organização financeira da mytek, feito para empresas e negócios. Ele reúne o que entra e o que sai, cartões com fatura e parcelas, orçamento e metas, e deixa o caixa claro para quem decide. Cada conta tem os dados isolados das demais, e dá para consultar e lançar conversando com a IA.",
+      "O MyCash organiza o dinheiro do seu negócio: o que entra, o que sai, o que está parcelado no cartão e o que ainda vai vencer. Você vê o caixa do mês num painel claro, define orçamento e metas por categoria e ainda pergunta e lança pelo Claude ou pelo ChatGPT.",
     includes: [
-      "Lançamentos, contas e categorias, com controle completo do caixa",
-      "Cartões com faturas e parcelas, sem perder o que ainda vai cair",
-      "Orçamento por categoria e metas para acompanhar",
-      "Lançamentos recorrentes e agenda de contas a pagar e a receber",
-      "Importação de extrato, com categorização automática",
-      "Painel com totais do mês e gráficos acessíveis",
-      "Conector de IA: consulte e lance pelo Claude ou pelo ChatGPT",
-      "Vários usuários, cada conta com os dados isolados das demais",
+      "Todas as entradas e saídas, por conta e por categoria",
+      "Cartões com faturas e parcelas, para saber o que ainda vai cair",
+      "Orçamento e metas por categoria, com acompanhamento",
+      "Contas recorrentes e agenda de vencimentos, sem esquecer pagamento",
+      "Importe o extrato do banco e ele já vem categorizado",
+      "Painel com os totais do mês e gráficos fáceis de ler",
+      "Pergunte e lance pelo Claude ou pelo ChatGPT, conversando",
     ],
     steps: [
       ["Configuração", "Cadastramos contas, cartões e categorias do jeito da sua empresa."],
@@ -188,20 +187,12 @@ export const solutions: Solution[] = [
     ],
     faq: [
       {
-        q: "O MyCash é para pessoa física?",
-        a: "Não. Ele é feito para empresas e negócios, para organizar o financeiro da operação.",
-      },
-      {
-        q: "Os dados de uma conta ficam misturados com os de outras?",
-        a: "Não. O MyCash atende várias contas, e cada uma tem os seus dados isolados das demais.",
-      },
-      {
-        q: "Como funciona o conector de IA?",
-        a: "Você conecta o MyCash ao Claude ou ao ChatGPT e passa a consultar o financeiro e lançar movimentações por conversa, em vez de abrir o sistema.",
+        q: "Como funciona a IA no MyCash?",
+        a: "Você conecta o MyCash ao Claude ou ao ChatGPT e passa a perguntar sobre o financeiro e lançar movimentações por conversa, em vez de abrir o sistema.",
       },
       {
         q: "Consigo trazer o que já tenho?",
-        a: "Sim. Dá para importar o extrato, e os lançamentos entram já categorizados.",
+        a: "Sim. Dá para importar o extrato do banco, e os lançamentos entram já categorizados.",
       },
       {
         q: "Substitui o meu contador?",
