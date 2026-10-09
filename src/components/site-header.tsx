@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MytekLogo } from "@/components/mytek-logo";
 import { MobileNav, type NavLink } from "@/components/mobile-nav";
-import { siteConfig } from "@/lib/site-config";
 
 /**
  * Fonte única dos links de navegação: o menu do desktop e o do celular leem
@@ -28,7 +27,6 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <MytekLogo />
-          {siteConfig.name}
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">

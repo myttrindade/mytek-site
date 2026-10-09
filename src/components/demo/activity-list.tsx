@@ -22,7 +22,7 @@ const notifications = [
   },
   {
     icon: UserPlusIcon,
-    tone: "bg-blue-500/15 text-blue-500",
+    tone: "bg-primary/15 text-primary",
     title: "Lead recebido",
     description: "João Pedro: orçamento novo projeto",
     time: "2min atrás",
@@ -50,7 +50,7 @@ const notifications = [
   },
   {
     icon: StarIcon,
-    tone: "bg-cyan-500/15 text-cyan-500",
+    tone: "bg-lima/20 text-foreground",
     title: "Cliente novo",
     description: "Nortec: primeira compra",
     time: "24min atrás",

@@ -46,7 +46,6 @@ export function AuthForm({ mode }: AuthFormProps) {
     <div>
       <Link href="/" className="flex items-center gap-2 font-semibold">
         <MytekLogo />
-        mytek
       </Link>
       <h1 className="mt-8 text-2xl font-semibold tracking-tight">
         {isLogin ? "Bem-vinda de volta" : "Crie sua conta"}

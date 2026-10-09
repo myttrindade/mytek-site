@@ -21,7 +21,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           background:
-            "radial-gradient(1200px 630px at 100% 0%, #1e3a8a 0%, #0a0a0a 55%)",
+            "radial-gradient(1200px 630px at 100% 0%, #4A22D6 0%, #0F0819 55%)",
           color: "white",
           padding: "80px",
           fontFamily: "sans-serif",
@@ -33,7 +33,7 @@ export default function OpengraphImage() {
               width: "56px",
               height: "56px",
               borderRadius: "16px",
-              background: "linear-gradient(135deg, #3b82f6, #38bdf8)",
+              background: "#5E34F7",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -61,12 +61,12 @@ export default function OpengraphImage() {
             }}
           >
             Dashboards, landing pages e&nbsp;
-            <span style={{ color: "#60a5fa" }}>CRM numa plataforma só.</span>
+            <span style={{ color: "#C6FF00" }}>CRM numa plataforma só.</span>
           </div>
           <div
             style={{
               fontSize: "32px",
-              color: "#a1a1aa",
+              color: "#A79FC9",
               maxWidth: "820px",
               lineHeight: 1.3,
             }}
@@ -82,13 +82,13 @@ export default function OpengraphImage() {
             alignItems: "center",
             gap: "16px",
             fontSize: "26px",
-            color: "#d4d4d8",
+            color: "#EDEBFF",
           }}
         >
           <span>Funil pronto</span>
-          <span style={{ color: "#3f3f46" }}>•</span>
+          <span style={{ color: "#6E48FF" }}>•</span>
           <span>Automação de WhatsApp</span>
-          <span style={{ color: "#3f3f46" }}>•</span>
+          <span style={{ color: "#6E48FF" }}>•</span>
           <span>CRM a partir de R$197/mês</span>
         </div>
       </div>

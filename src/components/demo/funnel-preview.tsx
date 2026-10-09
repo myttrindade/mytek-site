@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const stages = [
   { label: "Novos leads", value: 48, width: 100, tone: "bg-primary" },
-  { label: "Em contato", value: 31, width: 64, tone: "bg-cyan-500" },
+  { label: "Em contato", value: 31, width: 64, tone: "bg-lima" },
   { label: "Fechados", value: 17, width: 35, tone: "bg-emerald-500" },
 ];
 

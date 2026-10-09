@@ -3,7 +3,6 @@ import Link from "next/link";
 import { MytekLogo } from "@/components/mytek-logo";
 import { hasCheckoutLinks } from "@/lib/checkout";
 import { company, hasLegalIdentity, isFilled } from "@/lib/company";
-import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const groups = [
@@ -46,7 +45,6 @@ export function SiteFooter() {
         <div>
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <MytekLogo />
-            {siteConfig.name}
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             CRM com WhatsApp, landing page e dashboard. Nenhum lead esquecido

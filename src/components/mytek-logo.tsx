@@ -1,16 +1,17 @@
-import Image from "next/image";
-
 import { cn } from "@/lib/utils";
 
+/** Assinatura "mytek." do brand book Ultravioleta: o ponto é sempre lima. */
 export function MytekLogo({ className }: { className?: string }) {
   return (
-    <Image
-      src="/brand/logo.png"
-      alt="mytek"
-      width={37}
-      height={32}
-      className={cn("h-8 w-auto object-contain", className)}
-      priority
-    />
+    <span
+      className={cn(
+        "font-heading text-2xl font-extrabold leading-none tracking-[-0.055em]",
+        className
+      )}
+      role="img"
+      aria-label="mytek"
+    >
+      mytek<span className="text-lima">.</span>
+    </span>
   );
 }

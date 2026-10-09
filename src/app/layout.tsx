@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 import { company, isFilled } from "@/lib/company";
 import { siteConfig } from "@/lib/site-config";
 import { ChatWidget } from "@/components/chat-widget";
 
-const geistSans = Geist({
+// Corpo: Inter. Títulos: Satoshi no brand book; Plus Jakarta Sans é o
+// substituto do rascunho porque a Satoshi não está no Google Fonts.
+// Para trocar, self-hospede a Satoshi com next/font/local e aponte --font-display.
+const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const display = Plus_Jakarta_Sans({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["500", "700", "800"],
+});
+
+const mono = JetBrains_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
@@ -50,7 +59,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: siteConfig.name,
   url: siteConfig.url,
-  logo: `${siteConfig.url}/brand/logo.png`,
+  logo: `${siteConfig.url}/brand/symbol.svg`,
   description: siteConfig.description,
   email: company.email,
   sameAs: [siteConfig.github],
@@ -76,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${display.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script

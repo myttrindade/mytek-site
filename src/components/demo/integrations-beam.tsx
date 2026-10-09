@@ -62,8 +62,8 @@ export function IntegrationsBeam({ className }: { className?: string }) {
       )}
     >
       <div className="flex h-full flex-col justify-between py-6">
-        <Node ref={left1} tone="border-blue-500/30 bg-blue-500/10 shadow-blue-500/10">
-          <Share2Icon className="text-blue-600 dark:text-blue-400" />
+        <Node ref={left1} tone="border-primary/30 bg-primary/10 shadow-primary/10">
+          <Share2Icon className="text-primary" />
         </Node>
         <Node ref={left2} tone="border-violet-500/30 bg-violet-500/10 shadow-violet-500/10">
           <PhoneIcon className="text-violet-600 dark:text-violet-400" />
@@ -87,8 +87,8 @@ export function IntegrationsBeam({ className }: { className?: string }) {
         <Node ref={right2} tone="border-emerald-500/30 bg-emerald-500/10 shadow-emerald-500/10">
           <CreditCardIcon className="text-emerald-600 dark:text-emerald-400" />
         </Node>
-        <Node ref={right3} tone="border-cyan-500/30 bg-cyan-500/10 shadow-cyan-500/10">
-          <UsersIcon className="text-cyan-600 dark:text-cyan-400" />
+        <Node ref={right3} tone="border-lima/40 bg-lima/10 shadow-lima/10">
+          <UsersIcon className="text-foreground" />
         </Node>
       </div>
 
