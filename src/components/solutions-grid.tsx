@@ -16,6 +16,8 @@ import {
 
 import { Eclipse, GlowArc } from "@/components/brand/glow";
 import { BlurFade } from "@/components/velora/blur-fade";
+import { BorderBeam } from "@/components/velora/border-beam";
+import { TiltCard } from "@/components/velora/tilt-card";
 import { products, services, type Solution } from "@/lib/solutions-data";
 import { cn } from "@/lib/utils";
 
@@ -61,15 +63,35 @@ function SolutionCard({ s, i }: { s: Solution; i: number }) {
   const product = s.kind === "produto";
   return (
     <BlurFade delay={i * 0.04}>
+      <TiltCard className="h-full" maxTilt={7}>
       <Link
         href={s.href}
         className={cn(
-          "group flex h-full flex-col gap-4 rounded-2xl border p-6 transition-all hover:-translate-y-1",
+          "group relative flex h-full flex-col gap-4 rounded-2xl border p-6 transition-colors",
           product
             ? "border-primary bg-primary text-primary-foreground"
             : "border-border bg-card hover:border-primary"
         )}
       >
+        {product ? (
+          <BorderBeam
+            size={110}
+            duration={7}
+            delay={i * 1.6}
+            colorFrom="#C6FF00"
+            colorTo="#C9B8FF"
+          />
+        ) : (
+          <div className="absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <BorderBeam
+              size={90}
+              duration={5}
+              delay={i * 0.7}
+              colorFrom="#5E34F7"
+              colorTo="#8D6BFF"
+            />
+          </div>
+        )}
         <div className="flex items-center justify-between">
           <span
             className={cn(
@@ -110,6 +132,7 @@ function SolutionCard({ s, i }: { s: Solution; i: number }) {
           <ArrowUpRightIcon className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
         </span>
       </Link>
+      </TiltCard>
     </BlurFade>
   );
 }

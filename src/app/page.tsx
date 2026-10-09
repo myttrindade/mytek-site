@@ -6,6 +6,8 @@ import { Eclipse, GlowArc } from "@/components/brand/glow";
 import { HeroVisual } from "@/components/brand/hero-visual";
 import { MeMarquee, MeTyping } from "@/components/brand/me-motion";
 import { ProductShot } from "@/components/product-shot";
+import { BorderBeam } from "@/components/velora/border-beam";
+import { TiltCard } from "@/components/velora/tilt-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Process, Solutions, eyebrow } from "@/components/solutions-grid";
@@ -189,7 +191,15 @@ export default function Home() {
           <div className="mt-12 grid gap-4 md:grid-cols-2">
             {ways.map((w, i) => (
               <BlurFade key={w.title} delay={i * 0.1}>
-                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-8">
+                <TiltCard className="h-full" maxTilt={5}>
+                <div className="relative flex h-full flex-col rounded-2xl border border-border bg-card p-8">
+                  <BorderBeam
+                    size={120}
+                    duration={9}
+                    delay={i * 4}
+                    colorFrom="#5E34F7"
+                    colorTo="#C6FF00"
+                  />
                   <span className={eyebrow}>{w.tag}</span>
                   <h3 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.03em]">
                     {w.title}
@@ -213,6 +223,7 @@ export default function Home() {
                     </Link>
                   </Button>
                 </div>
+                </TiltCard>
               </BlurFade>
             ))}
           </div>

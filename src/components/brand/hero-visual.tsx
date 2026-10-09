@@ -6,6 +6,8 @@ import {
 } from "lucide-react";
 
 import { Me3D } from "@/components/brand/me-3d";
+import { BorderBeam } from "@/components/velora/border-beam";
+import { TiltCard } from "@/components/velora/tilt-card";
 import { cn } from "@/lib/utils";
 
 /**
@@ -17,7 +19,7 @@ import { cn } from "@/lib/utils";
  * pode ser lido como resultado de cliente.
  */
 const glass =
-  "flex h-full flex-col rounded-2xl border border-white/10 bg-[#170E2A]/90 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-md";
+  "relative flex h-full flex-col rounded-2xl border border-white/10 bg-[#170E2A]/90 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur-md";
 
 const mono = "font-mono text-[10px] font-bold uppercase tracking-[0.08em]";
 
@@ -25,19 +27,34 @@ function Card({
   className,
   float,
   tilt = 0,
+  beam,
   children,
 }: {
   className?: string;
   float: "a" | "b" | "c" | "d";
   /** Inclinação em graus: deixa a composição solta, não em grade. */
   tilt?: number;
+  /** Luz que corre pela borda: [atraso em s, duração em s, sentido invertido]. */
+  beam?: [number, number, boolean?];
   children: React.ReactNode;
 }) {
   return (
     <div className={cn("absolute", `hero-float-${float}`, className)}>
-      <div className={glass} style={{ rotate: `${tilt}deg` }}>
-        {children}
-      </div>
+      <TiltCard className="h-full" maxTilt={9}>
+        <div className={glass} style={{ rotate: `${tilt}deg` }}>
+          {beam && (
+            <BorderBeam
+              size={90}
+              delay={beam[0]}
+              duration={beam[1]}
+              reverse={beam[2]}
+              colorFrom="#C6FF00"
+              colorTo="#8D6BFF"
+            />
+          )}
+          {children}
+        </div>
+      </TiltCard>
     </div>
   );
 }
@@ -97,7 +114,7 @@ export function HeroVisual() {
           </div>
         </Card>
 
-        <Card float="b" tilt={2.2} className="right-[-10px] top-[58px] h-[164px] w-[226px]">
+        <Card float="b" tilt={2.2} beam={[0, 7]} className="right-[-10px] top-[58px] h-[164px] w-[226px]">
           <div className="flex h-full flex-col gap-3 p-4">
             <Header label="Radar · CRM">
               <BellRingIcon className="size-4 text-lima" />
@@ -151,7 +168,7 @@ export function HeroVisual() {
           </div>
         </Card>
 
-        <Card float="d" tilt={-1.6} className="bottom-[20px] right-[6px] h-[170px] w-[268px]">
+        <Card float="d" tilt={-1.6} beam={[3, 8, true]} className="bottom-[20px] right-[6px] h-[170px] w-[268px]">
           <div className="flex h-full flex-col gap-2 p-4">
             <Header label="Previsão de churn">
               <span className="rounded-full bg-lima px-2 py-0.5 text-[10px] font-bold text-lima-foreground">

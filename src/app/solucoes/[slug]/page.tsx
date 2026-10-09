@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
+import { TiltCard } from "@/components/velora/tilt-card";
 import { detailSolutions, getSolution } from "@/lib/solutions-data";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -189,16 +190,17 @@ export default async function SolutionPage({ params }: Props) {
             <span className={eyebrow}>Outras soluções</span>
             <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
               {others.map((o) => (
-                <Link
-                  key={o.slug}
-                  href={o.href}
-                  className="rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary"
-                >
-                  <b className="font-heading">{o.title}</b>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {o.problem}
-                  </p>
-                </Link>
+                <TiltCard key={o.slug} className="h-full" maxTilt={7}>
+                  <Link
+                    href={o.href}
+                    className="block h-full rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary"
+                  >
+                    <b className="font-heading">{o.title}</b>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {o.problem}
+                    </p>
+                  </Link>
+                </TiltCard>
               ))}
             </div>
           </div>
