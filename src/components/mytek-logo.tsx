@@ -14,13 +14,13 @@ export function MytekLogo({
 }) {
   return (
     <span
-      className={cn("inline-flex items-center gap-2.5", className)}
+      className={cn("inline-flex items-center gap-2", className)}
       role="img"
       aria-label="mytek"
     >
-      <MytekSymbol className="w-9" />
+      <MytekSymbol className="w-7" />
       {!iconOnly && (
-        <span className="font-heading text-2xl font-extrabold leading-none tracking-[-0.055em]">
+        <span className="font-heading text-xl font-extrabold leading-none tracking-[-0.055em]">
           mytek<span className="text-lima">.</span>
         </span>
       )}
