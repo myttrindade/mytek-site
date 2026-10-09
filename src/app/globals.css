@@ -443,66 +443,120 @@
 }
 
 /* Abertura do site (components/brand/intro-splash.tsx) */
-@property --r {
-  syntax: "<length>";
-  inherits: false;
-  initial-value: 0px;
-}
 .intro {
-  --r: 0px;
-  --cx: 50%;
-  --cy: 50%;
   position: fixed;
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  background: #0f0819;
-  /* O "buraco" que se abre a partir da logo do menu. */
-  -webkit-mask-image: radial-gradient(
-    circle at var(--cx) var(--cy),
-    transparent var(--r),
-    #000 calc(var(--r) + 1.5px)
-  );
-  mask-image: radial-gradient(
-    circle at var(--cx) var(--cy),
-    transparent var(--r),
-    #000 calc(var(--r) + 1.5px)
-  );
-  /* Rede de segurança: some sozinho mesmo se o script falhar. */
-  animation: intro-gone 0s linear 5s forwards;
+  overflow: hidden;
+  /* Fim: a luz estoura (3.35s) e o overlay se dissolve, revelando o site. */
+  animation: intro-dissolve 0.9s ease-in 3.4s forwards;
 }
-.intro-stage {
+.intro-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(94, 52, 247, 0.35),
-    transparent 45%
-  );
-  animation: intro-stage-out 0.7s ease-in 2.1s forwards;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 56%, rgba(94, 52, 247, 0.28), transparent 70%),
+    #07040f;
+}
+.intro-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(1000px, 118vw);
+  aspect-ratio: 1000 / 760;
+  transform: translate(-50%, -52%);
+  animation: intro-bloom 0.95s cubic-bezier(0.5, 0, 0.2, 1) 3.3s forwards;
+}
+.intro-arcs {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.intro-arc {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.intro-arc-low {
+  animation: intro-draw 1.35s cubic-bezier(0.45, 0, 0.2, 1) 0.15s forwards;
+}
+.intro-arc-up {
+  animation: intro-draw 1.2s cubic-bezier(0.45, 0, 0.2, 1) 1.1s forwards;
+}
+.intro-flare {
+  animation: intro-flare-out 0.5s ease-out 1.5s forwards;
 }
 .intro-center {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding-top: 2vh;
+  animation: intro-center-out 0.5s ease-in 3.3s forwards;
 }
 .intro-mark {
   perspective: 800px;
   position: relative;
   opacity: 0;
-  animation: intro-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
+  animation: intro-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.85s forwards;
 }
 .intro-spin {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  animation: intro-spin 2.1s cubic-bezier(0.3, 0.1, 0.2, 1) 0.1s forwards;
+  animation: intro-spin 2.4s cubic-bezier(0.3, 0.1, 0.2, 1) 0.85s forwards;
+}
+.intro-word {
+  margin: 0;
+  display: flex;
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+  font-weight: 800;
+  font-size: clamp(30px, 6vw, 58px);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 0.42em;
+  margin-right: -0.42em;
+  text-shadow: 0 0 28px rgba(141, 107, 255, 0.55);
+}
+.intro-word span {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(10px);
+  animation: intro-letter 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+.intro-dot {
+  color: #c6ff00;
+  text-shadow: 0 0 22px rgba(198, 255, 0, 0.7);
+}
+.intro-sub {
+  margin: 0;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  margin-right: -0.5em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 0;
+  animation: intro-sub 0.8s ease-out 2.35s forwards;
+}
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes intro-flare-out {
+  to {
+    opacity: 0;
+  }
 }
 @keyframes intro-in {
   from {
     opacity: 0;
-    transform: scale(0.7);
+    transform: scale(0.6);
   }
   to {
     opacity: 1;
@@ -511,19 +565,49 @@
 }
 @keyframes intro-spin {
   from {
-    transform: rotateX(18deg) rotateY(-150deg);
+    transform: rotateX(16deg) rotateY(-160deg);
   }
   to {
-    transform: rotateX(-6deg) rotateY(18deg);
+    transform: rotateX(-5deg) rotateY(14deg);
   }
 }
-@keyframes intro-stage-out {
+@keyframes intro-letter {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+@keyframes intro-sub {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes intro-bloom {
+  0% {
+    transform: translate(-50%, -52%) scale(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  40% {
+    filter: brightness(2.4);
+  }
+  100% {
+    transform: translate(-50%, -52%) scale(2.6);
+    opacity: 0;
+    filter: brightness(2.4);
+  }
+}
+@keyframes intro-center-out {
   to {
     opacity: 0;
+    transform: scale(1.08);
+    filter: blur(6px);
   }
 }
-@keyframes intro-gone {
+@keyframes intro-dissolve {
   to {
+    opacity: 0;
     visibility: hidden;
   }
 }
