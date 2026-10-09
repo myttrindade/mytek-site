@@ -114,7 +114,7 @@ export function HeroVisual() {
           </div>
         </Card>
 
-        <Card float="b" tilt={2.2} beam={[0, 7]} className="right-[-10px] top-[58px] h-[164px] w-[226px]">
+        <Card float="b" tilt={2.2} className="right-[-10px] top-[58px] h-[164px] w-[226px]">
           <div className="flex h-full flex-col gap-3 p-4">
             <Header label="Radar · CRM">
               <BellRingIcon className="size-4 text-lima" />
@@ -168,7 +168,7 @@ export function HeroVisual() {
           </div>
         </Card>
 
-        <Card float="d" tilt={-1.6} beam={[3, 8, true]} className="bottom-[20px] right-[6px] h-[170px] w-[268px]">
+        <Card float="d" tilt={-1.6} className="bottom-[20px] right-[6px] h-[170px] w-[268px]">
           <div className="flex h-full flex-col gap-2 p-4">
             <Header label="Previsão de churn">
               <span className="rounded-full bg-lima px-2 py-0.5 text-[10px] font-bold text-lima-foreground">
