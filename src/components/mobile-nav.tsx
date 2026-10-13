@@ -66,13 +66,6 @@ export function MobileNav({ links }: { links: readonly NavLink[] }) {
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/login"
-            onClick={() => setAberto(false)}
-            className="py-3.5 text-base font-medium text-primary"
-          >
-            Entrar
-          </Link>
         </nav>
       </div>
     </div>

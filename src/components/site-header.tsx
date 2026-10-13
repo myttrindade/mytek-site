@@ -40,12 +40,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/login"
-            className="hidden text-sm font-medium text-primary transition-colors hover:text-primary/80 md:inline-block"
-          >
-            Entrar
-          </Link>
           <Button size="sm" asChild>
             <Link href="/contact">Falar com o time</Link>
           </Button>
