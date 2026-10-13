@@ -54,7 +54,7 @@ const stats: Array<
 > = [
   { value: 10, suffix: " min", label: "do cadastro ao primeiro lead" },
   { text: "3 módulos", label: "CRM, Landing Page e Dashboard" },
-  { text: "R$197/mês", label: "CRM completo, 3 usuários" },
+  { text: "R$99/mês", label: "CRM completo, 3 usuários" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
 ];
 

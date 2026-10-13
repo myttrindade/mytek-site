@@ -17,9 +17,9 @@ import { checkoutHref } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-const pricingTitle = "Preço · mytek — CRM a partir de R$197/mês, sem fidelidade";
+const pricingTitle = "Preço · mytek — CRM a partir de R$99/mês, sem fidelidade";
 const pricingDescription =
-  "CRM a partir de R$197/mês, Dashboard a partir de R$397/mês e Landing Page a partir de R$1.497 (pagamento único). Combine os módulos e pague menos.";
+  "CRM a partir de R$99/mês, Dashboard a partir de R$397/mês, Landing Page a partir de R$1.000 (pagamento único) e sites a partir de R$1.500. Combine e pague menos.";
 
 export const metadata: Metadata = {
   // `title.absolute` ignora o template "%s · mytek" do layout — sem ele o
@@ -46,7 +46,7 @@ const crmPlans = [
   {
     name: "CRM Normal",
     slug: "crm-normal",
-    price: "R$197",
+    price: "R$99",
     unit: "/mês",
     highlight: false,
     features: ["Até 3 membros do time", "Funil de vendas visual (Kanban)", "Atendimento via WhatsApp"],
@@ -54,7 +54,7 @@ const crmPlans = [
   {
     name: "CRM Plus",
     slug: "crm-plus",
-    price: "R$367",
+    price: "R$220",
     unit: "/mês",
     highlight: true,
     features: [
@@ -98,7 +98,7 @@ const landingPagePlans = [
   {
     name: "Landing Page Essencial",
     slug: "lp-essencial",
-    price: "R$1.497",
+    price: "R$1.000",
     highlight: false,
     features: [
       "Template customizado",
@@ -132,10 +132,10 @@ const landingPagePlans = [
 const FEATURED_LABEL = "Recomendado para começar";
 
 const combos = [
-  { label: "CRM Normal + Dashboard sem suporte", price: "R$394/mês", featured: true },
-  { label: "CRM Normal + Dashboard com suporte", price: "R$544/mês", featured: false },
-  { label: "CRM Plus + Dashboard sem suporte", price: "R$564/mês", featured: false },
-  { label: "CRM Plus + Dashboard com suporte", price: "R$714/mês", featured: false },
+  { label: "CRM Normal + Dashboard sem suporte", price: "R$296/mês", featured: true },
+  { label: "CRM Normal + Dashboard com suporte", price: "R$446/mês", featured: false },
+  { label: "CRM Plus + Dashboard sem suporte", price: "R$417/mês", featured: false },
+  { label: "CRM Plus + Dashboard com suporte", price: "R$567/mês", featured: false },
 ];
 
 /**
@@ -150,7 +150,7 @@ const faqs = [
   },
   {
     q: "A Landing Page é cobrada todo mês?",
-    a: "Não. É pagamento único: R$1.497 na Essencial e R$2.997 na Completa. A página é sua e continua no ar sem mensalidade. O que é opcional e mensal é a manutenção depois do primeiro mês, a partir de R$297/mês, pra quem quer alterações recorrentes.",
+    a: "Não. É pagamento único: R$1.000 na Essencial e R$2.997 na Completa. A página é sua e continua no ar sem mensalidade. O que é opcional e mensal é a manutenção depois do primeiro mês, a partir de R$297/mês, pra quem quer alterações recorrentes.",
   },
   {
     q: "Qual a diferença entre o CRM Normal e o Plus?",
@@ -184,7 +184,7 @@ const faqJsonLd = {
  * tabela, e aí o Google anunciaria um preço que a página não pratica.
  *
  * `UnitPriceSpecification` com `billingDuration` distingue a mensalidade do
- * pagamento único da Landing Page — sem isso os R$1.497 apareceriam como se
+ * pagamento único da Landing Page — sem isso os R$1.000 apareceriam como se
  * fossem por mês.
  */
 const paraNumero = (preco: string) =>
@@ -294,8 +294,8 @@ export default function PricingPage() {
                   </tr>
                   <tr className="bg-primary/5">
                     <td className="p-4 font-semibold">Preço inicial</td>
-                    <td className="p-4 text-center font-semibold">R$197/mês</td>
-                    <td className="p-4 text-center font-semibold">R$1.497</td>
+                    <td className="p-4 text-center font-semibold">R$99/mês</td>
+                    <td className="p-4 text-center font-semibold">R$1.000</td>
                     <td className="p-4 text-center font-semibold">R$397/mês</td>
                   </tr>
                   <tr>
@@ -539,7 +539,7 @@ export default function PricingPage() {
             <p className="mt-6 text-sm text-muted-foreground">
               Cliente ativo de CRM ou Dashboard tem{" "}
               <strong className="text-card-foreground">20% de desconto</strong>:
-              Essencial por R$1.197 e Completa por R$2.397.
+              Essencial por R$800 e Completa por R$2.397.
             </p>
           </BlurFade>
         </div>
@@ -604,8 +604,8 @@ export default function PricingPage() {
                 <div>
                   <h3 className="font-semibold">Não achou o que precisa?</h3>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Se seu negócio precisa de algo fora desses planos,
-                    montamos um orçamento sob medida pra você.
+                    Sites institucionais saem a partir de R$1.500. Para algo fora
+                    desses planos, montamos um orçamento sob medida pra você.
                   </p>
                 </div>
               </div>

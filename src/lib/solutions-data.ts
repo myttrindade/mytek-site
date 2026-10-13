@@ -41,7 +41,7 @@ export const solutions: Solution[] = [
     title: "Sites",
     problem: "Seu site não passa confiança nem explica o que você vende.",
     summary:
-      "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca.",
+      "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. A partir de R$1.500.",
     headline: "Um site que explica o que você vende e leva o visitante a chamar.",
     intro:
       "Muita empresa tem site só porque precisa ter. A gente parte do que o seu cliente quer saber antes de comprar e organiza o site em torno disso, com identidade visual própria e carregamento rápido.",
@@ -63,6 +63,10 @@ export const solutions: Solution[] = [
         a: "Depende do tamanho do site e de quão rápido o conteúdo chega. O prazo fica combinado no escopo, antes de começar.",
       },
       {
+        q: "Quanto custa um site?",
+        a: "A partir de R$1.500. O valor final depende do tamanho do site e do que ele precisa fazer, e fica combinado na proposta antes de começar.",
+      },
+      {
         q: "Posso editar o site depois?",
         a: "Sim. Combinamos na proposta se você edita sozinho ou se pede ajustes ao nosso time.",
       },
@@ -76,7 +80,7 @@ export const solutions: Solution[] = [
     title: "Landing pages",
     problem: "O visitante chega, olha e vai embora sem deixar contato.",
     summary:
-      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas.",
+      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas. A partir de R$1.000, pagamento único.",
     headline: "Uma página com um objetivo só: transformar visitante em contato.",
     intro:
       "A landing page é a porta de entrada da sua operação comercial. Quem preenche o formulário já nasce como lead no funil, com a origem registrada, sem planilha no meio do caminho.",
@@ -98,8 +102,8 @@ export const solutions: Solution[] = [
         a: "Não. A página pode mandar o contato para o CRM da mytek ou para a ferramenta que você já usa. Com o nosso CRM, a integração já vem pronta.",
       },
       {
-        q: "É cobrado por mês?",
-        a: "A landing page é pagamento único. Manutenção contínua, se quiser, é combinada à parte.",
+        q: "Quanto custa e é cobrado por mês?",
+        a: "A partir de R$1.000, em pagamento único, sem mensalidade. Manutenção contínua, se quiser, é combinada à parte.",
       },
     ],
   },
@@ -111,7 +115,7 @@ export const solutions: Solution[] = [
     title: "CRM com WhatsApp",
     problem: "O lead respondeu e ninguém voltou.",
     summary:
-      "Funil, atendimento no WhatsApp e alerta de lead parado. A partir de R$197/mês, sem fidelidade.",
+      "Funil, atendimento no WhatsApp e alerta de lead parado. A partir de R$99/mês, sem fidelidade.",
     headline: "",
     intro: "",
     includes: [],

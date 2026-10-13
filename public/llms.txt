@@ -8,11 +8,11 @@
 
 - **CRM**: funil de vendas visual em Kanban, atendimento e histórico de
   WhatsApp na mesma tela, times de até 3 pessoas incluídos. A partir de
-  R$129/mês.
+  R$99/mês (CRM Plus, com IA: R$220/mês).
 - **Dashboard**: vendas, leads e satisfação num painel só, em tempo real,
-  calculado automaticamente a partir do CRM. A partir de R$199/mês.
+  calculado automaticamente a partir do CRM. A partir de R$397/mês.
 - **Landing Page**: página pronta pra converter, com formulário já conectado
-  ao CRM. Pagamento único a partir de R$899.
+  ao CRM. Pagamento único a partir de R$1.000. Sites a partir de R$1.500.
 
 ## Páginas
 

@@ -29,7 +29,7 @@ const releases: Release[] = [
     tag: "Novo",
     items: [
       "CRM Plus agora inclui o módulo Conhecimento com IA sobre os dados da empresa, com treinamento incluído",
-      "Combos de CRM + Dashboard com preço especial, a partir de R$228/mês",
+      "Combos de CRM + Dashboard com preço especial",
     ],
   },
   {
