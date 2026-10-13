@@ -77,7 +77,7 @@ Vídeos e imagens de exemplo (`public/brand`): `hub/` (vídeo do Mytek Hub), `da
 
 1. Links de pagamento do Mercado Pago: estão VAZIOS (`url: ""` em `checkout.ts`) para CRM Normal, CRM Plus, Landing Page (os dois planos), previsão de churn e os 4 combos, porque os links antigos cobrariam o valor antigo. Criar os novos no painel do Mercado Pago e preencher. Enquanto vazio, o botão leva ao contato.
 2. Assistente de IA do repositório `mytek-chat`: o documento `docs/politica-mytek-agente-ia.pdf` ainda tem os preços antigos (CRM R$197). O widget do site conversa com ele. Atualizar o documento e refazer o índice.
-3. Páginas ainda no visual antigo ou sem revisão: Sobre (`/about`), Contato (`/contact`), blog, changelog, login e cadastro.
+3. Páginas ainda no visual antigo ou sem revisão: Changelog. O blog foi removido de propósito (não haverá blog). Login e cadastro viraram redirecionamento para o contato.
 4. Conferir tudo no celular (a maior parte foi testada só em tela larga).
 5. Carregar a fonte Satoshi de verdade (hoje há a substituta).
 6. Confirmar com a usuária se o Dashboard (R$397/R$697) mudou de preço. Ela não passou alteração.

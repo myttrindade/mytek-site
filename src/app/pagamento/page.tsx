@@ -56,7 +56,7 @@ export default function PagamentoPage() {
           description="Escolha abaixo e finalize no Mercado Pago. Assinaturas são mensais e sem fidelidade; a Landing Page é pagamento único."
         />
 
-        <div className="mx-auto max-w-6xl px-4 pb-24 lg:px-8">
+        <div className="mx-auto max-w-6xl px-4 py-16 lg:px-8 lg:py-20">
           {!hasCheckoutLinks && (
             <BlurFade>
               <div className="mb-14 rounded-2xl border border-primary/30 bg-primary/5 p-6">

@@ -20,7 +20,7 @@ export default function PrivacyPage() {
           description="Entenda como coletamos, usamos e protegemos seus dados."
         />
 
-        <div className="mx-auto max-w-3xl px-4 pb-24 lg:px-8">
+        <div className="mx-auto max-w-3xl px-4 py-16 lg:px-8 lg:py-20">
           <div className="prose prose-sm max-w-none dark:prose-invert">
             <h2>1. Informações que Coletamos</h2>
             <p>

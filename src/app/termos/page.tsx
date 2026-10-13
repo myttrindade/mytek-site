@@ -20,7 +20,7 @@ export default function TermsPage() {
           description="Leia as condições para usar a plataforma mytek."
         />
 
-        <div className="mx-auto max-w-3xl px-4 pb-24 lg:px-8">
+        <div className="mx-auto max-w-3xl px-4 py-16 lg:px-8 lg:py-20">
           <div className="prose prose-sm max-w-none dark:prose-invert">
             <h2>1. Aceitação dos Termos</h2>
             <p>
