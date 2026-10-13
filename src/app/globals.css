@@ -808,3 +808,19 @@ html.intro-seen .intro {
     display: none;
   }
 }
+
+/* Linhas do fluxo de automação (solucoes/automacao-n8n) */
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+.flow-dash {
+  stroke-dasharray: 6 8;
+  animation: flow-dash 1.6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flow-dash {
+    animation: none;
+  }
+}

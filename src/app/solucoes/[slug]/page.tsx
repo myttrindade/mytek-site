@@ -29,7 +29,13 @@ export function generateStaticParams() {
   // landing-pages, sites, dashboards e agentes-de-ia têm página própria.
   return detailSolutions
     .filter(
-      (s) => !["landing-pages", "sites", "dashboards", "agentes-de-ia"].includes(s.slug)
+      (s) => ![
+        "landing-pages",
+        "sites",
+        "dashboards",
+        "agentes-de-ia",
+        "automacao-n8n",
+      ].includes(s.slug)
     )
     .map((s) => ({ slug: s.slug }));
 }
