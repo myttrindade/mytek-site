@@ -482,7 +482,7 @@ export default function CrmPage() {
                     icon: LayoutTemplateIcon,
                     title: "Landing pages",
                     body: "Capte contatos que já nascem como lead no funil.",
-                    meta: "a partir de R$1.000",
+                    meta: "a partir de R$999",
                     href: "/solucoes/landing-pages",
                   },
                   {

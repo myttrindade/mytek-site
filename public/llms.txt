@@ -12,7 +12,7 @@
 - **Dashboard**: vendas, leads e satisfação num painel só, em tempo real,
   calculado automaticamente a partir do CRM. A partir de R$397/mês.
 - **Landing Page**: página pronta pra converter, com formulário já conectado
-  ao CRM. Pagamento único a partir de R$1.000. Sites a partir de R$1.500.
+  ao CRM. Pagamento único a partir de R$999. Sites a partir de R$1.500.
 
 ## Páginas
 

@@ -26,6 +26,10 @@ export type CheckoutPlan = {
   /** `null` para pagamento único. */
   unit: string | null;
   features: string[];
+  /** Frase curta sob o preço (opcional). */
+  tagline?: string;
+  /** Observação sob a lista de itens (opcional). */
+  note?: string;
   /** Link de pagamento do Mercado Pago. Vazio enquanto não for criado. */
   url: string;
 };
@@ -162,28 +166,38 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "lp-essencial",
         name: "Landing Page Essencial",
-        price: "R$1.000",
+        price: "R$999",
         unit: null,
+        tagline: "Sua página no ar rápido, com a sua cara.",
         features: [
-          "Template customizado",
-          "1 integração",
-          "Textos por sua conta (ou contrate a Completa)",
+          "Modelo da mytek adaptado à sua marca",
+          "Até 5 seções",
+          "Integração com WhatsApp, que pode ser ligado ao CRM",
+          "1 rodada de revisão",
+          "Entrega em até 7 dias úteis",
         ],
+        note: "Textos por sua conta (ou escolha a Sob Medida)",
         // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
         url: "",
       },
       {
-        slug: "lp-completa",
-        name: "Landing Page Completa",
-        price: "R$2.997",
+        slug: "lp-sob-medida",
+        name: "Landing Page Sob Medida",
+        price: "R$1.797",
         unit: null,
+        tagline: "Feita do zero pra transformar visita em cliente.",
         features: [
-          "Design sob medida",
-          "Copy profissional",
-          "Integração com CRM/e-mail",
-          "SEO básico",
+          "Design criado do zero para o seu negócio",
+          "Textos escritos pela mytek, focados em gerar contato",
+          "Até 10 seções",
+          "Integração com CRM, WhatsApp e e-mail",
+          "Pixel da Meta e Google Analytics para medir cada clique",
+          "SEO básico para ser encontrada no Google",
+          "Até 2 rodadas de revisão no layout",
+          "Entrega em até 15 dias úteis",
         ],
-        url: "https://mpago.la/1QAQNtf",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
     ],
   },

@@ -203,7 +203,7 @@ export default function LandingPagesPage() {
                     a partir de
                   </span>
                   <span className="font-heading text-3xl font-extrabold tracking-[-0.04em] text-lima">
-                    R$1.000
+                    R$999
                   </span>
                   <span className="text-sm text-muted-foreground">
                     pagamento único
@@ -314,7 +314,7 @@ export default function LandingPagesPage() {
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
                 Sem mensalidade. O primeiro mês inclui até 5 ajustes sem custo,
-                e quem já é cliente de CRM ou Dashboard tem 20% de desconto.
+                e quem já é cliente de CRM ou Dashboard tem 20% de desconto: Essencial por R$799,20 e Sob Medida por R$1.437,60.
               </p>
             </BlurFade>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -356,6 +356,16 @@ export default function LandingPagesPage() {
                           <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em] [transform:translateZ(34px)]">
                             {plan.price}
                           </p>
+                          {plan.tagline && (
+                            <p
+                              className={
+                                "mt-2 text-sm " +
+                                (featured ? "text-white/80" : "text-muted-foreground")
+                              }
+                            >
+                              {plan.tagline}
+                            </p>
+                          )}
                           <ul className="mt-6 flex-1 space-y-3 text-sm">
                             {plan.features.map((f) => (
                               <li key={f} className="flex items-start gap-3">
@@ -373,6 +383,11 @@ export default function LandingPagesPage() {
                               </li>
                             ))}
                           </ul>
+                          {plan.note && (
+                            <p className="mt-4 text-xs text-muted-foreground">
+                              {plan.note}
+                            </p>
+                          )}
                           <Button
                             asChild
                             size="lg"

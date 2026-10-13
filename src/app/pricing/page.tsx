@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 
 const pricingTitle = "Preço · mytek — CRM a partir de R$99/mês, sem fidelidade";
 const pricingDescription =
-  "CRM a partir de R$99/mês, Dashboard a partir de R$397/mês, Landing Page a partir de R$1.000 (pagamento único) e sites a partir de R$1.500. Combine e pague menos.";
+  "CRM a partir de R$99/mês, Dashboard a partir de R$397/mês, Landing Page a partir de R$999 (pagamento único) e sites a partir de R$1.500. Combine e pague menos.";
 
 export const metadata: Metadata = {
   // `title.absolute` ignora o template "%s · mytek" do layout — sem ele o
@@ -98,25 +98,35 @@ const landingPagePlans = [
   {
     name: "Landing Page Essencial",
     slug: "lp-essencial",
-    price: "R$1.000",
+    price: "R$999",
     highlight: false,
+    tagline: "Sua página no ar rápido, com a sua cara.",
     features: [
-      "Template customizado",
-      "1 integração",
-      "Textos por sua conta (ou contrate a Completa)",
+      "Modelo da mytek adaptado à sua marca",
+      "Até 5 seções",
+      "Integração com WhatsApp, que pode ser ligado ao CRM",
+      "1 rodada de revisão",
+      "Entrega em até 7 dias úteis",
     ],
+    note: "Textos por sua conta (ou escolha a Sob Medida)",
   },
   {
-    name: "Landing Page Completa",
-    slug: "lp-completa",
-    price: "R$2.997",
+    name: "Landing Page Sob Medida",
+    slug: "lp-sob-medida",
+    price: "R$1.797",
     highlight: true,
+    tagline: "Feita do zero pra transformar visita em cliente.",
     features: [
-      "Design sob medida",
-      "Copy profissional",
-      "Integração com CRM/e-mail",
-      "SEO básico",
+      "Design criado do zero para o seu negócio",
+      "Textos escritos pela mytek, focados em gerar contato",
+      "Até 10 seções",
+      "Integração com CRM, WhatsApp e e-mail",
+      "Pixel da Meta e Google Analytics para medir cada clique",
+      "SEO básico para ser encontrada no Google",
+      "Até 2 rodadas de revisão no layout",
+      "Entrega em até 15 dias úteis",
     ],
+    note: "",
   },
 ];
 
@@ -150,7 +160,7 @@ const faqs = [
   },
   {
     q: "A Landing Page é cobrada todo mês?",
-    a: "Não. É pagamento único: R$1.000 na Essencial e R$2.997 na Completa. A página é sua e continua no ar sem mensalidade. O que é opcional e mensal é a manutenção depois do primeiro mês, a partir de R$297/mês, pra quem quer alterações recorrentes.",
+    a: "Não. É pagamento único: R$999 na Essencial e R$1.797 na Sob Medida. A página é sua e continua no ar sem mensalidade. O que é opcional e mensal é a manutenção depois do primeiro mês, a partir de R$297/mês, pra quem quer alterações recorrentes.",
   },
   {
     q: "Qual a diferença entre o CRM Normal e o Plus?",
@@ -184,7 +194,7 @@ const faqJsonLd = {
  * tabela, e aí o Google anunciaria um preço que a página não pratica.
  *
  * `UnitPriceSpecification` com `billingDuration` distingue a mensalidade do
- * pagamento único da Landing Page — sem isso os R$1.000 apareceriam como se
+ * pagamento único da Landing Page — sem isso os R$999 apareceriam como se
  * fossem por mês.
  */
 const paraNumero = (preco: string) =>
@@ -295,7 +305,7 @@ export default function PricingPage() {
                   <tr className="bg-primary/5">
                     <td className="p-4 font-semibold">Preço inicial</td>
                     <td className="p-4 text-center font-semibold">R$99/mês</td>
-                    <td className="p-4 text-center font-semibold">R$1.000</td>
+                    <td className="p-4 text-center font-semibold">R$999</td>
                     <td className="p-4 text-center font-semibold">R$397/mês</td>
                   </tr>
                   <tr>
@@ -514,6 +524,11 @@ export default function PricingPage() {
                   <p className="mt-3 text-4xl font-semibold tracking-tight">
                     {plan.price}
                   </p>
+                  {plan.tagline && (
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {plan.tagline}
+                    </p>
+                  )}
                   <ul className="mt-6 flex-1 space-y-2.5 text-sm">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-center gap-2.5">
@@ -524,6 +539,11 @@ export default function PricingPage() {
                       </li>
                     ))}
                   </ul>
+                  {plan.note && (
+                    <p className="mt-4 text-xs text-muted-foreground">
+                      {plan.note}
+                    </p>
+                  )}
                   <Button
                     variant={plan.highlight ? "default" : "outline"}
                     className="mt-6 w-full rounded-full"
@@ -539,7 +559,7 @@ export default function PricingPage() {
             <p className="mt-6 text-sm text-muted-foreground">
               Cliente ativo de CRM ou Dashboard tem{" "}
               <strong className="text-card-foreground">20% de desconto</strong>:
-              Essencial por R$800 e Completa por R$2.397.
+              Essencial por R$799,20 e Sob Medida por R$1.437,60.
             </p>
           </BlurFade>
         </div>

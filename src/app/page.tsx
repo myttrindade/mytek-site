@@ -55,7 +55,7 @@ const ways = [
   {
     tag: "Projeto sob medida",
     title: "Sites, IA, automação, dados e sistemas",
-    price: "sites a partir de R$1.500 · landing page R$1.000",
+    price: "sites a partir de R$1.500 · landing page R$999",
     points: [
       "Conversa curta para entender o problema",
       "Proposta com prazo, entrega e valor fechados",

@@ -80,7 +80,7 @@ export const solutions: Solution[] = [
     title: "Landing pages",
     problem: "O visitante chega, olha e vai embora sem deixar contato.",
     summary:
-      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas. A partir de R$1.000, pagamento único.",
+      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas. A partir de R$999, pagamento único.",
     headline: "Uma página com um objetivo só: transformar visitante em contato.",
     intro:
       "A landing page é a porta de entrada da sua operação comercial. Quem preenche o formulário já nasce como lead no funil, com a origem registrada, sem planilha no meio do caminho.",
@@ -103,7 +103,11 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa e é cobrado por mês?",
-        a: "A partir de R$1.000, em pagamento único, sem mensalidade. Manutenção contínua, se quiser, é combinada à parte.",
+        a: "São dois planos em pagamento único, sem mensalidade: Essencial por R$999 e Sob Medida por R$1.797. Manutenção contínua, se quiser, é combinada à parte.",
+      },
+      {
+        q: "Em quanto tempo fica pronta?",
+        a: "A Essencial é entregue em até 7 dias úteis, e a Sob Medida em até 15 dias úteis.",
       },
     ],
   },
