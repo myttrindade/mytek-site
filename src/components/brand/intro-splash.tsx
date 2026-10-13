@@ -4,7 +4,7 @@ const LAYERS = 14;
 const SIZE = 150;
 const LETTERS = ["m", "y", "t", "e", "k"];
 
-/** [esquerda %, topo %, tamanho px, atraso s, duração s] — poeira de luz. */
+/** [esquerda %, topo %, tamanho px, atraso s, duração s], poeira de luz. */
 const DUST: [number, number, number, number, number][] = [
   [11, 55, 2, 0.3, 2.6],
   [48, 72, 3, 0.41, 3.1],

@@ -31,7 +31,7 @@ import {
 } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
 
-const pricingTitle = "Preços · mytek — CRM a partir de R$99/mês, sem fidelidade";
+const pricingTitle = "Preços da mytek · CRM a partir de R$99/mês, sem fidelidade";
 const pricingDescription =
   "Preços dos produtos prontos da mytek: CRM a partir de R$99/mês, Dashboard a partir de R$397/mês, Landing Page a partir de R$999 e sites a partir de R$1.500. Projetos sob medida têm o valor combinado antes de começar.";
 
