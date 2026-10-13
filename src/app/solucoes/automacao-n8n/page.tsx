@@ -4,8 +4,8 @@ import {
   CalendarCheckIcon,
   CheckIcon,
   ClipboardListIcon,
-  FileSpreadsheetIcon,
-  FormInputIcon,
+  FolderPlusIcon,
+  ShoppingCartIcon,
   MailIcon,
   MessageCircleIcon,
   RocketIcon,
@@ -16,6 +16,7 @@ import {
 import type { Metadata } from "next";
 
 import { Card3D } from "@/components/brand/card-3d";
+import { FlowShowcase } from "@/components/brand/flow-showcase";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -41,12 +42,12 @@ export const metadata: Metadata = {
 };
 
 const examples = [
-  { icon: FormInputIcon, title: "Lead vira card no CRM", body: "O formulário do site cai direto no funil, sem ninguém digitar." },
-  { icon: BellRingIcon, title: "Aviso de lead parado", body: "Quando uma oportunidade trava, o vendedor é avisado na hora." },
-  { icon: CalendarCheckIcon, title: "Lembretes de agenda", body: "Confirmação e lembrete automáticos, para faltar menos gente." },
-  { icon: MessageCircleIcon, title: "Boas-vindas no WhatsApp", body: "Todo contato novo recebe uma mensagem, no tom da sua empresa." },
-  { icon: MailIcon, title: "Relatório por e-mail", body: "Os números chegam prontos, no dia e na hora combinados." },
-  { icon: FileSpreadsheetIcon, title: "Dados entre sistemas", body: "O que entra numa planilha ou sistema vai para o outro sozinho." },
+  { icon: ShoppingCartIcon, tag: "Loja", title: "Pedido novo, tudo andando", body: "O pedido avisa o cliente, baixa o estoque e prepara a nota." },
+  { icon: CalendarCheckIcon, tag: "Clínica", title: "Menos faltas na agenda", body: "Lembrete e confirmação de consulta, no WhatsApp, sem ninguém ligar." },
+  { icon: FolderPlusIcon, tag: "Escritório", title: "Contrato assinado, pasta pronta", body: "Cria a pasta do cliente, avisa a equipe e gera a cobrança." },
+  { icon: MessageCircleIcon, tag: "Restaurante", title: "Pedido do WhatsApp na cozinha", body: "O pedido chega organizado, sem copiar mensagem." },
+  { icon: UsersIcon, tag: "Educação", title: "Matrícula com boas-vindas", body: "Libera o acesso e manda as instruções de início." },
+  { icon: MailIcon, tag: "Qualquer negócio", title: "Relatório pronto por e-mail", body: "Os números do dia chegam sozinhos, na hora que você combinar." },
 ] as const;
 
 const how = [
@@ -60,88 +61,6 @@ const why = [
   { title: "Liga as ferramentas que você já usa", body: "WhatsApp, CRM, planilhas, e-mail e outros sistemas, sem trocar nada." },
   { title: "Roda onde você preferir", body: "Em servidor próprio ou na nuvem, conforme o seu controle de dados." },
 ] as const;
-
-/** Fluxo de exemplo no estilo de editor visual: nós ligados por linhas animadas. */
-function FlowHeroVisual() {
-  const node =
-    "absolute flex w-[176px] items-center gap-3 rounded-2xl border border-white/12 bg-[#170E2A]/90 p-3 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.75)] backdrop-blur-md";
-  const tile = "flex size-9 shrink-0 items-center justify-center rounded-xl";
-  return (
-    <div className="mx-auto w-full max-w-[540px] pb-8 pt-4">
-      <div className="relative overflow-hidden rounded-2xl border border-white/15 bg-[#0F0819] shadow-[0_30px_90px_-20px_rgba(110,72,255,0.7)]">
-        <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.04] px-4 py-2.5">
-          <span className="size-2.5 rounded-full bg-white/25" />
-          <span className="size-2.5 rounded-full bg-white/25" />
-          <span className="size-2.5 rounded-full bg-white/25" />
-          <span className="ml-3 flex-1 rounded-md bg-white/[0.06] px-3 py-1 font-mono text-[10px] text-white/50">
-            fluxo · novo lead
-          </span>
-          <span className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-lima">
-            <span className="size-1.5 rounded-full bg-lima" />
-            ativo
-          </span>
-        </div>
-        <div className="relative h-[380px] bg-[radial-gradient(circle_at_30%_20%,#2a1760,#0F0819_70%)]">
-          {/* grade de pontos do editor */}
-          <div
-            aria-hidden
-            className="absolute inset-0 opacity-40 [background-image:radial-gradient(rgba(255,255,255,0.22)_1px,transparent_1px)] [background-size:22px_22px]"
-          />
-          {/* conexões */}
-          <svg viewBox="0 0 540 380" className="absolute inset-0 size-full" fill="none" aria-hidden>
-            {[
-              "M186 76 C260 76 260 52 340 52",
-              "M186 76 C260 76 260 176 340 176",
-              "M428 208 C428 262 400 300 352 300",
-            ].map((d) => (
-              <path key={d} d={d} stroke="#8D6BFF" strokeWidth="2" strokeLinecap="round" className="flow-dash" />
-            ))}
-          </svg>
-          {/* nós */}
-          <div className={node} style={{ left: 10, top: 44, borderColor: "rgba(198,255,0,0.5)" }}>
-            <span className={`${tile} bg-lima text-lima-foreground`}>
-              <FormInputIcon className="size-4.5" />
-            </span>
-            <div className="leading-tight">
-              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-lima">Gatilho</p>
-              <p className="text-xs font-semibold text-white">Novo lead</p>
-            </div>
-          </div>
-          <div className={node} style={{ left: 340, top: 20 }}>
-            <span className={`${tile} bg-[#5E34F7] text-white`}>
-              <MessageCircleIcon className="size-4.5" />
-            </span>
-            <div className="leading-tight">
-              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-white/50">Ação</p>
-              <p className="text-xs font-semibold text-white">Mensagem no WhatsApp</p>
-            </div>
-          </div>
-          <div className={node} style={{ left: 340, top: 144 }}>
-            <span className={`${tile} bg-[#5E34F7] text-white`}>
-              <UsersIcon className="size-4.5" />
-            </span>
-            <div className="leading-tight">
-              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-white/50">Ação</p>
-              <p className="text-xs font-semibold text-white">Card no funil do CRM</p>
-            </div>
-          </div>
-          <div className={node} style={{ left: 176, top: 268 }}>
-            <span className={`${tile} bg-[#5E34F7] text-white`}>
-              <BellRingIcon className="size-4.5" />
-            </span>
-            <div className="leading-tight">
-              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.08em] text-white/50">Ação</p>
-              <p className="text-xs font-semibold text-white">Avisar o vendedor</p>
-            </div>
-          </div>
-          <p className="absolute bottom-2 left-4 text-[10px] text-white/35">
-            Fluxo de exemplo, para ilustrar.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export default function AutomacaoPage() {
   return (
@@ -165,23 +84,27 @@ export default function AutomacaoPage() {
                 <Link href="/#solucoes" className="hover:text-foreground">
                   soluções
                 </Link>{" "}
-                / automação com n8n
+                / automação sob medida
               </nav>
               <BlurFade delay={0.08}>
                 <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
                   <span className="size-2 rounded-full bg-lima shadow-[0_0_0_4px_rgba(198,255,0,0.2)]" />
-                  Automação
+                  Sob medida
                 </span>
               </BlurFade>
               <BlurFade delay={0.15}>
                 <h1 className="mt-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-balance sm:text-5xl xl:text-[3.4rem]">
-                  Suas ferramentas conversando entre si,{" "}
-                  <span className="text-lima">sem ninguém no meio.</span>
+                  Automação sob medida,{" "}
+                  <span className="text-lima">para qualquer negócio.</span>
                 </h1>
               </BlurFade>
               <BlurFade delay={0.25}>
                 <p className="mt-5 max-w-xl text-lg text-muted-foreground text-pretty">
-                  {sol.intro}
+                  Se uma tarefa se repete na sua operação, dá para automatizar:
+                  a gente liga as suas ferramentas e desenha o fluxo do jeito
+                  que o seu negócio funciona. Loja, clínica, escritório,
+                  restaurante, escola. Não existe fluxo pronto: o seu é feito
+                  para você.
                 </p>
               </BlurFade>
               <BlurFade delay={0.35}>
@@ -205,7 +128,7 @@ export default function AutomacaoPage() {
               </BlurFade>
             </div>
             <BlurFade delay={0.3}>
-              <FlowHeroVisual />
+              <FlowShowcase />
             </BlurFade>
           </div>
           <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[70px]" />
@@ -215,14 +138,14 @@ export default function AutomacaoPage() {
         <section id="exemplos" className="py-24 lg:py-28">
           <div className="mx-auto max-w-6xl px-4 lg:px-8">
             <BlurFade>
-              <span className={eyebrow}>O que dá para automatizar</span>
+              <span className={eyebrow}>Para qualquer negócio</span>
               <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
-                Tudo o que a sua equipe repete todo dia
+                Se a sua equipe repete, dá para automatizar
                 <span className="text-emphasis">.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                Alguns exemplos de fluxos. O seu pode ser outro: a gente
-                começa pelo que mais consome tempo.
+                Alguns exemplos por segmento. O seu fluxo pode ser outro: a
+                gente começa pelo que mais consome tempo.
               </p>
             </BlurFade>
             <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -238,7 +161,10 @@ export default function AutomacaoPage() {
                           <e.icon className="size-6" />
                         </span>
                         <div>
-                          <h3 className="font-heading text-lg font-extrabold [transform:translateZ(26px)]">
+                          <span className="rounded-full border border-primary/20 bg-primary/[0.07] px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.07em] text-primary [transform:translateZ(30px)]">
+                            {e.tag}
+                          </span>
+                          <h3 className="mt-2 font-heading text-lg font-extrabold [transform:translateZ(26px)]">
                             {e.title}
                           </h3>
                           <p className="mt-1.5 text-sm text-muted-foreground [transform:translateZ(14px)]">

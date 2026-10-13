@@ -294,7 +294,7 @@ export const solutions: Solution[] = [
     title: "Automação com n8n",
     problem: "Sua equipe copia dado de um sistema para o outro todo dia.",
     summary:
-      "Fluxos que ligam as suas ferramentas e tiram do time o trabalho repetitivo.",
+      "Fluxos sob medida, para qualquer negócio, que ligam as suas ferramentas e tiram do time o trabalho repetitivo.",
     headline: "Suas ferramentas conversando entre si, sem ninguém no meio.",
     intro:
       "O n8n liga sistemas por fluxos visuais: quando algo acontece em um lugar, outra coisa acontece no outro. A gente desenha esses fluxos para o seu processo e mantém tudo funcionando.",
@@ -311,6 +311,10 @@ export const solutions: Solution[] = [
       ["Monitoramento", "Acompanhamos a execução e corrigimos o que precisar."],
     ],
     faq: [
+      {
+        q: "Serve para o meu tipo de negócio?",
+        a: "Serve. A automação é feita sob medida para o seu processo, seja loja, clínica, escritório, restaurante ou escola. Se existe uma tarefa repetitiva entre sistemas ou pessoas, dá para automatizar.",
+      },
       {
         q: "Preciso trocar minhas ferramentas?",
         a: "Não. A automação liga o que você já usa. Só sugerimos trocar algo quando a ferramenta atual não permite integração.",
