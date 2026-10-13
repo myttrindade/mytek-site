@@ -11,6 +11,7 @@ import {
   SendIcon,
 } from "lucide-react";
 
+import { MytekAvatar } from "@/components/brand/symbol";
 import { cn } from "@/lib/utils";
 
 /**
@@ -119,6 +120,15 @@ export function HubDemo() {
       <div className="grid min-h-[430px] md:grid-cols-[170px_1fr]">
         {/* menu lateral */}
         <nav className="flex gap-1 border-b border-white/10 bg-white/[0.03] p-3 md:flex-col md:border-b-0 md:border-r">
+          <div className="mb-2 hidden items-center gap-2 px-1 md:flex">
+            <MytekAvatar className="size-8" />
+            <span className="font-heading text-sm font-extrabold tracking-[-0.03em] text-white">
+              mytek
+            </span>
+            <span className="rounded bg-[#5E34F7]/30 px-1.5 py-0.5 font-mono text-[9px] font-bold text-[#C9B8FF]">
+              HUB
+            </span>
+          </div>
           {[
             { id: "tarefas", label: "Tarefas", icon: KanbanSquareIcon },
             { id: "chat", label: "Chat", icon: MessagesSquareIcon },

@@ -27,7 +27,7 @@ export function MytekAvatar({ className }: { className?: string }) {
         className
       )}
     >
-      <MytekSymbol className="w-[62%]" />
+      <MytekSymbol className="w-[46%]" />
     </span>
   );
 }
