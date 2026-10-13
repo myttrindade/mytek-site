@@ -20,11 +20,14 @@ export function ProductShot({
   priority = false,
   className,
   caption = "Dados de exemplo, para ilustrar a interface.",
+  beam = true,
 }: {
   shot: Shot;
   priority?: boolean;
   className?: string;
   caption?: string;
+  /** Luz que corre pela borda (padrão dos mockups). */
+  beam?: boolean;
 }) {
   if (!shot.src) return null;
 
@@ -34,7 +37,7 @@ export function ProductShot({
         {/* Mesmo detalhe animado dos mockups (funil, landing page, dashboard):
             sem ele, o print real fica parado ao lado dos cartões que ainda
             se movem. */}
-        <BorderBeam size={96} duration={10} />
+        {beam && <BorderBeam size={96} duration={10} />}
         <Image
           src={shot.src}
           alt={shot.alt}

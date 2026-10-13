@@ -16,6 +16,7 @@ import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { LeadLifecycle } from "@/components/journey/lead-lifecycle";
 import { StalledPanel } from "@/components/journey/stalled-panel";
 import { ProductShot } from "@/components/product-shot";
+import { TiltCard } from "@/components/velora/tilt-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { eyebrow } from "@/components/solutions-grid";
@@ -152,6 +153,80 @@ const check = (
   </span>
 );
 
+/**
+ * Visual da capa do CRM: o funil real numa janela com brilho, e três cartões
+ * flutuando por cima (alerta de lead parado, mensagem do WhatsApp e valor em
+ * jogo). Os números dos cartões são de exemplo, como o print.
+ */
+function CrmHeroVisual() {
+  const card =
+    "rounded-2xl border border-white/12 bg-[#170E2A]/90 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.75)] backdrop-blur-md";
+  return (
+    <div className="relative mx-auto w-full max-w-[700px] pb-6 pt-8 lg:pl-4">
+      <div
+        aria-hidden
+        className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgba(94,52,247,0.5),transparent_65%)]"
+      />
+      <TiltCard maxTilt={4} className="relative">
+        <div className="rounded-3xl border border-white/15 bg-white/[0.06] p-2 shadow-[0_30px_90px_-20px_rgba(110,72,255,0.7)] backdrop-blur">
+          <ProductShot
+            shot={productShots.funil}
+            priority
+            beam={false}
+            caption=""
+            className="max-w-none [&>div]:rounded-2xl"
+          />
+        </div>
+      </TiltCard>
+
+      {/* alerta de lead parado */}
+      <div className="hero-float-a absolute left-0 top-0 hidden w-[230px] sm:block lg:-left-2">
+        <div className={`${card} p-3.5`} style={{ rotate: "-2deg" }}>
+          <div className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white/60">
+            <BellRingIcon className="size-3.5 text-lima" />
+            Lead parado
+          </div>
+          <p className="mt-1.5 text-sm font-semibold text-white">
+            Carla Mendes · 2 dias sem resposta
+          </p>
+          <p className="mt-0.5 text-xs text-white/60">
+            Alerta enviado ao vendedor
+          </p>
+        </div>
+      </div>
+
+      {/* valor em jogo */}
+      <div className="hero-float-b absolute -right-2 top-14 hidden w-[170px] sm:block">
+        <div className={`${card} p-3.5`} style={{ rotate: "2.2deg" }}>
+          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white/60">
+            Em jogo
+          </p>
+          <p className="mt-1 font-heading text-2xl font-extrabold tracking-[-0.04em] text-lima">
+            R$ 18.400
+          </p>
+          <p className="text-xs text-white/60">12 leads parados</p>
+        </div>
+      </div>
+
+      {/* mensagem do WhatsApp */}
+      <div className="hero-float-c absolute bottom-0 right-4 hidden w-[250px] sm:block lg:right-8">
+        <div className={`${card} p-3.5`} style={{ rotate: "-1.6deg" }}>
+          <div className="flex items-center gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white/60">
+            <MessageCircleIcon className="size-3.5 text-lima" />
+            WhatsApp
+          </div>
+          <p className="mt-1.5 rounded-xl rounded-bl-sm bg-white/10 px-3 py-2 text-xs text-white">
+            Consigo fechar ainda hoje?
+          </p>
+          <p className="mt-1.5 ml-auto w-fit rounded-xl rounded-br-sm bg-[#5E34F7] px-3 py-2 text-xs text-white">
+            Consegue sim, te mando a proposta.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CrmPage() {
   return (
     <main className="relative">
@@ -159,65 +234,77 @@ export default function CrmPage() {
       <SiteHeader />
 
       {/* 1 · Capa: o que é, para quem, quanto custa */}
-      <section className="dark relative overflow-hidden bg-background pt-32 pb-20 text-foreground lg:pt-40">
+      <section className="dark relative overflow-hidden bg-background pt-24 pb-0 text-foreground lg:pt-28">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_0%,rgba(94,52,247,0.42),transparent_70%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_80%_20%,rgba(94,52,247,0.4),transparent_70%),radial-gradient(ellipse_50%_50%_at_0%_100%,rgba(94,52,247,0.2),transparent_70%)]"
         />
         <GridPattern
           width={56}
           height={56}
-          className="fill-transparent stroke-white/[0.06] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]"
+          className="fill-transparent stroke-white/[0.06] [mask-image:radial-gradient(ellipse_70%_70%_at_60%_30%,black,transparent)]"
         />
-        <div className="relative mx-auto max-w-6xl px-4 text-center lg:px-8">
-          <BlurFade direction="down">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
-              <span className="size-2 rounded-full bg-lima shadow-[0_0_0_4px_rgba(198,255,0,0.2)]" />
-              CRM com WhatsApp
-            </span>
-          </BlurFade>
-          <BlurFade delay={0.12}>
-            <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-extrabold tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl">
-              Seu lead respondeu no Instagram.{" "}
-              <span className="mt-3 block text-2xl font-medium tracking-normal text-muted-foreground sm:text-3xl lg:text-4xl">
-                Sua equipe viu{" "}
-                <mark className="bg-lima px-1 text-lima-foreground">
-                  6 horas depois.
-                </mark>
+        <div className="relative mx-auto grid max-w-6xl items-center gap-14 px-4 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div>
+            <BlurFade direction="down">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
+                <span className="size-2 rounded-full bg-lima shadow-[0_0_0_4px_rgba(198,255,0,0.2)]" />
+                CRM com WhatsApp
               </span>
-            </h1>
-          </BlurFade>
-          <BlurFade delay={0.25}>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground text-pretty">
-              O CRM da mytek avisa quando um lead para de andar no funil e
-              centraliza o WhatsApp num lugar só, para nenhuma oportunidade
-              esfriar por esquecimento.
-            </p>
-          </BlurFade>
-          <BlurFade delay={0.4}>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <ShimmerButton href="/contact">
-                <RocketIcon className="size-4" />
-                Falar com o time
-              </ShimmerButton>
-              <Button variant="ghost" size="lg" asChild>
-                <Link href="#preco">Ver preço ↓</Link>
-              </Button>
-            </div>
-            <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-muted-foreground">
-              {trustPoints.map((t) => (
-                <li key={t} className="flex items-center gap-1.5">
-                  <CheckIcon className="size-3.5 text-lima" />
-                  {t}
-                </li>
-              ))}
-            </ul>
-          </BlurFade>
+            </BlurFade>
+            <BlurFade delay={0.12}>
+              <h1 className="mt-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-balance sm:text-5xl xl:text-[3.5rem]">
+                Seu lead respondeu no Instagram.{" "}
+                <span className="mt-3 block text-2xl font-medium tracking-normal text-muted-foreground sm:text-3xl xl:text-4xl">
+                  Sua equipe viu{" "}
+                  <mark className="bg-lima px-1 text-lima-foreground">
+                    6 horas depois.
+                  </mark>
+                </span>
+              </h1>
+            </BlurFade>
+            <BlurFade delay={0.25}>
+              <p className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty">
+                O CRM da mytek avisa quando um lead para de andar no funil e
+                centraliza o WhatsApp num lugar só, para nenhuma oportunidade
+                esfriar por esquecimento.
+              </p>
+            </BlurFade>
+            <BlurFade delay={0.4}>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <ShimmerButton href="/contact">
+                  <RocketIcon className="size-4" />
+                  Falar com o time
+                </ShimmerButton>
+                <Button variant="ghost" size="lg" asChild>
+                  <Link href="#preco">Ver preço ↓</Link>
+                </Button>
+              </div>
+              <ul className="mt-6 grid gap-x-6 gap-y-2 text-sm text-muted-foreground sm:grid-cols-2">
+                {trustPoints.map((t) => (
+                  <li key={t} className="flex items-center gap-2">
+                    <CheckIcon className="size-3.5 shrink-0 text-lima" />
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </BlurFade>
+          </div>
 
-          <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-8 lg:grid-cols-4">
+          <BlurFade delay={0.3}>
+            <CrmHeroVisual />
+          </BlurFade>
+        </div>
+
+        {/* faixa de fatos, ancorada na base da capa */}
+        <div className="relative mx-auto mt-10 max-w-6xl px-4 pb-10 lg:px-8">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-4">
             {heroStats.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-1">
-                <span className="text-2xl font-extrabold tracking-[-0.03em] whitespace-nowrap lg:text-3xl">
+              <div
+                key={stat.label}
+                className="flex flex-col gap-1 bg-[#0F0819] px-6 py-5"
+              >
+                <span className="font-heading text-2xl font-extrabold tracking-[-0.03em] whitespace-nowrap text-lima lg:text-3xl">
                   {"value" in stat ? (
                     <NumberTicker value={stat.value} suffix={stat.suffix} />
                   ) : (
@@ -230,13 +317,8 @@ export default function CrmPage() {
               </div>
             ))}
           </div>
-
-          <BlurFade delay={0.5}>
-            <div className="mx-auto mt-14 max-w-5xl rounded-2xl shadow-[0_0_90px_-15px_rgba(110,72,255,0.7)]">
-              <ProductShot shot={productShots.funil} priority className="max-w-none" />
-            </div>
-          </BlurFade>
         </div>
+        <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[70px]" />
       </section>
 
       {/* 2 · O problema, na voz de quem sente */}
