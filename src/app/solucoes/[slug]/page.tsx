@@ -26,9 +26,11 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  // landing-pages e sites têm página própria (../landing-pages e ../sites).
+  // landing-pages, sites e dashboards têm página própria.
   return detailSolutions
-    .filter((s) => s.slug !== "landing-pages" && s.slug !== "sites")
+    .filter(
+      (s) => !["landing-pages", "sites", "dashboards"].includes(s.slug)
+    )
     .map((s) => ({ slug: s.slug }));
 }
 

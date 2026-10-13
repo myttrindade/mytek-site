@@ -220,7 +220,7 @@ export const solutions: Solution[] = [
     title: "Dashboards",
     problem: "Você descobre o resultado do mês só no fim do mês.",
     summary:
-      "Painéis de vendas, atendimento e operação que a equipe entende sem pedir relatório.",
+      "Painéis de vendas, atendimento e operação que a equipe entende sem pedir relatório. A partir de R$397/mês.",
     headline: "Os números do seu negócio num lugar só, sem montar planilha.",
     intro:
       "Dashboard bom responde pergunta, não enfeita. A gente conecta as suas fontes de dados e monta painéis que qualquer pessoa da equipe entende, do dono ao vendedor.",
@@ -240,6 +240,10 @@ export const solutions: Solution[] = [
       {
         q: "Funciona com os dados que eu já tenho?",
         a: "Na maioria dos casos sim. Planilhas, sistemas com exportação e bancos de dados costumam ser ligados sem trocar nada do que você usa.",
+      },
+      {
+        q: "Quanto custa?",
+        a: "O Dashboard avulso custa R$397/mês, ou R$697/mês com suporte incluso (até 5 solicitações por mês). Quem já é cliente do CRM da mytek paga a partir de +R$197/mês, porque os dados já estão dentro da plataforma.",
       },
       {
         q: "Qual ferramenta é usada?",
