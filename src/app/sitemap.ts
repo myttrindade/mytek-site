@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 
-import { blogPosts } from "@/lib/blog-posts";
 import { hasCheckoutLinks } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
 import { detailSolutions } from "@/lib/solutions-data";
@@ -17,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pricing",
     // Só entra no sitemap quando existir link de pagamento de verdade.
     ...(hasCheckoutLinks ? ["/pagamento"] : []),
-    "/blog",
     "/changelog",
     "/about",
     "/contact",
@@ -27,12 +25,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.7,
   }));
 
-  const postPages = blogPosts.map((p) => ({
-    url: `${BASE}/blog/${p.slug}`,
-    lastModified: p.dateISO,
-    changeFrequency: "yearly" as const,
-    priority: 0.5,
-  }));
-
-  return [...staticPages, ...postPages];
+  return staticPages;
 }

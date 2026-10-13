@@ -1,4 +1,3 @@
-# Blog posts renamed from leftover template slugs to descriptive
-# Portuguese ones — 301 so any existing links/indexation carry over.
-/blog/animations-with-receipts       /blog/alerta-de-lead-sem-resposta       301
-/blog/retheme-in-one-token-block     /blog/metricas-que-importam-no-dashboard 301
+# O blog foi removido: links antigos levam para a home.
+/blog    /  301
+/blog/*  /  301
