@@ -24,7 +24,10 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return detailSolutions.map((s) => ({ slug: s.slug }));
+  // landing-pages tem página própria em ../landing-pages/page.tsx.
+  return detailSolutions
+    .filter((s) => s.slug !== "landing-pages")
+    .map((s) => ({ slug: s.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
