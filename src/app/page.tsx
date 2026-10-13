@@ -178,7 +178,7 @@ export default function Home() {
       <Solutions />
 
       {/* Dois jeitos de contratar */}
-      <section className="bg-muted py-24 lg:py-28">
+      <section className="overflow-x-clip bg-muted py-24 lg:py-28">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
             <span className={eyebrow}>Como contratar</span>
