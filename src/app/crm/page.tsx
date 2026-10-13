@@ -16,6 +16,7 @@ import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { LeadLifecycle } from "@/components/journey/lead-lifecycle";
 import { StalledPanel } from "@/components/journey/stalled-panel";
 import { ProductShot } from "@/components/product-shot";
+import { Card3D } from "@/components/brand/card-3d";
 import { TiltCard } from "@/components/velora/tilt-card";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -338,16 +339,27 @@ export default function CrmPage() {
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             {pains.map((p, i) => (
               <BlurFade key={p.quote} delay={i * 0.08}>
-                <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
-                  <p className="font-heading text-lg font-bold italic leading-snug">
-                    “{p.quote}”
-                  </p>
-                  <div className="mt-5 flex gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <p.icon className="size-4" />
-                    </span>
-                    <p>{p.answer}</p>
-                  </div>
+                <div className="h-full [perspective:1200px]">
+                  <Card3D
+                    className="h-full"
+                    maxTilt={11}
+                    glare="rgba(94,52,247,0.14)"
+                  >
+                    <div
+                      style={{ transformStyle: "preserve-3d" }}
+                      className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-[0_18px_36px_-22px_rgba(94,52,247,0.35)] transition-shadow duration-300 group-hover/3d:shadow-[1px_1px_0_#e2dbff,2px_2px_0_#e2dbff,3px_3px_0_#d3c8ff,4px_4px_0_#d3c8ff,5px_5px_0_#c2b4ff,6px_6px_0_#c2b4ff,7px_7px_0_#b3a2ff,8px_8px_0_#b3a2ff,0_30px_46px_-16px_rgba(94,52,247,0.45)]"
+                    >
+                      <p className="font-heading text-lg font-bold italic leading-snug [transform:translateZ(34px)]">
+                        “{p.quote}”
+                      </p>
+                      <div className="mt-5 flex gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
+                        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary [transform:translateZ(40px)]">
+                          <p.icon className="size-4" />
+                        </span>
+                        <p className="[transform:translateZ(18px)]">{p.answer}</p>
+                      </div>
+                    </div>
+                  </Card3D>
                 </div>
               </BlurFade>
             ))}

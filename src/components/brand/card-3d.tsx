@@ -12,6 +12,8 @@ interface Card3DProps {
   maxTilt?: number;
   /** Giro em repouso (eixo Y, em graus): dá volume mesmo sem o mouse. */
   restTilt?: number;
+  /** Cor do brilho que desliza pela superfície (use um tom escuro em cartão claro). */
+  glare?: string;
 }
 
 /**
@@ -25,6 +27,7 @@ export function Card3D({
   className,
   maxTilt = 14,
   restTilt = 0,
+  glare = "rgba(255,255,255,0.3)",
 }: Card3DProps) {
   const ref = useRef<HTMLDivElement>(null);
   const rotateX = useMotionValue(0);
@@ -69,7 +72,7 @@ export function Card3D({
         className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover/3d:opacity-100"
         style={{
           background:
-            "radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), rgba(255,255,255,0.3), transparent 55%)",
+            `radial-gradient(circle at var(--gx, 50%) var(--gy, 0%), ${glare}, transparent 55%)`,
         }}
       />
     </motion.div>
