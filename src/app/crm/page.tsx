@@ -50,9 +50,9 @@ const trustPoints = [
 ];
 
 const heroStats = [
-  { value: 10, suffix: " min", label: "da conversa ao funil configurado" },
-  { text: "R$99/mês", label: "a partir de, no plano do CRM" },
-  { text: "3 usuários", label: "incluídos no plano" },
+  { value: 10, suffix: " min", label: "para deixar o CRM pronto: a gente configura com você" },
+  { text: "R$99/mês", label: "no plano CRM Normal" },
+  { text: "3 usuários", label: "da sua equipe, incluídos no plano" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
 ] as const;
 
