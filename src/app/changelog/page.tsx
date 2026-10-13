@@ -89,10 +89,10 @@ export default function ChangelogPage() {
             O que há de <span className="text-primary">novo</span>
           </>
         }
-        description="CRM, Landing Page e Dashboard: cada entrega, documentada."
+        description="Cada entrega da mytek, documentada."
       />
 
-      <section className="pb-28">
+      <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-3xl px-4 lg:px-8">
           <ol className="relative space-y-14 border-l border-border/60 pl-8">
             {releases.map((release, i) => (

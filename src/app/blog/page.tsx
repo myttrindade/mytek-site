@@ -28,10 +28,10 @@ export default function BlogPage() {
             Notas do <span className="text-primary">time mytek</span>
           </>
         }
-        description="Decisões de produto, automações e a métrica certa, escritas enquanto construímos CRM, Landing Page e Dashboard."
+        description="Decisões de produto, automações e a métrica certa, escritas enquanto construímos as soluções da mytek."
       />
 
-      <section className="pb-28">
+      <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-3xl space-y-6 px-4 lg:px-8">
           {blogPosts.map((post, i) => (
             <BlurFade key={post.slug} delay={Math.min(i * 0.1, 0.3)}>
