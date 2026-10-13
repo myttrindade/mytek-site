@@ -333,7 +333,7 @@ export const solutions: Solution[] = [
     title: "Previsão de churn",
     problem: "O cliente cancela e você só fica sabendo depois.",
     summary:
-      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir.",
+      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir. R$397/mês + R$497 de implantação.",
     headline: "Saiba quais clientes têm risco de sair antes que eles saiam.",
     intro:
       "Usamos o histórico de clientes da sua empresa para treinar um modelo de machine learning que estima o risco de cancelamento de cada um. A equipe passa a agir antes, com a lista de quem priorizar.",
@@ -353,6 +353,10 @@ export const solutions: Solution[] = [
       {
         q: "Preciso de muitos dados?",
         a: "Precisa de histórico suficiente de clientes que ficaram e que saíram. Avaliamos o seu caso antes de propor, e dizemos se os dados atuais ainda não bastam.",
+      },
+      {
+        q: "Quanto custa?",
+        a: "A previsão de churn avulsa custa R$397/mês, mais R$497 de implantação, pagos uma vez só. Ela também vem incluída no CRM Plus, que custa R$297/mês e traz ainda a IA sobre os seus dados.",
       },
       {
         q: "O modelo garante quem vai sair?",

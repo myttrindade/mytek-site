@@ -54,12 +54,13 @@ const crmPlans = [
   {
     name: "CRM Plus",
     slug: "crm-plus",
-    price: "R$220",
+    price: "R$297",
     unit: "/mês",
     highlight: true,
     features: [
       "Até 3 membros do time",
       "Módulo Conhecimento com IA",
+      "Previsão de churn incluída",
       "Sessão de treinamento incluída",
     ],
   },
@@ -144,8 +145,8 @@ const FEATURED_LABEL = "Recomendado para começar";
 const combos = [
   { label: "CRM Normal + Dashboard sem suporte", price: "R$296/mês", featured: true },
   { label: "CRM Normal + Dashboard com suporte", price: "R$446/mês", featured: false },
-  { label: "CRM Plus + Dashboard sem suporte", price: "R$417/mês", featured: false },
-  { label: "CRM Plus + Dashboard com suporte", price: "R$567/mês", featured: false },
+  { label: "CRM Plus + Dashboard sem suporte", price: "R$494/mês", featured: false },
+  { label: "CRM Plus + Dashboard com suporte", price: "R$644/mês", featured: false },
 ];
 
 /**
@@ -608,6 +609,49 @@ export default function PricingPage() {
                 </div>
               </BlurFade>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Previsão de churn */}
+      <section className="pb-20">
+        <div className="mx-auto max-w-4xl px-4 lg:px-8">
+          <BlurFade>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <h2 className="text-xl font-semibold tracking-tight">
+                Previsão de churn
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Saiba quais clientes têm risco de sair
+              </p>
+            </div>
+          </BlurFade>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <BlurFade>
+              <div className="flex h-full flex-col rounded-2xl border bg-card p-6">
+                <span className="text-xs font-semibold text-primary">Avulsa</span>
+                <p className="mt-2 text-3xl font-semibold tracking-tight">
+                  R$397<span className="text-base font-normal text-muted-foreground">/mês</span>
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  mais R$497 de implantação, pagos uma vez só
+                </p>
+                <Button variant="outline" className="mt-5 w-fit rounded-full" asChild>
+                  <a href="/solucoes/previsao-de-churn">Ver como funciona</a>
+                </Button>
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.08}>
+              <div className="flex h-full flex-col rounded-2xl border border-primary/40 bg-primary/[0.06] p-6">
+                <span className="text-xs font-semibold text-primary">Incluída no CRM Plus</span>
+                <p className="mt-2 text-3xl font-semibold tracking-tight">
+                  R$297<span className="text-base font-normal text-muted-foreground">/mês</span>
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  CRM, IA sobre os seus dados e previsão de churn juntos
+                </p>
+              </div>
+            </BlurFade>
           </div>
         </div>
       </section>

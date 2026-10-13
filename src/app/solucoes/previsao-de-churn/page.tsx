@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowRightIcon,
   ArrowUpRightIcon,
   CheckIcon,
   DatabaseIcon,
@@ -29,6 +30,7 @@ import { Button } from "@/components/ui/button";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { GridPattern } from "@/components/velora/grid-pattern";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
+import { checkoutHref } from "@/lib/checkout";
 import { getSolution } from "@/lib/solutions-data";
 
 const sol = getSolution("previsao-de-churn")!;
@@ -195,11 +197,14 @@ export default function ChurnPage() {
                   </Button>
                 </div>
                 <div className="mt-6 inline-flex flex-wrap items-baseline gap-x-2 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
-                  <span className="font-heading text-lg font-extrabold text-lima">
-                    Orçamento sob medida
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-muted-foreground">
+                    a partir de
+                  </span>
+                  <span className="font-heading text-3xl font-extrabold tracking-[-0.04em] text-lima">
+                    R$397
                   </span>
                   <span className="text-sm text-muted-foreground">
-                    escopo, prazo e preço antes de começar
+                    /mês + R$497 de implantação
                   </span>
                 </div>
               </BlurFade>
@@ -343,8 +348,134 @@ export default function ChurnPage() {
           </div>
         </section>
 
+        {/* Planos */}
+        <section id="planos" className="py-24 lg:py-28">
+          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+            <BlurFade>
+              <span className={eyebrow}>Quanto custa</span>
+              <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
+                Avulsa ou junto com o CRM
+                <span className="text-emphasis">.</span>
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+                A implantação (análise dos dados, treino e avaliação do modelo)
+                é paga uma vez só. Depois, a mensalidade.
+              </p>
+            </BlurFade>
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {[
+                {
+                  tag: "Avulsa",
+                  name: "Previsão de churn",
+                  price: "R$397",
+                  unit: "/mês",
+                  note: "mais R$497 de implantação, pagos uma vez só",
+                  items: [
+                    "Análise e preparação do seu histórico de clientes",
+                    "Modelo treinado e avaliado com os seus dados",
+                    "Lista de clientes em risco, com o motivo de cada um",
+                    "Reavaliação do modelo conforme entram dados novos",
+                  ],
+                  cta: "Pedir uma proposta",
+                  href: "/contact",
+                  featured: false,
+                },
+                {
+                  tag: "Incluída no CRM Plus",
+                  name: "CRM Plus",
+                  price: "R$297",
+                  unit: "/mês",
+                  note: "o CRM, a IA e a previsão de churn num plano só",
+                  items: [
+                    "Tudo do CRM: funil, WhatsApp, alerta de lead parado, 3 usuários",
+                    "IA que responde sobre os seus dados",
+                    "Previsão de churn",
+                    "Sessão de treinamento incluída",
+                  ],
+                  cta: "Quero o CRM Plus",
+                  href: checkoutHref("crm-plus"),
+                  featured: true,
+                },
+              ].map((plan, i) => (
+                <BlurFade key={plan.name} delay={i * 0.1}>
+                  <div className="h-full [perspective:1200px]">
+                    <Card3D
+                      className="h-full"
+                      maxTilt={8}
+                      glare={plan.featured ? "rgba(255,255,255,0.28)" : "rgba(94,52,247,0.14)"}
+                    >
+                      <div
+                        style={{ transformStyle: "preserve-3d" }}
+                        className={
+                          "relative flex h-full flex-col rounded-3xl border p-8 " +
+                          (plan.featured
+                            ? "border-white/20 bg-gradient-to-br from-[#7A57FF] via-[#5E34F7] to-[#4220C9] text-white shadow-[0_34px_60px_-22px_rgba(60,30,170,0.7)]"
+                            : "border-border bg-card shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]")
+                        }
+                      >
+                        <span
+                          className={
+                            "font-mono text-[11px] font-bold uppercase tracking-[0.06em] " +
+                            (plan.featured ? "text-lima" : "text-primary")
+                          }
+                        >
+                          {plan.tag}
+                        </span>
+                        <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] [transform:translateZ(24px)]">
+                          {plan.name}
+                        </h3>
+                        <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em] [transform:translateZ(34px)]">
+                          {plan.price}
+                          <span className="text-lg font-semibold opacity-70">{plan.unit}</span>
+                        </p>
+                        <p
+                          className={
+                            "mt-2 text-sm " +
+                            (plan.featured ? "text-white/80" : "text-muted-foreground")
+                          }
+                        >
+                          {plan.note}
+                        </p>
+                        <ul className="mt-6 flex-1 space-y-3 text-sm">
+                          {plan.items.map((f) => (
+                            <li key={f} className="flex items-start gap-3">
+                              <span
+                                className={
+                                  "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full " +
+                                  (plan.featured
+                                    ? "bg-lima text-lima-foreground"
+                                    : "bg-primary text-primary-foreground")
+                                }
+                              >
+                                <CheckIcon className="size-3" />
+                              </span>
+                              {f}
+                            </li>
+                          ))}
+                        </ul>
+                        <Button
+                          asChild
+                          size="lg"
+                          className={
+                            "mt-8 w-full rounded-full " +
+                            (plan.featured ? "bg-lima text-lima-foreground hover:bg-lima/90" : "")
+                          }
+                        >
+                          <a href={plan.href}>
+                            {plan.cta} <ArrowRightIcon className="size-4" />
+                          </a>
+                        </Button>
+                      </div>
+                    </Card3D>
+                  </div>
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* 5 · Honestidade sobre o que o modelo e */}
-        <section className="py-24 lg:py-28">
+        <section className="bg-muted py-24 lg:py-28">
           <div className="mx-auto max-w-4xl px-4 lg:px-8">
             <BlurFade>
               <div className="rounded-3xl border border-primary/25 bg-primary/[0.06] p-8 lg:p-10">
@@ -372,7 +503,7 @@ export default function ChurnPage() {
         </section>
 
         {/* 6 · O que está incluso e etapas */}
-        <section className="bg-muted py-24 lg:py-28">
+        <section className="py-24 lg:py-28">
           <div className="mx-auto grid max-w-6xl gap-12 px-4 lg:grid-cols-[1fr_1.1fr] lg:px-8">
             <div>
               <span className={eyebrow}>O que está incluso</span>
@@ -404,7 +535,7 @@ export default function ChurnPage() {
         </section>
 
         {/* 7 · Perguntas */}
-        <section className="py-24 lg:py-28">
+        <section className="bg-muted py-24 lg:py-28">
           <div className="mx-auto max-w-3xl px-4 lg:px-8">
             <h2 className="text-3xl font-extrabold tracking-[-0.035em] lg:text-4xl">
               Perguntas sobre previsão de churn

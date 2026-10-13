@@ -66,11 +66,12 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "crm-plus",
         name: "CRM Plus",
-        price: "R$220",
+        price: "R$297",
         unit: "/mês",
         features: [
           "Até 3 membros do time",
           "Módulo Conhecimento com IA",
+          "Previsão de churn incluída",
           "Sessão de treinamento incluída",
         ],
         // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
@@ -139,7 +140,7 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "combo-plus-sem-suporte",
         name: "CRM Plus + Dashboard sem suporte",
-        price: "R$417",
+        price: "R$494",
         unit: "/mês",
         features: ["Economia de R$200/mês"],
         // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
@@ -148,9 +149,34 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "combo-plus-com-suporte",
         name: "CRM Plus + Dashboard com suporte",
-        price: "R$567",
+        price: "R$644",
         unit: "/mês",
         features: ["Economia de R$350/mês"],
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
+      },
+    ],
+  },
+  {
+    slug: "churn",
+    title: "Previsão de churn",
+    billing: "Assinatura mensal + implantação",
+    description:
+      "Modelo treinado com o seu histórico que aponta quais clientes têm risco de sair. Também vem incluída no CRM Plus.",
+    plans: [
+      {
+        slug: "churn-avulso",
+        name: "Previsão de churn avulsa",
+        price: "R$397",
+        unit: "/mês",
+        tagline: "Mais R$497 de implantação, pagos uma vez só.",
+        features: [
+          "Implantação de R$497, paga uma vez só",
+          "Análise e preparação do seu histórico de clientes",
+          "Modelo treinado e avaliado com os seus dados",
+          "Lista de clientes em risco, com o motivo de cada um",
+          "Reavaliação do modelo conforme entram dados novos",
+        ],
         // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
         url: "",
       },

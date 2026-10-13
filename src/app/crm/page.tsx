@@ -548,8 +548,8 @@ export default function CrmPage() {
                   CRM Normal, com 3 usuários incluídos
                 </p>
                 <p className="mt-3 rounded-xl bg-primary/10 px-3 py-2 text-sm">
-                  <strong>CRM Plus: R$220/mês.</strong> Inclui o módulo de IA
-                  sobre os seus dados, com treinamento.
+                  <strong>CRM Plus: R$297/mês.</strong> Inclui a IA sobre os
+                  seus dados e a previsão de churn, com treinamento.
                 </p>
                 <div className="mt-auto flex flex-col gap-3 pt-8">
                   <Button asChild size="lg" className="rounded-full">
