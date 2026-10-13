@@ -323,7 +323,7 @@ export default function CrmPage() {
       </section>
 
       {/* 2 · O problema, na voz de quem sente */}
-      <section id="problema" className="py-24 lg:py-28">
+      <section id="problema" className="bg-muted py-24 lg:py-28">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
             <span className={eyebrow}>O problema</span>
@@ -343,20 +343,42 @@ export default function CrmPage() {
                   <Card3D
                     className="h-full"
                     maxTilt={11}
-                    glare="rgba(94,52,247,0.14)"
+                    glare="rgba(94,52,247,0.16)"
                   >
                     <div
                       style={{ transformStyle: "preserve-3d" }}
-                      className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-[0_18px_36px_-22px_rgba(94,52,247,0.35)] transition-shadow duration-300 group-hover/3d:shadow-[1px_1px_0_#e2dbff,2px_2px_0_#e2dbff,3px_3px_0_#d3c8ff,4px_4px_0_#d3c8ff,5px_5px_0_#c2b4ff,6px_6px_0_#c2b4ff,7px_7px_0_#b3a2ff,8px_8px_0_#b3a2ff,0_30px_46px_-16px_rgba(94,52,247,0.45)]"
+                      className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-b from-white via-white to-[#EFEAFF] p-7 shadow-[0_28px_54px_-26px_rgba(94,52,247,0.55)] transition-shadow duration-300 group-hover/3d:shadow-[1px_1px_0_#e2dbff,2px_2px_0_#e2dbff,3px_3px_0_#d3c8ff,4px_4px_0_#d3c8ff,5px_5px_0_#c2b4ff,6px_6px_0_#c2b4ff,7px_7px_0_#b3a2ff,8px_8px_0_#b3a2ff,0_34px_52px_-16px_rgba(94,52,247,0.5)]"
                     >
-                      <p className="font-heading text-lg font-bold italic leading-snug [transform:translateZ(34px)]">
+                      {/* faixa de cor no topo */}
+                      <span
+                        aria-hidden
+                        className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-[#5E34F7] via-[#8D6BFF] to-[#C6FF00]"
+                      />
+                      {/* aspas grandes ao fundo */}
+                      <span
+                        aria-hidden
+                        className="pointer-events-none absolute -right-1 -top-3 select-none font-heading text-[130px] font-extrabold leading-none text-primary/[0.08]"
+                      >
+                        ”
+                      </span>
+                      <div className="relative flex items-center gap-3 [transform:translateZ(46px)]">
+                        <span className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7A57FF] to-[#4A22D6] text-white shadow-[0_12px_26px_-10px_rgba(94,52,247,0.8)] ring-1 ring-white/40">
+                          <p.icon className="size-6" />
+                        </span>
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.07em] text-primary">
+                          Situação {String(i + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                      <p className="relative mt-5 font-heading text-xl font-extrabold leading-snug tracking-[-0.02em] [transform:translateZ(34px)] lg:text-[1.35rem]">
                         “{p.quote}”
                       </p>
-                      <div className="mt-5 flex gap-3 border-t border-border pt-5 text-sm text-muted-foreground">
-                        <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary [transform:translateZ(40px)]">
-                          <p.icon className="size-4" />
+                      <div className="relative mt-6 border-t border-primary/15 pt-5 [transform:translateZ(20px)]">
+                        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.07em] text-primary">
+                          Como o CRM resolve
                         </span>
-                        <p className="[transform:translateZ(18px)]">{p.answer}</p>
+                        <p className="mt-2 text-sm font-medium text-foreground/80">
+                          {p.answer}
+                        </p>
                       </div>
                     </div>
                   </Card3D>
