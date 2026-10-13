@@ -365,9 +365,6 @@ export default function CrmPage() {
                         <span className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7A57FF] to-[#4A22D6] text-white shadow-[0_12px_26px_-10px_rgba(94,52,247,0.8)] ring-1 ring-white/40">
                           <p.icon className="size-6" />
                         </span>
-                        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.07em] text-primary">
-                          Situação {String(i + 1).padStart(2, "0")}
-                        </span>
                       </div>
                       <p className="relative mt-5 font-heading text-xl font-extrabold leading-snug tracking-[-0.02em] [transform:translateZ(34px)] lg:text-[1.35rem]">
                         “{p.quote}”
