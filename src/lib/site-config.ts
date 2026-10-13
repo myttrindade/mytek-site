@@ -78,9 +78,10 @@ export const hasProductShots = Object.values(productShots).some(
  * Vídeo de demonstração do Mytek Hub. Enquanto `src` for `null`, o botão "Ver
  * em vídeo" não aparece. Para ligar: gravar a tela do Hub (30 a 60 s), salvar
  * em /public/brand/hub/demo.mp4 (até uns 20 MB, limite do Cloudflare Pages é
- * 25 MB por arquivo) e apontar aqui: src: "/brand/hub/demo.mp4".
+ * 25 MB por arquivo) e apontar aqui. Hoje é a gravação da conta de demonstração
+ * que já está no portfólio.
  */
 export const hubDemo: { src: string | null; poster: string | null } = {
-  src: null,
-  poster: null,
+  src: "/brand/hub/demo.mp4",
+  poster: "/brand/hub/poster.jpg",
 };

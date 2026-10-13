@@ -4,7 +4,6 @@ import { ArrowRightIcon, CheckIcon } from "lucide-react";
 import type { Metadata } from "next";
 
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
-import { DemoVideo } from "@/components/brand/demo-video";
 import { HubDemo } from "@/components/brand/hub-demo";
 import { MeMarquee } from "@/components/brand/me-motion";
 import { SiteFooter } from "@/components/site-footer";
@@ -139,14 +138,38 @@ export default async function SolutionPage({ params }: Props) {
                 <span className="text-emphasis">.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                Avance as tarefas, peça uma como líder e troque mensagens nos
-                canais. É uma demonstração com dados de exemplo: nada fica
-                salvo.
+                Veja o sistema real numa gravação rápida e, logo abaixo,
+                experimente você mesmo: avance as tarefas, peça uma como líder
+                e troque mensagens nos canais.
               </p>
-              <div className="mt-8">
-                <DemoVideo src={hubDemo.src} poster={hubDemo.poster} label="Ver o Hub em vídeo" />
-              </div>
-              <div className="mt-8">
+
+              {hubDemo.src && (
+                <figure className="mt-10">
+                  <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#0F0819] shadow-[0_40px_100px_-30px_rgba(110,72,255,0.7)]">
+                    <video
+                      src={hubDemo.src}
+                      poster={hubDemo.poster ?? undefined}
+                      controls
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="aspect-[16/10] w-full bg-black"
+                    />
+                  </div>
+                  <figcaption className="mt-3 text-center text-[11px] text-muted-foreground">
+                    Gravação do Mytek Hub, com uma conta de demonstração.
+                  </figcaption>
+                </figure>
+              )}
+
+              <h3 className="mt-14 font-heading text-2xl font-extrabold tracking-[-0.03em]">
+                Agora experimente você mesmo
+              </h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Demonstração interativa com dados de exemplo. Nada fica salvo.
+              </p>
+              <div className="mt-6">
                 <HubDemo />
               </div>
             </div>
