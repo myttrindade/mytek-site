@@ -1,23 +1,10 @@
-import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
-import { AuthForm } from "@/components/template/auth-form";
-import { AuthVisual } from "@/components/template/auth-visual";
-
-export const metadata: Metadata = {
-  title: "Entrar",
-  description: "Entre na sua conta mytek.",
-  alternates: { canonical: "/login" },
-};
-
-export default function LoginPage() {
-  return (
-    <main className="grid min-h-svh lg:grid-cols-2">
-      <div className="flex items-center justify-center px-6 py-16">
-        <div className="w-full max-w-sm">
-          <AuthForm mode="login" />
-        </div>
-      </div>
-      <AuthVisual />
-    </main>
-  );
+/**
+ * O site não tem área de cliente: a entrada é sempre pelo time. A tela que
+ * existia aqui era do template e fingia sucesso sem autenticar nada, então
+ * quem chega por link antigo vai direto para o contato.
+ */
+export default function Page() {
+  redirect("/contact");
 }

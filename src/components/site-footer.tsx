@@ -33,16 +33,6 @@ const groups = [
       { text: "Contato", href: "/contact" },
     ],
   },
-  {
-    title: "Conta",
-    links: [
-      { text: "Entrar", href: "/login" },
-      // Aponta para /contact enquanto a entrada for sempre pelo time
-      // comercial. Ver o TODO(produto) no hero de src/app/page.tsx: a tela de
-      // cadastro deste site é do template e finge sucesso sem criar conta.
-      { text: "Criar conta", href: "/contact" },
-    ],
-  },
 ];
 
 export function SiteFooter() {
