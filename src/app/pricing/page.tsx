@@ -68,7 +68,7 @@ const customList = [
   "Agentes de IA",
   "Automação com n8n",
   "Sistemas sob medida",
-  "Mytek Hub e MyCash (sob demonstração)",
+  "My Hub e My Cash (sob demonstração)",
 ];
 
 /** Cartão de plano: o destaque (featured) é roxo; os demais, brancos. */

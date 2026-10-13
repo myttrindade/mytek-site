@@ -132,13 +132,13 @@ export const solutions: Solution[] = [
     kind: "produto",
     href: "/solucoes/mytek-hub",
     tag: "Produto",
-    title: "Mytek Hub",
+    title: "My Hub",
     problem: "Cada um cuida das tarefas num lugar e ninguém sabe o que está andando.",
     summary:
       "Sistema de organização do time: tarefas com prazo, progresso visível e conversa no mesmo lugar.",
     headline: "A equipe inteira organizada num lugar só: tarefas, prazos e conversa.",
     intro:
-      "O Mytek Hub é o sistema que a própria mytek usa para organizar o trabalho. Cada pessoa vê o que precisa fazer e em que pé está; o líder enxerga o conjunto e pede tarefas direto pelo sistema; e o time conversa ali mesmo, sem trocar de aplicativo.",
+      "O My Hub é o sistema que a própria mytek usa para organizar o trabalho. Cada pessoa vê o que precisa fazer e em que pé está; o líder enxerga o conjunto e pede tarefas direto pelo sistema; e o time conversa ali mesmo, sem trocar de aplicativo.",
     includes: [
       "Agendamento de tarefas, com responsável e prazo",
       "Quadro de progresso (a fazer, em andamento, concluído) atualizado em tempo real",
@@ -172,13 +172,13 @@ export const solutions: Solution[] = [
     kind: "produto",
     href: "/solucoes/mycash",
     tag: "Produto",
-    title: "MyCash",
+    title: "My Cash",
     problem: "Você não sabe quanto a empresa tem em caixa de verdade.",
     summary:
       "O financeiro da empresa num só lugar: contas, cartões, orçamento e metas, com IA para consultar e lançar.",
     headline: "O financeiro da empresa organizado, sem planilha e sem susto no fim do mês.",
     intro:
-      "O MyCash organiza o dinheiro do seu negócio: o que entra, o que sai, o que está parcelado no cartão e o que ainda vai vencer. Você vê o caixa do mês num painel claro, define orçamento e metas por categoria e ainda pergunta e lança pelo Claude ou pelo ChatGPT.",
+      "O My Cash organiza o dinheiro do seu negócio: o que entra, o que sai, o que está parcelado no cartão e o que ainda vai vencer. Você vê o caixa do mês num painel claro, define orçamento e metas por categoria e ainda pergunta e lança pelo Claude ou pelo ChatGPT.",
     includes: [
       "Todas as entradas e saídas, por conta e por categoria",
       "Cartões com faturas e parcelas, para saber o que ainda vai cair",
@@ -195,8 +195,8 @@ export const solutions: Solution[] = [
     ],
     faq: [
       {
-        q: "Como funciona a IA no MyCash?",
-        a: "Você conecta o MyCash ao Claude ou ao ChatGPT e passa a perguntar sobre o financeiro e lançar movimentações por conversa, em vez de abrir o sistema.",
+        q: "Como funciona a IA no My Cash?",
+        a: "Você conecta o My Cash ao Claude ou ao ChatGPT e passa a perguntar sobre o financeiro e lançar movimentações por conversa, em vez de abrir o sistema.",
       },
       {
         q: "Consigo trazer o que já tenho?",
@@ -204,7 +204,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Substitui o meu contador?",
-        a: "Não. O MyCash organiza o financeiro do dia a dia. A contabilidade formal continua com o seu contador.",
+        a: "Não. O My Cash organiza o financeiro do dia a dia. A contabilidade formal continua com o seu contador.",
       },
       {
         q: "Quanto custa?",

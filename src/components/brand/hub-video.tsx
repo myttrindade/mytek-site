@@ -6,7 +6,7 @@ import { PlayIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * Vídeo do Mytek Hub com capítulos clicáveis. O tempo de cada capítulo é o do
+ * Vídeo do My Hub com capítulos clicáveis. O tempo de cada capítulo é o do
  * arquivo `public/brand/hub/demo.mp4`: se o vídeo for trocado ou editado,
  * ajuste `chapters` junto.
  */
@@ -67,7 +67,7 @@ export function HubVideo({
           />
         </div>
         <figcaption className="mt-3 text-center text-[11px] text-muted-foreground">
-          Gravação do Mytek Hub, com uma conta de demonstração.
+          Gravação do My Hub, com uma conta de demonstração.
         </figcaption>
       </figure>
 

@@ -21,7 +21,7 @@ export const siteConfig = {
    */
   tagline: "Software e IA para negócios que vendem por conversa",
   description:
-    "CRM com WhatsApp, Mytek Hub (organização do time), MyCash (financeiro para empresas), sites, landing pages, dashboards, agentes de IA, automações com n8n e previsão de churn. CRM a partir de R$99/mês.",
+    "CRM com WhatsApp, My Hub (organização do time), My Cash (financeiro para empresas), sites, landing pages, dashboards, agentes de IA, automações com n8n e previsão de churn. CRM a partir de R$99/mês.",
 } as const;
 
 /**
@@ -75,7 +75,7 @@ export const hasProductShots = Object.values(productShots).some(
 );
 
 /**
- * Vídeo de demonstração do Mytek Hub. Enquanto `src` for `null`, o botão "Ver
+ * Vídeo de demonstração do My Hub. Enquanto `src` for `null`, o botão "Ver
  * em vídeo" não aparece. Para ligar: gravar a tela do Hub (30 a 60 s), salvar
  * em /public/brand/hub/demo.mp4 (até uns 20 MB, limite do Cloudflare Pages é
  * 25 MB por arquivo) e apontar aqui. Hoje é a gravação da conta de demonstração

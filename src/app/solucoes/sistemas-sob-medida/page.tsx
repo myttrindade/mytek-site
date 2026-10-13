@@ -60,8 +60,8 @@ const journey = [
 ] as const;
 
 const built = [
-  { icon: KanbanSquareIcon, title: "Mytek Hub", body: "Tarefas, progresso, pedido do líder e chat da equipe no mesmo lugar.", href: "/solucoes/mytek-hub", cta: "Ver o Hub" },
-  { icon: WalletIcon, title: "MyCash", body: "O financeiro da empresa organizado: contas, cartões, orçamento e metas.", href: "/solucoes/mycash", cta: "Ver o MyCash" },
+  { icon: KanbanSquareIcon, title: "My Hub", body: "Tarefas, progresso, pedido do líder e chat da equipe no mesmo lugar.", href: "/solucoes/mytek-hub", cta: "Ver o Hub" },
+  { icon: WalletIcon, title: "My Cash", body: "O financeiro da empresa organizado: contas, cartões, orçamento e metas.", href: "/solucoes/mycash", cta: "Ver o My Cash" },
   { icon: TrendingDownIcon, title: "Previsão de churn", body: "Lista de clientes por risco de sair, com o motivo de cada um.", href: "/solucoes/previsao-de-churn", cta: "Ver o app" },
   { icon: LayersIcon, title: "Previsão de demanda", body: "Prevê as vendas dos próximos dias e recomenda quanto produzir.", href: "https://myttrindade.github.io/portfolio/", cta: "Ver no portfólio", external: true },
 ] as const;
