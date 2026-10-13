@@ -4,6 +4,8 @@ import { ArrowRightIcon, CheckIcon } from "lucide-react";
 import type { Metadata } from "next";
 
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
+import { DemoVideo } from "@/components/brand/demo-video";
+import { HubDemo } from "@/components/brand/hub-demo";
 import { MeMarquee } from "@/components/brand/me-motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -17,6 +19,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { TiltCard } from "@/components/velora/tilt-card";
+import { hubDemo } from "@/lib/site-config";
 import { detailSolutions, getSolution } from "@/lib/solutions-data";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -87,7 +90,11 @@ export default async function SolutionPage({ params }: Props) {
                 {s.kind === "produto" ? "Pedir uma demonstração" : "Pedir um orçamento"} <ArrowRightIcon className="size-4" />
               </ShimmerButton>
               <Button variant="ghost" size="lg" asChild>
-                <a href="#como-funciona">Como funciona ↓</a>
+                {s.slug === "mytek-hub" ? (
+                  <a href="#demonstracao">Experimentar a demonstração ↓</a>
+                ) : (
+                  <a href="#como-funciona">Como funciona ↓</a>
+                )}
               </Button>
             </div>
           </div>
@@ -120,6 +127,31 @@ export default async function SolutionPage({ params }: Props) {
             </ul>
           </div>
         </section>
+
+        {/* Demonstração interativa (só o Mytek Hub) */}
+        {s.slug === "mytek-hub" && (
+          <section id="demonstracao" className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
+            <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+            <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+              <span className={eyebrow}>Demonstração</span>
+              <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
+                Experimente o Hub aqui mesmo
+                <span className="text-emphasis">.</span>
+              </h2>
+              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+                Avance as tarefas, peça uma como líder e troque mensagens nos
+                canais. É uma demonstração com dados de exemplo: nada fica
+                salvo.
+              </p>
+              <div className="mt-8">
+                <DemoVideo src={hubDemo.src} poster={hubDemo.poster} label="Ver o Hub em vídeo" />
+              </div>
+              <div className="mt-8">
+                <HubDemo />
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Como funciona */}
         <section id="como-funciona" className="bg-muted py-20 lg:py-24">
