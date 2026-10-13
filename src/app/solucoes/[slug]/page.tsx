@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { HubVideo } from "@/components/brand/hub-video";
-import { MeMarquee } from "@/components/brand/me-motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { SolutionIcon, eyebrow } from "@/components/solutions-grid";
@@ -65,7 +64,7 @@ export default async function SolutionPage({ params }: Props) {
       <SiteHeader />
       <main>
         {/* Capa da solução */}
-        <section className="dark relative overflow-hidden bg-background pt-36 pb-20 text-foreground lg:pt-44">
+        <section className="dark relative overflow-hidden bg-background pt-28 pb-12 text-foreground lg:pt-28 lg:pb-10">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_20%_0%,rgba(94,52,247,0.4),transparent_70%)]"
@@ -77,7 +76,7 @@ export default async function SolutionPage({ params }: Props) {
               </Link>{" "}
               / {s.title.toLowerCase()}
             </nav>
-            <div className="mt-6 flex items-center gap-3">
+            <div className="mt-4 flex items-center gap-3">
               <span className="flex size-12 items-center justify-center rounded-2xl bg-primary/20 text-lima">
                 <SolutionIcon slug={s.slug} className="size-6" />
               </span>
@@ -85,16 +84,16 @@ export default async function SolutionPage({ params }: Props) {
                 {s.tag}
               </span>
             </div>
-            <h1 className="mt-5 max-w-3xl text-4xl font-extrabold tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 max-w-3xl text-3xl font-extrabold tracking-[-0.04em] text-balance sm:text-4xl lg:text-[2.5rem]">
               {s.headline}
             </h1>
-            <p className="mt-4 max-w-2xl text-lg font-medium text-lima">
+            <p className="mt-3 max-w-2xl text-base font-medium text-lima">
               {s.problem}
             </p>
-            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+            <p className="mt-3 max-w-2xl text-base text-muted-foreground">
               {s.intro}
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <ShimmerButton href="/contact">
                 {s.kind === "produto" ? "Pedir uma demonstração" : "Pedir um orçamento"} <ArrowRightIcon className="size-4" />
               </ShimmerButton>
@@ -108,7 +107,6 @@ export default async function SolutionPage({ params }: Props) {
             </div>
           </div>
           <BrandGlyph size={420} className="absolute -right-8 top-24 hidden opacity-90 lg:block" />
-          <MeMarquee rows={1} className="relative mt-16 pb-6" />
           <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[70px]" />
         </section>
 

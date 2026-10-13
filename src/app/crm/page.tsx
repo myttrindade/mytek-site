@@ -238,7 +238,7 @@ export default function CrmPage() {
       <SiteHeader />
 
       {/* 1 · Capa: o que é, para quem, quanto custa */}
-      <section className="dark relative overflow-hidden bg-background pt-24 pb-0 text-foreground lg:pt-28">
+      <section className="dark relative overflow-hidden bg-background pt-24 pb-12 text-foreground lg:pt-28 lg:pb-10">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_80%_20%,rgba(94,52,247,0.4),transparent_70%),radial-gradient(ellipse_50%_50%_at_0%_100%,rgba(94,52,247,0.2),transparent_70%)]"
@@ -257,9 +257,9 @@ export default function CrmPage() {
               </span>
             </BlurFade>
             <BlurFade delay={0.12}>
-              <h1 className="mt-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-balance sm:text-5xl xl:text-[3.5rem]">
+              <h1 className="mt-4 text-3xl font-extrabold leading-[1.05] tracking-[-0.04em] text-balance sm:text-4xl xl:text-[2.5rem]">
                 Seu lead respondeu no Instagram.{" "}
-                <span className="mt-3 block text-2xl font-medium tracking-normal text-muted-foreground sm:text-3xl xl:text-4xl">
+                <span className="mt-2 block text-xl font-medium tracking-normal text-muted-foreground sm:text-2xl xl:text-3xl">
                   Sua equipe viu{" "}
                   <mark className="bg-lima px-1 text-lima-foreground">
                     6 horas depois.
@@ -268,14 +268,14 @@ export default function CrmPage() {
               </h1>
             </BlurFade>
             <BlurFade delay={0.25}>
-              <p className="mt-6 max-w-xl text-lg text-muted-foreground text-pretty">
+              <p className="mt-4 max-w-xl text-base text-muted-foreground text-pretty">
                 O CRM da mytek avisa quando um lead para de andar no funil e
                 centraliza o WhatsApp num lugar só, para nenhuma oportunidade
                 esfriar por esquecimento.
               </p>
             </BlurFade>
             <BlurFade delay={0.4}>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <div className="mt-6 flex flex-wrap items-center gap-4">
                 <ShimmerButton href="/contact">
                   <RocketIcon className="size-4" />
                   Falar com o time
@@ -284,7 +284,21 @@ export default function CrmPage() {
                   <Link href="#preco">Ver preço ↓</Link>
                 </Button>
               </div>
-              <ul className="mt-6 grid gap-x-6 gap-y-2 text-sm text-muted-foreground sm:grid-cols-2">
+            </BlurFade>
+          </div>
+
+          <BlurFade delay={0.3} className="lg:[zoom:0.72]">
+            <CrmHeroVisual />
+          </BlurFade>
+        </div>
+
+        <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[70px]" />
+      </section>
+
+      {/* faixa de fatos logo abaixo da capa */}
+      <section className="dark bg-background py-10 text-foreground">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+            <ul className="mb-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-muted-foreground">
                 {trustPoints.map((t) => (
                   <li key={t} className="flex items-center gap-2">
                     <CheckIcon className="size-3.5 shrink-0 text-lima" />
@@ -292,16 +306,9 @@ export default function CrmPage() {
                   </li>
                 ))}
               </ul>
-            </BlurFade>
-          </div>
 
-          <BlurFade delay={0.3}>
-            <CrmHeroVisual />
-          </BlurFade>
-        </div>
-
-        {/* faixa de fatos, ancorada na base da capa */}
-        <div className="relative mx-auto mt-10 max-w-6xl px-4 pb-10 lg:px-8">
+        
+        <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
           <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-4">
             {heroStats.map((stat) => (
               <div
@@ -322,7 +329,7 @@ export default function CrmPage() {
             ))}
           </div>
         </div>
-        <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[70px]" />
+        </div>
       </section>
 
       {/* 2 · O problema, na voz de quem sente */}

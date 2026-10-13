@@ -154,7 +154,7 @@ export default function LandingPagesPage() {
       <SiteHeader />
       <main>
         {/* 1 · Capa */}
-        <section className="dark relative overflow-hidden bg-background pt-28 pb-20 text-foreground lg:pt-32">
+        <section className="dark relative overflow-hidden bg-background pt-24 pb-12 text-foreground lg:pt-28 lg:pb-10">
           <div
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_80%_20%,rgba(94,52,247,0.4),transparent_70%),radial-gradient(ellipse_50%_50%_at_0%_100%,rgba(94,52,247,0.2),transparent_70%)]"
@@ -173,24 +173,24 @@ export default function LandingPagesPage() {
                 / landing pages
               </nav>
               <BlurFade delay={0.08}>
-                <span className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
+                <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
                   <span className="size-2 rounded-full bg-lima shadow-[0_0_0_4px_rgba(198,255,0,0.2)]" />
                   Captura
                 </span>
               </BlurFade>
               <BlurFade delay={0.15}>
-                <h1 className="mt-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-balance sm:text-5xl xl:text-[3.4rem]">
+                <h1 className="mt-4 text-3xl font-extrabold leading-[1.05] tracking-[-0.04em] text-balance sm:text-4xl xl:text-[2.5rem]">
                   Uma página com um objetivo só:{" "}
                   <span className="text-lima">transformar visitante em contato.</span>
                 </h1>
               </BlurFade>
               <BlurFade delay={0.25}>
-                <p className="mt-5 max-w-xl text-lg text-muted-foreground text-pretty">
+                <p className="mt-4 max-w-xl text-base text-muted-foreground text-pretty">
                   {sol.intro}
                 </p>
               </BlurFade>
               <BlurFade delay={0.35}>
-                <div className="mt-8 flex flex-wrap items-center gap-4">
+                <div className="mt-6 flex flex-wrap items-center gap-4">
                   <ShimmerButton href="/contact">
                     <RocketIcon className="size-4" />
                     Pedir um orçamento
@@ -199,20 +199,9 @@ export default function LandingPagesPage() {
                     <a href="#planos">Ver planos ↓</a>
                   </Button>
                 </div>
-                <div className="mt-6 inline-flex items-baseline gap-2 rounded-2xl border border-white/10 bg-white/[0.05] px-4 py-3">
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-muted-foreground">
-                    a partir de
-                  </span>
-                  <span className="font-heading text-3xl font-extrabold tracking-[-0.04em] text-lima">
-                    R$999
-                  </span>
-                  <span className="text-sm text-muted-foreground">
-                    pagamento único
-                  </span>
-                </div>
               </BlurFade>
             </div>
-            <BlurFade delay={0.3}>
+            <BlurFade delay={0.3} className="lg:[zoom:0.72]">
               <LpHeroVisual />
             </BlurFade>
           </div>

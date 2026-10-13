@@ -15,8 +15,6 @@ import { MobileNav, type NavLink } from "@/components/mobile-nav";
 const navLinks: readonly NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/#solucoes", label: "Soluções" },
-  { href: "/crm", label: "CRM" },
-  { href: "/#processo", label: "Como trabalhamos" },
   { href: "/pricing", label: "Preço" },
   { href: "/about", label: "Sobre" },
 ];
