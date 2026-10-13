@@ -142,7 +142,6 @@ export default function Home() {
               </div>
               <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
                 {[
-                  "Resposta no WhatsApp em até 4h úteis",
                   "Dados no Brasil, sob a LGPD",
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-1.5">
