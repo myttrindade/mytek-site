@@ -34,8 +34,8 @@ const areas = [
     body: "Para começar rápido, com preço fixo por mês.",
     items: [
       ["CRM com WhatsApp", "/crm"],
-      ["My Hub", "/solucoes/mytek-hub"],
-      ["My Cash", "/solucoes/mycash"],
+      ["MyHub", "/solucoes/mytek-hub"],
+      ["MyCash", "/solucoes/mycash"],
       ["Dashboards", "/solucoes/dashboards"],
     ],
   },

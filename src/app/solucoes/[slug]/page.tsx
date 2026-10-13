@@ -135,7 +135,7 @@ export default async function SolutionPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Vídeo do sistema (só o My Hub) */}
+        {/* Vídeo do sistema (só o MyHub) */}
         {s.slug === "mytek-hub" && hubDemo.src && (
           <section id="demonstracao" className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
             <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />

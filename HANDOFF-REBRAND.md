@@ -47,7 +47,7 @@ pnpm build                # site estático (output: "export"), gera a pasta out/
 Páginas (em `src/app`):
 - `/` home. `/crm` página do CRM. `/pricing` preços. `/solucoes/*` uma página por serviço.
 - Páginas próprias (arquivo em `src/app/solucoes/<nome>/page.tsx`): sites, landing-pages, dashboards, agentes-de-ia, automacao-n8n, previsao-de-churn, sistemas-sob-medida.
-- `src/app/solucoes/[slug]/page.tsx` atende só o My Hub e o My Cash. Ao criar uma página própria nova, incluir o slug na lista de exclusão do `generateStaticParams` desse arquivo.
+- `src/app/solucoes/[slug]/page.tsx` atende só o MyHub e o MyCash. Ao criar uma página própria nova, incluir o slug na lista de exclusão do `generateStaticParams` desse arquivo.
 - `/brand` mostra o design system (não indexado).
 
 Dados e preços (fonte única):
@@ -61,7 +61,7 @@ Componentes de marca (`src/components/brand`):
 - `flow-showcase.tsx` editor de fluxo da automação. `hub-video.tsx` vídeo do Hub com capítulos.
 - `solutions-grid.tsx` e `solutions-compare.tsx` (em `src/components`) grade de soluções e quadro "landing page ou site".
 
-Vídeos e imagens de exemplo (`public/brand`): `hub/` (vídeo do My Hub), `dashboards/` (vídeo do dashboard em Power BI), `churn/` (imagem do app de previsão de churn). Os dois vídeos foram regravados quadro a quadro com o logo atual: scripts em `tools/relogo-hub.py` e `tools/relogo-dashboard.py` (caminhos fixos da máquina da usuária).
+Vídeos e imagens de exemplo (`public/brand`): `hub/` (vídeo do MyHub), `dashboards/` (vídeo do dashboard em Power BI), `churn/` (imagem do app de previsão de churn). Os dois vídeos foram regravados quadro a quadro com o logo atual: scripts em `tools/relogo-hub.py` e `tools/relogo-dashboard.py` (caminhos fixos da máquina da usuária).
 
 ## Preços atuais (produtos prontos têm preço fixo; o que é sob medida é combinado por fora)
 
@@ -71,7 +71,7 @@ Vídeos e imagens de exemplo (`public/brand`): `hub/` (vídeo do My Hub), `dashb
 - Landing page: Essencial R$999, Sob Medida R$1.797 (pagamento único). Cliente ativo tem 20% de desconto (R$799,20 e R$1.437,60).
 - Sites a partir de R$1.500.
 - Previsão de churn avulsa R$397/mês mais R$497 de implantação (uma vez). Incluída no CRM Plus.
-- Sob medida, sem preço público: agentes de IA, automação com n8n, sistemas sob medida. My Hub e My Cash são "sob demonstração".
+- Sob medida, sem preço público: agentes de IA, automação com n8n, sistemas sob medida. MyHub e MyCash são "sob demonstração".
 
 ## Pendências conhecidas
 
@@ -81,8 +81,8 @@ Vídeos e imagens de exemplo (`public/brand`): `hub/` (vídeo do My Hub), `dashb
 4. Conferir tudo no celular (a maior parte foi testada só em tela larga).
 5. Carregar a fonte Satoshi de verdade (hoje há a substituta).
 6. Confirmar com a usuária se o Dashboard (R$397/R$697) mudou de preço. Ela não passou alteração.
-7. Textos das páginas de serviço, do My Cash e do Hub foram escritos no rascunho e precisam de revisão dela.
-8. O My Cash ainda não tem vídeo ou imagem. O Hub usa a gravação do portfólio.
+7. Textos das páginas de serviço, do MyCash e do Hub foram escritos no rascunho e precisam de revisão dela.
+8. O MyCash ainda não tem vídeo ou imagem. O Hub usa a gravação do portfólio.
 9. Depois de aprovado, tirar o PR de rascunho e fazer o merge na `main` (a `main` é o site que está no ar).
 
 ## Armadilhas técnicas já encontradas
