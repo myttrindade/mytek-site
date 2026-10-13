@@ -132,13 +132,13 @@ export const solutions: Solution[] = [
     kind: "produto",
     href: "/solucoes/mytek-hub",
     tag: "Produto",
-    title: "Mytek Hub",
+    title: "MyHub",
     problem: "Cada um cuida das tarefas num lugar e ninguém sabe o que está andando.",
     summary:
       "Sistema de organização do time: tarefas com prazo, progresso visível e conversa no mesmo lugar.",
     headline: "A equipe inteira organizada num lugar só: tarefas, prazos e conversa.",
     intro:
-      "O Mytek Hub é o sistema que a própria mytek usa para organizar o trabalho. Cada pessoa vê o que precisa fazer e em que pé está; o líder enxerga o conjunto e pede tarefas direto pelo sistema; e o time conversa ali mesmo, sem trocar de aplicativo.",
+      "O MyHub é o sistema que a própria mytek usa para organizar o trabalho. Cada pessoa vê o que precisa fazer e em que pé está; o líder enxerga o conjunto e pede tarefas direto pelo sistema; e o time conversa ali mesmo, sem trocar de aplicativo.",
     includes: [
       "Agendamento de tarefas, com responsável e prazo",
       "Quadro de progresso (a fazer, em andamento, concluído) atualizado em tempo real",

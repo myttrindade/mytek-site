@@ -32,7 +32,7 @@ const quickLinks = [
   ["Sites", "/solucoes/sites"],
   ["Landing pages", "/solucoes/landing-pages"],
   ["CRM", "/crm"],
-  ["Mytek Hub", "/solucoes/mytek-hub"],
+  ["MyHub", "/solucoes/mytek-hub"],
   ["MyCash", "/solucoes/mycash"],
   ["Dashboards", "/solucoes/dashboards"],
   ["Agentes de IA", "/solucoes/agentes-de-ia"],
@@ -43,12 +43,12 @@ const quickLinks = [
 const ways = [
   {
     tag: "Produto pronto",
-    title: "CRM, Mytek Hub e MyCash",
+    title: "CRM, MyHub e MyCash",
     price: "CRM a partir de R$99/mês",
     points: [
       "Prontos para usar, configurados junto com você",
       "CRM sem fidelidade: cancele quando quiser",
-      "Hub e MyCash: peça uma demonstração e receba a proposta",
+      "MyHub e MyCash: peça uma demonstração e receba a proposta",
     ],
     cta: ["Ver os produtos", "/#solucoes"],
   },
@@ -68,11 +68,11 @@ const ways = [
 const faqs = [
   {
     q: "A mytek vende só CRM?",
-    a: "Não. Temos três sistemas próprios, o CRM com WhatsApp, o Mytek Hub (organização do time) e o MyCash (organização financeira para empresas), e também criamos sites, landing pages, dashboards, agentes de IA, automações com n8n, modelos de previsão de churn e sistemas sob medida.",
+    a: "Não. Temos três sistemas próprios, o CRM com WhatsApp, o MyHub (organização do time) e o MyCash (organização financeira para empresas), e também criamos sites, landing pages, dashboards, agentes de IA, automações com n8n, modelos de previsão de churn e sistemas sob medida.",
   },
   {
     q: "Como funciona o preço?",
-    a: "O CRM tem preço público, a partir de R$99/mês e sem fidelidade. Para o Mytek Hub e o MyCash, você pede uma demonstração e recebe a proposta. Os demais serviços são projetos: depois de uma conversa curta, você recebe escopo, prazo e valor fechados antes de qualquer trabalho começar.",
+    a: "O CRM tem preço público, a partir de R$99/mês e sem fidelidade. Para o MyHub e o MyCash, você pede uma demonstração e recebe a proposta. Os demais serviços são projetos: depois de uma conversa curta, você recebe escopo, prazo e valor fechados antes de qualquer trabalho começar.",
   },
   {
     q: "Preciso ter equipe técnica?",
