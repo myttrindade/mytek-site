@@ -1,14 +1,17 @@
 import Link from "next/link";
 import {
   ArrowRightIcon,
+  BarChart3Icon,
   BellRingIcon,
   CheckIcon,
   FilterIcon,
   GaugeIcon,
+  LayoutTemplateIcon,
   MessageCircleIcon,
   RocketIcon,
   ShieldIcon,
   SparklesIcon,
+  WorkflowIcon,
 } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -446,30 +449,81 @@ export default function CrmPage() {
         </div>
       </section>
 
-      {/* 5 · Combine, sem apresentar o que tem página própria */}
-      <section className="py-20">
+      {/* 5 · Combine: o CRM sozinho já resolve, e liga com o resto */}
+      <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
           <BlurFade>
-            <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-6 lg:flex-row lg:items-center lg:justify-between lg:p-8">
-              <div className="max-w-xl">
-                <span className={eyebrow}>Quer ir além?</span>
-                <p className="mt-2 font-heading text-xl font-extrabold tracking-[-0.03em]">
-                  O CRM funciona sozinho e combina com o resto.
-                </p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Uma landing page que manda o lead direto para o funil, um
-                  dashboard com os números e automações que ligam tudo.
+            <div className="dark relative overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#5E34F7] via-[#4A22D6] to-[#1b0f36] p-8 text-foreground shadow-[0_40px_90px_-30px_rgba(94,52,247,0.75)] lg:p-12">
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -right-24 -top-24 size-[420px] rounded-full bg-[radial-gradient(circle,rgba(198,255,0,0.28),transparent_65%)]"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -bottom-32 -left-20 size-[380px] rounded-full bg-[radial-gradient(circle,rgba(141,107,255,0.45),transparent_65%)]"
+              />
+              <div className="relative max-w-2xl">
+                <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
+                  Quer ir além?
+                </span>
+                <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-balance text-white lg:text-5xl">
+                  O CRM funciona sozinho e{" "}
+                  <span className="text-lima">combina com o resto.</span>
+                </h2>
+                <p className="mt-4 text-lg text-white/80">
+                  Quem junta soluções ganha a integração já pronta: o lead
+                  nasce na landing page, entra no funil, vira número no
+                  dashboard e as tarefas chatas se resolvem sozinhas.
                 </p>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="relative mt-10 grid gap-4 md:grid-cols-3">
                 {[
-                  ["Landing pages", "/solucoes/landing-pages"],
-                  ["Dashboards", "/solucoes/dashboards"],
-                  ["Automação n8n", "/solucoes/automacao-n8n"],
-                ].map(([label, href]) => (
-                  <Button key={label} asChild variant="outline" className="rounded-full">
-                    <Link href={href}>{label}</Link>
-                  </Button>
+                  {
+                    icon: LayoutTemplateIcon,
+                    title: "Landing pages",
+                    body: "Capte contatos que já nascem como lead no funil.",
+                    meta: "a partir de R$1.000",
+                    href: "/solucoes/landing-pages",
+                  },
+                  {
+                    icon: BarChart3Icon,
+                    title: "Dashboards",
+                    body: "Veja vendas e atendimento em tempo real, sem planilha.",
+                    meta: "sob medida",
+                    href: "/solucoes/dashboards",
+                  },
+                  {
+                    icon: WorkflowIcon,
+                    title: "Automação n8n",
+                    body: "Ligue o CRM às outras ferramentas da sua empresa.",
+                    meta: "sob medida",
+                    href: "/solucoes/automacao-n8n",
+                  },
+                ].map((c) => (
+                  <TiltCard key={c.title} className="h-full" maxTilt={7}>
+                    <Link
+                      href={c.href}
+                      className="group flex h-full flex-col rounded-2xl border border-white/15 bg-white/[0.08] p-6 backdrop-blur-md transition-colors hover:border-lima/60 hover:bg-white/[0.13]"
+                    >
+                      <span className="flex size-12 items-center justify-center rounded-2xl bg-lima text-lima-foreground shadow-[0_12px_28px_-10px_rgba(198,255,0,0.6)]">
+                        <c.icon className="size-6" />
+                      </span>
+                      <h3 className="mt-5 font-heading text-xl font-extrabold tracking-[-0.02em] text-white">
+                        {c.title}
+                      </h3>
+                      <p className="mt-2 flex-1 text-sm text-white/75">
+                        {c.body}
+                      </p>
+                      <div className="mt-5 flex items-center justify-between border-t border-white/15 pt-4 text-sm">
+                        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-white/60">
+                          {c.meta}
+                        </span>
+                        <span className="flex size-8 items-center justify-center rounded-full bg-white text-[#4A22D6] transition-transform group-hover:translate-x-1">
+                          <ArrowRightIcon className="size-4" />
+                        </span>
+                      </div>
+                    </Link>
+                  </TiltCard>
                 ))}
               </div>
             </div>
