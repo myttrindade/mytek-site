@@ -1,160 +1,203 @@
+import Link from "next/link";
+import {
+  ArrowRightIcon,
+  BadgeCheckIcon,
+  BoxIcon,
+  CheckIcon,
+  RulerIcon,
+  RocketIcon,
+} from "lucide-react";
 import type { Metadata } from "next";
-import { CheckIcon, GiftIcon, Wand2Icon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Card3D } from "@/components/brand/card-3d";
+import { BrandGlyph, GlowArc } from "@/components/brand/glow";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { eyebrow } from "@/components/solutions-grid";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { PageHeader } from "@/components/page-header";
+import { Button } from "@/components/ui/button";
 import { BlurFade } from "@/components/velora/blur-fade";
-import { BorderBeam } from "@/components/velora/border-beam";
-import { checkoutHref } from "@/lib/checkout";
+import { GridPattern } from "@/components/velora/grid-pattern";
+import { ShimmerButton } from "@/components/velora/shimmer-button";
+import {
+  checkoutGroups,
+  checkoutHref,
+  type CheckoutPlan,
+} from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
-import { cn } from "@/lib/utils";
 
-const pricingTitle = "Preço · mytek — CRM a partir de R$99/mês, sem fidelidade";
+const pricingTitle = "Preços · mytek — CRM a partir de R$99/mês, sem fidelidade";
 const pricingDescription =
-  "CRM a partir de R$99/mês, Dashboard a partir de R$397/mês, Landing Page a partir de R$999 (pagamento único) e sites a partir de R$1.500. Combine e pague menos.";
+  "Preços dos produtos prontos da mytek: CRM a partir de R$99/mês, Dashboard a partir de R$397/mês, Landing Page a partir de R$999 e sites a partir de R$1.500. Projetos sob medida têm o valor combinado antes de começar.";
 
 export const metadata: Metadata = {
-  // `title.absolute` ignora o template "%s · mytek" do layout — sem ele o
-  // title sairia "Preço · mytek — ... · mytek".
+  // `title.absolute` ignora o template "%s · mytek" do layout.
   title: { absolute: pricingTitle },
   description: pricingDescription,
   alternates: { canonical: "/pricing" },
-  // Sem isto a página herdava o OG genérico da home, e quem compartilhava o
-  // link dos planos anunciava outra coisa.
   openGraph: {
     title: pricingTitle,
     description: pricingDescription,
     url: "/pricing",
   },
-  twitter: {
-    title: pricingTitle,
-    description: pricingDescription,
-  },
+  twitter: { title: pricingTitle, description: pricingDescription },
 };
 
-// `slug` casa com os planos de src/lib/checkout.ts: é o que leva o botão ao
-// checkout certo. Ao renomear um plano aqui, renomeie lá também.
-const crmPlans = [
-  {
-    name: "CRM Normal",
-    slug: "crm-normal",
-    price: "R$99",
-    unit: "/mês",
-    highlight: false,
-    features: ["Até 3 membros do time", "Funil de vendas visual (Kanban)", "Atendimento via WhatsApp"],
-  },
-  {
-    name: "CRM Plus",
-    slug: "crm-plus",
-    price: "R$297",
-    unit: "/mês",
-    highlight: true,
-    features: [
-      "Até 3 membros do time",
-      "Módulo Conhecimento com IA",
-      "Previsão de churn incluída",
-      "Sessão de treinamento incluída",
-    ],
-  },
+/** Os preços vêm do checkout: uma fonte só para o valor que o cliente lê. */
+const group = (slug: string) =>
+  checkoutGroups.find((g) => g.slug === slug)?.plans ?? [];
+const crm = group("crm");
+const dashboard = group("dashboard");
+const combos = group("combos");
+const churn = group("churn");
+const landing = group("landing-page");
+
+const readyList = [
+  "CRM com WhatsApp",
+  "Dashboard",
+  "Landing page",
+  "Sites (a partir de R$1.500)",
+  "Previsão de churn",
+];
+const customList = [
+  "Agentes de IA",
+  "Automação com n8n",
+  "Sistemas sob medida",
+  "Mytek Hub e MyCash (sob demonstração)",
 ];
 
-const dashboardPlans = [
-  {
-    name: "Dashboard Avulso",
-    slug: "dashboard-avulso",
-    price: "R$397",
-    unit: "/mês",
-    highlight: false,
-    // Os bullets descrevem o que o plano tem. A ausência de suporte fica na
-    // tabela comparativa acima — bullet em negativo vende contra o produto.
-    features: [
-      "Painéis personalizáveis",
-      "Relatórios exportáveis",
-      "Suporte opcional a partir de +R$300/mês",
-    ],
-  },
-  {
-    name: "Dashboard Avulso + Suporte",
-    slug: "dashboard-suporte",
-    price: "R$697",
-    unit: "/mês",
-    highlight: true,
-    features: [
-      "Painéis personalizáveis",
-      "Relatórios exportáveis",
-      "Suporte incluso (até 5 solicitações/mês)",
-    ],
-  },
-];
+/** Cartão de plano: o destaque (featured) é roxo; os demais, brancos. */
+function PlanCard({
+  plan,
+  featured = false,
+  badge,
+  label,
+  cta = "Quero este",
+  href,
+}: {
+  plan: CheckoutPlan;
+  featured?: boolean;
+  badge?: string;
+  label: string;
+  cta?: string;
+  href?: string;
+}) {
+  return (
+    <div className="h-full [perspective:1200px]">
+      <Card3D
+        className="h-full"
+        maxTilt={8}
+        glare={featured ? "rgba(255,255,255,0.28)" : "rgba(94,52,247,0.14)"}
+      >
+        <div
+          style={{ transformStyle: "preserve-3d" }}
+          className={
+            "relative flex h-full flex-col rounded-3xl border p-8 " +
+            (featured
+              ? "border-white/20 bg-gradient-to-br from-[#7A57FF] via-[#5E34F7] to-[#4220C9] text-white shadow-[0_34px_60px_-22px_rgba(60,30,170,0.7)]"
+              : "border-border bg-card shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]")
+          }
+        >
+          {badge && (
+            <span className="absolute -top-3 left-8 rounded-full bg-lima px-3 py-1 text-[11px] font-bold text-lima-foreground">
+              {badge}
+            </span>
+          )}
+          <span
+            className={
+              "font-mono text-[11px] font-bold uppercase tracking-[0.06em] " +
+              (featured ? "text-lima" : "text-primary")
+            }
+          >
+            {label}
+          </span>
+          <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] [transform:translateZ(24px)]">
+            {plan.name}
+          </h3>
+          <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em] [transform:translateZ(34px)]">
+            {plan.price}
+            {plan.unit && (
+              <span className="text-lg font-semibold opacity-70">{plan.unit}</span>
+            )}
+          </p>
+          {plan.tagline && (
+            <p
+              className={
+                "mt-2 text-sm " + (featured ? "text-white/80" : "text-muted-foreground")
+              }
+            >
+              {plan.tagline}
+            </p>
+          )}
+          <ul className="mt-6 flex-1 space-y-3 text-sm">
+            {plan.features.map((f) => (
+              <li key={f} className="flex items-start gap-3">
+                <span
+                  className={
+                    "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full " +
+                    (featured
+                      ? "bg-lima text-lima-foreground"
+                      : "bg-primary text-primary-foreground")
+                  }
+                >
+                  <CheckIcon className="size-3" />
+                </span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          {plan.note && (
+            <p className="mt-4 text-xs text-muted-foreground">{plan.note}</p>
+          )}
+          <Button
+            asChild
+            size="lg"
+            className={
+              "mt-8 w-full rounded-full " +
+              (featured ? "bg-lima text-lima-foreground hover:bg-lima/90" : "")
+            }
+          >
+            <a href={href ?? checkoutHref(plan.slug)}>
+              {cta} <ArrowRightIcon className="size-4" />
+            </a>
+          </Button>
+        </div>
+      </Card3D>
+    </div>
+  );
+}
 
-const landingPagePlans = [
-  {
-    name: "Landing Page Essencial",
-    slug: "lp-essencial",
-    price: "R$999",
-    highlight: false,
-    tagline: "Sua página no ar rápido, com a sua cara.",
-    features: [
-      "Modelo da mytek adaptado à sua marca",
-      "Até 5 seções",
-      "Integração com WhatsApp, que pode ser ligado ao CRM",
-      "1 rodada de revisão",
-      "Entrega em até 7 dias úteis",
-    ],
-    note: "Textos por sua conta (ou escolha a Sob Medida)",
-  },
-  {
-    name: "Landing Page Sob Medida",
-    slug: "lp-sob-medida",
-    price: "R$1.797",
-    highlight: true,
-    tagline: "Feita do zero pra transformar visita em cliente.",
-    features: [
-      "Design criado do zero para o seu negócio",
-      "Textos escritos pela mytek, focados em gerar contato",
-      "Até 10 seções",
-      "Integração com CRM, WhatsApp e e-mail",
-      "Pixel da Meta e Google Analytics para medir cada clique",
-      "SEO básico para ser encontrada no Google",
-      "Até 2 rodadas de revisão no layout",
-      "Entrega em até 15 dias úteis",
-    ],
-    note: "",
-  },
-];
+function SectionHead({
+  tag,
+  title,
+  note,
+}: {
+  tag: string;
+  title: string;
+  note?: string;
+}) {
+  return (
+    <BlurFade>
+      <span className={eyebrow}>{tag}</span>
+      <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-4xl">
+        {title}
+        <span className="text-emphasis">.</span>
+      </h2>
+      {note && <p className="mt-3 max-w-2xl text-muted-foreground">{note}</p>}
+    </BlurFade>
+  );
+}
 
-/**
- * Quatro combos com preços parecidos deixam a escolha por conta do visitante,
- * e quem não sabe escolher não escolhe. `featured` marca o ponto de entrada
- * que a gente recomenda — o mais barato dos quatro.
- *
- * `featured` é recomendação, não estatística: enquanto forem 2 clientes, dizer
- * "o mais escolhido" seria inventar um dado. Quando houver base para afirmar,
- * é só trocar o rótulo em FEATURED_LABEL.
- */
-const FEATURED_LABEL = "Recomendado para começar";
-
-const combos = [
-  { label: "CRM Normal + Dashboard sem suporte", price: "R$296/mês", featured: true },
-  { label: "CRM Normal + Dashboard com suporte", price: "R$446/mês", featured: false },
-  { label: "CRM Plus + Dashboard sem suporte", price: "R$494/mês", featured: false },
-  { label: "CRM Plus + Dashboard com suporte", price: "R$644/mês", featured: false },
-];
-
-/**
- * A primeira frase de cada resposta já é a resposta direta — é o formato que
- * o Google puxa para featured snippet. Ao editar, mantenha a resposta na
- * abertura e o detalhe depois.
- */
 const faqs = [
+  {
+    q: "O que tem preço fixo e o que é sob medida?",
+    a: "Os produtos prontos têm preço fixo, aqui na página: CRM, Dashboard, Landing Page, sites (a partir de R$1.500) e previsão de churn. Tudo o que é sob medida, como agentes de IA, automações e sistemas, tem o valor combinado com você antes de começar.",
+  },
   {
     q: "Preciso ter CRM pra contratar o Dashboard?",
     a: "Não. O Dashboard avulso custa R$397/mês e funciona sozinho, conectado às suas fontes de dados. Se você já é cliente de CRM, ele entra como add-on por R$197/mês, porque os dados já estão dentro da plataforma e o trabalho de integração não se repete.",
@@ -165,7 +208,7 @@ const faqs = [
   },
   {
     q: "Qual a diferença entre o CRM Normal e o Plus?",
-    a: "O Plus adiciona o módulo Conhecimento com IA, que responde perguntas sobre a sua própria base — histórico de clientes, negociações, atendimentos — em vez de você garimpar isso no funil. Como ele depende de como a sua empresa organiza a informação, o plano inclui uma sessão de treinamento com a gente antes de liberar o acesso. O resto (funil, WhatsApp, 3 usuários) é igual nos dois.",
+    a: "O Plus adiciona o módulo Conhecimento com IA, que responde perguntas sobre a sua própria base, e inclui a previsão de churn. Como a IA depende de como a sua empresa organiza a informação, o plano inclui uma sessão de treinamento com a gente antes de liberar o acesso. O resto (funil, WhatsApp, 3 usuários) é igual nos dois.",
   },
   {
     q: "Como funciona a manutenção gratuita?",
@@ -173,7 +216,7 @@ const faqs = [
   },
   {
     q: "E se eu precisar de algo fora desses planos?",
-    a: "A gente monta orçamento sob medida. Integração com um sistema que você já usa, painel com uma métrica específica, fluxo de venda que não cabe no funil padrão — é só descrever no formulário de contato que respondemos com escopo e valor.",
+    a: "A gente monta orçamento sob medida. Integração com um sistema que você já usa, painel com uma métrica específica, fluxo de venda que não cabe no funil padrão: é só descrever no formulário de contato que respondemos com escopo e valor.",
   },
 ];
 
@@ -188,26 +231,19 @@ const faqJsonLd = {
 };
 
 /**
- * Um `Product` por plano, com o `Offer` correspondente.
- *
- * O preço vem parseado das mesmas strings que a página exibe, e não de uma
- * segunda lista de números: duas fontes divergiriam na primeira mudança de
- * tabela, e aí o Google anunciaria um preço que a página não pratica.
- *
- * `UnitPriceSpecification` com `billingDuration` distingue a mensalidade do
- * pagamento único da Landing Page — sem isso os R$999 apareceriam como se
- * fossem por mês.
+ * Um `Product` por plano, com o `Offer` correspondente. O preço é parseado das
+ * mesmas strings que a página exibe (uma fonte só). `UnitPriceSpecification`
+ * distingue a mensalidade do pagamento único da Landing Page.
  */
 const paraNumero = (preco: string) =>
   Number(preco.replace(/[^\d,]/g, "").replace(",", "."));
 
-const planosParaJsonLd = [
-  { grupo: "CRM", planos: crmPlans, mensal: true },
-  { grupo: "Dashboard", planos: dashboardPlans, mensal: true },
-  { grupo: "Landing Page", planos: landingPagePlans, mensal: false },
-];
-
-const produtosJsonLd = planosParaJsonLd.flatMap(({ grupo, planos, mensal }) =>
+const produtosJsonLd = [
+  { grupo: "CRM", planos: crm, mensal: true },
+  { grupo: "Dashboard", planos: dashboard, mensal: true },
+  { grupo: "Previsão de churn", planos: churn, mensal: true },
+  { grupo: "Landing Page", planos: landing, mensal: false },
+].flatMap(({ grupo, planos, mensal }) =>
   planos.map((plano) => ({
     "@context": "https://schema.org",
     "@type": "Product",
@@ -235,469 +271,350 @@ const produtosJsonLd = planosParaJsonLd.flatMap(({ grupo, planos, mensal }) =>
   }))
 );
 
+const anchors = [
+  ["CRM", "#crm"],
+  ["Dashboard", "#dashboard"],
+  ["Combos", "#combos"],
+  ["Landing page", "#landing-page"],
+  ["Sites", "#sites"],
+  ["Previsão de churn", "#churn"],
+] as const;
+
 export default function PricingPage() {
   return (
-    <main className="relative">
+    <>
       <SiteHeader />
-
-      <PageHeader
-        eyebrow="Planos"
-        title="Escolha por onde começar"
-        description="Cada módulo funciona separado, ou combine CRM e Dashboard com preço especial."
-      />
-
-      {/* Comparison Table */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-6xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="overflow-x-auto rounded-2xl border bg-card">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b">
-                    <th className="p-4 text-left font-semibold text-foreground">Recurso</th>
-                    <th className="p-4 text-center font-semibold text-foreground">CRM</th>
-                    <th className="p-4 text-center font-semibold text-foreground">Landing Page</th>
-                    <th className="p-4 text-center font-semibold text-foreground">Dashboard</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-border/40">
-                  <tr>
-                    <td className="p-4 font-medium">Funil de vendas visual</td>
-                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center">-</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Atendimento via WhatsApp</td>
-                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center">-</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Painéis personalizáveis</td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Relatórios em tempo real</td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Página pronta para converter</td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
-                    <td className="p-4 text-center">-</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Módulo de IA (Plus)</td>
-                    <td className="p-4 text-center"><CheckIcon className="mx-auto size-5 text-green-500" /></td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center">-</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Suporte incluso</td>
-                    <td className="p-4 text-center">-</td>
-                    <td className="p-4 text-center">Mês 1 grátis</td>
-                    <td className="p-4 text-center">Opcional (+suporte)</td>
-                  </tr>
-                  <tr className="bg-primary/5">
-                    <td className="p-4 font-semibold">Preço inicial</td>
-                    <td className="p-4 text-center font-semibold">R$99/mês</td>
-                    <td className="p-4 text-center font-semibold">R$999</td>
-                    <td className="p-4 text-center font-semibold">R$397/mês</td>
-                  </tr>
-                  <tr>
-                    <td className="p-4 font-medium">Renovação</td>
-                    <td className="p-4 text-center text-sm text-muted-foreground">Mensal</td>
-                    <td className="p-4 text-center text-sm text-muted-foreground">Único</td>
-                    <td className="p-4 text-center text-sm text-muted-foreground">Mensal</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </BlurFade>
-          <BlurFade delay={0.1}>
-            <p className="mt-6 text-center text-sm text-muted-foreground">
-              💡 <strong>Dica:</strong> Combine CRM + Dashboard e pague menos. Veja as opções de combo abaixo.
-            </p>
-          </BlurFade>
-        </div>
-      </section>
-
-      {/* Promo banner */}
-      <section className="pb-4">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="flex items-start gap-3 rounded-2xl border bg-primary/5 p-5 text-sm text-muted-foreground">
-              <GiftIcon className="mt-0.5 size-5 shrink-0 text-primary" />
-              <p>
-                Contratando Landing Page ou Dashboard, você ganha{" "}
-                <strong className="text-card-foreground">
-                  1 mês de manutenção grátis
-                </strong>{" "}
-                (até 5 solicitações). Depois, converte para suporte mensal ou
-                manutenção avulsa a partir de R$297/mês.
+      <main>
+        {/* 1 · Capa */}
+        <section className="dark relative overflow-hidden bg-background pt-28 pb-16 text-foreground lg:pt-36 lg:pb-20">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_50%_0%,rgba(94,52,247,0.45),transparent_70%)]"
+          />
+          <GridPattern
+            width={56}
+            height={56}
+            className="fill-transparent stroke-white/[0.06] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_20%,black,transparent)]"
+          />
+          <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
+            <BlurFade delay={0.05}>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 font-mono text-xs font-bold uppercase tracking-[0.06em]">
+                <span className="size-2 rounded-full bg-lima shadow-[0_0_0_4px_rgba(198,255,0,0.2)]" />
+                Preços
+              </span>
+            </BlurFade>
+            <BlurFade delay={0.12}>
+              <h1 className="mt-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl">
+                Preços dos nossos{" "}
+                <span className="text-lima">produtos prontos.</span>
+              </h1>
+            </BlurFade>
+            <BlurFade delay={0.2}>
+              <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground text-pretty">
+                Aqui estão só os valores dos sistemas que já vêm prontos. O que
+                é sob medida tem o valor combinado com você, por fora, antes
+                de começar.
               </p>
-            </div>
-          </BlurFade>
-        </div>
-      </section>
-
-      {/* CRM */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-xl font-semibold tracking-tight">CRM</h2>
-              <p className="text-sm text-muted-foreground">
-                Mensal · funil de vendas, atendimento e organização de clientes
-              </p>
-            </div>
-          </BlurFade>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
-            {crmPlans.map((plan, i) => (
-              <BlurFade key={plan.name} delay={i * 0.1} className="h-full">
-                <div
-                  className={cn(
-                    "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7",
-                    plan.highlight && "border-primary/40"
-                  )}
-                >
-                  {plan.highlight && <BorderBeam size={72} duration={8} />}
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold">{plan.name}</h3>
-                    {plan.highlight && (
-                      <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-medium text-primary">
-                        Com IA
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-3 text-4xl font-semibold tracking-tight">
-                    {plan.price}
-                    <span className="text-base font-normal text-muted-foreground">
-                      {plan.unit}
-                    </span>
-                  </p>
-                  <ul className="mt-6 flex-1 space-y-2.5 text-sm">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5">
-                        <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                          <CheckIcon className="size-3" />
-                        </span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant={plan.highlight ? "default" : "outline"}
-                    className="mt-6 w-full rounded-full"
-                    asChild
+            </BlurFade>
+            <BlurFade delay={0.3}>
+              <div className="mt-8 flex flex-wrap justify-center gap-2">
+                {anchors.map(([label, href]) => (
+                  <a
+                    key={label}
+                    href={href}
+                    className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-1.5 text-sm font-semibold text-white/85 transition-colors hover:border-lima hover:text-lima"
                   >
-                    <a href={checkoutHref(plan.slug)}>Quero este</a>
-                  </Button>
-                </div>
-              </BlurFade>
-            ))}
+                    {label}
+                  </a>
+                ))}
+              </div>
+            </BlurFade>
           </div>
-        </div>
-      </section>
+          <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[70px]" />
+        </section>
 
-      {/* Dashboard */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-xl font-semibold tracking-tight">Dashboard</h2>
-              <p className="text-sm text-muted-foreground">
-                Mensal · painéis e relatórios em tempo real
-              </p>
-            </div>
-          </BlurFade>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
-            {dashboardPlans.map((plan, i) => (
-              <BlurFade key={plan.name} delay={i * 0.1} className="h-full">
-                <div
-                  className={cn(
-                    "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7",
-                    plan.highlight && "border-primary/40"
-                  )}
-                >
-                  {plan.highlight && <BorderBeam size={72} duration={8} />}
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold">{plan.name}</h3>
-                    {plan.highlight && (
-                      <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-medium text-primary">
-                        Com suporte
-                      </span>
-                    )}
-                  </div>
-                  <p className="mt-3 text-4xl font-semibold tracking-tight">
-                    {plan.price}
-                    <span className="text-base font-normal text-muted-foreground">
-                      {plan.unit}
-                    </span>
-                  </p>
-                  <ul className="mt-6 flex-1 space-y-2.5 text-sm">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5">
-                        <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                          <CheckIcon className="size-3" />
-                        </span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button
-                    variant={plan.highlight ? "default" : "outline"}
-                    className="mt-6 w-full rounded-full"
-                    asChild
-                  >
-                    <a href={checkoutHref(plan.slug)}>Quero este</a>
-                  </Button>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-          <BlurFade delay={0.15}>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Já é cliente CRM? Adicione o Dashboard por{" "}
-              <strong className="text-card-foreground">+R$197/mês</strong> (sem
-              suporte) ou <strong className="text-card-foreground">+R$347/mês</strong>{" "}
-              (com suporte): valor extra sobre a mensalidade do CRM Normal
-              ou Plus.
-            </p>
-          </BlurFade>
-          {/*
-            Sem esta nota, R$397 avulso contra R$197 como add-on parecia preço
-            arbitrário — metade do valor pela mesma coisa. Confirmado com o
-            time em 26/08/2026: a diferença é o trabalho de conectar e manter
-            a integração com as fontes de dados do cliente, que não existe
-            quando os dados já estão dentro da plataforma.
-          */}
-          <BlurFade delay={0.2}>
-            <p className="mt-3 text-sm text-muted-foreground">
-              <strong className="text-card-foreground">
-                Por que o avulso custa mais?
-              </strong>{" "}
-              No avulso, a gente conecta o Dashboard às suas fontes de dados e
-              mantém essa integração. Como add-on do CRM, os dados já estão
-              dentro da plataforma e esse trabalho não se repete.
-            </p>
-          </BlurFade>
-        </div>
-      </section>
-
-      {/* Landing Page */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-xl font-semibold tracking-tight">Landing Page</h2>
-              <p className="text-sm text-muted-foreground">
-                Pagamento único · página pronta para conversão
-              </p>
-            </div>
-          </BlurFade>
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
-            {landingPagePlans.map((plan, i) => (
-              <BlurFade key={plan.name} delay={i * 0.1} className="h-full">
-                <div
-                  className={cn(
-                    "relative flex h-full flex-col overflow-hidden rounded-2xl border bg-card p-7",
-                    plan.highlight && "border-primary/40"
-                  )}
-                >
-                  {plan.highlight && <BorderBeam size={72} duration={8} />}
-                  <div className="flex items-center justify-between">
-                    <span className="inline-block rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-                      Pagamento único
-                    </span>
-                    {plan.highlight && (
-                      <span className="rounded-full bg-primary/15 px-2.5 py-1 text-[11px] font-medium text-primary">
-                        Mais completa
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="mt-3 text-lg font-semibold">{plan.name}</h3>
-                  <p className="mt-3 text-4xl font-semibold tracking-tight">
-                    {plan.price}
-                  </p>
-                  {plan.tagline && (
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {plan.tagline}
-                    </p>
-                  )}
-                  <ul className="mt-6 flex-1 space-y-2.5 text-sm">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2.5">
-                        <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
-                          <CheckIcon className="size-3" />
-                        </span>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  {plan.note && (
-                    <p className="mt-4 text-xs text-muted-foreground">
-                      {plan.note}
-                    </p>
-                  )}
-                  <Button
-                    variant={plan.highlight ? "default" : "outline"}
-                    className="mt-6 w-full rounded-full"
-                    asChild
-                  >
-                    <a href={checkoutHref(plan.slug)}>Quero este</a>
-                  </Button>
-                </div>
-              </BlurFade>
-            ))}
-          </div>
-          <BlurFade delay={0.15}>
-            <p className="mt-6 text-sm text-muted-foreground">
-              Cliente ativo de CRM ou Dashboard tem{" "}
-              <strong className="text-card-foreground">20% de desconto</strong>:
-              Essencial por R$799,20 e Sob Medida por R$1.437,60.
-            </p>
-          </BlurFade>
-        </div>
-      </section>
-
-      {/* Combos */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-xl font-semibold tracking-tight">
-                Combine CRM + Dashboard
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Economize contratando o Dashboard como add-on do seu CRM
-              </p>
-            </div>
-          </BlurFade>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {combos.map((c, i) => (
-              <BlurFade key={c.label} delay={i * 0.06}>
-                <div
-                  className={cn(
-                    "relative flex h-full items-center justify-between gap-4 rounded-2xl border bg-card p-5 transition-transform hover:-translate-y-0.5",
-                    c.featured && "border-primary/40 shadow-lg shadow-primary/5"
-                  )}
-                >
-                  {c.featured && (
-                    <span className="absolute -top-2.5 left-5 rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-semibold text-primary-foreground">
-                      ⭐ {FEATURED_LABEL}
-                    </span>
-                  )}
-                  <span
-                    className={cn(
-                      "text-sm",
-                      c.featured
-                        ? "font-medium text-card-foreground"
-                        : "text-muted-foreground"
-                    )}
-                  >
-                    {c.label}
+        {/* 2 · Pronto x sob medida */}
+        <section className="py-20 lg:py-24">
+          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+            <div className="grid gap-5 md:grid-cols-2">
+              <BlurFade>
+                <div className="h-full rounded-3xl border border-primary/30 bg-gradient-to-br from-[#7A57FF] via-[#5E34F7] to-[#4220C9] p-8 text-white shadow-[0_34px_60px_-26px_rgba(60,30,170,0.7)]">
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/30">
+                    <BoxIcon className="size-6" />
                   </span>
-                  <span className="shrink-0 text-lg font-semibold tracking-tight">
-                    {c.price}
-                  </span>
+                  <h2 className="mt-5 font-heading text-2xl font-extrabold tracking-[-0.03em]">
+                    Produtos prontos
+                  </h2>
+                  <p className="mt-1 text-sm text-white/80">
+                    Preço fixo, aqui nesta página.
+                  </p>
+                  <ul className="mt-5 space-y-2.5 text-sm">
+                    {readyList.map((i) => (
+                      <li key={i} className="flex items-center gap-2.5">
+                        <BadgeCheckIcon className="size-4 shrink-0 text-lima" />
+                        {i}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Previsão de churn */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h2 className="text-xl font-semibold tracking-tight">
-                Previsão de churn
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Saiba quais clientes têm risco de sair
-              </p>
+              <BlurFade delay={0.1}>
+                <div className="dark h-full rounded-3xl border border-white/12 bg-gradient-to-br from-[#1b0f36] to-[#0F0819] p-8 text-foreground shadow-[0_34px_60px_-30px_rgba(94,52,247,0.55)]">
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-lima text-lima-foreground">
+                    <RulerIcon className="size-6" />
+                  </span>
+                  <h2 className="mt-5 font-heading text-2xl font-extrabold tracking-[-0.03em]">
+                    Sob medida
+                  </h2>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Valor combinado por fora, antes de começar.
+                  </p>
+                  <ul className="mt-5 space-y-2.5 text-sm">
+                    {customList.map((i) => (
+                      <li key={i} className="flex items-center gap-2.5">
+                        <CheckIcon className="size-4 shrink-0 text-lima" />
+                        {i}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button asChild variant="outline" className="mt-6 rounded-full border-white/25 bg-white/[0.06] text-white hover:bg-white/15">
+                    <Link href="/contact">
+                      Pedir um orçamento <ArrowRightIcon className="size-4" />
+                    </Link>
+                  </Button>
+                </div>
+              </BlurFade>
             </div>
-          </BlurFade>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+          </div>
+        </section>
+
+        {/* 3 · CRM */}
+        <section id="crm" className="scroll-mt-24 pb-20 lg:pb-24">
+          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+            <SectionHead
+              tag="CRM"
+              title="CRM com WhatsApp"
+              note="Assinatura mensal, sem fidelidade. Funil, WhatsApp e alerta de lead parado."
+            />
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {crm.map((p, i) => (
+                <BlurFade key={p.slug} delay={i * 0.1}>
+                  <PlanCard
+                    plan={p}
+                    featured={i === crm.length - 1}
+                    badge={i === crm.length - 1 ? "Com IA e previsão de churn" : undefined}
+                    label="Assinatura mensal"
+                  />
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4 · Dashboard */}
+        <section id="dashboard" className="scroll-mt-24 bg-muted py-20 lg:py-24">
+          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+            <SectionHead
+              tag="Dashboard"
+              title="Dashboard"
+              note="Painéis e relatórios do seu negócio. Funciona sozinho, mesmo sem o CRM."
+            />
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {dashboard.map((p, i) => (
+                <BlurFade key={p.slug} delay={i * 0.1}>
+                  <PlanCard
+                    plan={p}
+                    featured={i === dashboard.length - 1}
+                    badge={i === dashboard.length - 1 ? "Com suporte" : undefined}
+                    label="Assinatura mensal"
+                  />
+                </BlurFade>
+              ))}
+            </div>
+            <BlurFade delay={0.15}>
+              <div className="mt-8 rounded-2xl border border-primary/25 bg-card p-6 text-sm shadow-[0_18px_36px_-26px_rgba(94,52,247,0.45)]">
+                <p>
+                  <strong>Já é cliente do CRM?</strong> Adicione o Dashboard por{" "}
+                  <strong>+R$197/mês</strong> (sem suporte) ou{" "}
+                  <strong>+R$347/mês</strong> (com suporte).
+                </p>
+                <p className="mt-2 text-muted-foreground">
+                  No avulso, a gente conecta o Dashboard às suas fontes de
+                  dados e mantém essa integração. Como add-on do CRM, os dados
+                  já estão dentro da plataforma e esse trabalho não se repete.
+                </p>
+              </div>
+            </BlurFade>
+          </div>
+        </section>
+
+        {/* 5 · Combos */}
+        <section id="combos" className="scroll-mt-24 py-20 lg:py-24">
+          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+            <SectionHead
+              tag="Combos"
+              title="CRM + Dashboard juntos"
+              note="Contratando os dois, o preço de cada um já sai menor do que avulso."
+            />
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {combos.map((c, i) => (
+                <BlurFade key={c.slug} delay={i * 0.06}>
+                  <div
+                    className={
+                      "relative flex h-full items-center justify-between gap-4 rounded-2xl border p-5 transition-transform hover:-translate-y-0.5 " +
+                      (i === 0
+                        ? "border-primary/50 bg-primary/[0.06] shadow-[0_18px_36px_-22px_rgba(94,52,247,0.5)]"
+                        : "border-border bg-card")
+                    }
+                  >
+                    {i === 0 && (
+                      <span className="absolute -top-2.5 left-5 rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-bold text-primary-foreground">
+                        Recomendado para começar
+                      </span>
+                    )}
+                    <div>
+                      <p className="text-sm font-semibold">{c.name}</p>
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {c.features[0]}
+                      </p>
+                    </div>
+                    <p className="shrink-0 font-heading text-2xl font-extrabold tracking-[-0.04em]">
+                      {c.price}
+                      <span className="text-sm font-semibold text-muted-foreground">
+                        {c.unit}
+                      </span>
+                    </p>
+                  </div>
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6 · Landing page */}
+        <section id="landing-page" className="scroll-mt-24 bg-muted py-20 lg:py-24">
+          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+            <SectionHead
+              tag="Landing page"
+              title="Landing page"
+              note="Pagamento único, sem mensalidade. O primeiro mês inclui até 5 ajustes sem custo, e quem já é cliente de CRM ou Dashboard tem 20% de desconto: Essencial por R$799,20 e Sob Medida por R$1.437,60."
+            />
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              {landing.map((p, i) => (
+                <BlurFade key={p.slug} delay={i * 0.1}>
+                  <PlanCard
+                    plan={p}
+                    featured={i === landing.length - 1}
+                    badge={i === landing.length - 1 ? "Mais completa" : undefined}
+                    label="Pagamento único"
+                  />
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 7 · Sites e previsão de churn */}
+        <section className="py-20 lg:py-24">
+          <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-2 lg:px-8">
             <BlurFade>
-              <div className="flex h-full flex-col rounded-2xl border bg-card p-6">
-                <span className="text-xs font-semibold text-primary">Avulsa</span>
-                <p className="mt-2 text-3xl font-semibold tracking-tight">
-                  R$397<span className="text-base font-normal text-muted-foreground">/mês</span>
+              <div id="sites" className="scroll-mt-24 h-full rounded-3xl border border-border bg-card p-8 shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]">
+                <span className={eyebrow}>Sites</span>
+                <h2 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em]">
+                  Sites institucionais
+                </h2>
+                <p className="mt-3 text-sm text-muted-foreground">a partir de</p>
+                <p className="font-heading text-5xl font-extrabold tracking-[-0.05em]">
+                  R$1.500
                 </p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  mais R$497 de implantação, pagos uma vez só
+                <p className="mt-3 text-sm text-muted-foreground">
+                  O valor final depende do tamanho do site, dos textos, das
+                  integrações e do prazo, e fica combinado na proposta.
                 </p>
-                <Button variant="outline" className="mt-5 w-fit rounded-full" asChild>
-                  <a href="/solucoes/previsao-de-churn">Ver como funciona</a>
+                <Button asChild variant="outline" className="mt-6 rounded-full">
+                  <Link href="/solucoes/sites">
+                    Ver sites <ArrowRightIcon className="size-4" />
+                  </Link>
                 </Button>
               </div>
             </BlurFade>
-            <BlurFade delay={0.08}>
-              <div className="flex h-full flex-col rounded-2xl border border-primary/40 bg-primary/[0.06] p-6">
-                <span className="text-xs font-semibold text-primary">Incluída no CRM Plus</span>
-                <p className="mt-2 text-3xl font-semibold tracking-tight">
-                  R$297<span className="text-base font-normal text-muted-foreground">/mês</span>
+            <BlurFade delay={0.1}>
+              <div id="churn" className="scroll-mt-24 h-full rounded-3xl border border-primary/40 bg-primary/[0.06] p-8 shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]">
+                <span className={eyebrow}>Previsão de churn</span>
+                <h2 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em]">
+                  Previsão de churn avulsa
+                </h2>
+                <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em]">
+                  R$397
+                  <span className="text-lg font-semibold text-muted-foreground">/mês</span>
                 </p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  CRM, IA sobre os seus dados e previsão de churn juntos
+                <p className="mt-2 text-sm text-muted-foreground">
+                  mais R$497 de implantação, pagos uma vez só
                 </p>
+                <p className="mt-3 text-sm">
+                  Também vem incluída no <strong>CRM Plus</strong>, por R$297/mês.
+                </p>
+                <Button asChild variant="outline" className="mt-6 rounded-full">
+                  <Link href="/solucoes/previsao-de-churn">
+                    Ver previsão de churn <ArrowRightIcon className="size-4" />
+                  </Link>
+                </Button>
               </div>
             </BlurFade>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Custom quote */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl border border-primary/20 bg-primary/5 p-8">
-              <div className="flex items-start gap-4">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-primary/15 text-primary">
-                  <Wand2Icon className="size-5" />
-                </span>
-                <div>
-                  <h3 className="font-semibold">Não achou o que precisa?</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Sites institucionais saem a partir de R$1.500. Para algo fora
-                    desses planos, montamos um orçamento sob medida pra você.
-                  </p>
-                </div>
-              </div>
-              <Button className="shrink-0 rounded-full" asChild>
-                <a href="/contact">Pedir orçamento personalizado</a>
-              </Button>
+        {/* 8 · Sob medida */}
+        <section className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
+          <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+          <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
+            <span className={eyebrow}>Sob medida</span>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
+              O que é sob medida tem valor combinado
+              <span className="text-emphasis">.</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
+              Agentes de IA, automações, sistemas e qualquer coisa fora dos
+              planos acima. A gente entende o seu caso e responde com escopo,
+              prazo e preço antes de qualquer trabalho começar.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              {["Agentes de IA", "Automação com n8n", "Sistemas sob medida"].map((c, i) => (
+                <Link
+                  key={c}
+                  href={
+                    ["/solucoes/agentes-de-ia", "/solucoes/automacao-n8n", "/solucoes/sistemas-sob-medida"][i]
+                  }
+                  className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/85 transition-colors hover:border-lima hover:text-lima"
+                >
+                  {c}
+                </Link>
+              ))}
             </div>
-          </BlurFade>
-        </div>
-      </section>
+            <div className="mt-8 flex justify-center">
+              <ShimmerButton href="/contact" className="h-14 px-10 text-base">
+                <RocketIcon className="size-5" />
+                Pedir um orçamento
+              </ShimmerButton>
+            </div>
+          </div>
+        </section>
 
-
-      {/* FAQ */}
-      <section className="pb-28">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(produtosJsonLd) }}
-        />
-        <div className="mx-auto max-w-3xl px-4 lg:px-8">
-          <BlurFade>
-            <h2 className="text-center text-3xl font-semibold tracking-tight">
+        {/* 9 · Perguntas */}
+        <section className="py-24 lg:py-28">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(produtosJsonLd) }}
+          />
+          <div className="mx-auto max-w-3xl px-4 lg:px-8">
+            <h2 className="text-3xl font-extrabold tracking-[-0.035em] lg:text-4xl">
               Dúvidas sobre o preço
             </h2>
-            <Accordion type="single" collapsible className="mt-10">
+            <Accordion type="single" collapsible className="mt-8">
               {faqs.map((faq) => (
                 <AccordionItem key={faq.q} value={faq.q}>
                   <AccordionTrigger className="text-left text-base">
@@ -709,11 +626,32 @@ export default function PricingPage() {
                 </AccordionItem>
               ))}
             </Accordion>
-          </BlurFade>
-        </div>
-      </section>
+          </div>
+        </section>
 
+        <section className="dark relative overflow-hidden bg-background py-24 text-foreground">
+          <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+          <BrandGlyph
+            still
+            size={460}
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.2]"
+          />
+          <div className="relative mx-auto max-w-2xl px-4 text-center">
+            <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-balance lg:text-4xl">
+              Ficou em dúvida por onde começar?
+            </h2>
+            <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
+              Fale com o time. A gente responde no WhatsApp em até 4h úteis.
+            </p>
+            <div className="mt-7 flex justify-center">
+              <ShimmerButton href="/contact" className="h-12 px-8">
+                Falar com o time
+              </ShimmerButton>
+            </div>
+          </div>
+        </section>
+      </main>
       <SiteFooter />
-    </main>
+    </>
   );
 }
