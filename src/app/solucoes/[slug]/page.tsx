@@ -4,7 +4,7 @@ import { ArrowRightIcon, CheckIcon } from "lucide-react";
 import type { Metadata } from "next";
 
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
-import { HubDemo } from "@/components/brand/hub-demo";
+import { HubVideo } from "@/components/brand/hub-video";
 import { MeMarquee } from "@/components/brand/me-motion";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -90,7 +90,7 @@ export default async function SolutionPage({ params }: Props) {
               </ShimmerButton>
               <Button variant="ghost" size="lg" asChild>
                 {s.slug === "mytek-hub" ? (
-                  <a href="#demonstracao">Experimentar a demonstração ↓</a>
+                  <a href="#demonstracao">Ver o Hub funcionando ↓</a>
                 ) : (
                   <a href="#como-funciona">Como funciona ↓</a>
                 )}
@@ -127,50 +127,22 @@ export default async function SolutionPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Demonstração interativa (só o Mytek Hub) */}
-        {s.slug === "mytek-hub" && (
+        {/* Vídeo do sistema (só o Mytek Hub) */}
+        {s.slug === "mytek-hub" && hubDemo.src && (
           <section id="demonstracao" className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
             <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
-            <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+            <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
               <span className={eyebrow}>Demonstração</span>
               <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
-                Experimente o Hub aqui mesmo
+                Veja o Hub funcionando
                 <span className="text-emphasis">.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                Veja o sistema real numa gravação rápida e, logo abaixo,
-                experimente você mesmo: avance as tarefas, peça uma como líder
-                e troque mensagens nos canais.
+                Uma gravação do sistema real. Clique num capítulo para ir
+                direto àquela parte.
               </p>
-
-              {hubDemo.src && (
-                <figure className="mt-10">
-                  <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#0F0819] shadow-[0_40px_100px_-30px_rgba(110,72,255,0.7)]">
-                    <video
-                      src={hubDemo.src}
-                      poster={hubDemo.poster ?? undefined}
-                      controls
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
-                      className="aspect-[16/10] w-full bg-black"
-                    />
-                  </div>
-                  <figcaption className="mt-3 text-center text-[11px] text-muted-foreground">
-                    Gravação do Mytek Hub, com uma conta de demonstração.
-                  </figcaption>
-                </figure>
-              )}
-
-              <h3 className="mt-14 font-heading text-2xl font-extrabold tracking-[-0.03em]">
-                Agora experimente você mesmo
-              </h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Demonstração interativa com dados de exemplo. Nada fica salvo.
-              </p>
-              <div className="mt-6">
-                <HubDemo />
+              <div className="mt-10">
+                <HubVideo src={hubDemo.src} poster={hubDemo.poster} />
               </div>
             </div>
           </section>
