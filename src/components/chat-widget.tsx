@@ -219,7 +219,7 @@ export function ChatWidget() {
     return (
       <button
         onClick={abrirWidget}
-        className="fixed bottom-6 right-6 size-14 rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-all flex items-center justify-center z-50"
+        className="fixed bottom-6 right-6 size-14 rounded-full bg-primary text-white shadow-lg hover:bg-primary/85 transition-all flex items-center justify-center z-50"
         aria-label="Abrir chat"
       >
         <MessageCircle className="size-6" />
@@ -229,14 +229,14 @@ export function ChatWidget() {
 
   return (
     <div className="fixed bottom-6 right-6 w-96 max-w-[calc(100vw-2rem)] h-[600px] max-h-[calc(100vh-3rem)] bg-white rounded-2xl shadow-2xl flex flex-col z-50">
-      <div className="bg-blue-600 text-white p-4 rounded-t-2xl flex justify-between items-center">
+      <div className="bg-primary text-white p-4 rounded-t-2xl flex justify-between items-center">
         <div>
           <h3 className="font-semibold">Suporte mytek</h3>
           <p className="text-xs opacity-90">Respondemos em minutos</p>
         </div>
         <button
           onClick={() => setAberto(false)}
-          className="hover:bg-blue-700 p-1 rounded transition-colors"
+          className="hover:bg-primary/85 p-1 rounded transition-colors"
           aria-label="Fechar chat"
         >
           <X className="size-5" />
@@ -248,7 +248,7 @@ export function ChatWidget() {
           <div key={m.id} className={`flex ${m.autor === "visitante" ? "justify-end" : "justify-start"}`}>
             <div
               className={`max-w-xs px-4 py-2 rounded-lg ${
-                m.autor === "visitante" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-900"
+                m.autor === "visitante" ? "bg-primary text-white" : "bg-muted text-foreground"
               }`}
             >
               {m.texto}
@@ -257,7 +257,7 @@ export function ChatWidget() {
         ))}
         {enviando && sessao && (
           <div className="flex justify-start">
-            <div className="bg-gray-100 text-gray-900 px-4 py-2 rounded-lg">
+            <div className="bg-muted text-foreground px-4 py-2 rounded-lg">
               <Loader2 className="size-4 animate-spin" />
             </div>
           </div>
@@ -280,7 +280,7 @@ export function ChatWidget() {
             placeholder="Seu nome"
             value={form.name}
             onChange={(e) => setForm((f) => ({ ...f, name: mascaraNome(e.target.value) }))}
-            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             required
           />
           <input
@@ -290,7 +290,7 @@ export function ChatWidget() {
             placeholder="Seu email"
             value={form.email}
             onChange={(e) => setForm((f) => ({ ...f, email: mascaraEmail(e.target.value) }))}
-            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             required
           />
           <input
@@ -300,12 +300,12 @@ export function ChatWidget() {
             placeholder="Seu telefone (opcional)"
             value={form.phone}
             onChange={(e) => setForm((f) => ({ ...f, phone: mascaraTelefone(e.target.value) }))}
-            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <button
             type="submit"
             disabled={enviando}
-            className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-400"
+            className="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary/85 transition-colors disabled:bg-gray-400"
           >
             {enviando ? "Abrindo…" : "Começar conversa"}
           </button>
@@ -317,12 +317,12 @@ export function ChatWidget() {
             placeholder="Escreva sua mensagem..."
             value={entrada}
             onChange={(e) => setEntrada(e.target.value)}
-            className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600"
+            className="flex-1 px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <button
             type="submit"
             disabled={enviando || !entrada.trim()}
-            className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400"
+            className="bg-primary text-white p-2 rounded-lg hover:bg-primary/85 transition-colors disabled:bg-gray-400"
             aria-label="Enviar mensagem"
           >
             <Send className="size-5" />

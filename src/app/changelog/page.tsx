@@ -29,8 +29,7 @@ const releases: Release[] = [
     tag: "Novo",
     items: [
       "CRM Plus agora inclui o módulo Conhecimento com IA sobre os dados da empresa, com treinamento incluído",
-      "Combos de CRM + Dashboard com preço especial, a partir de R$228/mês",
-      "Programa fundador aberto: 5 vagas com condições especiais",
+      "Combos de CRM + Dashboard com preço especial",
     ],
   },
   {
@@ -90,7 +89,7 @@ export default function ChangelogPage() {
             O que há de <span className="text-primary">novo</span>
           </>
         }
-        description="CRM, Landing Page, Dashboard e o programa fundador: cada entrega, documentada."
+        description="CRM, Landing Page e Dashboard: cada entrega, documentada."
       />
 
       <section className="pb-28">

@@ -26,6 +26,10 @@ export type CheckoutPlan = {
   /** `null` para pagamento único. */
   unit: string | null;
   features: string[];
+  /** Frase curta sob o preço (opcional). */
+  tagline?: string;
+  /** Observação sob a lista de itens (opcional). */
+  note?: string;
   /** Link de pagamento do Mercado Pago. Vazio enquanto não for criado. */
   url: string;
 };
@@ -49,26 +53,29 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "crm-normal",
         name: "CRM Normal",
-        price: "R$179",
+        price: "R$99",
         unit: "/mês",
         features: [
           "Até 3 membros do time",
           "Funil de vendas visual (Kanban)",
           "Atendimento via WhatsApp",
         ],
-        url: "https://mpago.la/1CDuG1z",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
       {
         slug: "crm-plus",
         name: "CRM Plus",
-        price: "R$367",
+        price: "R$297",
         unit: "/mês",
         features: [
           "Até 3 membros do time",
           "Módulo Conhecimento com IA",
+          "Previsão de churn incluída",
           "Sessão de treinamento incluída",
         ],
-        url: "https://mpago.la/1GUmzTq",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
     ],
   },
@@ -115,34 +122,63 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "combo-normal-sem-suporte",
         name: "CRM Normal + Dashboard sem suporte",
-        price: "R$394",
+        price: "R$296",
         unit: "/mês",
         features: ["Economia de R$200/mês"],
-        url: "https://mpago.la/2KCBtQz",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
       {
         slug: "combo-normal-com-suporte",
         name: "CRM Normal + Dashboard com suporte",
-        price: "R$544",
+        price: "R$446",
         unit: "/mês",
         features: ["Economia de R$350/mês"],
-        url: "https://mpago.la/1xKFLYP",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
       {
         slug: "combo-plus-sem-suporte",
         name: "CRM Plus + Dashboard sem suporte",
-        price: "R$564",
+        price: "R$494",
         unit: "/mês",
         features: ["Economia de R$200/mês"],
-        url: "https://mpago.la/2oSAYKm",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
       {
         slug: "combo-plus-com-suporte",
         name: "CRM Plus + Dashboard com suporte",
-        price: "R$714",
+        price: "R$644",
         unit: "/mês",
         features: ["Economia de R$350/mês"],
-        url: "https://mpago.la/1r2iBNU",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
+      },
+    ],
+  },
+  {
+    slug: "churn",
+    title: "Previsão de churn",
+    billing: "Assinatura mensal + implantação",
+    description:
+      "Modelo treinado com o seu histórico que aponta quais clientes têm risco de sair. Também vem incluída no CRM Plus.",
+    plans: [
+      {
+        slug: "churn-avulso",
+        name: "Previsão de churn avulsa",
+        price: "R$397",
+        unit: "/mês",
+        tagline: "Mais R$497 de implantação, pagos uma vez só.",
+        features: [
+          "Implantação de R$497, paga uma vez só",
+          "Análise e preparação do seu histórico de clientes",
+          "Modelo treinado e avaliado com os seus dados",
+          "Lista de clientes em risco, com o motivo de cada um",
+          "Reavaliação do modelo conforme entram dados novos",
+        ],
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
     ],
   },
@@ -156,27 +192,38 @@ export const checkoutGroups: CheckoutGroup[] = [
       {
         slug: "lp-essencial",
         name: "Landing Page Essencial",
-        price: "R$1.497",
+        price: "R$999",
         unit: null,
+        tagline: "Sua página no ar rápido, com a sua cara.",
         features: [
-          "Template customizado",
-          "1 integração",
-          "Textos por sua conta (ou contrate a Completa)",
+          "Modelo da mytek adaptado à sua marca",
+          "Até 5 seções",
+          "Integração com WhatsApp, que pode ser ligado ao CRM",
+          "1 rodada de revisão",
+          "Entrega em até 7 dias úteis",
         ],
-        url: "https://mpago.la/2iYqiqi",
+        note: "Textos por sua conta (ou escolha a Sob Medida)",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
       {
-        slug: "lp-completa",
-        name: "Landing Page Completa",
-        price: "R$2.997",
+        slug: "lp-sob-medida",
+        name: "Landing Page Sob Medida",
+        price: "R$1.797",
         unit: null,
+        tagline: "Feita do zero pra transformar visita em cliente.",
         features: [
-          "Design sob medida",
-          "Copy profissional",
-          "Integração com CRM/e-mail",
-          "SEO básico",
+          "Design criado do zero para o seu negócio",
+          "Textos escritos pela mytek, focados em gerar contato",
+          "Até 10 seções",
+          "Integração com CRM, WhatsApp e e-mail",
+          "Pixel da Meta e Google Analytics para medir cada clique",
+          "SEO básico para ser encontrada no Google",
+          "Até 2 rodadas de revisão no layout",
+          "Entrega em até 15 dias úteis",
         ],
-        url: "https://mpago.la/1QAQNtf",
+        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        url: "",
       },
     ],
   },

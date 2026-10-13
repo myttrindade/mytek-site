@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MytekLogo } from "@/components/mytek-logo";
 import { MobileNav, type NavLink } from "@/components/mobile-nav";
-import { siteConfig } from "@/lib/site-config";
 
 /**
  * Fonte única dos links de navegação: o menu do desktop e o do celular leem
@@ -15,20 +14,17 @@ import { siteConfig } from "@/lib/site-config";
  */
 const navLinks: readonly NavLink[] = [
   { href: "/", label: "Home" },
-  { href: "/#produtos", label: "Produtos" },
-  { href: "/#recursos", label: "Recursos" },
-  { href: "/#jornada", label: "Como funciona" },
+  { href: "/#solucoes", label: "Soluções" },
   { href: "/pricing", label: "Preço" },
   { href: "/about", label: "Sobre" },
 ];
 
 export function SiteHeader() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/70 backdrop-blur-xl">
+    <header className="dark fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 text-foreground backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <MytekLogo />
-          {siteConfig.name}
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm text-muted-foreground md:flex">
@@ -51,7 +47,7 @@ export function SiteHeader() {
             Entrar
           </Link>
           <Button size="sm" asChild>
-            <Link href="/pricing">Ver preços</Link>
+            <Link href="/contact">Falar com o time</Link>
           </Button>
           <MobileNav links={navLinks} />
         </div>

@@ -1,16 +1,29 @@
-import Image from "next/image";
-
+import { MytekSymbol } from "@/components/brand/symbol";
 import { cn } from "@/lib/utils";
 
-export function MytekLogo({ className }: { className?: string }) {
+/**
+ * Logo da mytek: o símbolo (sem o quadrado do app) + a assinatura "mytek."
+ * com o ponto lima. `iconOnly` mostra só o símbolo.
+ */
+export function MytekLogo({
+  className,
+  iconOnly = false,
+}: {
+  className?: string;
+  iconOnly?: boolean;
+}) {
   return (
-    <Image
-      src="/brand/logo.png"
-      alt="mytek"
-      width={37}
-      height={32}
-      className={cn("h-8 w-auto object-contain", className)}
-      priority
-    />
+    <span
+      className={cn("inline-flex items-center gap-2", className)}
+      role="img"
+      aria-label="mytek"
+    >
+      <MytekSymbol className="w-7" />
+      {!iconOnly && (
+        <span className="font-heading text-xl font-extrabold leading-none tracking-[-0.055em]">
+          mytek<span className="text-lima">.</span>
+        </span>
+      )}
+    </span>
   );
 }

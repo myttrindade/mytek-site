@@ -3,16 +3,22 @@ import Link from "next/link";
 import { MytekLogo } from "@/components/mytek-logo";
 import { hasCheckoutLinks } from "@/lib/checkout";
 import { company, hasLegalIdentity, isFilled } from "@/lib/company";
-import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const groups = [
   {
-    title: "Produto",
+    title: "Soluções",
     links: [
-      { text: "CRM", href: "/#crm" },
-      { text: "Landing Page", href: "/#landing-page" },
-      { text: "Dashboard", href: "/#dashboard" },
+      { text: "Sites", href: "/solucoes/sites" },
+      { text: "Landing pages", href: "/solucoes/landing-pages" },
+      { text: "CRM com WhatsApp", href: "/crm" },
+      { text: "Mytek Hub", href: "/solucoes/mytek-hub" },
+      { text: "MyCash", href: "/solucoes/mycash" },
+      { text: "Dashboards", href: "/solucoes/dashboards" },
+      { text: "Agentes de IA", href: "/solucoes/agentes-de-ia" },
+      { text: "Automação com n8n", href: "/solucoes/automacao-n8n" },
+      { text: "Previsão de churn", href: "/solucoes/previsao-de-churn" },
+      { text: "Sistemas sob medida", href: "/solucoes/sistemas-sob-medida" },
       { text: "Preço", href: "/pricing" },
       // Aparece só quando o checkout estiver de fato cobrando.
       ...(hasCheckoutLinks
@@ -41,12 +47,11 @@ const groups = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border/40 py-14">
+    <footer className="dark border-t border-border bg-background py-14 text-foreground">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
         <div>
           <Link href="/" className="flex items-center gap-2 font-semibold">
             <MytekLogo />
-            {siteConfig.name}
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
             CRM com WhatsApp, landing page e dashboard. Nenhum lead esquecido

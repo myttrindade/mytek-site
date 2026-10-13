@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MailIcon, MessageCircleIcon, UsersIcon } from "lucide-react";
+import { MailIcon, MessageCircleIcon } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -10,7 +10,7 @@ import { ContactForm } from "@/components/template/contact-form";
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Dúvidas sobre a mytek, o programa fundador ou o plano padrão? Fale com a gente.",
+    "Dúvidas sobre a mytek, um projeto sob medida ou o plano do CRM? Fale com a gente.",
   alternates: { canonical: "/contact" },
 };
 
@@ -29,12 +29,6 @@ const channels = [
     detail: "contato@mytek.com.br",
     href: "mailto:contato@mytek.com.br",
   },
-  {
-    icon: <UsersIcon className="size-5" />,
-    title: "Programa fundador",
-    body: "Ainda restam vagas com preço especial nos 3 primeiros meses.",
-    detail: "2 de 5 vagas preenchidas",
-  },
 ];
 
 export default function ContactPage() {
@@ -49,7 +43,7 @@ export default function ContactPage() {
             Fale com <span className="text-primary">nosso time</span>
           </>
         }
-        description="Dúvidas sobre o funil, a automação ou o programa fundador? Manda uma mensagem, a gente lê tudo."
+        description="Dúvidas sobre o funil, a automação ou um projeto sob medida? Manda uma mensagem, a gente lê tudo."
       />
 
       <section className="pb-28">

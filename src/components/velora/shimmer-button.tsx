@@ -14,7 +14,7 @@ export function ShimmerButton({
   ...props
 }: ShimmerButtonProps) {
   const sharedClassName = cn(
-    "group relative inline-flex h-12 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/30 transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring active:scale-[0.98]",
+    "group relative inline-flex h-12 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full bg-primary px-8 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 dark:bg-lima dark:text-lima-foreground dark:shadow-lima/20 transition-[transform,box-shadow] duration-300 hover:scale-[1.03] hover:shadow-xl hover:shadow-primary/40 dark:hover:shadow-lima/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring active:scale-[0.98]",
     className
   );
   const content = (
@@ -24,7 +24,7 @@ export function ShimmerButton({
       </span>
       <span
         aria-hidden
-        className="animate-shimmer absolute inset-0 bg-[linear-gradient(110deg,transparent_30%,rgba(255,255,255,0.35)_50%,transparent_70%)] bg-[length:250%_100%]"
+        className="animate-shimmer absolute inset-0 bg-[linear-gradient(110deg,transparent_30%,rgba(255,255,255,0.45)_50%,transparent_70%)] bg-[length:250%_100%]"
       />
     </>
   );
