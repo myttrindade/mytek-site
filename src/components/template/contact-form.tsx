@@ -115,7 +115,7 @@ export function ContactForm() {
             id="email"
             name="email"
             type="email"
-            placeholder="ana@suaclinica.com.br"
+            placeholder="ana@suaempresa.com.br"
             value={email}
             onChange={(e) => {
               const newEmail = maskEmail(e.target.value);
@@ -160,7 +160,7 @@ export function ContactForm() {
         <Textarea
           id="message"
           name="message"
-          placeholder="Conte um pouco sobre sua clínica…"
+          placeholder="Conte um pouco sobre a sua empresa e o que você precisa…"
           className="min-h-36"
         />
       </div>
