@@ -35,6 +35,7 @@ export function generateStaticParams() {
         "dashboards",
         "agentes-de-ia",
         "automacao-n8n",
+        "previsao-de-churn",
       ].includes(s.slug)
     )
     .map((s) => ({ slug: s.slug }));
