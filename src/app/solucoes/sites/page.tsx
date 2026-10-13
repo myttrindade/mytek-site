@@ -20,6 +20,7 @@ import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { eyebrow } from "@/components/solutions-grid";
+import { SolutionsCompare } from "@/components/solutions-compare";
 import {
   Accordion,
   AccordionContent,
@@ -267,6 +268,7 @@ export default function SitesPage() {
                 </BlurFade>
               ))}
             </div>
+            <SolutionsCompare current="site" />
           </div>
         </section>
 
