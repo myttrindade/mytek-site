@@ -145,6 +145,7 @@ export function IntroSplash() {
       <div className="intro-center">
         <div className="intro-push">
         <div className="intro-mark">
+          <div className="intro-floor" />
           <div className="intro-spin">
             {Array.from({ length: LAYERS }, (_, i) => {
               const front = i === LAYERS - 1;
@@ -157,7 +158,7 @@ export function IntroSplash() {
                   style={{
                     transform: `translateZ(${(i - LAYERS / 2) * (SIZE / 55)}px)`,
                   }}
-                  fill={front ? "url(#intro-metal)" : `hsl(225 8% ${22 + t * 34}%)`}
+                  fill={front ? "url(#intro-metal)" : `hsl(258 16% ${16 + t * 36}%)`}
                 >
                   {front && (
                     <defs>
