@@ -785,6 +785,198 @@ html.intro-seen .intro {
   }
 }
 
+/* Abertura: nome ao lado do simbolo (padrao) ou embaixo (?nome=baixo), e testes de luz (?luz=1 a 4) */
+.intro-center {
+  padding-bottom: 0;
+}
+.intro-push {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "mark word"
+    "mark sub";
+  align-items: center;
+  column-gap: clamp(18px, 3.4vw, 44px);
+  row-gap: 6px;
+}
+.intro-push .intro-mark {
+  grid-area: mark;
+  width: clamp(110px, 17vw, 190px);
+}
+.intro-push .intro-word {
+  grid-area: word;
+  align-self: end;
+  font-size: clamp(44px, 9vw, 92px);
+}
+.intro-push .intro-sub {
+  grid-area: sub;
+  align-self: start;
+  margin-right: 0;
+}
+.intro-push .intro-line {
+  display: none;
+}
+.intro-streak {
+  top: 50%;
+}
+html[data-nome="baixo"] .intro-push {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+html[data-nome="baixo"] .intro-push .intro-mark {
+  width: clamp(130px, 22vw, 210px);
+}
+html[data-nome="baixo"] .intro-push .intro-word {
+  font-size: clamp(48px, 10vw, 96px);
+}
+html[data-nome="baixo"] .intro-push .intro-sub {
+  margin-right: -0.34em;
+}
+html[data-nome="baixo"] .intro-push .intro-line {
+  display: block;
+}
+html[data-nome="baixo"] .intro-streak {
+  top: 36%;
+}
+
+/* Luzes de teste: some a linha horizontal e entra a variação escolhida. */
+.intro-halo,
+.intro-rays,
+.intro-beam,
+.intro-sweep {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  display: none;
+}
+html[data-luz="1"] .intro-streak,
+html[data-luz="2"] .intro-streak,
+html[data-luz="3"] .intro-streak,
+html[data-luz="4"] .intro-streak {
+  display: none;
+}
+
+/* 1 · Halo: um brilho suave que respira atrás do símbolo e do nome */
+html[data-luz="1"] .intro-halo {
+  display: block;
+  left: 50%;
+  top: 50%;
+  width: min(120vw, 820px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.38) 0,
+    rgba(160, 130, 255, 0.5) 16%,
+    rgba(94, 52, 247, 0.3) 38%,
+    transparent 68%
+  );
+  filter: blur(8px);
+  animation: intro-halo 3.2s ease-in-out 0.9s forwards;
+}
+@keyframes intro-halo {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+  45% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+/* 2 · Raios: feixes finos que giram devagar atrás da marca */
+html[data-luz="2"] .intro-rays {
+  display: block;
+  left: 50%;
+  top: 50%;
+  width: min(220vmax, 2200px);
+  aspect-ratio: 1;
+  margin: calc(min(220vmax, 2200px) / -2) 0 0 calc(min(220vmax, 2200px) / -2);
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(190, 165, 255, 0.28) 0 3deg,
+    transparent 3deg 12deg
+  );
+  -webkit-mask-image: radial-gradient(circle, #000 0, transparent 22%);
+  mask-image: radial-gradient(circle, #000 0, transparent 22%);
+  animation: intro-rays-in 1.6s ease-out 1s forwards, intro-rays-rot 30s linear infinite;
+}
+@keyframes intro-rays-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes intro-rays-rot {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 3 · Feixe: um foco de luz que cai de cima sobre a marca */
+html[data-luz="3"] .intro-beam {
+  display: block;
+  left: 50%;
+  top: -70vh;
+  width: min(90vw, 620px);
+  height: 140vh;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, transparent 0, rgba(200, 180, 255, 0.34) 70%, rgba(255, 255, 255, 0.4));
+  clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+  filter: blur(7px);
+  animation: intro-beam 3s ease-out 0.8s forwards;
+}
+@keyframes intro-beam {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.65;
+  }
+}
+html[data-luz="3"] .intro-floor {
+  height: 22%;
+  filter: blur(20px);
+}
+
+/* 4 · Varredura: um brilho diagonal que cruza a tela, como o do cartão */
+html[data-luz="4"] .intro-sweep {
+  display: block;
+  inset: -20%;
+  opacity: 1;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.1) 46%,
+    rgba(200, 180, 255, 0.34) 50%,
+    rgba(255, 255, 255, 0.1) 54%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  animation: intro-sweep 1.7s cubic-bezier(0.4, 0, 0.2, 1) 1.7s forwards;
+}
+@keyframes intro-sweep {
+  to {
+    transform: translateX(120%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-halo,
+  .intro-rays,
+  .intro-beam,
+  .intro-sweep {
+    animation: none;
+  }
+}
+
 /* Visual da capa: escala pela largura E pela altura da tela (hero-visual.tsx) */
 .hero-vis {
   --s: 0.62;
