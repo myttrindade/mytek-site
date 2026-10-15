@@ -858,7 +858,8 @@ html[data-luz="5"] .intro-streak {
 }
 
 /* 2 · Halo: um brilho suave que respira atrás do símbolo e do nome */
-html[data-luz="2"] .intro-halo {
+html[data-luz="2"] .intro-halo,
+html[data-teste="2"] .intro-halo {
   display: block;
   left: 50%;
   top: 50%;
@@ -949,7 +950,7 @@ html[data-luz="4"] .intro-floor {
 
 /* 5 · Varredura: um brilho diagonal que cruza a tela, como o do cartão */
 html[data-luz="5"] .intro-sweep,
-html[data-teste] .intro-sweep {
+html[data-teste="1"] .intro-sweep {
   display: block;
   inset: -20%;
   opacity: 1;
@@ -1039,6 +1040,11 @@ html[data-teste] .intro-word span:nth-child(5) { animation-delay: 2.85s !importa
 html[data-teste] .intro-word span:nth-child(6) { animation-delay: 3.05s !important; }
 html[data-teste] .intro-sub {
   animation-delay: 3.2s;
+}
+
+/* Teste 2 (?teste=2): a mesma sequência, com o halo (opção 2) no lugar da varredura. */
+html[data-teste="2"] .intro-halo {
+  animation: intro-halo 4.2s ease-in-out 0.5s forwards;
 }
 
 /* Visual da capa: escala pela largura E pela altura da tela (hero-visual.tsx) */

@@ -77,6 +77,7 @@ export function IntroSplash() {
       </div>
       <div className="intro-vignette" />
       <div className="intro-sweep" />
+      <div className="intro-halo" />
 
       <div className="intro-ring">
         <svg viewBox="0 0 1000 760" className="intro-arcs" fill="none">
@@ -157,7 +158,6 @@ export function IntroSplash() {
 
       <div className="intro-center">
         <div className="intro-push">
-        <div className="intro-halo" />
         <div className="intro-rays" />
         <div className="intro-beam" />
         <div className="intro-mark">
