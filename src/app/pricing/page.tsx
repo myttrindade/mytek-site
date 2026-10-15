@@ -27,13 +27,14 @@ import { ShimmerButton } from "@/components/velora/shimmer-button";
 import {
   checkoutGroups,
   checkoutHref,
+  servicosAvulsos,
   type CheckoutPlan,
 } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
 
-const pricingTitle = "Preços da mytek · CRM a partir de R$99/mês, sem fidelidade";
+const pricingTitle = "Preços da mytek · CRM, Landing page e serviços com valor";
 const pricingDescription =
-  "Preços dos produtos prontos da mytek: CRM a partir de R$99/mês, Dashboard a partir de R$397/mês, Landing Page a partir de R$999 e sites a partir de R$1.500. Projetos sob medida têm o valor combinado antes de começar.";
+  "Valores da mytek: CRM Simples, CRM com IA e CRM + Churn (implantação + mensalidade, sem fidelidade), Landing page em valor único e serviços como site, dashboard, agente de IA e automação. O que é sob medida tem o valor combinado antes de começar.";
 
 export const metadata: Metadata = {
   // `title.absolute` ignora o template "%s · mytek" do layout.
@@ -52,23 +53,18 @@ export const metadata: Metadata = {
 const group = (slug: string) =>
   checkoutGroups.find((g) => g.slug === slug)?.plans ?? [];
 const crm = group("crm");
-const dashboard = group("dashboard");
-const combos = group("combos");
-const churn = group("churn");
 const landing = group("landing-page");
 
 const readyList = [
-  "CRM com WhatsApp",
-  "Dashboard",
-  "Landing page",
-  "Sites (a partir de R$1.500)",
-  "Previsão de churn",
+  "CRM Simples: R$247 de implantação + R$137/mês",
+  "CRM com IA: R$447 de implantação + R$297/mês",
+  "CRM + Churn: R$447 de implantação + R$397/mês",
+  "Landing page: R$777, valor único",
 ];
 const customList = [
-  "Agentes de IA",
-  "Automação com n8n",
   "Sistemas sob medida",
   "MyHub e MyCash (sob demonstração)",
+  "Qualquer projeto fora dos valores desta página",
 ];
 
 /** Cartão de plano: o destaque (featured) é roxo; os demais, brancos. */
@@ -195,28 +191,28 @@ function SectionHead({
 
 const faqs = [
   {
-    q: "O que tem preço fixo e o que é sob medida?",
-    a: "Os produtos prontos têm preço fixo, aqui na página: CRM, Dashboard, Landing Page, sites (a partir de R$1.500) e previsão de churn. Tudo o que é sob medida, como agentes de IA, automações e sistemas, tem o valor combinado com você antes de começar.",
+    q: "O que tem valor fixo e o que é sob medida?",
+    a: "Os CRMs, a Landing page e os serviços da tabela (site, ajustes em site, agente de IA, automação, dashboard e previsão de churn) têm valor definido nesta página. Sistemas sob medida e o MyHub e o MyCash são sob consulta: a gente entende o seu caso e combina escopo, prazo e valor antes de começar.",
   },
   {
-    q: "Preciso ter CRM pra contratar o Dashboard?",
-    a: "Não. O Dashboard avulso custa R$397/mês e funciona sozinho, conectado às suas fontes de dados. Se você já é cliente de CRM, ele entra como add-on por R$197/mês, porque os dados já estão dentro da plataforma e o trabalho de integração não se repete.",
+    q: "O que é a implantação?",
+    a: "É o valor pago uma vez só para a mytek configurar tudo para o seu negócio e deixar o serviço funcionando. Depois dela, você paga só a mensalidade, sem fidelidade. Nos pacotes de CRM com IA e CRM + Churn, a implantação é a mesma (R$447).",
   },
   {
-    q: "A Landing Page é cobrada todo mês?",
-    a: "Não. É pagamento único: R$999 na Essencial e R$1.797 na Sob Medida. A página é sua e continua no ar sem mensalidade. O que é opcional e mensal é a manutenção depois do primeiro mês, a partir de R$297/mês, pra quem quer alterações recorrentes.",
+    q: "A Landing page é cobrada todo mês?",
+    a: "Não. A Landing page tem valor único, de R$777, pago uma vez. A página é sua. A manutenção mensal, de R$67, é opcional.",
   },
   {
-    q: "Qual a diferença entre o CRM Normal e o Plus?",
-    a: "O Plus adiciona o módulo Conhecimento com IA, que responde perguntas sobre a sua própria base, e inclui a previsão de churn. Como a IA depende de como a sua empresa organiza a informação, o plano inclui uma sessão de treinamento com a gente antes de liberar o acesso. O resto (funil, WhatsApp, 3 usuários) é igual nos dois.",
+    q: "Qual a diferença entre os três CRMs?",
+    a: "O CRM Simples tem CRM com WhatsApp para até 3 usuários. O CRM com IA acrescenta o agente de IA no atendimento. O CRM + Churn acrescenta ainda a previsão de churn, que avisa quais clientes estão para sair, a tempo de agir.",
   },
   {
-    q: "Como funciona a manutenção gratuita?",
-    a: "Contratando Landing Page ou Dashboard, o primeiro mês inclui até 5 solicitações de ajuste sem custo: trocar texto, imagem, campo de formulário, métrica do painel. Depois desse mês, você escolhe entre suporte mensal a partir de R$297 ou pedidos avulsos, sem obrigação de contratar nada.",
+    q: "Tem fidelidade?",
+    a: "Não. Nos planos mensais você pode cancelar quando quiser.",
   },
   {
-    q: "E se eu precisar de algo fora desses planos?",
-    a: "A gente monta orçamento sob medida. Integração com um sistema que você já usa, painel com uma métrica específica, fluxo de venda que não cabe no funil padrão: é só descrever no formulário de contato que respondemos com escopo e valor.",
+    q: "E se eu precisar de algo fora desta página?",
+    a: "A gente monta orçamento sob medida. Um sistema, uma integração ou um fluxo que não cabe nos valores acima: é só descrever no formulário de contato que respondemos com escopo e valor.",
   },
 ];
 
@@ -240,9 +236,7 @@ const paraNumero = (preco: string) =>
 
 const produtosJsonLd = [
   { grupo: "CRM", planos: crm, mensal: true },
-  { grupo: "Dashboard", planos: dashboard, mensal: true },
-  { grupo: "Previsão de churn", planos: churn, mensal: true },
-  { grupo: "Landing Page", planos: landing, mensal: false },
+  { grupo: "Landing page", planos: landing, mensal: false },
 ].flatMap(({ grupo, planos, mensal }) =>
   planos.map((plano) => ({
     "@context": "https://schema.org",
@@ -273,11 +267,9 @@ const produtosJsonLd = [
 
 const anchors = [
   ["CRM", "#crm"],
-  ["Dashboard", "#dashboard"],
-  ["Combos", "#combos"],
   ["Landing page", "#landing-page"],
-  ["Sites", "#sites"],
-  ["Previsão de churn", "#churn"],
+  ["Outros serviços", "#servicos"],
+  ["Sob medida", "#sob-medida"],
 ] as const;
 
 export default function PricingPage() {
@@ -306,14 +298,15 @@ export default function PricingPage() {
             <BlurFade delay={0.12}>
               <h1 className="mt-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl">
                 Preços dos nossos{" "}
-                <span className="text-lima">produtos prontos.</span>
+                <span className="text-lima">serviços.</span>
               </h1>
             </BlurFade>
             <BlurFade delay={0.2}>
               <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground text-pretty">
-                Aqui estão só os valores dos sistemas que já vêm prontos. O que
-                é sob medida tem o valor combinado com você, por fora, antes
-                de começar.
+                Os valores dos CRMs, da Landing page e dos serviços da
+                mytek. Os CRMs têm uma implantação, paga uma vez, e uma
+                mensalidade sem fidelidade. O que é sob medida tem o valor
+                combinado com você antes de começar.
               </p>
             </BlurFade>
             <BlurFade delay={0.3}>
@@ -343,10 +336,10 @@ export default function PricingPage() {
                     <BoxIcon className="size-6" />
                   </span>
                   <h2 className="mt-5 font-heading text-2xl font-extrabold tracking-[-0.03em]">
-                    Produtos prontos
+                    Pacotes
                   </h2>
                   <p className="mt-1 text-sm text-white/80">
-                    Preço fixo, aqui nesta página.
+                    Valor fechado, aqui nesta página.
                   </p>
                   <ul className="mt-5 space-y-2.5 text-sm">
                     {readyList.map((i) => (
@@ -367,7 +360,7 @@ export default function PricingPage() {
                     Sob medida
                   </h2>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Valor combinado por fora, antes de começar.
+                    Valor combinado antes de começar.
                   </p>
                   <ul className="mt-5 space-y-2.5 text-sm">
                     {customList.map((i) => (
@@ -390,182 +383,109 @@ export default function PricingPage() {
 
         {/* 3 · CRM */}
         <section id="crm" className="scroll-mt-24 pb-20 lg:pb-24">
-          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          <div className="mx-auto max-w-6xl px-4 lg:px-8">
             <SectionHead
               tag="CRM"
               title="CRM com WhatsApp"
-              note="Assinatura mensal, sem fidelidade. Funil, WhatsApp e alerta de lead parado."
+              note="Três jeitos de ter o CRM. Todos têm uma implantação, paga uma vez, e uma mensalidade sem fidelidade."
             />
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {crm.map((p, i) => (
-                <BlurFade key={p.slug} delay={i * 0.1}>
-                  <PlanCard
-                    plan={p}
-                    featured={i === crm.length - 1}
-                    badge={i === crm.length - 1 ? "Com IA e previsão de churn" : undefined}
-                    label="Assinatura mensal"
-                  />
-                </BlurFade>
-              ))}
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              {crm.map((p, i) => {
+                const featured = i === crm.length - 1;
+                return (
+                  <BlurFade key={p.slug} delay={i * 0.1}>
+                    <PlanCard
+                      plan={p}
+                      featured={featured}
+                      badge={featured ? "Com previsão de churn" : undefined}
+                      label="Implantação + mensal"
+                    />
+                  </BlurFade>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* 4 · Dashboard */}
-        <section id="dashboard" className="scroll-mt-24 bg-muted py-20 lg:py-24">
-          <div className="mx-auto max-w-5xl px-4 lg:px-8">
-            <SectionHead
-              tag="Dashboard"
-              title="Dashboard"
-              note="Painéis e relatórios do seu negócio. Funciona sozinho, mesmo sem o CRM."
-            />
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {dashboard.map((p, i) => (
-                <BlurFade key={p.slug} delay={i * 0.1}>
-                  <PlanCard
-                    plan={p}
-                    featured={i === dashboard.length - 1}
-                    badge={i === dashboard.length - 1 ? "Com suporte" : undefined}
-                    label="Assinatura mensal"
-                  />
-                </BlurFade>
-              ))}
-            </div>
-            <BlurFade delay={0.15}>
-              <div className="mt-8 rounded-2xl border border-primary/25 bg-card p-6 text-sm shadow-[0_18px_36px_-26px_rgba(94,52,247,0.45)]">
-                <p>
-                  <strong>Já é cliente do CRM?</strong> Adicione o Dashboard por{" "}
-                  <strong>+R$197/mês</strong> (sem suporte) ou{" "}
-                  <strong>+R$347/mês</strong> (com suporte).
-                </p>
-                <p className="mt-2 text-muted-foreground">
-                  No avulso, a gente conecta o Dashboard às suas fontes de
-                  dados e mantém essa integração. Como add-on do CRM, os dados
-                  já estão dentro da plataforma e esse trabalho não se repete.
-                </p>
-              </div>
-            </BlurFade>
-          </div>
-        </section>
-
-        {/* 5 · Combos */}
-        <section id="combos" className="scroll-mt-24 py-20 lg:py-24">
-          <div className="mx-auto max-w-5xl px-4 lg:px-8">
-            <SectionHead
-              tag="Combos"
-              title="CRM + Dashboard juntos"
-              note="Contratando os dois, o preço de cada um já sai menor do que avulso."
-            />
-            <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {combos.map((c, i) => (
-                <BlurFade key={c.slug} delay={i * 0.06}>
-                  <div
-                    className={
-                      "relative flex h-full items-center justify-between gap-4 rounded-2xl border p-5 transition-transform hover:-translate-y-0.5 " +
-                      (i === 0
-                        ? "border-primary/50 bg-primary/[0.06] shadow-[0_18px_36px_-22px_rgba(94,52,247,0.5)]"
-                        : "border-border bg-card")
-                    }
-                  >
-                    {i === 0 && (
-                      <span className="absolute -top-2.5 left-5 rounded-full bg-primary px-2.5 py-0.5 text-[11px] font-bold text-primary-foreground">
-                        Recomendado para começar
-                      </span>
-                    )}
-                    <div>
-                      <p className="text-sm font-semibold">{c.name}</p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">
-                        {c.features[0]}
-                      </p>
-                    </div>
-                    <p className="shrink-0 font-heading text-2xl font-extrabold tracking-[-0.04em]">
-                      {c.price}
-                      <span className="text-sm font-semibold text-muted-foreground">
-                        {c.unit}
-                      </span>
-                    </p>
-                  </div>
-                </BlurFade>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 6 · Landing page */}
+        {/* 4 · Landing page */}
         <section id="landing-page" className="scroll-mt-24 bg-muted py-20 lg:py-24">
-          <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          <div className="mx-auto max-w-6xl px-4 lg:px-8">
             <SectionHead
               tag="Landing page"
               title="Landing page"
-              note="Pagamento único, sem mensalidade. O primeiro mês inclui até 5 ajustes sem custo, e quem já é cliente de CRM ou Dashboard tem 20% de desconto: Essencial por R$799,20 e Sob Medida por R$1.437,60."
+              note="Valor único: você paga uma vez e a página é sua. A manutenção mensal é opcional."
             />
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {landing.map((p, i) => (
-                <BlurFade key={p.slug} delay={i * 0.1}>
-                  <PlanCard
-                    plan={p}
-                    featured={i === landing.length - 1}
-                    badge={i === landing.length - 1 ? "Mais completa" : undefined}
-                    label="Pagamento único"
-                  />
+            <div className="mx-auto mt-12 max-w-md">
+              {landing.map((p) => (
+                <BlurFade key={p.slug}>
+                  <PlanCard plan={p} label="Valor único" />
                 </BlurFade>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 7 · Sites e previsão de churn */}
-        <section className="py-20 lg:py-24">
-          <div className="mx-auto grid max-w-5xl gap-6 px-4 md:grid-cols-2 lg:px-8">
-            <BlurFade>
-              <div id="sites" className="scroll-mt-24 h-full rounded-3xl border border-border bg-card p-8 shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]">
-                <span className={eyebrow}>Sites</span>
-                <h2 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em]">
-                  Sites institucionais
-                </h2>
-                <p className="mt-3 text-sm text-muted-foreground">a partir de</p>
-                <p className="font-heading text-5xl font-extrabold tracking-[-0.05em]">
-                  R$1.500
-                </p>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  O valor final depende do tamanho do site, dos textos, das
-                  integrações e do prazo, e fica combinado na proposta.
-                </p>
-                <Button asChild variant="outline" className="mt-6 rounded-full">
-                  <Link href="/solucoes/sites">
-                    Ver sites <ArrowRightIcon className="size-4" />
-                  </Link>
-                </Button>
-              </div>
-            </BlurFade>
+        {/* 5 · Outros servicos */}
+        <section id="servicos" className="scroll-mt-24 py-20 lg:py-24">
+          <div className="mx-auto max-w-6xl px-4 lg:px-8">
+            <SectionHead
+              tag="Outros serviços"
+              title="Sites, dados, IA e automação"
+              note="Valores de cada serviço. Para sistemas sob medida, o orçamento vem depois de uma conversa."
+            />
             <BlurFade delay={0.1}>
-              <div id="churn" className="scroll-mt-24 h-full rounded-3xl border border-primary/40 bg-primary/[0.06] p-8 shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]">
-                <span className={eyebrow}>Previsão de churn</span>
-                <h2 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em]">
-                  Previsão de churn avulsa
-                </h2>
-                <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em]">
-                  R$397
-                  <span className="text-lg font-semibold text-muted-foreground">/mês</span>
-                </p>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  mais R$497 de implantação, pagos uma vez só
-                </p>
-                <p className="mt-3 text-sm">
-                  Também vem incluída no <strong>CRM Plus</strong>, por R$297/mês.
-                </p>
-                <Button asChild variant="outline" className="mt-6 rounded-full">
-                  <Link href="/solucoes/previsao-de-churn">
-                    Ver previsão de churn <ArrowRightIcon className="size-4" />
-                  </Link>
-                </Button>
+              <div className="mt-10 overflow-hidden rounded-3xl border border-primary/20 bg-card shadow-[0_28px_54px_-28px_rgba(94,52,247,0.45)]">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="bg-primary text-primary-foreground">
+                        <th className="p-4 font-heading font-extrabold">Serviço</th>
+                        <th className="p-4 font-heading font-extrabold">Detalhe</th>
+                        <th className="p-4 font-heading font-extrabold">Pago uma vez</th>
+                        <th className="p-4 font-heading font-extrabold">Mensal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {servicosAvulsos.map((x) => (
+                        <tr key={x.slug} className="border-t border-border align-top">
+                          <th className="p-4 font-semibold">
+                            <Link href={x.href} className="hover:text-primary">
+                              {x.nome}
+                            </Link>
+                          </th>
+                          <td className="p-4 text-muted-foreground">
+                            {x.detalhe}
+                            {x.nota && <span className="block text-xs">{x.nota}</span>}
+                          </td>
+                          <td className="whitespace-nowrap p-4 font-semibold">{x.uma_vez}</td>
+                          <td className="whitespace-nowrap p-4 font-semibold">
+                            {x.mensal ?? "sem mensalidade"}
+                          </td>
+                        </tr>
+                      ))}
+                      <tr className="border-t border-border align-top">
+                        <th className="p-4 font-semibold">
+                          <Link href="/solucoes/mytek-hub" className="hover:text-primary">
+                            MyHub e MyCash
+                          </Link>
+                        </th>
+                        <td className="p-4 text-muted-foreground">
+                          Produtos próprios da mytek
+                          <span className="block text-xs">Sob demonstração.</span>
+                        </td>
+                        <td className="whitespace-nowrap p-4 font-semibold">Sob consulta</td>
+                        <td className="whitespace-nowrap p-4 font-semibold">Sob consulta</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </BlurFade>
           </div>
         </section>
 
         {/* 8 · Sob medida */}
-        <section className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
+        <section id="sob-medida" className="dark relative scroll-mt-24 overflow-hidden bg-background py-24 text-foreground lg:py-28">
           <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
           <div className="relative mx-auto max-w-4xl px-4 text-center lg:px-8">
             <span className={eyebrow}>Sob medida</span>
@@ -574,16 +494,16 @@ export default function PricingPage() {
               <span className="text-emphasis">.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-              Agentes de IA, automações, sistemas e qualquer coisa fora dos
-              planos acima. A gente entende o seu caso e responde com escopo,
-              prazo e preço antes de qualquer trabalho começar.
+              Sistemas feitos para o seu processo e qualquer coisa fora dos
+              valores acima. A gente entende o seu caso e responde com
+              escopo, prazo e preço antes de qualquer trabalho começar.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {["Agentes de IA", "Automação com n8n", "Sistemas sob medida"].map((c, i) => (
+              {["Sites", "Dashboards", "Agentes de IA", "Automação com n8n", "Sistemas sob medida"].map((c, i) => (
                 <Link
                   key={c}
                   href={
-                    ["/solucoes/agentes-de-ia", "/solucoes/automacao-n8n", "/solucoes/sistemas-sob-medida"][i]
+                    ["/solucoes/sites", "/solucoes/dashboards", "/solucoes/agentes-de-ia", "/solucoes/automacao-n8n", "/solucoes/sistemas-sob-medida"][i]
                   }
                   className="rounded-full border border-white/15 bg-white/[0.06] px-4 py-2 text-sm font-semibold text-white/85 transition-colors hover:border-lima hover:text-lima"
                 >

@@ -41,7 +41,7 @@ export const solutions: Solution[] = [
     title: "Sites",
     problem: "Seu site não passa confiança nem explica o que você vende.",
     summary:
-      "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. A partir de R$1.500.",
+      "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. R$1.697, valor único.",
     headline: "Um site que explica o que você vende e leva o visitante a chamar.",
     intro:
       "Muita empresa tem site só porque precisa ter. A gente parte do que o seu cliente quer saber antes de comprar e organiza o site em torno disso, com identidade visual própria e carregamento rápido.",
@@ -64,7 +64,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa um site?",
-        a: "A partir de R$1.500. O valor final depende do tamanho do site e do que ele precisa fazer, e fica combinado na proposta antes de começar.",
+        a: "O site institucional custa R$1.697, valor único, pago uma vez. A manutenção mensal, de R$87, é opcional. Ajustes em um site que já existe (domínio, logo, imagens e até 1 página nova) custam R$500. Se o seu projeto fugir disso, o valor é combinado na proposta antes de começar.",
       },
       {
         q: "Posso editar o site depois?",
@@ -80,7 +80,7 @@ export const solutions: Solution[] = [
     title: "Landing pages",
     problem: "O visitante chega, olha e vai embora sem deixar contato.",
     summary:
-      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas. A partir de R$999, pagamento único.",
+      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas. Valor único de R$777.",
     headline: "Uma página com um objetivo só: transformar visitante em contato.",
     intro:
       "A landing page é a porta de entrada da sua operação comercial. Quem preenche o formulário já nasce como lead no funil, com a origem registrada, sem planilha no meio do caminho.",
@@ -103,7 +103,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa e é cobrado por mês?",
-        a: "São dois planos em pagamento único, sem mensalidade: Essencial por R$999 e Sob Medida por R$1.797. Manutenção contínua, se quiser, é combinada à parte.",
+        a: "A Landing page tem valor único de R$777, pago uma vez só, e a página é sua. A manutenção mensal, de R$67, é opcional.",
       },
       {
         q: "Em quanto tempo fica pronta?",
@@ -119,7 +119,7 @@ export const solutions: Solution[] = [
     title: "CRM com WhatsApp",
     problem: "O lead respondeu e ninguém voltou.",
     summary:
-      "Funil, atendimento no WhatsApp e alerta de lead parado. A partir de R$99/mês, sem fidelidade.",
+      "Funil, atendimento no WhatsApp e alerta de lead parado. A partir de R$137/mês, mais implantação de R$247, sem fidelidade.",
     headline: "",
     intro: "",
     includes: [],
@@ -220,7 +220,7 @@ export const solutions: Solution[] = [
     title: "Dashboards",
     problem: "Você descobre o resultado do mês só no fim do mês.",
     summary:
-      "Painéis de vendas, atendimento e operação que a equipe entende sem pedir relatório. A partir de R$397/mês.",
+      "Painéis de vendas, atendimento e operação que a equipe entende sem pedir relatório. R$397 de implantação + R$217/mês.",
     headline: "Os números do seu negócio num lugar só, sem montar planilha.",
     intro:
       "Dashboard bom responde pergunta, não enfeita. A gente conecta as suas fontes de dados e monta painéis que qualquer pessoa da equipe entende, do dono ao vendedor.",
@@ -243,7 +243,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa?",
-        a: "O Dashboard avulso custa R$397/mês, ou R$697/mês com suporte incluso (até 5 solicitações por mês). Quem já é cliente do CRM da mytek paga a partir de +R$197/mês, porque os dados já estão dentro da plataforma.",
+        a: "O Dashboard custa R$397 de implantação, paga uma vez, mais R$217/mês, sem fidelidade. Se o seu caso tiver muitas fontes de dados ou painéis fora do comum, a gente combina o valor antes de começar.",
       },
       {
         q: "Qual ferramenta é usada?",
@@ -333,7 +333,7 @@ export const solutions: Solution[] = [
     title: "Previsão de churn",
     problem: "O cliente cancela e você só fica sabendo depois.",
     summary:
-      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir. R$397/mês + R$497 de implantação.",
+      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir. No pacote CRM + Churn: R$397/mês mais implantação de R$447. Avulsa: R$147/mês mais R$397 de implantação.",
     headline: "Saiba quais clientes têm risco de sair antes que eles saiam.",
     intro:
       "Usamos o histórico de clientes da sua empresa para treinar um modelo de machine learning que estima o risco de cancelamento de cada um. A equipe passa a agir antes, com a lista de quem priorizar.",
@@ -356,7 +356,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa?",
-        a: "A previsão de churn avulsa custa R$397/mês, mais R$497 de implantação, pagos uma vez só. Ela também vem incluída no CRM Plus, que custa R$297/mês e traz ainda a IA sobre os seus dados.",
+        a: "No pacote CRM + Churn, a previsão vem junto com o CRM com WhatsApp e o agente de IA: R$397/mês, mais R$447 de implantação, paga uma vez só. A previsão avulsa, para quem já tem CRM, custa R$147/mês, mais R$397 de implantação.",
       },
       {
         q: "O modelo garante quem vai sair?",

@@ -41,7 +41,7 @@ import { productShots } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "CRM com WhatsApp e alerta de lead parado",
   description:
-    "O CRM da mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda. A partir de R$99/mês, sem fidelidade.",
+    "O CRM da mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda. A partir de R$137/mês, mais implantação de R$247, sem fidelidade.",
   alternates: { canonical: "/crm" },
 };
 
@@ -54,7 +54,7 @@ const trustPoints = [
 
 const heroStats = [
   { value: 10, suffix: " min", label: "para deixar o CRM pronto: a gente configura com você" },
-  { text: "R$99/mês", label: "no plano CRM Normal" },
+  { text: "R$137/mês", label: "no CRM Simples, mais R$247 de implantação" },
   { text: "3 usuários", label: "da sua equipe, incluídos no plano" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
 ] as const;
@@ -121,7 +121,7 @@ const planPoints = [
 const faqs = [
   {
     q: "Posso contratar só o CRM?",
-    a: "Pode. O CRM funciona sozinho. Se fizer sentido depois, dá para combinar com landing page, dashboard ou automações, e a integração já vem pronta. CRM e Dashboard juntos saem a partir de R$296/mês, contra R$496/mês contratando avulso.",
+    a: "Pode. O CRM funciona sozinho. Se fizer sentido depois, dá para combinar com landing page, dashboard ou automações, e a integração já vem pronta.",
   },
   {
     q: "Serve para qualquer tipo de negócio?",
@@ -489,7 +489,7 @@ export default function CrmPage() {
                     icon: LayoutTemplateIcon,
                     title: "Landing pages",
                     body: "Capte contatos que já nascem como lead no funil.",
-                    meta: "a partir de R$999",
+                    meta: "R$777, valor único",
                     href: "/solucoes/landing-pages",
                   },
                   {
@@ -544,19 +544,25 @@ export default function CrmPage() {
           <BlurFade>
             <div className="grid gap-8 rounded-3xl border border-primary/30 bg-card p-8 shadow-xl shadow-primary/10 lg:grid-cols-[1fr_1.1fr] lg:p-10">
               <div className="flex flex-col">
-                <span className={eyebrow}>Plano do CRM</span>
+                <span className={eyebrow}>Planos do CRM</span>
                 <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em]">
-                  R$99
+                  R$137
                   <span className="text-lg font-semibold text-muted-foreground">
                     /mês
                   </span>
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  CRM Normal, com 3 usuários incluídos
+                  CRM Simples: mais R$247 de implantação, paga uma vez só.
+                  CRM com WhatsApp para até 3 usuários.
                 </p>
                 <p className="mt-3 rounded-xl bg-primary/10 px-3 py-2 text-sm">
-                  <strong>CRM Plus: R$297/mês.</strong> Inclui a IA sobre os
-                  seus dados e a previsão de churn, com treinamento.
+                  <strong>CRM com IA: R$297/mês.</strong> Acrescenta o agente
+                  de IA no atendimento.
+                </p>
+                <p className="mt-2 rounded-xl bg-primary/10 px-3 py-2 text-sm">
+                  <strong>CRM + Churn: R$397/mês.</strong> Acrescenta a
+                  previsão de churn, que avisa quais clientes estão para sair.
+                  Nos dois, implantação de R$447.
                 </p>
                 <div className="mt-auto flex flex-col gap-3 pt-8">
                   <Button asChild size="lg" className="rounded-full">

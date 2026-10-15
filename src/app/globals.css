@@ -448,8 +448,8 @@
   z-index: 100;
   pointer-events: none;
   overflow: hidden;
-  /* Fim: a luz estoura (3.35s) e o overlay se dissolve, revelando o site. */
-  animation: intro-dissolve 0.9s ease-in 3.4s forwards;
+  /* Fim: o conjunto sai (4.5s) e o overlay se dissolve, revelando o site. */
+  animation: intro-dissolve 0.8s ease-in 4.6s forwards;
 }
 .intro-bg {
   position: absolute;
@@ -458,69 +458,101 @@
     radial-gradient(ellipse 60% 50% at 50% 56%, rgba(94, 52, 247, 0.28), transparent 70%),
     #07040f;
 }
-.intro-ring {
+.intro-vignette {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: min(1000px, 118vw);
-  aspect-ratio: 1000 / 760;
-  transform: translate(-50%, -52%);
-  animation: intro-bloom 0.9s cubic-bezier(0.5, 0, 0.2, 1) 2s forwards;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.75));
 }
-.intro-arcs {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+/* Símbolos do pattern que sobem ao fundo */
+.intro-dust svg {
+  position: absolute;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(141, 107, 255, 0.7));
+  animation: intro-dust-rise ease-out infinite;
 }
-.intro-arc {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-.intro-arc-low {
-  animation: intro-draw 1.35s cubic-bezier(0.45, 0, 0.2, 1) 0.15s forwards;
-}
-.intro-arc-up {
-  animation: intro-draw 1s cubic-bezier(0.45, 0, 0.2, 1) 0.95s forwards;
-}
-.intro-flare {
-  animation: intro-flare-out 0.5s ease-out 1.5s forwards;
+/* Brilho diagonal que cruza a tela durante a virada do símbolo */
+.intro-sweep {
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.1) 46%,
+    rgba(200, 180, 255, 0.34) 50%,
+    rgba(255, 255, 255, 0.1) 54%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  animation: intro-sweep 1.7s cubic-bezier(0.4, 0, 0.2, 1) 2.1s forwards;
 }
 .intro-center {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  padding-top: 0;
-  animation: intro-center-out 0.5s ease-in 3.3s forwards;
+  animation: intro-center-out 0.5s ease-in 4.5s forwards;
+}
+/*
+ * O conjunto símbolo + nome. Começa deslocado para que o símbolo fique no
+ * centro da tela; ao deslizar para o lado, o nome aparece e o conjunto todo
+ * fica centralizado. A legenda fica centralizada sob o nome.
+ */
+.intro-push {
+  --mark: clamp(110px, 17vw, 190px);
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-areas:
+    "mark word"
+    "mark sub";
+  align-items: center;
+  column-gap: clamp(18px, 3.4vw, 44px);
+  row-gap: 6px;
+  animation: intro-slide 1.1s cubic-bezier(0.5, 0, 0.2, 1) 2.1s both;
 }
 .intro-mark {
-  width: clamp(150px, 27vw, 250px);
+  grid-area: mark;
+  width: var(--mark);
   aspect-ratio: 1;
   perspective: 800px;
   position: relative;
   opacity: 0;
-  animation: intro-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.85s forwards;
+  animation: intro-in 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s forwards;
+}
+.intro-floor {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: -16%;
+  height: 16%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(110, 72, 255, 0.55), transparent);
+  filter: blur(14px);
+  opacity: 0;
+  animation: intro-floor 4s ease 0.5s forwards;
 }
 .intro-spin {
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
-  animation: intro-spin 2.4s cubic-bezier(0.3, 0.1, 0.2, 1) 0.85s forwards;
+  animation:
+    intro-spin-a 1.4s cubic-bezier(0.3, 0.1, 0.2, 1) 0.5s forwards,
+    intro-spin-b 1.1s cubic-bezier(0.5, 0, 0.2, 1) 2.1s forwards;
 }
 .intro-word {
+  grid-area: word;
+  align-self: end;
   margin: 0;
   display: flex;
   font-family: var(--font-display), var(--font-sans), sans-serif;
   font-weight: 800;
-  font-size: clamp(38px, 8vw, 78px);
+  font-size: clamp(44px, 9vw, 92px);
   line-height: 1;
   color: #fff;
-  letter-spacing: 0.42em;
-  margin-right: -0.42em;
-  text-shadow: 0 0 28px rgba(141, 107, 255, 0.55);
+  letter-spacing: -0.04em;
+  text-shadow: 0 8px 40px rgba(110, 72, 255, 0.5);
 }
 .intro-word span {
   opacity: 0;
@@ -528,30 +560,53 @@
   transform: translateY(10px);
   animation: intro-letter 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
+.intro-word span:nth-child(1) {
+  animation-delay: 2.45s;
+}
+.intro-word span:nth-child(2) {
+  animation-delay: 2.55s;
+}
+.intro-word span:nth-child(3) {
+  animation-delay: 2.65s;
+}
+.intro-word span:nth-child(4) {
+  animation-delay: 2.75s;
+}
+.intro-word span:nth-child(5) {
+  animation-delay: 2.85s;
+}
+.intro-word span:nth-child(6) {
+  animation-delay: 3.05s;
+}
 .intro-dot {
   color: #c6ff00;
   text-shadow: 0 0 22px rgba(198, 255, 0, 0.7);
 }
+/* Legenda centralizada sob o nome. O padding da esquerda compensa o espaço que
+   o letter-spacing deixa depois da última letra, para o centro ser o visual. */
 .intro-sub {
+  grid-area: sub;
+  align-self: start;
+  justify-self: center;
   margin: 0;
+  padding-left: 0.34em;
+  text-align: center;
   font-family: var(--font-geist-mono), monospace;
-  font-size: clamp(13px, 2.2vw, 18px);
-  font-weight: 700;
-  letter-spacing: 0.45em;
-  margin-right: -0.45em;
+  font-size: clamp(11px, 1.7vw, 14px);
+  font-weight: 600;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(185, 176, 224, 0.9);
   opacity: 0;
-  animation: intro-sub 0.8s ease-out 2.35s forwards;
+  animation: intro-sub 0.8s ease-out 3.2s forwards;
 }
-@keyframes intro-draw {
-  to {
-    stroke-dashoffset: 0;
+
+@keyframes intro-slide {
+  from {
+    translate: calc(50% - var(--mark) / 2) 0;
   }
-}
-@keyframes intro-flare-out {
   to {
-    opacity: 0;
+    translate: 0 0;
   }
 }
 @keyframes intro-in {
@@ -564,12 +619,20 @@
     transform: scale(1);
   }
 }
-@keyframes intro-spin {
+@keyframes intro-spin-a {
   from {
-    transform: rotateX(16deg) rotateY(-160deg);
+    transform: translateZ(-420px) rotateX(38deg) rotateY(-170deg) rotateZ(-8deg);
   }
   to {
-    transform: rotateX(-5deg) rotateY(14deg);
+    transform: translateZ(0) rotateX(-5deg) rotateY(14deg) rotateZ(0);
+  }
+}
+@keyframes intro-spin-b {
+  from {
+    transform: translateZ(0) rotateX(-5deg) rotateY(14deg) rotateZ(0);
+  }
+  to {
+    transform: translateZ(0) rotateX(-5deg) rotateY(374deg) rotateZ(0);
   }
 }
 @keyframes intro-letter {
@@ -584,19 +647,31 @@
     opacity: 1;
   }
 }
-@keyframes intro-bloom {
-  0% {
-    transform: translate(-50%, -52%) scale(1);
+@keyframes intro-floor {
+  25%,
+  75% {
     opacity: 1;
-    filter: brightness(1);
-  }
-  40% {
-    filter: brightness(2.4);
   }
   100% {
-    transform: translate(-50%, -52%) scale(2.2);
     opacity: 0;
-    filter: brightness(2.4);
+  }
+}
+@keyframes intro-sweep {
+  to {
+    transform: translateX(120%);
+  }
+}
+@keyframes intro-dust-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.6);
+  }
+  20% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120px) scale(1);
   }
 }
 @keyframes intro-center-out {
@@ -649,117 +724,6 @@ html.intro-seen .intro {
 @media (prefers-reduced-motion: reduce) {
   .glow-pulse,
   .glyph-float {
-    animation: none;
-  }
-}
-
-/* Abertura: acabamento (poeira de luz, vinheta, aros, flare e câmera) */
-.intro-push {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  position: relative;
-  animation: intro-push 3.6s cubic-bezier(0.3, 0.1, 0.4, 1) forwards;
-}
-.intro-dust i {
-  position: absolute;
-  border-radius: 50%;
-  background: #cdbfff;
-  box-shadow: 0 0 10px 2px rgba(141, 107, 255, 0.8);
-  opacity: 0;
-  animation: intro-dust-rise ease-out infinite;
-}
-.intro-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 75% 70% at 50% 50%, transparent 45%, rgba(0, 0, 0, 0.75));
-}
-.intro-ticks {
-  transform-origin: 500px 380px;
-  animation: intro-ticks-rot 40s linear infinite, intro-fade-in 1.2s ease-out 0.6s backwards;
-}
-.intro-ring2 {
-  animation: intro-fade-in 1.4s ease-out 1.2s backwards;
-}
-.intro-line {
-  display: block;
-  height: 1px;
-  width: min(280px, 44vw);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
-  transform: scaleX(0);
-  animation: intro-line 0.9s cubic-bezier(0.3, 0.8, 0.2, 1) 2.15s forwards;
-  margin-top: -6px;
-}
-.intro-streak {
-  position: absolute;
-  left: 50%;
-  top: 36%;
-  width: min(1100px, 130vw);
-  height: 3px;
-  margin-left: calc(min(1100px, 130vw) / -2);
-  background: linear-gradient(90deg, transparent, rgba(180, 150, 255, 0.9) 35%, #fff 50%, rgba(180, 150, 255, 0.9) 65%, transparent);
-  filter: blur(1.5px);
-  box-shadow: 0 0 30px 6px rgba(141, 107, 255, 0.55);
-  opacity: 0;
-  transform: scaleX(0.05);
-  animation: intro-streak 1.1s cubic-bezier(0.3, 0.7, 0.2, 1) 2.15s forwards;
-}
-@keyframes intro-push {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.06);
-  }
-}
-@keyframes intro-dust-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(0) scale(0.6);
-  }
-  20% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-120px) scale(1);
-  }
-}
-@keyframes intro-ticks-rot {
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes intro-fade-in {
-  from {
-    opacity: 0;
-  }
-}
-@keyframes intro-line {
-  to {
-    transform: scaleX(1);
-  }
-}
-@keyframes intro-streak {
-  0% {
-    opacity: 0;
-    transform: scaleX(0.05);
-  }
-  35% {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scaleX(1.15);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .intro-push,
-  .intro-dust i,
-  .intro-ticks,
-  .intro-streak {
     animation: none;
   }
 }

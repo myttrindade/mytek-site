@@ -21,7 +21,7 @@ export const siteConfig = {
    */
   tagline: "Software e IA para negócios que vendem por conversa",
   description:
-    "CRM com WhatsApp, MyHub (organização do time), MyCash (financeiro para empresas), sites, landing pages, dashboards, agentes de IA, automações com n8n e previsão de churn. CRM a partir de R$99/mês.",
+    "CRM com WhatsApp, MyHub (organização do time), MyCash (financeiro para empresas), sites, landing pages, dashboards, agentes de IA, automações com n8n e previsão de churn. CRM a partir de R$137/mês, mais implantação.",
 } as const;
 
 /**

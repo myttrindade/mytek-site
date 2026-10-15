@@ -304,11 +304,11 @@ export default function LandingPagesPage() {
                 <span className="text-emphasis">.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                Sem mensalidade. O primeiro mês inclui até 5 ajustes sem custo,
-                e quem já é cliente de CRM ou Dashboard tem 20% de desconto: Essencial por R$799,20 e Sob Medida por R$1.437,60.
+                Você paga um valor único e a página é sua. A manutenção
+                mensal é opcional.
               </p>
             </BlurFade>
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
+            <div className="mx-auto mt-12 grid max-w-md gap-6">
               {plans.map((plan, i) => {
                 const featured = i === plans.length - 1;
                 return (
@@ -328,18 +328,13 @@ export default function LandingPagesPage() {
                               : "border-border bg-card shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]")
                           }
                         >
-                          {featured && (
-                            <span className="absolute -top-3 left-8 rounded-full bg-lima px-3 py-1 text-[11px] font-bold text-lima-foreground">
-                              Mais completa
-                            </span>
-                          )}
                           <span
                             className={
                               "font-mono text-[11px] font-bold uppercase tracking-[0.06em] " +
                               (featured ? "text-lima" : "text-primary")
                             }
                           >
-                            Pagamento único
+                            Valor único
                           </span>
                           <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] [transform:translateZ(24px)]">
                             {plan.name}

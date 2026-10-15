@@ -4,15 +4,28 @@
 > querem crescer com organização. Três produtos que já nascem conectados:
 > contrate só o que precisa, combine e economize.
 
-## Produtos
+## Preços
 
-- **CRM**: funil de vendas visual em Kanban, atendimento e histórico de
-  WhatsApp na mesma tela, times de até 3 pessoas incluídos. A partir de
-  R$99/mês (CRM Plus, com IA e previsão de churn: R$297/mês).
-- **Dashboard**: vendas, leads e satisfação num painel só, em tempo real,
-  calculado automaticamente a partir do CRM. A partir de R$397/mês.
-- **Landing Page**: página pronta pra converter, com formulário já conectado
-  ao CRM. Pagamento único a partir de R$999. Sites a partir de R$1.500.
+CRM com WhatsApp (implantação paga uma vez, mais mensalidade, sem fidelidade):
+
+- **CRM Simples**: até 3 usuários. Implantação de R$247 + R$137/mês.
+- **CRM com IA**: com agente de IA. Implantação de R$447 + R$297/mês.
+- **CRM + Churn**: com agente de IA e previsão de churn (avisa quais clientes
+  estão para sair). Implantação de R$447 + R$397/mês.
+
+Outros serviços:
+
+- **Landing page**: valor único de R$777. Manutenção opcional: R$67/mês.
+- **Site institucional**: valor único de R$1.697. Manutenção opcional:
+  R$87/mês. Ajustes em site existente: R$500.
+- **Agente de IA** (até 800 conversas/mês): implantação de R$597 + R$297/mês.
+- **Automação (n8n)**, por fluxo: implantação de R$347 + R$77/mês.
+- **Dashboard**: implantação de R$397 + R$217/mês.
+- **Previsão de churn avulsa** (para quem já tem CRM): implantação de R$397 +
+  R$147/mês.
+
+Sistemas sob medida têm orçamento depois de uma conversa. MyHub e MyCash são
+vendidos sob demonstração.
 
 ## Páginas
 
@@ -23,8 +36,8 @@
 - [MyHub](https://mytek.com.br/solucoes/mytek-hub): sistema de organização do time (tarefas, progresso, chat).
 - [MyCash](https://mytek.com.br/solucoes/mycash): sistema de organização financeira para empresas, com conector de IA (Claude e ChatGPT).
 - [Soluções](https://mytek.com.br/solucoes/sites): uma página para cada serviço.
-- [Preço](https://mytek.com.br/pricing): planos de CRM, Dashboard e Landing
-  Page e combos. Os demais serviços são sob orçamento.
+- [Preço](https://mytek.com.br/pricing): valores de CRM, Landing page e serviços.
+  Sistemas sob medida têm orçamento.
 - [Sobre](https://mytek.com.br/about): por que a mytek existe como uma
   plataforma, não uma colcha de retalhos de ferramentas soltas.
 - [Changelog](https://mytek.com.br/changelog): cada entrega documentada.
