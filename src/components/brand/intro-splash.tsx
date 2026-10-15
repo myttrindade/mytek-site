@@ -4,7 +4,11 @@ const LAYERS = 14;
 const SIZE = 150;
 const LETTERS = ["m", "y", "t", "e", "k"];
 
-/** [esquerda %, topo %, tamanho px, atraso s, duração s], poeira de luz. */
+/** O M do pattern do brand book (monolinha grossa), girado em passos de 90°. */
+const M_PATH = "M12,92 V38 A19,19 0 0 1 50,38 V92 M50,38 A19,19 0 0 1 88,38 V92";
+const ROTATIONS = [0, -90, 180, 90];
+
+/** [esquerda %, topo %, tamanho px, atraso s, duração s], símbolos do pattern que sobem. */
 const DUST: [number, number, number, number, number][] = [
   [11, 55, 2, 0.3, 2.6],
   [48, 72, 3, 0.41, 3.1],
@@ -50,17 +54,25 @@ export function IntroSplash() {
       <div className="intro-bg" />
       <div className="intro-dust">
         {DUST.map(([l, t, s, d, u], i) => (
-          <i
+          <svg
             key={i}
+            viewBox="0 0 100 100"
+            fill="none"
+            stroke={i % 7 === 0 ? "#C6FF00" : "#8D6BFF"}
+            strokeWidth="20"
             style={{
               left: `${l}%`,
               top: `${t}%`,
-              width: s,
-              height: s,
+              width: s * 4 + 6,
+              height: s * 4 + 6,
               animationDelay: `${d}s`,
               animationDuration: `${u}s`,
             }}
-          />
+          >
+            <g transform={`rotate(${ROTATIONS[i % 4]} 50 50)`}>
+              <path d={M_PATH} />
+            </g>
+          </svg>
         ))}
       </div>
       <div className="intro-vignette" />
