@@ -785,7 +785,7 @@ html.intro-seen .intro {
   }
 }
 
-/* Abertura: nome ao lado do simbolo (padrao) ou embaixo (?nome=baixo), e testes de luz (?luz=1 a 4) */
+/* Abertura: nome ao lado do simbolo (padrao) ou embaixo (?nome=baixo), e testes de luz (?luz=1 a 5) */
 .intro-center {
   padding-bottom: 0;
 }
@@ -840,7 +840,7 @@ html[data-nome="baixo"] .intro-streak {
   top: 36%;
 }
 
-/* Luzes de teste: some a linha horizontal e entra a variação escolhida. */
+/* Luzes de teste (?luz=1 a 5): 1 é a linha horizontal; as outras trocam a linha por outra luz. */
 .intro-halo,
 .intro-rays,
 .intro-beam,
@@ -850,15 +850,15 @@ html[data-nome="baixo"] .intro-streak {
   opacity: 0;
   display: none;
 }
-html[data-luz="1"] .intro-streak,
 html[data-luz="2"] .intro-streak,
 html[data-luz="3"] .intro-streak,
-html[data-luz="4"] .intro-streak {
+html[data-luz="4"] .intro-streak,
+html[data-luz="5"] .intro-streak {
   display: none;
 }
 
-/* 1 · Halo: um brilho suave que respira atrás do símbolo e do nome */
-html[data-luz="1"] .intro-halo {
+/* 2 · Halo: um brilho suave que respira atrás do símbolo e do nome */
+html[data-luz="2"] .intro-halo {
   display: block;
   left: 50%;
   top: 50%;
@@ -890,8 +890,8 @@ html[data-luz="1"] .intro-halo {
   }
 }
 
-/* 2 · Raios: feixes finos que giram devagar atrás da marca */
-html[data-luz="2"] .intro-rays {
+/* 3 · Raios: feixes finos que giram devagar atrás da marca */
+html[data-luz="3"] .intro-rays {
   display: block;
   left: 50%;
   top: 50%;
@@ -918,8 +918,8 @@ html[data-luz="2"] .intro-rays {
   }
 }
 
-/* 3 · Feixe: um foco de luz que cai de cima sobre a marca */
-html[data-luz="3"] .intro-beam {
+/* 4 · Feixe: um foco de luz que cai de cima sobre a marca */
+html[data-luz="4"] .intro-beam {
   display: block;
   left: 50%;
   top: -70vh;
@@ -942,13 +942,14 @@ html[data-luz="3"] .intro-beam {
     opacity: 0.65;
   }
 }
-html[data-luz="3"] .intro-floor {
+html[data-luz="4"] .intro-floor {
   height: 22%;
   filter: blur(20px);
 }
 
-/* 4 · Varredura: um brilho diagonal que cruza a tela, como o do cartão */
-html[data-luz="4"] .intro-sweep {
+/* 5 · Varredura: um brilho diagonal que cruza a tela, como o do cartão */
+html[data-luz="5"] .intro-sweep,
+html[data-teste] .intro-sweep {
   display: block;
   inset: -20%;
   opacity: 1;
@@ -975,6 +976,69 @@ html[data-luz="4"] .intro-sweep {
   .intro-sweep {
     animation: none;
   }
+}
+
+/* Teste (?teste=1): o símbolo surge sozinho no centro, gira em 3D e desliza para o
+   lado; só então o nome aparece. Sem o círculo de luz; usa a varredura da opção 5. */
+html[data-teste] .intro {
+  animation: intro-dissolve 0.8s ease-in 4.6s forwards;
+}
+html[data-teste] .intro-center {
+  animation: intro-center-out 0.5s ease-in 4.5s forwards;
+}
+html[data-teste] .intro-ring,
+html[data-teste] .intro-streak {
+  display: none;
+}
+html[data-teste] .intro-sweep {
+  animation-delay: 2.1s;
+}
+html[data-teste] .intro-push {
+  --mark: clamp(110px, 17vw, 190px);
+  animation:
+    intro-push 4.8s cubic-bezier(0.3, 0.1, 0.4, 1) forwards,
+    intro-teste-slide 1.1s cubic-bezier(0.5, 0, 0.2, 1) 2.1s both;
+}
+@keyframes intro-teste-slide {
+  from {
+    translate: calc(50% - var(--mark) / 2) 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+html[data-teste] .intro-mark {
+  animation-delay: 0.5s;
+}
+html[data-teste] .intro-spin {
+  animation:
+    intro-teste-spin-a 1.4s cubic-bezier(0.3, 0.1, 0.2, 1) 0.5s forwards,
+    intro-teste-spin-b 1.1s cubic-bezier(0.5, 0, 0.2, 1) 2.1s forwards;
+}
+@keyframes intro-teste-spin-a {
+  from {
+    transform: translateZ(-420px) rotateX(38deg) rotateY(-170deg) rotateZ(-8deg);
+  }
+  to {
+    transform: translateZ(0) rotateX(-5deg) rotateY(14deg) rotateZ(0);
+  }
+}
+@keyframes intro-teste-spin-b {
+  from {
+    transform: translateZ(0) rotateX(-5deg) rotateY(14deg) rotateZ(0);
+  }
+  to {
+    transform: translateZ(0) rotateX(-5deg) rotateY(374deg) rotateZ(0);
+  }
+}
+html[data-teste] .intro-word span:nth-child(1) { animation-delay: 2.45s !important; }
+html[data-teste] .intro-word span:nth-child(2) { animation-delay: 2.55s !important; }
+html[data-teste] .intro-word span:nth-child(3) { animation-delay: 2.65s !important; }
+html[data-teste] .intro-word span:nth-child(4) { animation-delay: 2.75s !important; }
+html[data-teste] .intro-word span:nth-child(5) { animation-delay: 2.85s !important; }
+html[data-teste] .intro-word span:nth-child(6) { animation-delay: 3.05s !important; }
+html[data-teste] .intro-sub {
+  animation-delay: 3.2s;
 }
 
 /* Visual da capa: escala pela largura E pela altura da tela (hero-visual.tsx) */

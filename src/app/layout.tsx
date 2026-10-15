@@ -94,7 +94,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{var q=location.search,m=q.match(/[?&]luz=(\\d)/),n=q.match(/[?&]nome=(\\w+)/);if(m)document.documentElement.dataset.luz=m[1];if(n)document.documentElement.dataset.nome=n[1];if(/[?&]intro=1/.test(q))sessionStorage.removeItem('mytek-intro');if(sessionStorage.getItem('mytek-intro'))document.documentElement.classList.add('intro-seen');else sessionStorage.setItem('mytek-intro','1')}catch(e){}",
+              "try{var q=location.search,m=q.match(/[?&]luz=(\\d)/),n=q.match(/[?&]nome=(\\w+)/);if(m)document.documentElement.dataset.luz=m[1];if(n)document.documentElement.dataset.nome=n[1];if(/[?&]teste=1/.test(q))document.documentElement.dataset.teste='1';if(/[?&]intro=1/.test(q))sessionStorage.removeItem('mytek-intro');if(sessionStorage.getItem('mytek-intro'))document.documentElement.classList.add('intro-seen');else sessionStorage.setItem('mytek-intro','1')}catch(e){}",
           }}
         />
         <IntroSplash />
