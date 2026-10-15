@@ -55,9 +55,9 @@ const crm = group("crm");
 const landing = group("landing-page");
 
 const readyList = [
-  "Landing page",
-  "CRM com WhatsApp e agente de IA",
-  "CRM + previsão de churn",
+  "Landing page: R$777 de implantação",
+  "CRM: R$447 de implantação + R$297/mês",
+  "CRM + Churn: R$447 de implantação + R$397/mês",
 ];
 const customList = [
   "Sites",
