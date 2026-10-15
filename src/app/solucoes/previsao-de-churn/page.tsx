@@ -347,9 +347,8 @@ export default function ChurnPage() {
                 <span className="text-emphasis">.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                No pacote CRM + Churn, a implantação é paga uma vez e depois
-                vem a mensalidade, sem fidelidade. A previsão avulsa é
-                orçada conforme o seu histórico de dados.
+                Nos dois, a implantação é paga uma vez e depois vem a
+                mensalidade, sem fidelidade.
               </p>
             </BlurFade>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -357,9 +356,9 @@ export default function ChurnPage() {
                 {
                   tag: "Avulsa",
                   name: "Previsão de churn",
-                  price: "Sob consulta",
-                  unit: "",
-                  note: "para quem já tem CRM, com orçamento depois de uma conversa curta",
+                  price: "R$147",
+                  unit: "/mês",
+                  note: "mais R$397 de implantação, paga uma vez só. Para quem já tem CRM",
                   items: [
                     "Análise e preparação do seu histórico de clientes",
                     "Modelo treinado e avaliado com os seus dados",

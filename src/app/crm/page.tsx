@@ -41,7 +41,7 @@ import { productShots } from "@/lib/site-config";
 export const metadata: Metadata = {
   title: "CRM com WhatsApp e alerta de lead parado",
   description:
-    "O CRM da mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda. R$297/mês mais implantação de R$447, sem fidelidade.",
+    "O CRM da mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda. A partir de R$137/mês, mais implantação de R$247, sem fidelidade.",
   alternates: { canonical: "/crm" },
 };
 
@@ -54,7 +54,7 @@ const trustPoints = [
 
 const heroStats = [
   { value: 10, suffix: " min", label: "para deixar o CRM pronto: a gente configura com você" },
-  { text: "R$297/mês", label: "mais R$447 de implantação, paga uma vez" },
+  { text: "R$137/mês", label: "no CRM Simples, mais R$247 de implantação" },
   { text: "3 usuários", label: "da sua equipe, incluídos no plano" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
 ] as const;
@@ -544,21 +544,25 @@ export default function CrmPage() {
           <BlurFade>
             <div className="grid gap-8 rounded-3xl border border-primary/30 bg-card p-8 shadow-xl shadow-primary/10 lg:grid-cols-[1fr_1.1fr] lg:p-10">
               <div className="flex flex-col">
-                <span className={eyebrow}>Pacote CRM</span>
+                <span className={eyebrow}>Planos do CRM</span>
                 <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em]">
-                  R$297
+                  R$137
                   <span className="text-lg font-semibold text-muted-foreground">
                     /mês
                   </span>
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Mais R$447 de implantação, paga uma vez só. CRM com WhatsApp
-                  e agente de IA.
+                  CRM Simples: mais R$247 de implantação, paga uma vez só.
+                  CRM com WhatsApp para até 3 usuários.
                 </p>
                 <p className="mt-3 rounded-xl bg-primary/10 px-3 py-2 text-sm">
+                  <strong>CRM com IA: R$297/mês.</strong> Acrescenta o agente
+                  de IA no atendimento.
+                </p>
+                <p className="mt-2 rounded-xl bg-primary/10 px-3 py-2 text-sm">
                   <strong>CRM + Churn: R$397/mês.</strong> Acrescenta a
                   previsão de churn, que avisa quais clientes estão para sair.
-                  Mesma implantação de R$447.
+                  Nos dois, implantação de R$447.
                 </p>
                 <div className="mt-auto flex flex-col gap-3 pt-8">
                   <Button asChild size="lg" className="rounded-full">

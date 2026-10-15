@@ -27,13 +27,14 @@ import { ShimmerButton } from "@/components/velora/shimmer-button";
 import {
   checkoutGroups,
   checkoutHref,
+  servicosAvulsos,
   type CheckoutPlan,
 } from "@/lib/checkout";
 import { siteConfig } from "@/lib/site-config";
 
-const pricingTitle = "Preços da mytek · Landing page, CRM e CRM + Churn";
+const pricingTitle = "Preços da mytek · CRM, Landing page e serviços com valor";
 const pricingDescription =
-  "Três pacotes com valor fechado: Landing page, CRM com WhatsApp e agente de IA, e CRM + previsão de churn. A Landing page é um valor único. Os pacotes de CRM têm uma implantação, paga uma vez, e uma mensalidade sem fidelidade. O que é sob medida tem o valor combinado antes de começar.";
+  "Valores da mytek: CRM Simples, CRM com IA e CRM + Churn (implantação + mensalidade, sem fidelidade), Landing page em valor único e serviços como site, dashboard, agente de IA e automação. O que é sob medida tem o valor combinado antes de começar.";
 
 export const metadata: Metadata = {
   // `title.absolute` ignora o template "%s · mytek" do layout.
@@ -55,18 +56,15 @@ const crm = group("crm");
 const landing = group("landing-page");
 
 const readyList = [
-  "Landing page: R$777, valor único",
-  "CRM: R$447 de implantação + R$297/mês",
+  "CRM Simples: R$247 de implantação + R$137/mês",
+  "CRM com IA: R$447 de implantação + R$297/mês",
   "CRM + Churn: R$447 de implantação + R$397/mês",
+  "Landing page: R$777, valor único",
 ];
 const customList = [
-  "Sites",
-  "Dashboards",
-  "Agentes de IA",
-  "Automação com n8n",
-  "Previsão de churn avulsa",
   "Sistemas sob medida",
   "MyHub e MyCash (sob demonstração)",
+  "Qualquer projeto fora dos valores desta página",
 ];
 
 /** Cartão de plano: o destaque (featured) é roxo; os demais, brancos. */
@@ -193,28 +191,28 @@ function SectionHead({
 
 const faqs = [
   {
-    q: "O que tem preço fixo e o que é sob medida?",
-    a: "Os três pacotes desta página têm valor fechado: Landing page, CRM e CRM + Churn. Todo o resto, como sites, dashboards, agentes de IA, automações e sistemas, é sob medida: a gente entende o seu caso e combina escopo, prazo e valor antes de começar.",
+    q: "O que tem valor fixo e o que é sob medida?",
+    a: "Os CRMs, a Landing page e os serviços da tabela (site, ajustes em site, agente de IA, automação, dashboard e previsão de churn) têm valor definido nesta página. Sistemas sob medida e o MyHub e o MyCash são sob consulta: a gente entende o seu caso e combina escopo, prazo e valor antes de começar.",
   },
   {
-    q: "O que é a implantação do CRM?",
-    a: "É o valor pago uma vez só para a mytek configurar tudo para o seu negócio e deixar o pacote funcionando. Nos pacotes de CRM, a implantação é a mesma nos dois (R$447). Depois dela, você paga só a mensalidade.",
+    q: "O que é a implantação?",
+    a: "É o valor pago uma vez só para a mytek configurar tudo para o seu negócio e deixar o serviço funcionando. Depois dela, você paga só a mensalidade, sem fidelidade. Nos pacotes de CRM com IA e CRM + Churn, a implantação é a mesma (R$447).",
   },
   {
     q: "A Landing page é cobrada todo mês?",
     a: "Não. A Landing page tem valor único, de R$777, pago uma vez. A página é sua. A manutenção mensal, de R$67, é opcional.",
   },
   {
-    q: "Qual a diferença entre o CRM e o CRM + Churn?",
-    a: "Os dois têm CRM com WhatsApp e agente de IA. O CRM + Churn acrescenta a previsão de churn, que avisa quais clientes estão para sair, a tempo de agir.",
+    q: "Qual a diferença entre os três CRMs?",
+    a: "O CRM Simples tem CRM com WhatsApp para até 3 usuários. O CRM com IA acrescenta o agente de IA no atendimento. O CRM + Churn acrescenta ainda a previsão de churn, que avisa quais clientes estão para sair, a tempo de agir.",
   },
   {
     q: "Tem fidelidade?",
-    a: "Não. No plano mensal você pode cancelar quando quiser.",
+    a: "Não. Nos planos mensais você pode cancelar quando quiser.",
   },
   {
-    q: "E se eu precisar de algo fora desses pacotes?",
-    a: "A gente monta orçamento sob medida. Um site, um dashboard, um agente de IA, uma automação ou um sistema: é só descrever no formulário de contato que respondemos com escopo e valor.",
+    q: "E se eu precisar de algo fora desta página?",
+    a: "A gente monta orçamento sob medida. Um sistema, uma integração ou um fluxo que não cabe nos valores acima: é só descrever no formulário de contato que respondemos com escopo e valor.",
   },
 ];
 
@@ -268,7 +266,9 @@ const produtosJsonLd = [
 );
 
 const anchors = [
-  ["Pacotes", "#pacotes"],
+  ["CRM", "#crm"],
+  ["Landing page", "#landing-page"],
+  ["Outros serviços", "#servicos"],
   ["Sob medida", "#sob-medida"],
 ] as const;
 
@@ -298,13 +298,13 @@ export default function PricingPage() {
             <BlurFade delay={0.12}>
               <h1 className="mt-6 text-4xl font-extrabold leading-[1.02] tracking-[-0.04em] text-balance sm:text-5xl lg:text-6xl">
                 Preços dos nossos{" "}
-                <span className="text-lima">pacotes.</span>
+                <span className="text-lima">serviços.</span>
               </h1>
             </BlurFade>
             <BlurFade delay={0.2}>
               <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground text-pretty">
-                Três pacotes com valor fechado. A Landing page é um valor
-                único. Os de CRM têm uma implantação, paga uma vez, e uma
+                Os valores dos CRMs, da Landing page e dos serviços da
+                mytek. Os CRMs têm uma implantação, paga uma vez, e uma
                 mensalidade sem fidelidade. O que é sob medida tem o valor
                 combinado com você antes de começar.
               </p>
@@ -381,29 +381,106 @@ export default function PricingPage() {
           </div>
         </section>
 
-        {/* 3 · Pacotes */}
-        <section id="pacotes" className="scroll-mt-24 pb-20 lg:pb-24">
+        {/* 3 · CRM */}
+        <section id="crm" className="scroll-mt-24 pb-20 lg:pb-24">
           <div className="mx-auto max-w-6xl px-4 lg:px-8">
             <SectionHead
-              tag="Pacotes"
-              title="Escolha o seu pacote"
-              note="A Landing page é um valor único. Os pacotes de CRM têm uma implantação, paga uma vez, e uma mensalidade sem fidelidade."
+              tag="CRM"
+              title="CRM com WhatsApp"
+              note="Três jeitos de ter o CRM. Todos têm uma implantação, paga uma vez, e uma mensalidade sem fidelidade."
             />
             <div className="mt-12 grid gap-6 md:grid-cols-3">
-              {[...landing, ...crm].map((p, i, all) => {
-                const featured = i === all.length - 1;
+              {crm.map((p, i) => {
+                const featured = i === crm.length - 1;
                 return (
                   <BlurFade key={p.slug} delay={i * 0.1}>
                     <PlanCard
                       plan={p}
                       featured={featured}
                       badge={featured ? "Com previsão de churn" : undefined}
-                      label={p.unit ? "Implantação + mensal" : "Valor único"}
+                      label="Implantação + mensal"
                     />
                   </BlurFade>
                 );
               })}
             </div>
+          </div>
+        </section>
+
+        {/* 4 · Landing page */}
+        <section id="landing-page" className="scroll-mt-24 bg-muted py-20 lg:py-24">
+          <div className="mx-auto max-w-6xl px-4 lg:px-8">
+            <SectionHead
+              tag="Landing page"
+              title="Landing page"
+              note="Valor único: você paga uma vez e a página é sua. A manutenção mensal é opcional."
+            />
+            <div className="mx-auto mt-12 max-w-md">
+              {landing.map((p) => (
+                <BlurFade key={p.slug}>
+                  <PlanCard plan={p} label="Valor único" />
+                </BlurFade>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5 · Outros servicos */}
+        <section id="servicos" className="scroll-mt-24 py-20 lg:py-24">
+          <div className="mx-auto max-w-6xl px-4 lg:px-8">
+            <SectionHead
+              tag="Outros serviços"
+              title="Sites, dados, IA e automação"
+              note="Valores de cada serviço. Para sistemas sob medida, o orçamento vem depois de uma conversa."
+            />
+            <BlurFade delay={0.1}>
+              <div className="mt-10 overflow-hidden rounded-3xl border border-primary/20 bg-card shadow-[0_28px_54px_-28px_rgba(94,52,247,0.45)]">
+                <div className="overflow-x-auto">
+                  <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                    <thead>
+                      <tr className="bg-primary text-primary-foreground">
+                        <th className="p-4 font-heading font-extrabold">Serviço</th>
+                        <th className="p-4 font-heading font-extrabold">Detalhe</th>
+                        <th className="p-4 font-heading font-extrabold">Pago uma vez</th>
+                        <th className="p-4 font-heading font-extrabold">Mensal</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {servicosAvulsos.map((x) => (
+                        <tr key={x.slug} className="border-t border-border align-top">
+                          <th className="p-4 font-semibold">
+                            <Link href={x.href} className="hover:text-primary">
+                              {x.nome}
+                            </Link>
+                          </th>
+                          <td className="p-4 text-muted-foreground">
+                            {x.detalhe}
+                            {x.nota && <span className="block text-xs">{x.nota}</span>}
+                          </td>
+                          <td className="whitespace-nowrap p-4 font-semibold">{x.uma_vez}</td>
+                          <td className="whitespace-nowrap p-4 font-semibold">
+                            {x.mensal ?? "sem mensalidade"}
+                          </td>
+                        </tr>
+                      ))}
+                      <tr className="border-t border-border align-top">
+                        <th className="p-4 font-semibold">
+                          <Link href="/solucoes/mytek-hub" className="hover:text-primary">
+                            MyHub e MyCash
+                          </Link>
+                        </th>
+                        <td className="p-4 text-muted-foreground">
+                          Produtos próprios da mytek
+                          <span className="block text-xs">Sob demonstração.</span>
+                        </td>
+                        <td className="whitespace-nowrap p-4 font-semibold">Sob consulta</td>
+                        <td className="whitespace-nowrap p-4 font-semibold">Sob consulta</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </BlurFade>
           </div>
         </section>
 
@@ -417,10 +494,9 @@ export default function PricingPage() {
               <span className="text-emphasis">.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground">
-              Sites, dashboards, agentes de IA, automações, sistemas e
-              qualquer coisa fora dos pacotes acima. A gente entende o seu
-              caso e responde com escopo, prazo e preço antes de qualquer
-              trabalho começar.
+              Sistemas feitos para o seu processo e qualquer coisa fora dos
+              valores acima. A gente entende o seu caso e responde com
+              escopo, prazo e preço antes de qualquer trabalho começar.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               {["Sites", "Dashboards", "Agentes de IA", "Automação com n8n", "Sistemas sob medida"].map((c, i) => (

@@ -38,7 +38,7 @@ const sol = getSolution("sites")!;
 export const metadata: Metadata = {
   title: "Sites",
   description:
-    "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. Orçamento sob medida.",
+    "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. R$1.697, valor único.",
   alternates: { canonical: "/solucoes/sites" },
 };
 
@@ -307,13 +307,15 @@ export default function SitesPage() {
                     <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
                       Quanto custa
                     </span>
-                    <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em] text-white">
-                      Sob orçamento
+                    <p className="mt-3 font-heading text-6xl font-extrabold tracking-[-0.05em] text-white">
+                      R$1.697
                     </p>
+                    <p className="mt-1 text-sm text-white/75">valor único, pago uma vez</p>
                     <p className="mt-3 max-w-sm text-white/80">
-                      O valor final fica combinado na proposta, antes de
-                      qualquer trabalho começar. Sem surpresa no meio do
-                      caminho.
+                      Manutenção opcional: R$87/mês. Ajustes em um site que já
+                      existe (domínio, logo, imagens e até 1 página nova):
+                      R$500. O que fugir do escopo é combinado na proposta,
+                      antes de qualquer trabalho começar.
                     </p>
                     <div className="mt-8">
                       <ShimmerButton

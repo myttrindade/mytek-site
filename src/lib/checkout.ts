@@ -53,11 +53,25 @@ export const checkoutGroups: CheckoutGroup[] = [
     title: "CRM com WhatsApp",
     billing: "Implantação + mensalidade",
     description:
-      "CRM com WhatsApp e agente de IA. A implantação é paga uma vez, e a mensalidade não tem fidelidade.",
+      "Do CRM mais simples ao CRM com agente de IA e previsão de churn. A implantação é paga uma vez, e a mensalidade não tem fidelidade.",
     plans: [
       {
+        slug: "crm-simples",
+        name: "CRM Simples",
+        price: "R$137",
+        unit: "/mês",
+        tagline: "Mais R$247 de implantação, paga uma vez só.",
+        features: [
+          "CRM com WhatsApp",
+          "Até 3 usuários",
+          "Funil de vendas visual (Kanban)",
+          "Usuário extra: R$34/mês",
+        ],
+        url: "",
+      },
+      {
         slug: "crm",
-        name: "CRM",
+        name: "CRM com IA",
         price: "R$297",
         unit: "/mês",
         tagline: "Mais R$447 de implantação, paga uma vez só.",
@@ -110,6 +124,90 @@ export const checkoutGroups: CheckoutGroup[] = [
     ],
   },
 ];
+
+/**
+ * Serviços avulsos da tabela de outubro/2026, agora públicos. Na Landing page
+ * e no Site, a mensalidade é manutenção opcional; nos demais, é mensalidade do
+ * serviço. Parcelas no cartão e plano anual seguem fora do site.
+ */
+export type ServicoAvulso = {
+  slug: string;
+  nome: string;
+  detalhe: string;
+  /** O que se paga uma vez (com a natureza: valor único ou implantação). */
+  uma_vez: string;
+  /** Mensalidade, ou null quando não há. */
+  mensal: string | null;
+  /** Observação curta (opcional). */
+  nota?: string;
+  href: string;
+};
+
+export const servicosAvulsos: ServicoAvulso[] = [
+  {
+    slug: "sites",
+    nome: "Site institucional",
+    detalhe: "Várias páginas: sobre, serviços, equipe e contato",
+    uma_vez: "R$1.697 (valor único)",
+    mensal: "R$87/mês (manutenção opcional)",
+    href: "/solucoes/sites",
+  },
+  {
+    slug: "ajustes-site",
+    nome: "Ajustes em site existente",
+    detalhe: "Domínio, logo, imagens e até 1 página nova",
+    uma_vez: "R$500 (valor único)",
+    mensal: null,
+    nota: "1 rodada de revisão inclusa.",
+    href: "/solucoes/sites",
+  },
+  {
+    slug: "agentes-de-ia",
+    nome: "Agente de IA",
+    detalhe: "Até 800 conversas por mês",
+    uma_vez: "R$597 (implantação)",
+    mensal: "R$297/mês",
+    nota: "R$0,30 por conversa extra.",
+    href: "/solucoes/agentes-de-ia",
+  },
+  {
+    slug: "automacao-n8n",
+    nome: "Automação (n8n)",
+    detalhe: "Valor por fluxo",
+    uma_vez: "R$347 (implantação)",
+    mensal: "R$77/mês",
+    nota: "Preço por fluxo.",
+    href: "/solucoes/automacao-n8n",
+  },
+  {
+    slug: "dashboards",
+    nome: "Dashboard",
+    detalhe: "Dashboard com os números do negócio",
+    uma_vez: "R$397 (implantação)",
+    mensal: "R$217/mês",
+    href: "/solucoes/dashboards",
+  },
+  {
+    slug: "previsao-de-churn",
+    nome: "Previsão de churn avulsa",
+    detalhe: "Avisa quais clientes estão com risco de cancelar. Para quem já tem CRM",
+    uma_vez: "R$397 (implantação)",
+    mensal: "R$147/mês",
+    href: "/solucoes/previsao-de-churn",
+  },
+  {
+    slug: "sistemas-sob-medida",
+    nome: "Sistema sob medida",
+    detalhe: "Desenvolvido para o processo do cliente",
+    uma_vez: "Sob consulta",
+    mensal: "Sob consulta",
+    nota: "Orçamento depois de uma conversa.",
+    href: "/solucoes/sistemas-sob-medida",
+  },
+];
+
+export const servicoAvulso = (slug: string) =>
+  servicosAvulsos.find((x) => x.slug === slug);
 
 /**
  * Verdadeiro assim que ao menos um link de pagamento for preenchido. Controla

@@ -4,20 +4,28 @@
 > querem crescer com organização. Três produtos que já nascem conectados:
 > contrate só o que precisa, combine e economize.
 
-## Pacotes com valor fechado
+## Preços
 
-- **Landing page**: página profissional, perfil no Google e botão direto pro
-  WhatsApp. Valor único de R$777, pagamento único. Manutenção opcional: R$67/mês.
-- **CRM**: CRM com WhatsApp e agente de IA, com funil de vendas visual em
-  Kanban. Implantação de R$447, paga uma vez, mais R$297/mês, sem fidelidade
-  no plano mensal.
-- **CRM + Churn**: o CRM com WhatsApp e agente de IA mais a previsão de churn,
-  que avisa quais clientes estão para sair. Implantação de R$447, paga uma
-  vez, mais R$397/mês, sem fidelidade no plano mensal.
+CRM com WhatsApp (implantação paga uma vez, mais mensalidade, sem fidelidade):
 
-Sites, dashboards, agentes de IA, automação com n8n, previsão de churn avulsa
-e sistemas sob medida têm o valor combinado antes de começar. MyHub e MyCash
-são vendidos sob demonstração.
+- **CRM Simples**: até 3 usuários. Implantação de R$247 + R$137/mês.
+- **CRM com IA**: com agente de IA. Implantação de R$447 + R$297/mês.
+- **CRM + Churn**: com agente de IA e previsão de churn (avisa quais clientes
+  estão para sair). Implantação de R$447 + R$397/mês.
+
+Outros serviços:
+
+- **Landing page**: valor único de R$777. Manutenção opcional: R$67/mês.
+- **Site institucional**: valor único de R$1.697. Manutenção opcional:
+  R$87/mês. Ajustes em site existente: R$500.
+- **Agente de IA** (até 800 conversas/mês): implantação de R$597 + R$297/mês.
+- **Automação (n8n)**, por fluxo: implantação de R$347 + R$77/mês.
+- **Dashboard**: implantação de R$397 + R$217/mês.
+- **Previsão de churn avulsa** (para quem já tem CRM): implantação de R$397 +
+  R$147/mês.
+
+Sistemas sob medida têm orçamento depois de uma conversa. MyHub e MyCash são
+vendidos sob demonstração.
 
 ## Páginas
 
@@ -28,8 +36,8 @@ são vendidos sob demonstração.
 - [MyHub](https://mytek.com.br/solucoes/mytek-hub): sistema de organização do time (tarefas, progresso, chat).
 - [MyCash](https://mytek.com.br/solucoes/mycash): sistema de organização financeira para empresas, com conector de IA (Claude e ChatGPT).
 - [Soluções](https://mytek.com.br/solucoes/sites): uma página para cada serviço.
-- [Preço](https://mytek.com.br/pricing): pacotes de Landing page, CRM e CRM + Churn.
-  Os demais serviços são sob orçamento.
+- [Preço](https://mytek.com.br/pricing): valores de CRM, Landing page e serviços.
+  Sistemas sob medida têm orçamento.
 - [Sobre](https://mytek.com.br/about): por que a mytek existe como uma
   plataforma, não uma colcha de retalhos de ferramentas soltas.
 - [Changelog](https://mytek.com.br/changelog): cada entrega documentada.

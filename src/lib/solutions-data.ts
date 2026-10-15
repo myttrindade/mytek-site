@@ -41,7 +41,7 @@ export const solutions: Solution[] = [
     title: "Sites",
     problem: "Seu site não passa confiança nem explica o que você vende.",
     summary:
-      "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. Orçamento sob medida.",
+      "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. R$1.697, valor único.",
     headline: "Um site que explica o que você vende e leva o visitante a chamar.",
     intro:
       "Muita empresa tem site só porque precisa ter. A gente parte do que o seu cliente quer saber antes de comprar e organiza o site em torno disso, com identidade visual própria e carregamento rápido.",
@@ -64,7 +64,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa um site?",
-        a: "O valor é sob orçamento. Depende do tamanho do site e do que ele precisa fazer, e fica combinado na proposta antes de começar.",
+        a: "O site institucional custa R$1.697, valor único, pago uma vez. A manutenção mensal, de R$87, é opcional. Ajustes em um site que já existe (domínio, logo, imagens e até 1 página nova) custam R$500. Se o seu projeto fugir disso, o valor é combinado na proposta antes de começar.",
       },
       {
         q: "Posso editar o site depois?",
@@ -119,7 +119,7 @@ export const solutions: Solution[] = [
     title: "CRM com WhatsApp",
     problem: "O lead respondeu e ninguém voltou.",
     summary:
-      "Funil, atendimento no WhatsApp e alerta de lead parado. R$297/mês mais implantação de R$447, sem fidelidade.",
+      "Funil, atendimento no WhatsApp e alerta de lead parado. A partir de R$137/mês, mais implantação de R$247, sem fidelidade.",
     headline: "",
     intro: "",
     includes: [],
@@ -220,7 +220,7 @@ export const solutions: Solution[] = [
     title: "Dashboards",
     problem: "Você descobre o resultado do mês só no fim do mês.",
     summary:
-      "Painéis de vendas, atendimento e operação que a equipe entende sem pedir relatório. Orçamento sob medida.",
+      "Painéis de vendas, atendimento e operação que a equipe entende sem pedir relatório. R$397 de implantação + R$217/mês.",
     headline: "Os números do seu negócio num lugar só, sem montar planilha.",
     intro:
       "Dashboard bom responde pergunta, não enfeita. A gente conecta as suas fontes de dados e monta painéis que qualquer pessoa da equipe entende, do dono ao vendedor.",
@@ -243,7 +243,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa?",
-        a: "O Dashboard é sob orçamento. O valor depende das fontes de dados que a gente conecta e dos painéis que você precisa, e fica combinado antes de começar.",
+        a: "O Dashboard custa R$397 de implantação, paga uma vez, mais R$217/mês, sem fidelidade. Se o seu caso tiver muitas fontes de dados ou painéis fora do comum, a gente combina o valor antes de começar.",
       },
       {
         q: "Qual ferramenta é usada?",
@@ -333,7 +333,7 @@ export const solutions: Solution[] = [
     title: "Previsão de churn",
     problem: "O cliente cancela e você só fica sabendo depois.",
     summary:
-      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir. Faz parte do pacote CRM + Churn: R$397/mês mais implantação de R$447.",
+      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir. No pacote CRM + Churn: R$397/mês mais implantação de R$447. Avulsa: R$147/mês mais R$397 de implantação.",
     headline: "Saiba quais clientes têm risco de sair antes que eles saiam.",
     intro:
       "Usamos o histórico de clientes da sua empresa para treinar um modelo de machine learning que estima o risco de cancelamento de cada um. A equipe passa a agir antes, com a lista de quem priorizar.",
@@ -356,7 +356,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa?",
-        a: "No pacote CRM + Churn, a previsão vem junto com o CRM com WhatsApp e o agente de IA: R$397/mês, mais R$447 de implantação, paga uma vez só. A previsão avulsa, para quem já tem CRM, é sob orçamento.",
+        a: "No pacote CRM + Churn, a previsão vem junto com o CRM com WhatsApp e o agente de IA: R$397/mês, mais R$447 de implantação, paga uma vez só. A previsão avulsa, para quem já tem CRM, custa R$147/mês, mais R$397 de implantação.",
       },
       {
         q: "O modelo garante quem vai sair?",

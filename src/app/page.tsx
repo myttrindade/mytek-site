@@ -44,7 +44,7 @@ const ways = [
   {
     tag: "Produto pronto",
     title: "CRM, MyHub e MyCash",
-    price: "CRM: R$447 de implantação + R$297/mês",
+    price: "CRM a partir de R$137/mês + implantação",
     points: [
       "Prontos para usar, configurados junto com você",
       "CRM sem fidelidade: cancele quando quiser",
@@ -55,7 +55,7 @@ const ways = [
   {
     tag: "Projeto sob medida",
     title: "Sites, IA, automação, dados e sistemas",
-    price: "valor combinado antes de começar",
+    price: "valores na página de preços",
     points: [
       "Conversa curta para entender o problema",
       "Proposta com prazo, entrega e valor fechados",
@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: "Como funciona o preço?",
-    a: "Três pacotes têm valor fechado na página de preços: Landing page (R$777, valor único), CRM (R$447 de implantação + R$297/mês) e CRM + Churn (R$447 de implantação + R$397/mês), sem fidelidade no plano mensal. Para o MyHub e o MyCash, você pede uma demonstração e recebe a proposta. Os demais serviços são projetos: depois de uma conversa curta, você recebe escopo, prazo e valor fechados antes de qualquer trabalho começar.",
+    a: "Os valores estão na página de preços. O CRM tem três opções (Simples, com IA e com previsão de churn), todas com implantação paga uma vez e mensalidade sem fidelidade, a partir de R$137/mês. A Landing page tem valor único de R$777, e há valores para site, dashboard, agente de IA e automação. Para o MyHub e o MyCash, você pede uma demonstração e recebe a proposta. Sistemas sob medida têm escopo, prazo e valor combinados antes de qualquer trabalho começar.",
   },
   {
     q: "Preciso ter equipe técnica?",

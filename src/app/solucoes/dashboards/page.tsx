@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  ArrowRightIcon,
   BarChart3Icon,
   DatabaseIcon,
   FilterIcon,
@@ -16,6 +15,7 @@ import { Card3D } from "@/components/brand/card-3d";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ServicePrice } from "@/components/service-price";
 import { eyebrow } from "@/components/solutions-grid";
 import {
   Accordion,
@@ -334,31 +334,7 @@ export default function DashboardsPage() {
           </div>
         </section>
 
-        {/* 5 · Quanto custa */}
-        <section id="planos" className="py-24 lg:py-28">
-          <div className="mx-auto max-w-5xl px-4 lg:px-8">
-            <BlurFade>
-              <div className="rounded-3xl border border-primary/25 bg-primary/[0.06] p-8 shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)] lg:p-12">
-                <span className={eyebrow}>Quanto custa</span>
-                <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
-                  Orçamento sob medida
-                  <span className="text-emphasis">.</span>
-                </h2>
-                <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                  O valor depende das fontes de dados que a gente vai conectar
-                  e dos painéis que você precisa. Depois de uma conversa curta,
-                  você recebe escopo, prazo e valor antes de qualquer trabalho
-                  começar.
-                </p>
-                <div className="mt-8">
-                  <ShimmerButton href="/contact">
-                    Pedir um orçamento <ArrowRightIcon className="size-4" />
-                  </ShimmerButton>
-                </div>
-              </div>
-            </BlurFade>
-          </div>
-        </section>
+        <ServicePrice slug="dashboards" />
 
         {/* 6 · Como funciona */}
         <section className="bg-muted py-24 lg:py-28">
