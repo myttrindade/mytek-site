@@ -20,7 +20,7 @@ import {
 export const metadata: Metadata = {
   title: "Pagamento",
   description:
-    "Contrate CRM, Dashboard ou Landing Page da mytek. Pagamento por cartão, Pix ou boleto, com checkout do Mercado Pago.",
+    "Contrate o CRM, o CRM + Churn ou a Landing page da mytek. Pagamento por cartão, Pix ou boleto, com checkout do Mercado Pago.",
   alternates: { canonical: "/pagamento" },
   // Enquanto nenhum link de pagamento existir, a página não deve ser
   // indexada: seria um checkout que não cobra nada.
@@ -220,7 +220,7 @@ export default function PagamentoPage() {
                     Posso trocar de plano depois?
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Sim. Se você começar com CRM Normal e quiser evoluir para CRM Plus ou adicionar o Dashboard, é fácil. A gente adapta sua cobrança no próximo ciclo.
+                    Sim. Se você começar com o CRM e quiser evoluir para o CRM + Churn, é fácil. A gente adapta sua cobrança no próximo ciclo.
                   </p>
                 </div>
                 <div>
@@ -241,26 +241,10 @@ export default function PagamentoPage() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">
-                    E se eu quiser pagar de outra forma?
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Temos opções. Pode ser transferência bancária, depósito em conta ou até parcelamento fora do Mercado Pago — é só chamar a gente no contato.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">
                     Meu pagamento não foi aprovado. E agora?
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
                     Tente novamente com outro cartão ou forma de pagamento. Se continuar com problema, entre em contato e a gente ajuda a resolver — pode ser limite da operadora ou dados do cartão.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">
-                    Vocês oferecem desconto anual?
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    Hoje temos pagamento mensal. Mas se você tiver interesse em contratar vários usuários ou um projeto customizado, conversamos sobre opções — é só pedir orçamento.
                   </p>
                 </div>
               </div>

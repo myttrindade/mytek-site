@@ -17,6 +17,11 @@
  * O preço abaixo é só o que o cliente lê antes de clicar; quem cobra de fato
  * é o link do Mercado Pago. Ao mudar um valor, mude nos três lugares: aqui,
  * no link do Mercado Pago e em `src/app/pricing/page.tsx`.
+ *
+ * Tabela de preços de outubro/2026: só os três pacotes (Landing page, CRM e
+ * CRM + Churn) são públicos. Os serviços avulsos da tabela são de uso interno,
+ * para montar propostas, e não aparecem no site. Parcelas no cartão e plano
+ * anual também ficam de fora por enquanto.
  */
 
 export type CheckoutPlan = {
@@ -45,184 +50,61 @@ export type CheckoutGroup = {
 export const checkoutGroups: CheckoutGroup[] = [
   {
     slug: "crm",
-    title: "CRM",
-    billing: "Assinatura mensal",
+    title: "CRM com WhatsApp",
+    billing: "Implantação + mensalidade",
     description:
-      "Funil de vendas visual e atendimento por WhatsApp. Até 3 membros do time em ambos os planos.",
+      "CRM com WhatsApp e agente de IA. A implantação é paga uma vez, e a mensalidade não tem fidelidade.",
     plans: [
       {
-        slug: "crm-normal",
-        name: "CRM Normal",
-        price: "R$99",
-        unit: "/mês",
-        features: [
-          "Até 3 membros do time",
-          "Funil de vendas visual (Kanban)",
-          "Atendimento via WhatsApp",
-        ],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
-        url: "",
-      },
-      {
-        slug: "crm-plus",
-        name: "CRM Plus",
+        slug: "crm",
+        name: "CRM",
         price: "R$297",
         unit: "/mês",
+        tagline: "Mais R$447 de implantação, paga uma vez só.",
         features: [
-          "Até 3 membros do time",
-          "Módulo Conhecimento com IA",
-          "Previsão de churn incluída",
-          "Sessão de treinamento incluída",
+          "CRM com WhatsApp",
+          "Agente de IA no atendimento",
+          "Funil de vendas visual (Kanban)",
+          "Sem fidelidade no plano mensal",
         ],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
         url: "",
       },
-    ],
-  },
-  {
-    slug: "dashboard",
-    title: "Dashboard",
-    billing: "Assinatura mensal",
-    description:
-      "Painéis e relatórios do seu negócio. Funciona sozinho, mesmo sem o CRM da mytek.",
-    plans: [
       {
-        slug: "dashboard-avulso",
-        name: "Dashboard Avulso",
+        slug: "crm-churn",
+        name: "CRM + Churn",
         price: "R$397",
         unit: "/mês",
+        tagline: "Mais R$447 de implantação, paga uma vez só.",
         features: [
-          "Painéis personalizáveis",
-          "Relatórios exportáveis",
-          "Suporte opcional a partir de +R$300/mês",
+          "CRM com WhatsApp",
+          "Agente de IA no atendimento",
+          "Previsão de churn: avisa quais clientes estão para sair",
+          "Sem fidelidade no plano mensal",
         ],
-        url: "https://mpago.la/152UZ6m",
-      },
-      {
-        slug: "dashboard-suporte",
-        name: "Dashboard Avulso + Suporte",
-        price: "R$697",
-        unit: "/mês",
-        features: [
-          "Painéis personalizáveis",
-          "Relatórios exportáveis",
-          "Suporte incluso (até 5 solicitações/mês)",
-        ],
-        url: "https://mpago.la/2Enr7Yj",
-      },
-    ],
-  },
-  {
-    slug: "combos",
-    title: "CRM + Dashboard",
-    billing: "Assinatura mensal",
-    description:
-      "Contratando os dois juntos, o preço de cada um já sai menor do que avulso.",
-    plans: [
-      {
-        slug: "combo-normal-sem-suporte",
-        name: "CRM Normal + Dashboard sem suporte",
-        price: "R$296",
-        unit: "/mês",
-        features: ["Economia de R$200/mês"],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
-        url: "",
-      },
-      {
-        slug: "combo-normal-com-suporte",
-        name: "CRM Normal + Dashboard com suporte",
-        price: "R$446",
-        unit: "/mês",
-        features: ["Economia de R$350/mês"],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
-        url: "",
-      },
-      {
-        slug: "combo-plus-sem-suporte",
-        name: "CRM Plus + Dashboard sem suporte",
-        price: "R$494",
-        unit: "/mês",
-        features: ["Economia de R$200/mês"],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
-        url: "",
-      },
-      {
-        slug: "combo-plus-com-suporte",
-        name: "CRM Plus + Dashboard com suporte",
-        price: "R$644",
-        unit: "/mês",
-        features: ["Economia de R$350/mês"],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
-        url: "",
-      },
-    ],
-  },
-  {
-    slug: "churn",
-    title: "Previsão de churn",
-    billing: "Assinatura mensal + implantação",
-    description:
-      "Modelo treinado com o seu histórico que aponta quais clientes têm risco de sair. Também vem incluída no CRM Plus.",
-    plans: [
-      {
-        slug: "churn-avulso",
-        name: "Previsão de churn avulsa",
-        price: "R$397",
-        unit: "/mês",
-        tagline: "Mais R$497 de implantação, pagos uma vez só.",
-        features: [
-          "Implantação de R$497, paga uma vez só",
-          "Análise e preparação do seu histórico de clientes",
-          "Modelo treinado e avaliado com os seus dados",
-          "Lista de clientes em risco, com o motivo de cada um",
-          "Reavaliação do modelo conforme entram dados novos",
-        ],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
         url: "",
       },
     ],
   },
   {
     slug: "landing-page",
-    title: "Landing Page",
-    billing: "Pagamento único",
+    title: "Landing page",
+    billing: "Implantação",
     description:
-      "Você paga uma vez pela página pronta. Cliente ativo de CRM ou Dashboard tem 20% de desconto — peça o link com desconto pelo contato.",
+      "Você paga a implantação uma vez e a página é sua. A manutenção mensal é opcional.",
     plans: [
       {
-        slug: "lp-essencial",
-        name: "Landing Page Essencial",
-        price: "R$999",
+        slug: "landing-page",
+        name: "Landing page",
+        price: "R$777",
         unit: null,
-        tagline: "Sua página no ar rápido, com a sua cara.",
+        tagline: "Implantação, paga uma vez só.",
         features: [
-          "Modelo da mytek adaptado à sua marca",
-          "Até 5 seções",
-          "Integração com WhatsApp, que pode ser ligado ao CRM",
+          "Página profissional",
+          "Perfil no Google",
+          "Botão direto para o WhatsApp",
           "1 rodada de revisão",
-          "Entrega em até 7 dias úteis",
         ],
-        note: "Textos por sua conta (ou escolha a Sob Medida)",
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
-        url: "",
-      },
-      {
-        slug: "lp-sob-medida",
-        name: "Landing Page Sob Medida",
-        price: "R$1.797",
-        unit: null,
-        tagline: "Feita do zero pra transformar visita em cliente.",
-        features: [
-          "Design criado do zero para o seu negócio",
-          "Textos escritos pela mytek, focados em gerar contato",
-          "Até 10 seções",
-          "Integração com CRM, WhatsApp e e-mail",
-          "Pixel da Meta e Google Analytics para medir cada clique",
-          "SEO básico para ser encontrada no Google",
-          "Até 2 rodadas de revisão no layout",
-          "Entrega em até 15 dias úteis",
-        ],
-        // TODO(preço): link do Mercado Pago a recriar com o valor novo; vazio = a página oferece o contato.
+        note: "Manutenção opcional: R$67/mês.",
         url: "",
       },
     ],

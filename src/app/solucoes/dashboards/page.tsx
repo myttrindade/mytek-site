@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   ArrowRightIcon,
   BarChart3Icon,
-  CheckIcon,
   DatabaseIcon,
   FilterIcon,
   RefreshCwIcon,
@@ -28,7 +27,6 @@ import { Button } from "@/components/ui/button";
 import { BlurFade } from "@/components/velora/blur-fade";
 import { GridPattern } from "@/components/velora/grid-pattern";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
-import { checkoutGroups, checkoutHref } from "@/lib/checkout";
 import { getSolution } from "@/lib/solutions-data";
 
 const sol = getSolution("dashboards")!;
@@ -40,7 +38,6 @@ export const metadata: Metadata = {
 };
 
 /** Preços e itens vêm do checkout: uma fonte só para o valor que o cliente lê. */
-const plans = checkoutGroups.find((g) => g.slug === "dashboard")?.plans ?? [];
 
 const chain = [
   { icon: DatabaseIcon, title: "Suas fontes", body: "Planilhas, CRM, sistemas e bancos de dados." },
@@ -337,111 +334,27 @@ export default function DashboardsPage() {
           </div>
         </section>
 
-        {/* 5 · Planos */}
+        {/* 5 · Quanto custa */}
         <section id="planos" className="py-24 lg:py-28">
           <div className="mx-auto max-w-5xl px-4 lg:px-8">
             <BlurFade>
-              <span className={eyebrow}>Planos</span>
-              <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
-                Assinatura mensal, sem fidelidade
-                <span className="text-emphasis">.</span>
-              </h2>
-              <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                O primeiro mês inclui até 5 ajustes sem custo. Depois, você
-                escolhe entre suporte mensal ou pedidos avulsos.
-              </p>
-            </BlurFade>
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {plans.map((plan, i) => {
-                const featured = i === plans.length - 1;
-                return (
-                  <BlurFade key={plan.slug} delay={i * 0.1}>
-                    <div className="h-full [perspective:1200px]">
-                      <Card3D
-                        className="h-full"
-                        maxTilt={8}
-                        glare={featured ? "rgba(255,255,255,0.28)" : "rgba(94,52,247,0.14)"}
-                      >
-                        <div
-                          style={{ transformStyle: "preserve-3d" }}
-                          className={
-                            "relative flex h-full flex-col rounded-3xl border p-8 " +
-                            (featured
-                              ? "border-white/20 bg-gradient-to-br from-[#7A57FF] via-[#5E34F7] to-[#4220C9] text-white shadow-[0_34px_60px_-22px_rgba(60,30,170,0.7)]"
-                              : "border-border bg-card shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)]")
-                          }
-                        >
-                          {featured && (
-                            <span className="absolute -top-3 left-8 rounded-full bg-lima px-3 py-1 text-[11px] font-bold text-lima-foreground">
-                              Com suporte
-                            </span>
-                          )}
-                          <span
-                            className={
-                              "font-mono text-[11px] font-bold uppercase tracking-[0.06em] " +
-                              (featured ? "text-lima" : "text-primary")
-                            }
-                          >
-                            Assinatura mensal
-                          </span>
-                          <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] [transform:translateZ(24px)]">
-                            {plan.name}
-                          </h3>
-                          <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em] [transform:translateZ(34px)]">
-                            {plan.price}
-                            <span className="text-lg font-semibold opacity-70">
-                              {plan.unit}
-                            </span>
-                          </p>
-                          <ul className="mt-6 flex-1 space-y-3 text-sm">
-                            {plan.features.map((f) => (
-                              <li key={f} className="flex items-start gap-3">
-                                <span
-                                  className={
-                                    "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full " +
-                                    (featured
-                                      ? "bg-lima text-lima-foreground"
-                                      : "bg-primary text-primary-foreground")
-                                  }
-                                >
-                                  <CheckIcon className="size-3" />
-                                </span>
-                                {f}
-                              </li>
-                            ))}
-                          </ul>
-                          <Button
-                            asChild
-                            size="lg"
-                            className={
-                              "mt-8 w-full rounded-full " +
-                              (featured ? "bg-lima text-lima-foreground hover:bg-lima/90" : "")
-                            }
-                          >
-                            <a href={checkoutHref(plan.slug)}>
-                              Quero este <ArrowRightIcon className="size-4" />
-                            </a>
-                          </Button>
-                        </div>
-                      </Card3D>
-                    </div>
-                  </BlurFade>
-                );
-              })}
-            </div>
-
-            <BlurFade delay={0.15}>
-              <div className="mt-8 rounded-2xl border border-primary/25 bg-primary/[0.06] p-6 text-sm">
-                <p>
-                  <strong>Já é cliente do CRM da mytek?</strong> Adicione o
-                  Dashboard por <strong>+R$197/mês</strong> (sem suporte) ou{" "}
-                  <strong>+R$347/mês</strong> (com suporte).
+              <div className="rounded-3xl border border-primary/25 bg-primary/[0.06] p-8 shadow-[0_24px_46px_-26px_rgba(94,52,247,0.4)] lg:p-12">
+                <span className={eyebrow}>Quanto custa</span>
+                <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
+                  Orçamento sob medida
+                  <span className="text-emphasis">.</span>
+                </h2>
+                <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+                  O valor depende das fontes de dados que a gente vai conectar
+                  e dos painéis que você precisa. Depois de uma conversa curta,
+                  você recebe escopo, prazo e valor antes de qualquer trabalho
+                  começar.
                 </p>
-                <p className="mt-2 text-muted-foreground">
-                  No avulso, a gente conecta o Dashboard às suas fontes de
-                  dados e mantém essa integração. Como add-on do CRM, os dados
-                  já estão dentro da plataforma e esse trabalho não se repete.
-                </p>
+                <div className="mt-8">
+                  <ShimmerButton href="/contact">
+                    Pedir um orçamento <ArrowRightIcon className="size-4" />
+                  </ShimmerButton>
+                </div>
               </div>
             </BlurFade>
           </div>

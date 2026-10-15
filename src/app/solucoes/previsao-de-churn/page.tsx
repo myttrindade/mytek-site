@@ -347,8 +347,9 @@ export default function ChurnPage() {
                 <span className="text-emphasis">.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                A implantação (análise dos dados, treino e avaliação do modelo)
-                é paga uma vez só. Depois, a mensalidade.
+                No pacote CRM + Churn, a implantação é paga uma vez e depois
+                vem a mensalidade, sem fidelidade. A previsão avulsa é
+                orçada conforme o seu histórico de dados.
               </p>
             </BlurFade>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -356,9 +357,9 @@ export default function ChurnPage() {
                 {
                   tag: "Avulsa",
                   name: "Previsão de churn",
-                  price: "R$397",
-                  unit: "/mês",
-                  note: "mais R$497 de implantação, pagos uma vez só",
+                  price: "Sob consulta",
+                  unit: "",
+                  note: "para quem já tem CRM, com orçamento depois de uma conversa curta",
                   items: [
                     "Análise e preparação do seu histórico de clientes",
                     "Modelo treinado e avaliado com os seus dados",
@@ -370,19 +371,18 @@ export default function ChurnPage() {
                   featured: false,
                 },
                 {
-                  tag: "Incluída no CRM Plus",
-                  name: "CRM Plus",
-                  price: "R$297",
+                  tag: "Pacote CRM + Churn",
+                  name: "CRM + Churn",
+                  price: "R$397",
                   unit: "/mês",
-                  note: "o CRM, a IA e a previsão de churn num plano só",
+                  note: "mais R$447 de implantação, paga uma vez só",
                   items: [
-                    "Tudo do CRM: funil, WhatsApp, alerta de lead parado, 3 usuários",
-                    "IA que responde sobre os seus dados",
-                    "Previsão de churn",
-                    "Sessão de treinamento incluída",
+                    "CRM com WhatsApp e agente de IA",
+                    "Previsão de churn: avisa quais clientes estão para sair",
+                    "Sem fidelidade no plano mensal",
                   ],
-                  cta: "Quero o CRM Plus",
-                  href: checkoutHref("crm-plus"),
+                  cta: "Quero o CRM + Churn",
+                  href: checkoutHref("crm-churn"),
                   featured: true,
                 },
               ].map((plan, i) => (

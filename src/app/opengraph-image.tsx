@@ -89,7 +89,7 @@ export default function OpengraphImage() {
           <span style={{ color: "#6E48FF" }}>•</span>
           <span>Automação de WhatsApp</span>
           <span style={{ color: "#6E48FF" }}>•</span>
-          <span>CRM a partir de R$99/mês</span>
+          <span>CRM a partir de R$297/mês</span>
         </div>
       </div>
     ),

@@ -4,15 +4,20 @@
 > querem crescer com organização. Três produtos que já nascem conectados:
 > contrate só o que precisa, combine e economize.
 
-## Produtos
+## Pacotes com valor fechado
 
-- **CRM**: funil de vendas visual em Kanban, atendimento e histórico de
-  WhatsApp na mesma tela, times de até 3 pessoas incluídos. A partir de
-  R$99/mês (CRM Plus, com IA e previsão de churn: R$297/mês).
-- **Dashboard**: vendas, leads e satisfação num painel só, em tempo real,
-  calculado automaticamente a partir do CRM. A partir de R$397/mês.
-- **Landing Page**: página pronta pra converter, com formulário já conectado
-  ao CRM. Pagamento único a partir de R$999. Sites a partir de R$1.500.
+- **Landing page**: página profissional, perfil no Google e botão direto pro
+  WhatsApp. Implantação de R$777, paga uma vez. Manutenção opcional: R$67/mês.
+- **CRM**: CRM com WhatsApp e agente de IA, com funil de vendas visual em
+  Kanban. Implantação de R$447, paga uma vez, mais R$297/mês, sem fidelidade
+  no plano mensal.
+- **CRM + Churn**: o CRM com WhatsApp e agente de IA mais a previsão de churn,
+  que avisa quais clientes estão para sair. Implantação de R$447, paga uma
+  vez, mais R$397/mês, sem fidelidade no plano mensal.
+
+Sites, dashboards, agentes de IA, automação com n8n, previsão de churn avulsa
+e sistemas sob medida têm o valor combinado antes de começar. MyHub e MyCash
+são vendidos sob demonstração.
 
 ## Páginas
 
@@ -23,8 +28,8 @@
 - [MyHub](https://mytek.com.br/solucoes/mytek-hub): sistema de organização do time (tarefas, progresso, chat).
 - [MyCash](https://mytek.com.br/solucoes/mycash): sistema de organização financeira para empresas, com conector de IA (Claude e ChatGPT).
 - [Soluções](https://mytek.com.br/solucoes/sites): uma página para cada serviço.
-- [Preço](https://mytek.com.br/pricing): planos de CRM, Dashboard e Landing
-  Page e combos. Os demais serviços são sob orçamento.
+- [Preço](https://mytek.com.br/pricing): pacotes de Landing page, CRM e CRM + Churn.
+  Os demais serviços são sob orçamento.
 - [Sobre](https://mytek.com.br/about): por que a mytek existe como uma
   plataforma, não uma colcha de retalhos de ferramentas soltas.
 - [Changelog](https://mytek.com.br/changelog): cada entrega documentada.

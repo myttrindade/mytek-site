@@ -38,7 +38,7 @@ const sol = getSolution("sites")!;
 export const metadata: Metadata = {
   title: "Sites",
   description:
-    "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. A partir de R$1.500.",
+    "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. Orçamento sob medida.",
   alternates: { canonical: "/solucoes/sites" },
 };
 
@@ -307,9 +307,8 @@ export default function SitesPage() {
                     <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
                       Quanto custa
                     </span>
-                    <p className="mt-3 text-sm text-white/75">a partir de</p>
-                    <p className="font-heading text-6xl font-extrabold tracking-[-0.05em] text-white">
-                      R$1.500
+                    <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em] text-white">
+                      Sob orçamento
                     </p>
                     <p className="mt-3 max-w-sm text-white/80">
                       O valor final fica combinado na proposta, antes de
