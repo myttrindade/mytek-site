@@ -80,7 +80,7 @@ export const solutions: Solution[] = [
     title: "Landing pages",
     problem: "O visitante chega, olha e vai embora sem deixar contato.",
     summary:
-      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas. Implantação de R$777, paga uma vez.",
+      "Páginas feitas para converter, com formulário ligado direto ao seu funil de vendas. Valor único de R$777.",
     headline: "Uma página com um objetivo só: transformar visitante em contato.",
     intro:
       "A landing page é a porta de entrada da sua operação comercial. Quem preenche o formulário já nasce como lead no funil, com a origem registrada, sem planilha no meio do caminho.",
@@ -103,7 +103,7 @@ export const solutions: Solution[] = [
       },
       {
         q: "Quanto custa e é cobrado por mês?",
-        a: "A Landing page tem implantação de R$777, paga uma vez só, e a página é sua. A manutenção mensal, de R$67, é opcional.",
+        a: "A Landing page tem valor único de R$777, pago uma vez só, e a página é sua. A manutenção mensal, de R$67, é opcional.",
       },
       {
         q: "Em quanto tempo fica pronta?",

@@ -88,16 +88,16 @@ export const checkoutGroups: CheckoutGroup[] = [
   {
     slug: "landing-page",
     title: "Landing page",
-    billing: "Implantação",
+    billing: "Valor único",
     description:
-      "Você paga a implantação uma vez e a página é sua. A manutenção mensal é opcional.",
+      "Você paga um valor único e a página é sua. A manutenção mensal é opcional.",
     plans: [
       {
         slug: "landing-page",
         name: "Landing page",
         price: "R$777",
         unit: null,
-        tagline: "Implantação, paga uma vez só.",
+        tagline: "Valor único, pago uma vez só.",
         features: [
           "Página profissional",
           "Perfil no Google",

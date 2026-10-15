@@ -10,7 +10,7 @@ const rows = [
   ["Tamanho", "Várias páginas: início, serviços, sobre, contato", "Uma página só, com uma oferta"],
   ["O visitante chega", "Procurando a empresa no Google ou por indicação", "Vindo de um anúncio ou do Instagram"],
   ["Ação esperada", "Explorar e, se quiser, chamar", "Preencher o formulário ou chamar"],
-  ["Valor", "Sob orçamento", "Implantação de R$777"],
+  ["Valor", "Sob orçamento", "R$777 (valor único)"],
 ] as const;
 
 /**

@@ -304,7 +304,7 @@ export default function LandingPagesPage() {
                 <span className="text-emphasis">.</span>
               </h2>
               <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-                Você paga a implantação uma vez e a página é sua. A manutenção
+                Você paga um valor único e a página é sua. A manutenção
                 mensal é opcional.
               </p>
             </BlurFade>
@@ -334,7 +334,7 @@ export default function LandingPagesPage() {
                               (featured ? "text-lima" : "text-primary")
                             }
                           >
-                            Implantação
+                            Valor único
                           </span>
                           <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] [transform:translateZ(24px)]">
                             {plan.name}

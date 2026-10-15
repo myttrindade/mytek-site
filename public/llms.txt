@@ -7,7 +7,7 @@
 ## Pacotes com valor fechado
 
 - **Landing page**: página profissional, perfil no Google e botão direto pro
-  WhatsApp. Implantação de R$777, paga uma vez. Manutenção opcional: R$67/mês.
+  WhatsApp. Valor único de R$777, pagamento único. Manutenção opcional: R$67/mês.
 - **CRM**: CRM com WhatsApp e agente de IA, com funil de vendas visual em
   Kanban. Implantação de R$447, paga uma vez, mais R$297/mês, sem fidelidade
   no plano mensal.

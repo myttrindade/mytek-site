@@ -72,7 +72,7 @@ const faqs = [
   },
   {
     q: "Como funciona o preço?",
-    a: "Três pacotes têm valor fechado na página de preços: Landing page (R$777 de implantação), CRM (R$447 de implantação + R$297/mês) e CRM + Churn (R$447 de implantação + R$397/mês), sem fidelidade no plano mensal. Para o MyHub e o MyCash, você pede uma demonstração e recebe a proposta. Os demais serviços são projetos: depois de uma conversa curta, você recebe escopo, prazo e valor fechados antes de qualquer trabalho começar.",
+    a: "Três pacotes têm valor fechado na página de preços: Landing page (R$777, valor único), CRM (R$447 de implantação + R$297/mês) e CRM + Churn (R$447 de implantação + R$397/mês), sem fidelidade no plano mensal. Para o MyHub e o MyCash, você pede uma demonstração e recebe a proposta. Os demais serviços são projetos: depois de uma conversa curta, você recebe escopo, prazo e valor fechados antes de qualquer trabalho começar.",
   },
   {
     q: "Preciso ter equipe técnica?",

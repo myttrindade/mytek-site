@@ -33,7 +33,7 @@ import { siteConfig } from "@/lib/site-config";
 
 const pricingTitle = "Preços da mytek · Landing page, CRM e CRM + Churn";
 const pricingDescription =
-  "Três pacotes com valor fechado: Landing page, CRM com WhatsApp e agente de IA, e CRM + previsão de churn. Cada um tem uma implantação, paga uma vez, e a mensalidade não tem fidelidade. O que é sob medida tem o valor combinado antes de começar.";
+  "Três pacotes com valor fechado: Landing page, CRM com WhatsApp e agente de IA, e CRM + previsão de churn. A Landing page é um valor único. Os pacotes de CRM têm uma implantação, paga uma vez, e uma mensalidade sem fidelidade. O que é sob medida tem o valor combinado antes de começar.";
 
 export const metadata: Metadata = {
   // `title.absolute` ignora o template "%s · mytek" do layout.
@@ -55,7 +55,7 @@ const crm = group("crm");
 const landing = group("landing-page");
 
 const readyList = [
-  "Landing page: R$777 de implantação",
+  "Landing page: R$777, valor único",
   "CRM: R$447 de implantação + R$297/mês",
   "CRM + Churn: R$447 de implantação + R$397/mês",
 ];
@@ -197,12 +197,12 @@ const faqs = [
     a: "Os três pacotes desta página têm valor fechado: Landing page, CRM e CRM + Churn. Todo o resto, como sites, dashboards, agentes de IA, automações e sistemas, é sob medida: a gente entende o seu caso e combina escopo, prazo e valor antes de começar.",
   },
   {
-    q: "O que é a implantação?",
+    q: "O que é a implantação do CRM?",
     a: "É o valor pago uma vez só para a mytek configurar tudo para o seu negócio e deixar o pacote funcionando. Nos pacotes de CRM, a implantação é a mesma nos dois (R$447). Depois dela, você paga só a mensalidade.",
   },
   {
     q: "A Landing page é cobrada todo mês?",
-    a: "Não. A Landing page tem só a implantação, de R$777, paga uma vez. A página é sua. A manutenção mensal, de R$67, é opcional.",
+    a: "Não. A Landing page tem valor único, de R$777, pago uma vez. A página é sua. A manutenção mensal, de R$67, é opcional.",
   },
   {
     q: "Qual a diferença entre o CRM e o CRM + Churn?",
@@ -303,9 +303,10 @@ export default function PricingPage() {
             </BlurFade>
             <BlurFade delay={0.2}>
               <p className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground text-pretty">
-                Três pacotes com valor fechado. Cada um tem uma implantação,
-                paga uma vez, e a mensalidade não tem fidelidade. O que é sob
-                medida tem o valor combinado com você antes de começar.
+                Três pacotes com valor fechado. A Landing page é um valor
+                único. Os de CRM têm uma implantação, paga uma vez, e uma
+                mensalidade sem fidelidade. O que é sob medida tem o valor
+                combinado com você antes de começar.
               </p>
             </BlurFade>
             <BlurFade delay={0.3}>
@@ -386,7 +387,7 @@ export default function PricingPage() {
             <SectionHead
               tag="Pacotes"
               title="Escolha o seu pacote"
-              note="Cada pacote tem uma implantação, paga uma vez. A mensalidade, quando existe, não tem fidelidade."
+              note="A Landing page é um valor único. Os pacotes de CRM têm uma implantação, paga uma vez, e uma mensalidade sem fidelidade."
             />
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {[...landing, ...crm].map((p, i, all) => {
@@ -397,7 +398,7 @@ export default function PricingPage() {
                       plan={p}
                       featured={featured}
                       badge={featured ? "Com previsão de churn" : undefined}
-                      label={p.unit ? "Implantação + mensal" : "Implantação"}
+                      label={p.unit ? "Implantação + mensal" : "Valor único"}
                     />
                   </BlurFade>
                 );
