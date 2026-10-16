@@ -26,13 +26,13 @@ import { TiltCard } from "@/components/velora/tilt-card";
  * explicam para que serve, sem termo técnico.
  * Vídeo e imagem: public/brand/painel-varejo/.
  */
-const serve = [
+export const serve = [
   "Ver todas as lojas e todos os canais de venda numa tela só, sem juntar planilha.",
   "Saber quanto a empresa realmente ganha, e não só quanto vende.",
   "Decidir com antecedência: o que vender, quando e a que preço.",
 ] as const;
 
-const recursos = [
+export const recursos = [
   {
     icon: DatabaseIcon,
     tag: "Visão geral",
@@ -71,7 +71,7 @@ const recursos = [
   },
 ] as const;
 
-const ia = [
+export const ia = [
   {
     icon: TrendingUpIcon,
     title: "Previsão de vendas",
