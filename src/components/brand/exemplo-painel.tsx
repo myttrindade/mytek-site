@@ -103,7 +103,7 @@ export const ia = [
 
 export function ExemploPainel() {
   return (
-    <section id="exemplo" className="relative overflow-hidden bg-background py-24 lg:py-32">
+    <section id="exemplo" className="relative overflow-hidden bg-background py-24 lg:py-28">
       {/* fundo: névoa roxa e grade bem leve */}
       <div
         aria-hidden
