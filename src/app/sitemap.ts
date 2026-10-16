@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/crm",
     ...detailSolutions.map((x) => `/solucoes/${x.slug}`),
+    "/solucoes/painel-de-gestao",
     "/pricing",
     // Só entra no sitemap quando existir link de pagamento de verdade.
     ...(hasCheckoutLinks ? ["/pagamento"] : []),

@@ -7,6 +7,7 @@ import {
   CodeXmlIcon,
   FileSpreadsheetIcon,
   KanbanSquareIcon,
+  LayoutDashboardIcon,
   LayersIcon,
   PlugIcon,
   RocketIcon,
@@ -60,6 +61,7 @@ const journey = [
 ] as const;
 
 const built = [
+  { icon: LayoutDashboardIcon, title: "Painel de gestão", body: "Vendas, lucro e lojas numa tela, com previsão, avisos e sugestões feitos por inteligência artificial. Exemplo com dados fictícios.", href: "/solucoes/painel-de-gestao", cta: "Ver o painel" },
   { icon: KanbanSquareIcon, title: "MyHub", body: "Tarefas, progresso, pedido do líder e chat da equipe no mesmo lugar.", href: "/solucoes/mytek-hub", cta: "Ver o Hub" },
   { icon: WalletIcon, title: "MyCash", body: "O financeiro da empresa organizado: contas, cartões, orçamento e metas.", href: "/solucoes/mycash", cta: "Ver o MyCash" },
   { icon: TrendingDownIcon, title: "Previsão de churn", body: "Lista de clientes por risco de sair, com o motivo de cada um.", href: "/solucoes/previsao-de-churn", cta: "Ver o app" },
@@ -312,9 +314,9 @@ export default function SistemasPage() {
                 <span className="text-emphasis">.</span>
               </h2>
             </BlurFade>
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
               {built.map((b, i) => (
-                <BlurFade key={b.title} delay={i * 0.06}>
+                <BlurFade key={b.title} delay={i * 0.06} className={i < 3 ? "lg:col-span-2" : "lg:col-span-3"}>
                   <div className="h-full [perspective:1200px]">
                     <Card3D className="h-full" maxTilt={9} glare="rgba(94,52,247,0.14)">
                       <Link
