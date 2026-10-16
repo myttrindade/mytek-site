@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MailIcon } from "lucide-react";
 
 import { MytekLogo } from "@/components/mytek-logo";
 import { hasCheckoutLinks } from "@/lib/checkout";
@@ -35,6 +36,47 @@ const groups = [
   },
 ];
 
+
+/** Icones de marca em SVG proprio (os de marca saem do lucide-react nas versoes novas). */
+function InstagramGlyph({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className={className}>
+      <rect x="3" y="3" width="18" height="18" rx="5.2" />
+      <circle cx="12" cy="12" r="4.1" />
+      <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function WhatsAppGlyph({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.95L2 22l5.2-1.5A9.9 9.9 0 1 0 12.04 2Zm0 1.8a8.1 8.1 0 1 1-4.3 14.97l-.31-.19-3.08.89.9-3-.2-.32A8.1 8.1 0 0 1 12.04 3.8Zm-3.2 3.9c-.17 0-.45.06-.69.32-.24.26-.9.88-.9 2.15s.92 2.5 1.05 2.67c.13.17 1.78 2.84 4.4 3.87 2.17.86 2.6.69 3.07.65.47-.04 1.52-.62 1.73-1.22.22-.6.22-1.11.15-1.22-.06-.1-.24-.17-.5-.3-.26-.13-1.52-.75-1.76-.84-.24-.09-.4-.13-.58.13-.17.26-.67.84-.82 1.01-.15.17-.3.2-.56.07-.26-.13-1.1-.4-2.1-1.29-.77-.69-1.3-1.55-1.45-1.81-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.07-.13-.58-1.4-.8-1.92-.21-.5-.42-.43-.58-.44h-.5Z" />
+    </svg>
+  );
+}
+
+const contactLinks = [
+  {
+    label: "Instagram da mytek",
+    href: `https://instagram.com/${company.instagram}`,
+    icon: InstagramGlyph,
+    external: true,
+  },
+  {
+    label: "Falar com a mytek no WhatsApp",
+    href: `https://wa.me/${company.whatsapp}`,
+    icon: WhatsAppGlyph,
+    external: true,
+  },
+  {
+    label: "Enviar e-mail para a mytek",
+    href: `mailto:${company.email}`,
+    icon: MailIcon,
+    external: false,
+  },
+] as const;
+
 export function SiteFooter() {
   return (
     <footer className="dark border-t border-border bg-background py-14 text-foreground">
@@ -50,6 +92,21 @@ export function SiteFooter() {
           <p className="mt-4 text-xs text-muted-foreground">
             Implantação em minutos, sem precisar de equipe técnica
           </p>
+          <ul className="mt-5 flex items-center gap-3" aria-label="Contato">
+            {contactLinks.map(({ label, href, icon: Icon, external }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  aria-label={label}
+                  title={label}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition-all hover:-translate-y-0.5 hover:border-lima hover:bg-lima hover:text-lima-foreground"
+                >
+                  <Icon className="size-5" />
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
         {groups.map((group) => (
           <nav key={group.title} aria-label={group.title}>
