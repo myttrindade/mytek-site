@@ -265,8 +265,9 @@ export default function SitesPage() {
         </section>
 
         {/* 3 · O que está incluso */}
-        <section className="bg-muted py-24 lg:py-28">
-          <div className="mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[1fr_1.3fr] lg:px-8">
+        <section className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
+          <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+          <div className="relative mx-auto grid max-w-6xl gap-10 px-4 lg:grid-cols-[1fr_1.3fr] lg:px-8">
             <BlurFade>
               <span className={eyebrow}>O que está incluso</span>
               <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-4xl">
@@ -281,11 +282,11 @@ export default function SitesPage() {
             <ul className="grid gap-3">
               {sol.includes.map((item, i) => (
                 <BlurFade key={item} delay={i * 0.05}>
-                  <li className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-[0_14px_30px_-22px_rgba(94,52,247,0.45)]">
-                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <li className="flex items-start gap-3 rounded-2xl border border-white/15 bg-white/[0.06] p-4 backdrop-blur-md">
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-lima text-lima-foreground">
                       <CheckIcon className="size-3.5" />
                     </span>
-                    <span className="text-sm font-medium">{item}</span>
+                    <span className="text-sm font-medium text-white">{item}</span>
                   </li>
                 </BlurFade>
               ))}
@@ -357,8 +358,7 @@ export default function SitesPage() {
         </section>
 
         {/* 5 · Como funciona */}
-        <section className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
-          <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+        <section className="bg-muted py-24 lg:py-28">
           <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
             <span className={eyebrow}>Como funciona</span>
             <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] lg:text-5xl">
@@ -368,7 +368,7 @@ export default function SitesPage() {
             <ol className="mt-12 grid gap-6 md:grid-cols-3">
               {sol.steps.map(([title, body], i) => (
                 <li key={title} className="border-t-2 border-primary pt-4">
-                  <span className="font-mono text-sm font-bold text-lima">0{i + 1}</span>
+                  <span className="font-mono text-sm font-bold text-primary">0{i + 1}</span>
                   <h3 className="mt-2 font-heading text-xl font-bold">{title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{body}</p>
                 </li>
