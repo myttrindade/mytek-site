@@ -4,6 +4,14 @@
  * sitemap, robots.txt, canonical tags, and Open Graph URLs. Override at
  * build time with NEXT_PUBLIC_SITE_URL once a custom domain is connected.
  */
+/**
+ * Chat do site (botao flutuante). Desligado por enquanto: o CRM ainda nao
+ * atende o canal webchat com o agente de IA, entao ninguem responde ao
+ * visitante. Quando o CRM estiver pronto, troque para `true`. O codigo do
+ * widget continua em src/components/chat-widget.tsx.
+ */
+export const chatDoSiteAtivo = false;
+
 export const siteConfig = {
   name: "mytek",
   url: (
