@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowUpRightIcon,
   BellRingIcon,
+  BrainCircuitIcon,
   BrushCleaningIcon,
   DatabaseIcon,
   FlaskConicalIcon,
@@ -227,53 +228,75 @@ export function ExemploPainel() {
 
         {/* Inteligência artificial no painel */}
         <BlurFade>
-          <div className="mt-20 grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
-            <div>
-              <span className={eyebrow}>Inteligência artificial no painel</span>
-              <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] text-balance lg:text-3xl">
-                O painel aprende com o histórico da própria rede
-                <span className="text-emphasis">.</span>
-              </h3>
-              <p className="mt-4 text-muted-foreground">
-                Aqui usamos aprendizado de máquina, um tipo de inteligência
-                artificial que estuda o que já aconteceu nas vendas para
-                reconhecer padrões. Ele não decide nada sozinho: entrega uma
-                estimativa, um aviso ou uma sugestão, e quem decide é você.
-              </p>
-              <p className="mt-3 text-sm text-muted-foreground">
-                Os testes abaixo foram feitos com os dados fictícios do exemplo,
-                em que sabíamos de antemão o que tinha sido plantado. Com dados
-                de verdade, o resultado depende da qualidade do histórico.
-              </p>
-            </div>
+          <div className="dark relative mt-20 overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#5E34F7] via-[#3A1BA8] to-[#140a2a] p-6 text-foreground shadow-[0_50px_120px_-40px_rgba(94,52,247,0.9)] sm:p-8 lg:p-12">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-28 -top-28 size-[460px] rounded-full bg-[radial-gradient(circle,rgba(198,255,0,0.28),transparent_65%)]"
+            />
+            <GridPattern
+              width={48}
+              height={48}
+              className="fill-transparent stroke-white/[0.07] [mask-image:radial-gradient(ellipse_80%_80%_at_30%_30%,black,transparent)]"
+            />
+            <div className="relative grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
+              <div>
+                <span className="inline-flex items-center gap-2 rounded-full bg-lima px-3 py-1 font-mono text-[11px] font-extrabold uppercase tracking-[0.06em] text-lima-foreground">
+                  <BrainCircuitIcon className="size-3.5" />
+                  Inteligência artificial
+                </span>
+                <h3 className="mt-4 font-heading text-3xl font-extrabold leading-[1.05] tracking-[-0.035em] text-balance text-white lg:text-5xl">
+                  O painel aprende com o histórico da própria rede
+                  <span className="text-lima">.</span>
+                </h3>
+                <p className="mt-5 text-base text-white/85 lg:text-lg">
+                  Aqui usamos aprendizado de máquina, um tipo de inteligência
+                  artificial que estuda o que já aconteceu nas vendas para
+                  reconhecer padrões. Ele não decide nada sozinho: entrega uma
+                  estimativa, um aviso ou uma sugestão, e quem decide é você.
+                </p>
+                <p className="mt-4 rounded-xl border border-white/15 bg-white/[0.06] p-4 text-sm text-white/70">
+                  Os testes ao lado foram feitos com os dados fictícios do
+                  exemplo, em que sabíamos de antemão o que tinha sido plantado.
+                  Com dados de verdade, o resultado depende da qualidade do
+                  histórico.
+                </p>
+              </div>
 
-            <ul className="grid gap-4">
-              {ia.map((m) => (
-                <li
-                  key={m.title}
-                  className="rounded-3xl border border-border bg-gradient-to-b from-card to-[#F4F1FF] p-6"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#7A57FF] to-[#4A22D6] text-white ring-1 ring-white/30">
-                      <m.icon className="size-5" />
-                    </span>
-                    <h4 className="font-heading text-lg font-extrabold tracking-[-0.03em]">
-                      {m.title}
-                    </h4>
-                  </div>
-                  <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-3">
-                    {m.partes.map(([k, v]) => (
-                      <div key={k}>
-                        <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.07em] text-primary">
-                          {k}
-                        </dt>
-                        <dd className="mt-1 text-muted-foreground">{v}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </li>
-              ))}
-            </ul>
+              <ul className="grid gap-4">
+                {ia.map((m) => (
+                  <li
+                    key={m.title}
+                    className="rounded-2xl border border-white/15 bg-[#0F0819]/70 p-6 backdrop-blur-sm"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="flex size-10 items-center justify-center rounded-xl bg-lima text-lima-foreground">
+                        <m.icon className="size-5" />
+                      </span>
+                      <h4 className="font-heading text-lg font-extrabold tracking-[-0.03em] text-white">
+                        {m.title}
+                      </h4>
+                    </div>
+                    <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-3">
+                      {m.partes.map(([k, v], i) => (
+                        <div
+                          key={k}
+                          className={
+                            i === 2
+                              ? "rounded-xl border border-lima/30 bg-lima/[0.08] p-3"
+                              : "p-1"
+                          }
+                        >
+                          <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.07em] text-lima">
+                            {k}
+                          </dt>
+                          <dd className="mt-1 text-white/80">{v}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </BlurFade>
 
