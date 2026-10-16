@@ -6,7 +6,6 @@ import { ExemploPainel } from "@/components/brand/exemplo-painel";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { HeroVisual } from "@/components/brand/hero-visual";
 import { MeMarquee } from "@/components/brand/me-motion";
-import { ProductShot } from "@/components/product-shot";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { TiltCard } from "@/components/velora/tilt-card";
 import { SiteFooter } from "@/components/site-footer";
@@ -23,7 +22,6 @@ import { BlurFade } from "@/components/velora/blur-fade";
 import { GridPattern } from "@/components/velora/grid-pattern";
 import { ScrollProgress } from "@/components/velora/scroll-progress";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
-import { productShots } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -232,55 +230,6 @@ export default function Home() {
       </section>
 
       <Process />
-
-      {/* CRM em destaque */}
-      <section id="crm" className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-32">
-        <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[90px]" />
-        <div aria-hidden className="pointer-events-none absolute right-[-10%] top-1/2 size-[640px] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(94,52,247,0.35),transparent_65%)]" />
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-[1fr_1.2fr] lg:px-8">
-          <BlurFade>
-            <span className={eyebrow}>Produto em destaque</span>
-            <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
-              CRM: nenhum lead esquecido no caminho
-              <span className="text-emphasis">.</span>
-            </h2>
-            <p className="mt-5 text-lg text-muted-foreground">
-              Todo CRM registra o que já aconteceu. O da mytek olha para o que
-              parou de acontecer: quando uma oportunidade trava numa etapa, o
-              responsável é avisado antes de ela esfriar.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm">
-              {[
-                "Alerta de lead parado, direto no vendedor",
-                "WhatsApp e histórico na mesma tela do negócio",
-                "Funil visual e dashboard de origem das vendas",
-              ].map((p) => (
-                <li key={p} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground">
-                    <CheckIcon className="size-3" />
-                  </span>
-                  {p}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg">
-                <Link href="/crm">
-                  Conhecer o CRM <ArrowRightIcon className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/pricing">Ver preços</Link>
-              </Button>
-            </div>
-          </BlurFade>
-          <BlurFade delay={0.15}>
-            <div className="rounded-2xl shadow-[0_0_90px_-15px_rgba(110,72,255,0.7)]">
-              <ProductShot shot={productShots.funil} className="max-w-none" />
-            </div>
-          </BlurFade>
-        </div>
-      </section>
 
       <ExemploPainel />
 
