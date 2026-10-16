@@ -30,6 +30,12 @@ export const company = {
   addressCountry: "BR",
 
   email: "contato@mytek.com.br",
+
+  /** Perfil do Instagram, sem o @. */
+  instagram: "mytek.oficial",
+
+  /** WhatsApp no formato internacional, so numeros. */
+  whatsapp: "5511914543016",
   businessHours: "Atendimento seg–sex, 9h–18h",
 
   /**
