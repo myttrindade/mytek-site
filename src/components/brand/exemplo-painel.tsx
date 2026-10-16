@@ -70,6 +70,36 @@ const recursos = [
   },
 ] as const;
 
+const ia = [
+  {
+    icon: TrendingUpIcon,
+    title: "Previsão de vendas",
+    partes: [
+      ["O que olhou", "As vendas semana a semana, as épocas fortes de cada tipo de produto e as semanas fora do comum, que foram descartadas para não distorcer."],
+      ["O que fez", "Estimou quanto cada semana seguinte deveria vender, com uma margem de erro, para planejar compra e estoque."],
+      ["Como foi no teste", "Previu semanas que ele não tinha visto: no total da rede errou cerca de 9% (um método simples errou 17%) e, por tipo de produto, entre 10% e 25%. Serve de rumo, não de promessa."],
+    ],
+  },
+  {
+    icon: BellRingIcon,
+    title: "Aviso de dia fora do normal",
+    partes: [
+      ["O que olhou", "O ritmo de vendas, descontos e devoluções de cada loja nos últimos dias, comparado com o que é normal para ela."],
+      ["O que fez", "Montou uma lista de dias suspeitos, com o motivo, para alguém ir conferir o que houve."],
+      ["Como foi no teste", "Dos 37 problemas que plantamos nos dados, apontou 34. Dias com a loja parada por falha ainda passam despercebidos."],
+    ],
+  },
+  {
+    icon: LightbulbIcon,
+    title: "Sugestão do que vender junto",
+    partes: [
+      ["O que olhou", "O que costuma ir junto na mesma compra, em milhares de vendas."],
+      ["O que fez", "Listou pares de produtos que se vendem juntos mais do que seria por acaso, para montar ofertas e organizar a loja."],
+      ["Como foi no teste", "Testado com vendas que ele nunca tinha visto, acertou o que o cliente levou junto em 84% dos casos. Indicar só os mais vendidos acertaria 8%."],
+    ],
+  },
+] as const;
+
 export function ExemploPainel() {
   return (
     <section id="exemplo" className="relative overflow-hidden bg-background py-24 lg:py-32">
@@ -192,6 +222,58 @@ export function ExemploPainel() {
                 </div>
               </div>
             </div>
+          </div>
+        </BlurFade>
+
+        {/* Inteligência artificial no painel */}
+        <BlurFade>
+          <div className="mt-20 grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
+            <div>
+              <span className={eyebrow}>Inteligência artificial no painel</span>
+              <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] text-balance lg:text-3xl">
+                O painel aprende com o histórico da própria rede
+                <span className="text-emphasis">.</span>
+              </h3>
+              <p className="mt-4 text-muted-foreground">
+                Aqui usamos aprendizado de máquina, um tipo de inteligência
+                artificial que estuda o que já aconteceu nas vendas para
+                reconhecer padrões. Ele não decide nada sozinho: entrega uma
+                estimativa, um aviso ou uma sugestão, e quem decide é você.
+              </p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Os testes abaixo foram feitos com os dados fictícios do exemplo,
+                em que sabíamos de antemão o que tinha sido plantado. Com dados
+                de verdade, o resultado depende da qualidade do histórico.
+              </p>
+            </div>
+
+            <ul className="grid gap-4">
+              {ia.map((m) => (
+                <li
+                  key={m.title}
+                  className="rounded-3xl border border-border bg-gradient-to-b from-card to-[#F4F1FF] p-6"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#7A57FF] to-[#4A22D6] text-white ring-1 ring-white/30">
+                      <m.icon className="size-5" />
+                    </span>
+                    <h4 className="font-heading text-lg font-extrabold tracking-[-0.03em]">
+                      {m.title}
+                    </h4>
+                  </div>
+                  <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-3">
+                    {m.partes.map(([k, v]) => (
+                      <div key={k}>
+                        <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.07em] text-primary">
+                          {k}
+                        </dt>
+                        <dd className="mt-1 text-muted-foreground">{v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </li>
+              ))}
+            </ul>
           </div>
         </BlurFade>
 
