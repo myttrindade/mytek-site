@@ -38,7 +38,7 @@ const sol = getSolution("sites")!;
 export const metadata: Metadata = {
   title: "Sites",
   description:
-    "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca. R$1.697, valor único.",
+    "Sites institucionais rápidos, bons no celular e no Google, com a cara da sua marca.",
   alternates: { canonical: "/solucoes/sites" },
 };
 
@@ -307,23 +307,28 @@ export default function SitesPage() {
                     <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
                       Quanto custa
                     </span>
-                    <p className="mt-3 font-heading text-6xl font-extrabold tracking-[-0.05em] text-white">
-                      R$1.697
+                    <p className="mt-3 font-heading text-4xl font-extrabold tracking-[-0.04em] text-balance text-white lg:text-5xl">
+                      Valor fechado antes de começar
                     </p>
-                    <p className="mt-1 text-sm text-white/75">valor único, pago uma vez</p>
                     <p className="mt-3 max-w-sm text-white/80">
-                      Manutenção opcional: R$87/mês. Ajustes em um site que já
-                      existe (domínio, logo, imagens e até 1 página nova):
-                      R$500. O que fugir do escopo é combinado na proposta,
-                      antes de qualquer trabalho começar.
+                      Os valores do site, da manutenção opcional e de ajustes em
+                      um site que já existe estão na página de preços. O que
+                      fugir do escopo é combinado na proposta, antes de qualquer
+                      trabalho começar.
                     </p>
-                    <div className="mt-8">
+                    <div className="mt-8 flex flex-wrap items-center gap-5">
                       <ShimmerButton
                         href="/contact"
                         className="bg-lima text-lima-foreground"
                       >
                         Pedir um orçamento <ArrowRightIcon className="size-4" />
                       </ShimmerButton>
+                      <Link
+                        href="/pricing"
+                        className="text-sm font-semibold text-white underline underline-offset-4 hover:text-lima"
+                      >
+                        Ver preços
+                      </Link>
                     </div>
                   </div>
                   <div>

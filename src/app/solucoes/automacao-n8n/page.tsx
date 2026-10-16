@@ -20,7 +20,6 @@ import { FlowShowcase } from "@/components/brand/flow-showcase";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { ServicePrice } from "@/components/service-price";
 import { eyebrow } from "@/components/solutions-grid";
 import {
   Accordion,
@@ -271,7 +270,6 @@ export default function AutomacaoPage() {
           </div>
         </section>
 
-        <ServicePrice slug="automacao-n8n" />
 
         {/* 6 · Perguntas */}
         <section className="bg-muted py-24 lg:py-28">

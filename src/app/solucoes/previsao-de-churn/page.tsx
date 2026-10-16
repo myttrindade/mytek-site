@@ -356,9 +356,7 @@ export default function ChurnPage() {
                 {
                   tag: "Avulsa",
                   name: "Previsão de churn",
-                  price: "R$147",
-                  unit: "/mês",
-                  note: "mais R$397 de implantação, paga uma vez só. Para quem já tem CRM",
+                  note: "Para quem já tem CRM. Implantação paga uma vez e depois a mensalidade.",
                   items: [
                     "Análise e preparação do seu histórico de clientes",
                     "Modelo treinado e avaliado com os seus dados",
@@ -372,9 +370,7 @@ export default function ChurnPage() {
                 {
                   tag: "Pacote CRM + Churn",
                   name: "CRM + Churn",
-                  price: "R$397",
-                  unit: "/mês",
-                  note: "mais R$447 de implantação, paga uma vez só",
+                  note: "Junto com o CRM e o agente de IA. Implantação paga uma vez e depois a mensalidade.",
                   items: [
                     "CRM com WhatsApp e agente de IA",
                     "Previsão de churn: avisa quais clientes estão para sair",
@@ -412,17 +408,17 @@ export default function ChurnPage() {
                         <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] [transform:translateZ(24px)]">
                           {plan.name}
                         </h3>
-                        <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em] [transform:translateZ(34px)]">
-                          {plan.price}
-                          <span className="text-lg font-semibold opacity-70">{plan.unit}</span>
-                        </p>
                         <p
                           className={
-                            "mt-2 text-sm " +
+                            "mt-3 text-sm " +
                             (plan.featured ? "text-white/80" : "text-muted-foreground")
                           }
                         >
-                          {plan.note}
+                          {plan.note}{" "}
+                          <Link href="/pricing" className="font-semibold underline underline-offset-4">
+                            Ver valores na página de preços
+                          </Link>
+                          .
                         </p>
                         <ul className="mt-6 flex-1 space-y-3 text-sm">
                           {plan.items.map((f) => (

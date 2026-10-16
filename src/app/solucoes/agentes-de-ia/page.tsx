@@ -17,7 +17,6 @@ import { Card3D } from "@/components/brand/card-3d";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { ServicePrice } from "@/components/service-price";
 import { eyebrow } from "@/components/solutions-grid";
 import {
   Accordion,
@@ -381,7 +380,6 @@ export default function AgentesPage() {
           </div>
         </section>
 
-        <ServicePrice slug="agentes-de-ia" />
 
         {/* 7 · Perguntas */}
         <section className="py-24 lg:py-28">
