@@ -296,26 +296,24 @@ export default function CrmPage() {
       </section>
 
       {/* faixa de fatos logo abaixo da capa */}
-      <section className="dark bg-background py-10 text-foreground">
+      <section className="bg-background py-10">
         <div className="mx-auto max-w-6xl px-4 lg:px-8">
-            <ul className="mb-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-muted-foreground">
-                {trustPoints.map((t) => (
-                  <li key={t} className="flex items-center gap-2">
-                    <CheckIcon className="size-3.5 shrink-0 text-lima" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
+          <ul className="mb-6 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-muted-foreground">
+            {trustPoints.map((t) => (
+              <li key={t} className="flex items-center gap-2">
+                <CheckIcon className="size-3.5 shrink-0 text-primary" />
+                {t}
+              </li>
+            ))}
+          </ul>
 
-        
-        <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-primary/20 bg-primary/15 shadow-[0_24px_46px_-28px_rgba(94,52,247,0.45)] lg:grid-cols-4">
             {heroStats.map((stat) => (
               <div
                 key={stat.label}
-                className="flex flex-col gap-1 bg-[#0F0819] px-6 py-5"
+                className="flex flex-col gap-1 bg-gradient-to-b from-white to-[#F4F1FF] px-6 py-5"
               >
-                <span className="font-heading text-2xl font-extrabold tracking-[-0.03em] whitespace-nowrap text-lima lg:text-3xl">
+                <span className="font-heading text-2xl font-extrabold tracking-[-0.03em] whitespace-nowrap text-primary lg:text-3xl">
                   {"value" in stat ? (
                     <NumberTicker value={stat.value} suffix={stat.suffix} />
                   ) : (
@@ -328,7 +326,6 @@ export default function CrmPage() {
               </div>
             ))}
           </div>
-        </div>
         </div>
       </section>
 
