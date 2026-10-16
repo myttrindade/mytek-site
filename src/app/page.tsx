@@ -171,7 +171,7 @@ export default function Home() {
           </BlurFade>
         </div>
 
-        <MeMarquee className="relative mt-4 pb-6" />
+        <MeMarquee rows={1} duration={20} className="relative mt-4 pb-6" />
         <GlowArc direction="down" className="absolute inset-x-0 bottom-0 h-[90px]" />
       </section>
 
