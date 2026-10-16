@@ -229,9 +229,9 @@ export default function Home() {
         </div>
       </section>
 
-      <Process />
-
       <ExemploPainel />
+
+      <Process />
 
       {/* Perguntas */}
       <section id="faq" className="bg-muted py-24 lg:py-28">
