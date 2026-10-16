@@ -138,6 +138,11 @@ export function ChatWidget() {
 
     // Validação antes da rede: o CRM recusaria com 400 e o visitante veria um
     // erro genérico sem saber QUAL campo consertar.
+    const primeiraMensagem = entrada.trim();
+    if (!primeiraMensagem) {
+      setErro("Escreva a sua mensagem.");
+      return;
+    }
     if (mascaraNome(form.name).trim().length < 2) {
       setErro("Escreva seu nome.");
       return;
@@ -163,16 +168,29 @@ export function ChatWidget() {
       if (!res.ok || !json.data) {
         throw new Error(json.error?.message ?? "falha ao abrir a conversa");
       }
-      sessionStorage.setItem(STORAGE_KEY, json.data.session_token);
-      setSessao(json.data.session_token);
+      const token = json.data.session_token;
+      sessionStorage.setItem(STORAGE_KEY, token);
+
+      // A primeira mensagem vai junto com a abertura: para quem escreve, é um
+      // envio só, sem tela de "cadastro" no meio do caminho.
+      const idLocal = `local-${Date.now()}`;
+      const enviada = await fetch(`${base}/messages`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Webchat-Session": token },
+        body: JSON.stringify({ body: primeiraMensagem }),
+      });
       setMensagens([
-        {
-          id: "inicio",
-          autor: "atendimento",
-          texto: `Prazer, ${form.name.split(" ")[0]}! Me conta: como posso ajudar?`,
-          em: "",
-        },
+        SAUDACAO,
+        ...(enviada.ok
+          ? [{ id: idLocal, autor: "visitante" as const, texto: primeiraMensagem, em: new Date().toISOString() }]
+          : []),
       ]);
+      if (enviada.ok) {
+        setEntrada("");
+      } else {
+        setErro("A conversa abriu, mas a mensagem não foi enviada. Tente de novo.");
+      }
+      setSessao(token);
     } catch {
       setErro("Não consegui abrir a conversa agora. Tente de novo em instantes.");
     } finally {
@@ -273,31 +291,44 @@ export function ChatWidget() {
 
       {!sessao ? (
         <form onSubmit={abrirConversa} className="border-t p-4 space-y-3">
-          <input
-            type="text"
-            inputMode="text"
-            autoComplete="name"
-            placeholder="Seu nome"
-            value={form.name}
-            onChange={(e) => setForm((f) => ({ ...f, name: mascaraNome(e.target.value) }))}
-            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+          <textarea
+            rows={3}
+            placeholder="Escreva sua mensagem..."
+            value={entrada}
+            onChange={(e) => setEntrada(e.target.value)}
+            className="w-full resize-none px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             required
           />
-          <input
-            type="email"
-            inputMode="email"
-            autoComplete="email"
-            placeholder="Seu email"
-            value={form.email}
-            onChange={(e) => setForm((f) => ({ ...f, email: mascaraEmail(e.target.value) }))}
-            className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          />
+          <p className="text-xs text-muted-foreground">
+            Seu nome e e-mail servem só para a gente te responder. Não precisa criar conta.
+          </p>
+          <div className="grid grid-cols-2 gap-2">
+            <input
+              type="text"
+              inputMode="text"
+              autoComplete="name"
+              placeholder="Seu nome"
+              value={form.name}
+              onChange={(e) => setForm((f) => ({ ...f, name: mascaraNome(e.target.value) }))}
+              className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+            <input
+              type="email"
+              inputMode="email"
+              autoComplete="email"
+              placeholder="Seu e-mail"
+              value={form.email}
+              onChange={(e) => setForm((f) => ({ ...f, email: mascaraEmail(e.target.value) }))}
+              className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
           <input
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="Seu telefone (opcional)"
+            placeholder="Telefone (opcional)"
             value={form.phone}
             onChange={(e) => setForm((f) => ({ ...f, phone: mascaraTelefone(e.target.value) }))}
             className="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary"
@@ -307,7 +338,7 @@ export function ChatWidget() {
             disabled={enviando}
             className="w-full bg-primary text-white py-2 rounded-lg font-semibold hover:bg-primary/85 transition-colors disabled:bg-gray-400"
           >
-            {enviando ? "Abrindo…" : "Começar conversa"}
+            {enviando ? "Enviando…" : "Enviar mensagem"}
           </button>
         </form>
       ) : (
