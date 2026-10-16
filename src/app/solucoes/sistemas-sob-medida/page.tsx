@@ -221,7 +221,7 @@ export default function SistemasPage() {
                     Pedir um orçamento
                   </ShimmerButton>
                   <Button variant="ghost" size="lg" asChild>
-                    <a href="#exemplos">Ver o que já construímos ↓</a>
+                    <a href="#exemplo">Ver um exemplo ↓</a>
                   </Button>
                 </div>
               </BlurFade>
@@ -343,6 +343,68 @@ export default function SistemasPage() {
                   </div>
                 </BlurFade>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 4b · Exemplo de projeto */}
+        <section
+          id="exemplo"
+          className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28"
+        >
+          <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+          <div className="relative mx-auto max-w-5xl px-4 lg:px-8">
+            <span className={eyebrow}>Exemplo de projeto</span>
+            <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
+              Um painel de gestão para uma rede de farmácias
+              <span className="text-emphasis">.</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
+              Junta as vendas de todas as lojas e canais, mostra o lucro de
+              verdade e usa inteligência artificial para prever as vendas,
+              avisar quando algo foge do normal e sugerir o que vender junto.
+            </p>
+            <figure className="mt-10">
+              <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#0F0819] shadow-[0_40px_100px_-30px_rgba(110,72,255,0.7)]">
+                <video
+                  src="/brand/painel-varejo/demo.mp4"
+                  poster="/brand/painel-varejo/poster.jpg"
+                  controls
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Gravação do painel de gestão para uma rede de farmácias: vendas, lucro, lojas, previsões, avisos e simulador"
+                  className="aspect-video w-full bg-black"
+                />
+              </div>
+              <figcaption className="mt-3 text-center text-[11px] text-muted-foreground">
+                Painel de exemplo, com lojas, vendas e clientes fictícios.
+              </figcaption>
+            </figure>
+            <ul className="mt-8 grid gap-4 md:grid-cols-3">
+              {[
+                ["Previsão de vendas", "Estima quanto cada semana seguinte deve vender, com margem de erro."],
+                ["Aviso de dia fora do normal", "Lista os dias suspeitos de cada loja, com o motivo."],
+                ["Sugestão de venda junto", "Mostra o que costuma ser comprado junto, para montar ofertas."],
+              ].map(([t, b]) => (
+                <li key={t} className="rounded-2xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-sm">
+                  <p className="font-heading text-base font-extrabold text-white">{t}</p>
+                  <p className="mt-1 text-sm text-white/70">{b}</p>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button asChild variant="outline" className="rounded-full border-white/25 bg-white/[0.06] text-white hover:bg-white/15">
+                <Link href="/solucoes/painel-de-gestao">
+                  Ver o painel em detalhe
+                  <ArrowUpRightIcon className="size-4" />
+                </Link>
+              </Button>
+              <p className="max-w-md text-xs text-muted-foreground">
+                É um exemplo com dados inventados. Num projeto de verdade, o
+                painel nasce dos dados do seu negócio.
+              </p>
             </div>
           </div>
         </section>
