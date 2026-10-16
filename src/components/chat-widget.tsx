@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
 
+import { company } from "@/lib/company";
 import {
   emailValido,
   mascaraEmail,
@@ -49,6 +50,25 @@ interface RespostaMensagens {
   error?: { code: string; message: string };
 }
 
+/**
+ * Quem responde é o atendimento (ou a IA) no CRM. Se ninguém respondeu logo, o
+ * visitante não pode ficar olhando para uma tela muda: este aviso diz que a
+ * mensagem chegou e quando esperar a resposta.
+ */
+const ESPERA_AVISO_MS = 8000;
+
+function telefoneBonito(numero: string) {
+  const d = numero.replace(/\D/g, "").replace(/^55/, "");
+  return d.length === 11 ? `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}` : numero;
+}
+
+const AVISO_RECEBIDO: Mensagem = {
+  id: "aviso-recebido",
+  autor: "atendimento",
+  texto: `Recebemos a sua mensagem! A equipe responde por aqui e no e-mail que você informou, em até 4h úteis. Se for urgente, chame no WhatsApp: ${telefoneBonito(company.whatsapp)}.`,
+  em: "",
+};
+
 const SAUDACAO: Mensagem = {
   id: "saudacao",
   autor: "atendimento",
@@ -69,6 +89,27 @@ export function ChatWidget() {
   // Cursor do polling. Em ref e não em state: mudá-lo não deve re-renderizar,
   // e o intervalo precisa enxergar sempre o valor mais recente.
   const desdeRef = useRef<string | null>(null);
+  const avisoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /** Agenda o aviso de "recebemos" uma única vez, se ninguém tiver respondido até lá. */
+  const agendarAviso = useCallback(() => {
+    if (avisoRef.current) return;
+    avisoRef.current = setTimeout(() => {
+      setMensagens((atual) => {
+        const jaRespondeu = atual.some(
+          (m) => m.autor === "atendimento" && m.id !== "saudacao" && m.id !== "aviso-recebido",
+        );
+        const jaAvisou = atual.some((m) => m.id === "aviso-recebido");
+        return jaRespondeu || jaAvisou ? atual : [...atual, AVISO_RECEBIDO];
+      });
+    }, ESPERA_AVISO_MS);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (avisoRef.current) clearTimeout(avisoRef.current);
+    };
+  }, []);
 
   /**
    * A sessão é lida ao ABRIR, não num efeito de montagem. Dois motivos: o site
@@ -187,6 +228,7 @@ export function ChatWidget() {
       ]);
       if (enviada.ok) {
         setEntrada("");
+        agendarAviso();
       } else {
         setErro("A conversa abriu, mas a mensagem não foi enviada. Tente de novo.");
       }
@@ -222,6 +264,7 @@ export function ChatWidget() {
       });
       if (!res.ok) throw new Error(String(res.status));
       void puxarRespostas(sessao);
+      agendarAviso();
     } catch {
       setMensagens((atual) => atual.filter((m) => m.id !== idLocal));
       setEntrada(texto);
@@ -250,7 +293,7 @@ export function ChatWidget() {
       <div className="bg-primary text-white p-4 rounded-t-2xl flex justify-between items-center">
         <div>
           <h3 className="font-semibold">Suporte mytek</h3>
-          <p className="text-xs opacity-90">Respondemos em minutos</p>
+          <p className="text-xs opacity-90">Respondemos o mais rápido possível</p>
         </div>
         <button
           onClick={() => setAberto(false)}
