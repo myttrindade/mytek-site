@@ -315,8 +315,8 @@ export default function DashboardsPage() {
             <figure className="mt-10">
               <div className="overflow-hidden rounded-2xl border border-white/12 bg-[#0F0819] shadow-[0_40px_100px_-30px_rgba(110,72,255,0.7)]">
                 <video
-                  src="/brand/dashboards/demo.mp4"
-                  poster="/brand/dashboards/poster.jpg"
+                  src="/brand/dashboards/demo-powerbi.mp4"
+                  poster="/brand/dashboards/poster-powerbi.jpg"
                   controls
                   muted
                   loop
