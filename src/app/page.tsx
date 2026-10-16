@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRightIcon, CheckIcon, RocketIcon } from "lucide-react";
 import type { Metadata } from "next";
 
+import { ExemploPainel } from "@/components/brand/exemplo-painel";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { HeroVisual } from "@/components/brand/hero-visual";
 import { MeMarquee } from "@/components/brand/me-motion";
@@ -35,6 +36,7 @@ const quickLinks = [
   ["MyHub", "/solucoes/mytek-hub"],
   ["MyCash", "/solucoes/mycash"],
   ["Dashboards", "/solucoes/dashboards"],
+  ["Exemplo de painel", "/#exemplo"],
   ["Agentes de IA", "/solucoes/agentes-de-ia"],
   ["Automação n8n", "/solucoes/automacao-n8n"],
   ["Previsão de churn", "/solucoes/previsao-de-churn"],
@@ -279,6 +281,8 @@ export default function Home() {
           </BlurFade>
         </div>
       </section>
+
+      <ExemploPainel />
 
       {/* Perguntas */}
       <section id="faq" className="bg-muted py-24 lg:py-28">
