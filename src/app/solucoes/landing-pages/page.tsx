@@ -258,8 +258,9 @@ export default function LandingPagesPage() {
         </section>
 
         {/* 3 · O que você recebe */}
-        <section className="bg-muted py-24 lg:py-28">
-          <div className="mx-auto max-w-6xl px-4 lg:px-8">
+        <section className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
+          <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+          <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
             <BlurFade>
               <span className={eyebrow}>O que você recebe</span>
               <h2 className="mt-3 max-w-2xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
@@ -271,18 +272,18 @@ export default function LandingPagesPage() {
               {perks.map((p, i) => (
                 <BlurFade key={p.title} delay={i * 0.06}>
                   <div className="h-full [perspective:1200px]">
-                    <Card3D className="h-full" maxTilt={10} glare="rgba(94,52,247,0.14)">
+                    <Card3D className="h-full" maxTilt={10} glare="rgba(255,255,255,0.12)">
                       <div
                         style={{ transformStyle: "preserve-3d" }}
-                        className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-primary/20 bg-gradient-to-b from-white to-[#EFEAFF] p-6 shadow-[0_24px_46px_-24px_rgba(94,52,247,0.5)]"
+                        className="relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/15 bg-white/[0.06] p-6 backdrop-blur-md shadow-[0_24px_46px_-24px_rgba(0,0,0,0.6)]"
                       >
-                        <span className="flex size-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#7A57FF] to-[#4A22D6] text-white shadow-[0_12px_26px_-10px_rgba(94,52,247,0.8)] [transform:translateZ(40px)]">
+                        <span className="flex size-12 items-center justify-center rounded-2xl bg-lima text-lima-foreground shadow-[0_12px_28px_-10px_rgba(198,255,0,0.6)] [transform:translateZ(40px)]">
                           <p.icon className="size-6" />
                         </span>
-                        <h3 className="mt-5 font-heading text-lg font-extrabold [transform:translateZ(28px)]">
+                        <h3 className="mt-5 font-heading text-lg font-extrabold text-white [transform:translateZ(28px)]">
                           {p.title}
                         </h3>
-                        <p className="mt-2 text-sm text-muted-foreground [transform:translateZ(16px)]">
+                        <p className="mt-2 text-sm text-white/70 [transform:translateZ(16px)]">
                           {p.body}
                         </p>
                       </div>
@@ -394,8 +395,7 @@ export default function LandingPagesPage() {
         </section>
 
         {/* 5 · Como funciona */}
-        <section className="dark relative overflow-hidden bg-background py-24 text-foreground lg:py-28">
-          <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+        <section className="bg-muted py-24 lg:py-28">
           <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
             <span className={eyebrow}>Como funciona</span>
             <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] lg:text-5xl">
@@ -405,7 +405,7 @@ export default function LandingPagesPage() {
             <ol className="mt-12 grid gap-6 md:grid-cols-3">
               {sol.steps.map(([title, body], i) => (
                 <li key={title} className="border-t-2 border-primary pt-4">
-                  <span className="font-mono text-sm font-bold text-lima">0{i + 1}</span>
+                  <span className="font-mono text-sm font-bold text-primary">0{i + 1}</span>
                   <h3 className="mt-2 font-heading text-xl font-bold">{title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{body}</p>
                 </li>

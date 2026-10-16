@@ -57,6 +57,9 @@ export default async function SolutionPage({ params }: Props) {
   const s = getSolution(slug);
   if (!s) notFound();
 
+  // Sem vídeo de demonstração, "Como funciona" faz a faixa escura do meio.
+  const escuroNoMeio = !(s.slug === "mytek-hub" && hubDemo.src);
+
   const others = detailSolutions.filter((o) => o.slug !== s.slug).slice(0, 4);
 
   return (
@@ -157,8 +160,18 @@ export default async function SolutionPage({ params }: Props) {
         )}
 
         {/* Como funciona */}
-        <section id="como-funciona" className="bg-muted py-20 lg:py-24">
-          <div className="mx-auto max-w-6xl px-4 lg:px-8">
+        <section
+          id="como-funciona"
+          className={
+            escuroNoMeio
+              ? "dark relative overflow-hidden bg-background py-20 text-foreground lg:py-24"
+              : "bg-muted py-20 lg:py-24"
+          }
+        >
+          {escuroNoMeio && (
+            <GlowArc direction="up" className="absolute inset-x-0 top-0 h-[80px]" />
+          )}
+          <div className="relative mx-auto max-w-6xl px-4 lg:px-8">
             <span className={eyebrow}>Como funciona</span>
             <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.035em] lg:text-4xl">
               Em {s.steps.length} etapas, sem surpresa
@@ -166,7 +179,12 @@ export default async function SolutionPage({ params }: Props) {
             <ol className="mt-10 grid gap-6 md:grid-cols-3">
               {s.steps.map(([title, body], i) => (
                 <li key={title} className="border-t-2 border-primary pt-4">
-                  <span className="font-mono text-sm font-bold text-primary">
+                  <span
+                    className={
+                      "font-mono text-sm font-bold " +
+                      (escuroNoMeio ? "text-lima" : "text-primary")
+                    }
+                  >
                     0{i + 1}
                   </span>
                   <h3 className="mt-2 font-heading text-xl font-bold">{title}</h3>
