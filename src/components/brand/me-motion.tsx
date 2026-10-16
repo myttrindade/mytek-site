@@ -42,11 +42,14 @@ const edgeFade =
  */
 export function MeMarquee({
   rows = 2,
+  duration = 46,
   tone = "#3A2A75",
   accent = "#C6FF00",
   className,
 }: {
   rows?: number;
+  /** Segundos para a fileira dar uma volta. Menor = mais rápido. */
+  duration?: number;
   tone?: string;
   accent?: string;
   className?: string;
@@ -63,7 +66,7 @@ export function MeMarquee({
           className="me-marquee-row flex w-max gap-5"
           style={{
             animationDirection: r % 2 ? "reverse" : "normal",
-            animationDuration: `${46 + r * 8}s`,
+            animationDuration: `${duration + r * 8}s`,
           }}
         >
           {Array.from({ length: count * 2 }, (_, i) => {
