@@ -307,13 +307,13 @@ export default function CrmPage() {
             ))}
           </ul>
 
-          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-primary/20 bg-primary/15 shadow-[0_24px_46px_-28px_rgba(94,52,247,0.45)] lg:grid-cols-4">
+          <div className="dark grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/[0.07] shadow-[0_24px_46px_-24px_rgba(94,52,247,0.55)] lg:grid-cols-4">
             {heroStats.map((stat) => (
               <div
                 key={stat.label}
-                className="flex flex-col gap-1 bg-gradient-to-b from-white to-[#F4F1FF] px-6 py-5"
+                className="flex flex-col gap-1 bg-[#0F0819] px-6 py-5"
               >
-                <span className="font-heading text-2xl font-extrabold tracking-[-0.03em] whitespace-nowrap text-primary lg:text-3xl">
+                <span className="font-heading text-2xl font-extrabold tracking-[-0.03em] whitespace-nowrap text-lima lg:text-3xl">
                   {"value" in stat ? (
                     <NumberTicker value={stat.value} suffix={stat.suffix} />
                   ) : (
