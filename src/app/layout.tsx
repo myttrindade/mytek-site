@@ -3,7 +3,7 @@ import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 import { company, isFilled } from "@/lib/company";
-import { siteConfig } from "@/lib/site-config";
+import { chatDoSiteAtivo, siteConfig } from "@/lib/site-config";
 import { ChatWidget } from "@/components/chat-widget";
 import { IntroSplash } from "@/components/brand/intro-splash";
 
@@ -103,7 +103,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
         />
         {children}
-        <ChatWidget />
+        {chatDoSiteAtivo && <ChatWidget />}
       </body>
     </html>
   );
