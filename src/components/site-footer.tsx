@@ -5,6 +5,8 @@ import { MytekLogo } from "@/components/mytek-logo";
 import { hasCheckoutLinks } from "@/lib/checkout";
 import { mostrarValores } from "@/lib/site-config";
 import { company, hasLegalIdentity, isFilled } from "@/lib/company";
+import { localHref, makeT, type Lang } from "@/lib/i18n";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { cn } from "@/lib/utils";
 
 const groups = [
@@ -78,28 +80,29 @@ const contactLinks = [
   },
 ] as const;
 
-export function SiteFooter() {
+export function SiteFooter({ lang = "pt" }: { lang?: Lang }) {
+  const t = makeT(lang);
   return (
     <footer className="dark border-t border-border bg-background py-14 text-foreground">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-[1.4fr_1fr_1fr_1fr] lg:px-8">
         <div>
-          <Link href="/" className="flex items-center gap-2 font-semibold">
+          <Link href={localHref(lang, "/")} className="flex items-center gap-2 font-semibold">
             <MytekLogo />
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-            CRM com WhatsApp, landing page e dashboard. Nenhum lead esquecido
-            no caminho.
+            {t("CRM com WhatsApp, landing page e dashboard. Nenhum lead esquecido no caminho.")}
           </p>
           <p className="mt-4 text-xs text-muted-foreground">
-            Implantação em minutos, sem precisar de equipe técnica
+            {t("Implantação em minutos, sem precisar de equipe técnica")}
           </p>
-          <ul className="mt-5 flex items-center gap-3" aria-label="Contato">
+          <LanguageSwitcher className="mt-5" />
+          <ul className="mt-5 flex items-center gap-3" aria-label={t("Contato")}>
             {contactLinks.map(({ label, href, icon: Icon, external }) => (
               <li key={label}>
                 <a
                   href={href}
-                  aria-label={label}
-                  title={label}
+                  aria-label={t(label)}
+                  title={t(label)}
                   {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="flex size-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition-all hover:-translate-y-0.5 hover:border-lima hover:bg-lima hover:text-lima-foreground"
                 >
@@ -110,16 +113,16 @@ export function SiteFooter() {
           </ul>
         </div>
         {groups.map((group) => (
-          <nav key={group.title} aria-label={group.title}>
-            <h3 className="text-sm font-semibold">{group.title}</h3>
+          <nav key={group.title} aria-label={t(group.title)}>
+            <h3 className="text-sm font-semibold">{t(group.title)}</h3>
             <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
               {group.links.map((link) => (
                 <li key={link.text}>
                   <Link
-                    href={link.href}
+                    href={localHref(lang, link.href)}
                     className="transition-colors hover:text-foreground"
                   >
-                    {link.text}
+                    {t(link.text)}
                   </Link>
                 </li>
               ))}
@@ -176,16 +179,16 @@ export function SiteFooter() {
           hasLegalIdentity ? "mt-6" : "mt-12"
         )}
       >
-        <span>© {new Date().getFullYear()} mytek. Todos os direitos reservados.</span>
+        <span>© {new Date().getFullYear()} mytek. {t("Todos os direitos reservados.")}</span>
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
           {company.dataHostedInBrazil && (
-            <span>Dados hospedados no Brasil, sob a LGPD</span>
+            <span>{t("Dados hospedados no Brasil, sob a LGPD")}</span>
           )}
           <Link href="/politica-privacidade" className="transition-colors hover:text-foreground">
-            Política de Privacidade
+            {t("Política de Privacidade")}
           </Link>
           <Link href="/termos" className="transition-colors hover:text-foreground">
-            Termos de Serviço
+            {t("Termos de Serviço")}
           </Link>
         </div>
       </div>

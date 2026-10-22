@@ -94,7 +94,7 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{if(/[?&]intro=1/.test(location.search))sessionStorage.removeItem('mytek-intro');if(sessionStorage.getItem('mytek-intro'))document.documentElement.classList.add('intro-seen');else sessionStorage.setItem('mytek-intro','1')}catch(e){}",
+              "try{var l=location.pathname.match(/^\/(es|en)(\/|$)/);if(l)document.documentElement.lang=l[1];if(/[?&]intro=1/.test(location.search))sessionStorage.removeItem('mytek-intro');if(sessionStorage.getItem('mytek-intro'))document.documentElement.classList.add('intro-seen');else sessionStorage.setItem('mytek-intro','1')}catch(e){}",
           }}
         />
         <IntroSplash />
