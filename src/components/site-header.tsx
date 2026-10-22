@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { mostrarValores } from "@/lib/site-config";
 
 import { Button } from "@/components/ui/button";
 import { MytekLogo } from "@/components/mytek-logo";
@@ -15,7 +16,7 @@ import { MobileNav, type NavLink } from "@/components/mobile-nav";
 const navLinks: readonly NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/#solucoes", label: "Soluções" },
-  { href: "/pricing", label: "Preço" },
+  ...(mostrarValores ? [{ href: "/pricing", label: "Preço" }] : []),
   { href: "/about", label: "Sobre" },
 ];
 

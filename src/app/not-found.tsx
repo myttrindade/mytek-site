@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { mostrarValores } from "@/lib/site-config";
 import { HomeIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -32,9 +33,11 @@ export default function NotFound() {
                   Voltar ao início
                 </Link>
               </Button>
-              <Button variant="ghost" size="lg" asChild>
-                <Link href="/pricing">Ver preços</Link>
-              </Button>
+              {mostrarValores && (
+                <Button variant="ghost" size="lg" asChild>
+                  <Link href="/pricing">Ver preços</Link>
+                </Button>
+              )}
             </div>
           </BlurFade>
         </div>

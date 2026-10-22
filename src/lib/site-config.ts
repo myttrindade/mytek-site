@@ -12,6 +12,15 @@
  */
 export const chatDoSiteAtivo = false;
 
+/**
+ * Valores no site (R$, planos, implantação, mensalidade). Desligado por
+ * enquanto: a página de Preço, o menu "Preço", a página de pagamento e todo
+ * valor nas outras páginas ficam ocultos. Tudo continua no código, então
+ * para os valores voltarem exatamente como eram, troque para `true`.
+ * Também troque o `public/llms.txt` pelo `src/lib/llms-com-valores.txt`.
+ */
+export const mostrarValores = false;
+
 export const siteConfig = {
   name: "mytek",
   url: (
@@ -29,7 +38,8 @@ export const siteConfig = {
    */
   tagline: "Software e IA para negócios que vendem por conversa",
   description:
-    "CRM com WhatsApp, MyHub (organização do time), MyCash (financeiro para empresas), sites, landing pages, dashboards, agentes de IA, automações com n8n e previsão de churn. CRM a partir de R$137/mês, mais implantação.",
+    "CRM com WhatsApp, MyHub (organização do time), MyCash (financeiro para empresas), sites, landing pages, dashboards, agentes de IA, automações com n8n e previsão de churn." +
+    (mostrarValores ? " CRM a partir de R$137/mês, mais implantação." : ""),
 } as const;
 
 /**

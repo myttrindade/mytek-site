@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-import { siteConfig } from "@/lib/site-config";
+import { mostrarValores, siteConfig } from "@/lib/site-config";
 
 // Prerender the PNG at build time so it ships as a static asset (output: export).
 export const dynamic = "force-static";
@@ -88,8 +88,12 @@ export default function OpengraphImage() {
           <span>Funil pronto</span>
           <span style={{ color: "#6E48FF" }}>•</span>
           <span>Automação de WhatsApp</span>
-          <span style={{ color: "#6E48FF" }}>•</span>
-          <span>CRM a partir de R$137/mês</span>
+          {mostrarValores && (
+            <>
+              <span style={{ color: "#6E48FF" }}>•</span>
+              <span>CRM a partir de R$137/mês</span>
+            </>
+          )}
         </div>
       </div>
     ),

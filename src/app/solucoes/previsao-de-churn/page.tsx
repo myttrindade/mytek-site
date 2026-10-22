@@ -19,6 +19,7 @@ import { Card3D } from "@/components/brand/card-3d";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { mostrarValores } from "@/lib/site-config";
 import { eyebrow } from "@/components/solutions-grid";
 import {
   Accordion,
@@ -414,11 +415,16 @@ export default function ChurnPage() {
                             (plan.featured ? "text-white/80" : "text-muted-foreground")
                           }
                         >
-                          {plan.note}{" "}
-                          <Link href="/pricing" className="font-semibold underline underline-offset-4">
-                            Ver valores na página de preços
-                          </Link>
-                          .
+                          {plan.note}
+                          {mostrarValores && (
+                            <>
+                              {" "}
+                              <Link href="/pricing" className="font-semibold underline underline-offset-4">
+                                Ver valores na página de preços
+                              </Link>
+                              .
+                            </>
+                          )}
                         </p>
                         <ul className="mt-6 flex-1 space-y-3 text-sm">
                           {plan.items.map((f) => (

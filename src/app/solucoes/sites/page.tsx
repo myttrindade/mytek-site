@@ -19,6 +19,7 @@ import { Card3D } from "@/components/brand/card-3d";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { mostrarValores } from "@/lib/site-config";
 import { eyebrow } from "@/components/solutions-grid";
 import { SolutionsCompare } from "@/components/solutions-compare";
 import {
@@ -312,10 +313,11 @@ export default function SitesPage() {
                       Valor fechado antes de começar
                     </p>
                     <p className="mt-3 max-w-sm text-white/80">
-                      Os valores do site, da manutenção opcional e de ajustes em
-                      um site que já existe estão na página de preços. O que
-                      fugir do escopo é combinado na proposta, antes de qualquer
-                      trabalho começar.
+                      {mostrarValores
+                        ? "Os valores do site, da manutenção opcional e de ajustes em um site que já existe estão na página de preços. "
+                        : "O valor é combinado depois de uma conversa curta. "}
+                      O que fugir do escopo é combinado na proposta, antes de
+                      qualquer trabalho começar.
                     </p>
                     <div className="mt-8 flex flex-wrap items-center gap-5">
                       <ShimmerButton
@@ -324,12 +326,14 @@ export default function SitesPage() {
                       >
                         Pedir um orçamento <ArrowRightIcon className="size-4" />
                       </ShimmerButton>
-                      <Link
-                        href="/pricing"
-                        className="text-sm font-semibold text-white underline underline-offset-4 hover:text-lima"
-                      >
-                        Ver preços
-                      </Link>
+                      {mostrarValores && (
+                        <Link
+                          href="/pricing"
+                          className="text-sm font-semibold text-white underline underline-offset-4 hover:text-lima"
+                        >
+                          Ver preços
+                        </Link>
+                      )}
                     </div>
                   </div>
                   <div>
