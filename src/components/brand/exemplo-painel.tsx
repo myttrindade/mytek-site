@@ -18,6 +18,7 @@ import { BlurFade } from "@/components/velora/blur-fade";
 import { GridPattern } from "@/components/velora/grid-pattern";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
 import { TiltCard } from "@/components/velora/tilt-card";
+import { localHref, makeT, type Lang } from "@/lib/i18n";
 
 /**
  * Exemplo de projeto sob medida na home: um painel de gestão para uma rede de
@@ -101,7 +102,8 @@ export const ia = [
   },
 ] as const;
 
-export function ExemploPainel() {
+export function ExemploPainel({ lang = "pt" }: { lang?: Lang }) {
+  const t = makeT(lang);
   return (
     <section id="exemplo" className="relative overflow-hidden bg-background py-24 lg:py-28">
       {/* fundo: névoa roxa e grade bem leve */}
@@ -119,16 +121,13 @@ export function ExemploPainel() {
         {/* Cabeçalho */}
         <div className="grid items-end gap-8 lg:grid-cols-[1.35fr_1fr]">
           <BlurFade>
-            <span className={eyebrow}>Exemplo de projeto sob medida</span>
+            <span className={eyebrow}>{t("Exemplo de projeto sob medida")}</span>
             <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-[-0.035em] text-balance lg:text-5xl">
-              Um painel de gestão feito para uma rede de farmácias
+              {t("Um painel de gestão feito para uma rede de farmácias")}
               <span className="text-emphasis">.</span>
             </h2>
             <p className="mt-5 max-w-2xl text-lg text-muted-foreground">
-              Para quem toca várias lojas e só descobre como o mês foi quando
-              alguém termina de juntar as planilhas. Este painel mostra, em um
-              lugar só, o que está acontecendo, o que deve acontecer e o que
-              merece atenção.
+              {t("Para quem toca várias lojas e só descobre como o mês foi quando alguém termina de juntar as planilhas. Este painel mostra, em um lugar só, o que está acontecendo, o que deve acontecer e o que merece atenção.")}
             </p>
           </BlurFade>
 
@@ -139,11 +138,10 @@ export function ExemploPainel() {
               </span>
               <div>
                 <p className="font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-primary">
-                  Exemplo com dados fictícios
+                  {t("Exemplo com dados fictícios")}
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Lojas, vendas e clientes foram inventados para esta
-                  demonstração. Nada aqui é de um cliente real.
+                  {t("Lojas, vendas e clientes foram inventados para esta demonstração. Nada aqui é de um cliente real.")}
                 </p>
               </div>
             </div>
@@ -175,7 +173,7 @@ export function ExemploPainel() {
                     <span className="size-2.5 rounded-full bg-white/25" />
                     <span className="size-2.5 rounded-full bg-white/25" />
                     <span className="ml-3 hidden flex-1 truncate rounded-md bg-white/[0.06] px-3 py-1 font-mono text-[10px] text-white/50 sm:block">
-                      painel.suaempresa.com.br
+                      {t("painel.suaempresa.com.br")}
                     </span>
                   </div>
                   <video
@@ -186,26 +184,26 @@ export function ExemploPainel() {
                     loop
                     playsInline
                     preload="metadata"
-                    aria-label="Gravação do painel de gestão para uma rede de farmácias: início com os painéis girando, vendas, lucro por produto, lojas, previsões, avisos e simulador"
+                    aria-label={t("Gravação do painel de gestão para uma rede de farmácias: início com os painéis girando, vendas, lucro por produto, lojas, previsões, avisos e simulador")}
                     className="aspect-video w-full bg-black"
                   />
                 </div>
                 <figcaption className="mt-3 flex items-center justify-center gap-2 text-xs text-white/60">
                   <span className="size-2 rounded-full bg-lima shadow-[0_0_0_4px_rgba(198,255,0,0.18)]" />
-                  Gravação do painel de exemplo, com dados fictícios.
+                  {t("Gravação do painel de exemplo, com dados fictícios.")}
                 </figcaption>
               </figure>
 
               <div className="grid gap-4">
                 <div className="rounded-2xl border border-white/10 bg-white/[0.05] p-6 backdrop-blur-sm">
-                  <span className={eyebrow}>Para que serve</span>
+                  <span className={eyebrow}>{t("Para que serve")}</span>
                   <ol className="mt-4 space-y-4">
-                    {serve.map((t, i) => (
-                      <li key={t} className="flex items-start gap-3 text-sm text-white/85">
+                    {serve.map((texto, i) => (
+                      <li key={texto} className="flex items-start gap-3 text-sm text-white/85">
                         <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-lima font-mono text-[11px] font-extrabold text-lima-foreground">
                           {i + 1}
                         </span>
-                        {t}
+                        {t(texto)}
                       </li>
                     ))}
                   </ol>
@@ -215,10 +213,8 @@ export function ExemploPainel() {
                     <MousePointerClickIcon className="size-5" />
                   </span>
                   <p className="text-sm text-white/75">
-                    <span className="font-heading font-bold text-white">Como se usa: </span>
-                    clicou em qualquer gráfico, todos os outros passam a mostrar
-                    só aquilo. Clicou em &ldquo;Pix&rdquo;, tudo mostra só as
-                    vendas pagas no Pix.
+                    <span className="font-heading font-bold text-white">{t("Como se usa:")} </span>
+                    {t("clicou em qualquer gráfico, todos os outros passam a mostrar só aquilo. Clicou em “Pix”, tudo mostra só as vendas pagas no Pix.")}
                   </p>
                 </div>
               </div>
@@ -243,24 +239,18 @@ export function ExemploPainel() {
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-lima px-3 py-1 font-mono text-[11px] font-extrabold uppercase tracking-[0.06em] text-lima-foreground">
                   <BrainCircuitIcon className="size-3.5" />
-                  Inteligência artificial
+                  {t("Inteligência artificial")}
                 </span>
                 <h3 className="mt-4 font-heading text-3xl font-extrabold leading-[1.05] tracking-[-0.035em] text-balance text-white lg:text-5xl">
-                  O painel aprende com o histórico da própria rede
+                  {t("O painel aprende com o histórico da própria rede")}
                   <span className="text-lima">.</span>
                 </h3>
                 <p className="mt-5 text-base text-white/85 lg:text-lg">
-                  Aqui usamos aprendizado de máquina, um tipo de inteligência
-                  artificial que estuda o que já aconteceu nas vendas para
-                  reconhecer padrões. Ele não decide nada sozinho: entrega uma
-                  estimativa, um aviso ou uma sugestão, e quem decide é você.
+                  {t("Aqui usamos aprendizado de máquina, um tipo de inteligência artificial que estuda o que já aconteceu nas vendas para reconhecer padrões. Ele não decide nada sozinho: entrega uma estimativa, um aviso ou uma sugestão, e quem decide é você.")}
                 </p>
               </div>
               <p className="rounded-xl border border-white/15 bg-white/[0.06] p-4 text-sm text-white/70">
-                Os testes abaixo foram feitos com os dados fictícios do
-                exemplo, em que sabíamos de antemão o que tinha sido plantado.
-                Com dados de verdade, o resultado depende da qualidade do
-                histórico.
+                {t("Os testes abaixo foram feitos com os dados fictícios do exemplo, em que sabíamos de antemão o que tinha sido plantado. Com dados de verdade, o resultado depende da qualidade do histórico.")}
               </p>
               </div>
 
@@ -275,7 +265,7 @@ export function ExemploPainel() {
                         <m.icon className="size-5" />
                       </span>
                       <h4 className="font-heading text-lg font-extrabold tracking-[-0.03em] text-white">
-                        {m.title}
+                        {t(m.title)}
                       </h4>
                     </div>
                     <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-3">
@@ -289,9 +279,9 @@ export function ExemploPainel() {
                           }
                         >
                           <dt className="font-mono text-[10px] font-bold uppercase tracking-[0.07em] text-lima">
-                            {k}
+                            {t(k)}
                           </dt>
-                          <dd className="mt-1 text-white/80">{v}</dd>
+                          <dd className="mt-1 text-white/80">{t(v)}</dd>
                         </div>
                       ))}
                     </dl>
@@ -306,14 +296,14 @@ export function ExemploPainel() {
         <BlurFade>
           <div className="mt-20 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
             <div>
-              <span className={eyebrow}>O que o painel faz</span>
+              <span className={eyebrow}>{t("O que o painel faz")}</span>
               <h3 className="mt-2 font-heading text-2xl font-extrabold tracking-[-0.03em] text-balance lg:text-3xl">
-                Seis coisas que o dono da rede passa a saber
+                {t("Seis coisas que o dono da rede passa a saber")}
                 <span className="text-emphasis">.</span>
               </h3>
             </div>
             <p className="max-w-xs text-sm text-muted-foreground">
-              Cada projeto sob medida muda o que entra. Este é só um exemplo.
+              {t("Cada projeto sob medida muda o que entra. Este é só um exemplo.")}
             </p>
           </div>
         </BlurFade>
@@ -341,13 +331,13 @@ export function ExemploPainel() {
                         <r.icon className="size-6" />
                       </span>
                       <span className="rounded-full border border-primary/20 bg-primary/[0.07] px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.07em] text-primary">
-                        {r.tag}
+                        {t(r.tag)}
                       </span>
                     </div>
                     <h4 className="relative mt-5 font-heading text-xl font-extrabold tracking-[-0.03em]">
-                      {r.title}
+                      {t(r.title)}
                     </h4>
-                    <p className="relative mt-2 text-sm text-muted-foreground">{r.body}</p>
+                    <p className="relative mt-2 text-sm text-muted-foreground">{t(r.body)}</p>
                   </div>
                 </TiltCard>
               </BlurFade>
@@ -365,29 +355,26 @@ export function ExemploPainel() {
             <div className="relative grid items-center gap-8 lg:grid-cols-[1.5fr_1fr]">
               <div>
                 <span className="font-mono text-xs font-bold uppercase tracking-[0.06em] text-lima">
-                  Para ficar claro
+                  {t("Para ficar claro")}
                 </span>
                 <p className="mt-3 font-heading text-2xl font-extrabold leading-tight tracking-[-0.03em] text-balance text-white lg:text-4xl">
-                  Isto é um exemplo, e não o trabalho de um cliente real
+                  {t("Isto é um exemplo, e não o trabalho de um cliente real")}
                   <span className="text-lima">.</span>
                 </p>
                 <p className="mt-4 max-w-xl text-white/80">
-                  Os dados são fictícios e os números que aparecem no vídeo não
-                  são resultado de ninguém. Num projeto de verdade, o painel
-                  nasce dos dados do seu negócio e do que você precisa
-                  acompanhar, e tudo isso é combinado com você antes de começar.
+                  {t("Os dados são fictícios e os números que aparecem no vídeo não são resultado de ninguém. Num projeto de verdade, o painel nasce dos dados do seu negócio e do que você precisa acompanhar, e tudo isso é combinado com você antes de começar.")}
                 </p>
               </div>
               <div className="flex flex-col items-start gap-4 lg:items-end">
-                <ShimmerButton href="/contact" className="bg-lima text-lima-foreground">
+                <ShimmerButton href={localHref(lang, "/contact")} className="bg-lima text-lima-foreground">
                   <RocketIcon className="size-4" />
-                  Quero um painel assim
+                  {t("Quero um painel assim")}
                 </ShimmerButton>
                 <Link
-                  href="/solucoes/sistemas-sob-medida"
+                  href={localHref(lang, "/solucoes/sistemas-sob-medida")}
                   className="group inline-flex items-center gap-1.5 text-sm font-bold text-white underline-offset-4 hover:text-lima hover:underline"
                 >
-                  Como funciona o sob medida
+                  {t("Como funciona o sob medida")}
                   <ArrowUpRightIcon className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                 </Link>
               </div>

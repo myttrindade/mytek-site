@@ -86,12 +86,12 @@ export function pageMetadata(
   lang: Lang,
   path: string,
   titulo: string | { absolute: string } | null,
-  descricao: string
+  descricao: string | null
 ): Metadata {
   const t = makeT(lang);
   return {
     title: typeof titulo === "string" ? t(titulo) : titulo ?? undefined,
-    description: t(descricao),
+    description: descricao ? t(descricao) : undefined,
     alternates: { canonical: localHref(lang, path), languages: languageAlternates(path) },
     openGraph: { locale: langInfo[lang].ogLocale },
   };

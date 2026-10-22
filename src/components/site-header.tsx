@@ -4,6 +4,7 @@ import { localHref, makeT, type Lang } from "@/lib/i18n";
 
 import { Button } from "@/components/ui/button";
 import { MytekLogo } from "@/components/mytek-logo";
+import { HtmlLang } from "@/components/html-lang";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav, type NavLink } from "@/components/mobile-nav";
 
@@ -30,6 +31,7 @@ export function SiteHeader({ lang = "pt" }: { lang?: Lang }) {
   }));
   return (
     <header className="dark fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 text-foreground backdrop-blur-xl">
+      <HtmlLang lang={lang} />
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 lg:px-8">
         <Link href={localHref(lang, "/")} className="flex items-center gap-2 font-semibold">
           <MytekLogo />
