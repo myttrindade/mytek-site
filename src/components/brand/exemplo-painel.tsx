@@ -238,7 +238,8 @@ export function ExemploPainel() {
               height={48}
               className="fill-transparent stroke-white/[0.07] [mask-image:radial-gradient(ellipse_80%_80%_at_30%_30%,black,transparent)]"
             />
-            <div className="relative grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
+            <div className="relative">
+              <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end lg:gap-12">
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-lima px-3 py-1 font-mono text-[11px] font-extrabold uppercase tracking-[0.06em] text-lima-foreground">
                   <BrainCircuitIcon className="size-3.5" />
@@ -254,15 +255,16 @@ export function ExemploPainel() {
                   reconhecer padrões. Ele não decide nada sozinho: entrega uma
                   estimativa, um aviso ou uma sugestão, e quem decide é você.
                 </p>
-                <p className="mt-4 rounded-xl border border-white/15 bg-white/[0.06] p-4 text-sm text-white/70">
-                  Os testes ao lado foram feitos com os dados fictícios do
-                  exemplo, em que sabíamos de antemão o que tinha sido plantado.
-                  Com dados de verdade, o resultado depende da qualidade do
-                  histórico.
-                </p>
+              </div>
+              <p className="rounded-xl border border-white/15 bg-white/[0.06] p-4 text-sm text-white/70">
+                Os testes abaixo foram feitos com os dados fictícios do
+                exemplo, em que sabíamos de antemão o que tinha sido plantado.
+                Com dados de verdade, o resultado depende da qualidade do
+                histórico.
+              </p>
               </div>
 
-              <ul className="grid gap-4">
+              <ul className="mt-10 grid gap-4">
                 {ia.map((m) => (
                   <li
                     key={m.title}
