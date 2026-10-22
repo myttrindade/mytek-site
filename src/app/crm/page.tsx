@@ -36,12 +36,13 @@ import { GridPattern } from "@/components/velora/grid-pattern";
 import { NumberTicker } from "@/components/velora/number-ticker";
 import { ScrollProgress } from "@/components/velora/scroll-progress";
 import { ShimmerButton } from "@/components/velora/shimmer-button";
-import { productShots } from "@/lib/site-config";
+import { productShots, mostrarValores } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "CRM com WhatsApp e alerta de lead parado",
   description:
-    "O CRM da mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda. A partir de R$137/mês, mais implantação de R$247, sem fidelidade.",
+    "O CRM da mytek avisa quando um lead para de andar no funil, centraliza o atendimento no WhatsApp e mostra o que virou venda." +
+    (mostrarValores ? " A partir de R$137/mês, mais implantação de R$247, sem fidelidade." : ""),
   alternates: { canonical: "/crm" },
 };
 
@@ -54,7 +55,9 @@ const trustPoints = [
 
 const heroStats = [
   { value: 10, suffix: " min", label: "para deixar o CRM pronto: a gente configura com você" },
-  { text: "R$137/mês", label: "no CRM Simples, mais R$247 de implantação" },
+  ...(mostrarValores
+    ? [{ text: "R$137/mês", label: "no CRM Simples, mais R$247 de implantação" }]
+    : []),
   { text: "3 usuários", label: "da sua equipe, incluídos no plano" },
   { text: "Sem fidelidade", label: "cancele quando quiser" },
 ] as const;
@@ -280,9 +283,11 @@ export default function CrmPage() {
                   <RocketIcon className="size-4" />
                   Falar com o time
                 </ShimmerButton>
-                <Button variant="ghost" size="lg" asChild>
-                  <Link href="#preco">Ver preço ↓</Link>
-                </Button>
+                {mostrarValores && (
+                  <Button variant="ghost" size="lg" asChild>
+                    <Link href="#preco">Ver preço ↓</Link>
+                  </Button>
+                )}
               </div>
             </BlurFade>
           </div>
@@ -486,7 +491,7 @@ export default function CrmPage() {
                     icon: LayoutTemplateIcon,
                     title: "Landing pages",
                     body: "Capte contatos que já nascem como lead no funil.",
-                    meta: "R$777, valor único",
+                    meta: mostrarValores ? "R$777, valor único" : "",
                     href: "/solucoes/landing-pages",
                   },
                   {
@@ -535,55 +540,59 @@ export default function CrmPage() {
         </div>
       </section>
 
-      {/* 6 · Preço */}
-      <section id="preco" className="bg-muted py-24 lg:py-28">
-        <div className="mx-auto max-w-4xl px-4 lg:px-8">
-          <BlurFade>
-            <div className="grid gap-8 rounded-3xl border border-primary/30 bg-card p-8 shadow-xl shadow-primary/10 lg:grid-cols-[1fr_1.1fr] lg:p-10">
-              <div className="flex flex-col">
-                <span className={eyebrow}>Planos do CRM</span>
-                <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em]">
-                  R$137
-                  <span className="text-lg font-semibold text-muted-foreground">
-                    /mês
-                  </span>
-                </p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  CRM Simples: mais R$247 de implantação, paga uma vez só.
-                  CRM com WhatsApp para até 3 usuários.
-                </p>
-                <p className="mt-3 rounded-xl bg-primary/10 px-3 py-2 text-sm">
-                  <strong>CRM com IA: R$297/mês.</strong> Acrescenta o agente
-                  de IA no atendimento.
-                </p>
-                <p className="mt-2 rounded-xl bg-primary/10 px-3 py-2 text-sm">
-                  <strong>CRM + Churn: R$397/mês.</strong> Acrescenta a
-                  previsão de churn, que avisa quais clientes estão para sair.
-                  Nos dois, implantação de R$447.
-                </p>
-                <div className="mt-auto flex flex-col gap-3 pt-8">
-                  <Button asChild size="lg" className="rounded-full">
-                    <Link href="/contact">
-                      Falar com o time <ArrowRightIcon className="size-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="ghost" className="rounded-full">
-                    <Link href="/pricing">Ver todos os planos e valores</Link>
-                  </Button>
+      {mostrarValores && (
+        <>
+        {/* 6 · Preço */}
+        <section id="preco" className="bg-muted py-24 lg:py-28">
+          <div className="mx-auto max-w-4xl px-4 lg:px-8">
+            <BlurFade>
+              <div className="grid gap-8 rounded-3xl border border-primary/30 bg-card p-8 shadow-xl shadow-primary/10 lg:grid-cols-[1fr_1.1fr] lg:p-10">
+                <div className="flex flex-col">
+                  <span className={eyebrow}>Planos do CRM</span>
+                  <p className="mt-3 font-heading text-5xl font-extrabold tracking-[-0.05em]">
+                    R$137
+                    <span className="text-lg font-semibold text-muted-foreground">
+                      /mês
+                    </span>
+                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    CRM Simples: mais R$247 de implantação, paga uma vez só.
+                    CRM com WhatsApp para até 3 usuários.
+                  </p>
+                  <p className="mt-3 rounded-xl bg-primary/10 px-3 py-2 text-sm">
+                    <strong>CRM com IA: R$297/mês.</strong> Acrescenta o agente
+                    de IA no atendimento.
+                  </p>
+                  <p className="mt-2 rounded-xl bg-primary/10 px-3 py-2 text-sm">
+                    <strong>CRM + Churn: R$397/mês.</strong> Acrescenta a
+                    previsão de churn, que avisa quais clientes estão para sair.
+                    Nos dois, implantação de R$447.
+                  </p>
+                  <div className="mt-auto flex flex-col gap-3 pt-8">
+                    <Button asChild size="lg" className="rounded-full">
+                      <Link href="/contact">
+                        Falar com o time <ArrowRightIcon className="size-4" />
+                      </Link>
+                    </Button>
+                    <Button asChild variant="ghost" className="rounded-full">
+                      <Link href="/pricing">Ver todos os planos e valores</Link>
+                    </Button>
+                  </div>
                 </div>
+                <ul className="space-y-3 text-sm">
+                  {planPoints.map((p) => (
+                    <li key={p} className="flex items-start gap-3">
+                      {check}
+                      {p}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3 text-sm">
-                {planPoints.map((p) => (
-                  <li key={p} className="flex items-start gap-3">
-                    {check}
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </BlurFade>
-        </div>
-      </section>
+            </BlurFade>
+          </div>
+        </section>
+        </>
+      )}
 
       {/* 7 · Perguntas */}
       <section id="faq" className="py-24 lg:py-28">
@@ -632,9 +641,11 @@ export default function CrmPage() {
               <RocketIcon className="size-5" />
               Falar com o time
             </ShimmerButton>
-            <Button variant="ghost" size="lg" asChild>
-              <Link href="/pricing">Ver preços</Link>
-            </Button>
+            {mostrarValores && (
+              <Button variant="ghost" size="lg" asChild>
+                <Link href="/pricing">Ver preços</Link>
+              </Button>
+            )}
           </div>
           <p className="mt-5 text-sm text-muted-foreground">
             Sem fidelidade · resposta no WhatsApp em até 4h úteis

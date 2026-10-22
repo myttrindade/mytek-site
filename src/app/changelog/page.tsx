@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { Badge } from "@/components/ui/badge";
+import { mostrarValores } from "@/lib/site-config";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { PageHeader } from "@/components/page-header";
@@ -29,20 +30,24 @@ const releases: Release[] = [
     tag: "Novo",
     items: [
       "CRM Plus agora inclui o módulo Conhecimento com IA sobre os dados da empresa, com treinamento incluído",
-      "Combos de CRM + Dashboard com preço especial",
+      ...(mostrarValores ? ["Combos de CRM + Dashboard com preço especial"] : []),
     ],
   },
-  {
-    date: "28 de junho de 2026",
-    version: "0.3.0",
-    title: "Desconto de fidelidade na Landing Page",
-    tag: "Novo",
-    items: [
-      "Cliente ativo de CRM ou Dashboard ganha 20% de desconto na Landing Page",
-      "1 mês de manutenção grátis pra quem contrata Landing Page ou Dashboard",
-      "Dashboard agora pode ser contratado avulso, sem precisar de CRM",
-    ],
-  },
+  ...(mostrarValores
+    ? ([
+    {
+      date: "28 de junho de 2026",
+      version: "0.3.0",
+      title: "Desconto de fidelidade na Landing Page",
+      tag: "Novo",
+      items: [
+        "Cliente ativo de CRM ou Dashboard ganha 20% de desconto na Landing Page",
+        "1 mês de manutenção grátis pra quem contrata Landing Page ou Dashboard",
+        "Dashboard agora pode ser contratado avulso, sem precisar de CRM",
+      ],
+    },
+      ] as Release[])
+    : []),
   {
     date: "2 de junho de 2026",
     version: "0.2.0",

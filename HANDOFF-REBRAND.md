@@ -91,3 +91,14 @@ Vídeos e imagens de exemplo (`public/brand`): `hub/` (vídeo do MyHub), `dashbo
 - Os efeitos de entrada (`BlurFade`) deixam a captura de tela vazia por alguns segundos no servidor de desenvolvimento. Esperar uns 10 segundos antes de olhar.
 - A abertura usa `sessionStorage` e um script no `layout.tsx` que adiciona `intro-seen` ao `<html>`.
 - Em `solucoes/[slug]/page.tsx`, a lista de slugs com página própria precisa bater com as pastas em `src/app/solucoes`.
+
+## Valores ocultos (22/10/2026)
+
+Todo valor do site (R$, planos, implantação, mensalidade) está oculto por um interruptor só: `mostrarValores` em `src/lib/site-config.ts` (hoje `false`). Nada foi apagado.
+
+Para os valores voltarem exatamente como eram:
+1. Trocar `mostrarValores` para `true`.
+2. Copiar `src/lib/llms-com-valores.txt` por cima de `public/llms.txt`.
+3. Nos PDFs do assistente (repositório `mytek-chat`), voltar para a versão com valores.
+
+Com o interruptor desligado: some o item "Preço" do menu e do rodapé, `/pricing` e `/pagamento` redirecionam para `/contact` e saem do sitemap, e os valores saem da home, da página do CRM, das descrições (Google e imagem de compartilhamento) e do changelog. Ficam os números de exemplo das telas de demonstração (ex.: "R$ 18.400 em jogo"), que não são preço.

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import { mostrarValores } from "@/lib/site-config";
 import {
   CheckIcon,
   CreditCardIcon,
@@ -46,6 +48,7 @@ const howItWorks = [
 ];
 
 export default function PagamentoPage() {
+  if (!mostrarValores) redirect("/contact");
   return (
     <>
       <SiteHeader />
