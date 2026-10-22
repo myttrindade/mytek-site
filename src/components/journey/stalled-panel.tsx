@@ -1,5 +1,6 @@
 import { NumberTicker } from "@/components/velora/number-ticker";
 import { cn } from "@/lib/utils";
+import { makeT, type Lang } from "@/lib/i18n";
 
 /**
  * "Quantas oportunidades estão paradas agora?" — o argumento do lead parado
@@ -34,7 +35,8 @@ const toneStyles = {
   neutral: "text-foreground",
 };
 
-export function StalledPanel({ className }: { className?: string }) {
+export function StalledPanel({ className, lang = "pt" }: { className?: string; lang?: Lang }) {
+  const t = makeT(lang);
   return (
     <figure className={cn("", className)}>
       <div className="rounded-2xl border border-destructive/25 bg-destructive/[0.03] p-6 sm:p-8">
@@ -44,7 +46,7 @@ export function StalledPanel({ className }: { className?: string }) {
             className="animate-alert-pulse size-2 rounded-full bg-destructive"
           />
           <span className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-            Radar · oportunidades paradas
+            {t("Radar · oportunidades paradas")}
           </span>
         </div>
 
@@ -64,14 +66,14 @@ export function StalledPanel({ className }: { className?: string }) {
                 />
               </dd>
               <dt className="mt-1 text-sm text-muted-foreground text-balance">
-                {m.label}
+                {t(m.label)}
               </dt>
             </div>
           ))}
         </dl>
       </div>
       <figcaption className="mt-3 text-[11px] text-muted-foreground">
-        Números demonstrativos, para ilustrar o formato do Radar.
+        {t("Números demonstrativos, para ilustrar o formato do Radar.")}
       </figcaption>
     </figure>
   );

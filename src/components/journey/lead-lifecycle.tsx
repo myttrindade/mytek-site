@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
+import { makeT, type Lang } from "@/lib/i18n";
 
 /**
  * O ciclo de vida de uma oportunidade, com o alerta como dobradiça.
@@ -61,7 +62,8 @@ const dotStyles: Record<Step["tone"], string> = {
  *
  * `prefers-reduced-motion` desliga a viagem e deixa tudo em repouso.
  */
-export function LeadLifecycle({ className }: { className?: string }) {
+export function LeadLifecycle({ className, lang = "pt" }: { className?: string; lang?: Lang }) {
+  const t = makeT(lang);
   const ref = useRef<HTMLOListElement>(null);
   const [atual, setAtual] = useState<number | null>(null);
 
@@ -122,7 +124,7 @@ export function LeadLifecycle({ className }: { className?: string }) {
             className={cn("size-2 shrink-0 rounded-full", dotStyles[step.tone])}
           />
           <span className="min-w-0">
-            <span className="block text-sm font-semibold">{step.label}</span>
+            <span className="block text-sm font-semibold">{t(step.label)}</span>
             <span
               className={cn(
                 "block text-xs",
@@ -131,7 +133,7 @@ export function LeadLifecycle({ className }: { className?: string }) {
                   : "text-muted-foreground"
               )}
             >
-              {step.detail}
+              {t(step.detail)}
             </span>
           </span>
           <span
