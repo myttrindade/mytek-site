@@ -8,6 +8,7 @@ import {
   RocketIcon,
 } from "lucide-react";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 import { Card3D } from "@/components/brand/card-3d";
 import { BrandGlyph, GlowArc } from "@/components/brand/glow";
@@ -30,7 +31,7 @@ import {
   servicosAvulsos,
   type CheckoutPlan,
 } from "@/lib/checkout";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, mostrarValores } from "@/lib/site-config";
 
 const pricingTitle = "Preços da mytek · CRM, Landing page e serviços com valor";
 const pricingDescription =
@@ -273,6 +274,7 @@ const anchors = [
 ] as const;
 
 export default function PricingPage() {
+  if (!mostrarValores) redirect("/contact");
   return (
     <>
       <SiteHeader />

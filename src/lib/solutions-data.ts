@@ -10,6 +10,8 @@
  * TODO(conteúdo): textos escritos para o rascunho do rebrand. Revisar com o
  * time antes de publicar, principalmente prazos e o que está incluso.
  */
+import { mostrarValores } from "@/lib/site-config";
+
 export type Solution = {
   slug: string;
   /** Produto pronto (assinatura) ou serviço sob medida. */
@@ -119,7 +121,8 @@ export const solutions: Solution[] = [
     title: "CRM com WhatsApp",
     problem: "O lead respondeu e ninguém voltou.",
     summary:
-      "Funil, atendimento no WhatsApp e alerta de lead parado. A partir de R$137/mês, mais implantação de R$247, sem fidelidade.",
+      "Funil, atendimento no WhatsApp e alerta de lead parado." +
+      (mostrarValores ? " A partir de R$137/mês, mais implantação de R$247, sem fidelidade." : ""),
     headline: "",
     intro: "",
     includes: [],

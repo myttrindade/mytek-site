@@ -3,6 +3,7 @@ import { MailIcon } from "lucide-react";
 
 import { MytekLogo } from "@/components/mytek-logo";
 import { hasCheckoutLinks } from "@/lib/checkout";
+import { mostrarValores } from "@/lib/site-config";
 import { company, hasLegalIdentity, isFilled } from "@/lib/company";
 import { cn } from "@/lib/utils";
 
@@ -20,9 +21,9 @@ const groups = [
       { text: "Automação com n8n", href: "/solucoes/automacao-n8n" },
       { text: "Previsão de churn", href: "/solucoes/previsao-de-churn" },
       { text: "Sistemas sob medida", href: "/solucoes/sistemas-sob-medida" },
-      { text: "Preço", href: "/pricing" },
+      ...(mostrarValores ? [{ text: "Preço", href: "/pricing" }] : []),
       // Aparece só quando o checkout estiver de fato cobrando.
-      ...(hasCheckoutLinks
+      ...(mostrarValores && hasCheckoutLinks
         ? [{ text: "Pagamento", href: "/pagamento" }]
         : []),
     ],

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { mostrarValores } from "@/lib/site-config";
 import { ArrowRightIcon, CheckIcon, RocketIcon } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -70,10 +71,14 @@ const faqs = [
     q: "A mytek vende só CRM?",
     a: "Não. Temos três sistemas próprios, o CRM com WhatsApp, o MyHub (organização do time) e o MyCash (organização financeira para empresas), e também criamos sites, landing pages, dashboards, agentes de IA, automações com n8n, modelos de previsão de churn e sistemas sob medida.",
   },
-  {
-    q: "Como funciona o preço?",
-    a: "Os valores estão na página de preços. O CRM tem três opções (Simples, com IA e com previsão de churn), todas com implantação paga uma vez e mensalidade sem fidelidade, a partir de R$137/mês. A Landing page tem valor único de R$777, e há valores para site, dashboard, agente de IA e automação. Para o MyHub e o MyCash, você pede uma demonstração e recebe a proposta. Sistemas sob medida têm escopo, prazo e valor combinados antes de qualquer trabalho começar.",
-  },
+  ...(mostrarValores
+    ? [
+    {
+      q: "Como funciona o preço?",
+      a: "Os valores estão na página de preços. O CRM tem três opções (Simples, com IA e com previsão de churn), todas com implantação paga uma vez e mensalidade sem fidelidade, a partir de R$137/mês. A Landing page tem valor único de R$777, e há valores para site, dashboard, agente de IA e automação. Para o MyHub e o MyCash, você pede uma demonstração e recebe a proposta. Sistemas sob medida têm escopo, prazo e valor combinados antes de qualquer trabalho começar.",
+    },
+      ]
+    : []),
   {
     q: "Preciso ter equipe técnica?",
     a: "Não. A gente cuida da parte técnica e explica cada entrega em linguagem de negócio. Você só precisa contar como a sua operação funciona hoje.",
@@ -203,9 +208,11 @@ export default function Home() {
                   <h3 className="mt-3 font-heading text-2xl font-extrabold tracking-[-0.03em]">
                     {w.title}
                   </h3>
-                  <p className="mt-1 font-mono text-sm font-bold text-primary">
-                    {w.price}
-                  </p>
+                  {mostrarValores && (
+                    <p className="mt-1 font-mono text-sm font-bold text-primary">
+                      {w.price}
+                    </p>
+                  )}
                   <ul className="mt-6 space-y-3">
                     {w.points.map((p) => (
                       <li key={p} className="flex items-start gap-3 text-sm">
@@ -277,9 +284,11 @@ export default function Home() {
                 <RocketIcon className="size-5" />
                 Falar com o time
               </ShimmerButton>
-              <Button variant="ghost" size="lg" asChild>
-                <Link href="/pricing">Ver preços</Link>
-              </Button>
+              {mostrarValores && (
+                <Button variant="ghost" size="lg" asChild>
+                  <Link href="/pricing">Ver preços</Link>
+                </Button>
+              )}
             </div>
             <p className="mt-5 text-sm text-muted-foreground">
               Sem fidelidade nos produtos por assinatura · resposta em até 4h

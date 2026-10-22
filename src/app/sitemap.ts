@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { hasCheckoutLinks } from "@/lib/checkout";
-import { siteConfig } from "@/lib/site-config";
+import { siteConfig, mostrarValores } from "@/lib/site-config";
 import { detailSolutions } from "@/lib/solutions-data";
 
 export const dynamic = "force-static";
@@ -14,9 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/crm",
     ...detailSolutions.map((x) => `/solucoes/${x.slug}`),
     "/solucoes/painel-de-gestao",
-    "/pricing",
+    ...(mostrarValores ? ["/pricing"] : []),
     // Só entra no sitemap quando existir link de pagamento de verdade.
-    ...(hasCheckoutLinks ? ["/pagamento"] : []),
+    ...(mostrarValores && hasCheckoutLinks ? ["/pagamento"] : []),
     "/changelog",
     "/about",
     "/contact",
