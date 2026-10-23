@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { hasCheckoutLinks } from "@/lib/checkout";
+import { langs, localHref } from "@/lib/i18n";
 import { siteConfig, mostrarValores } from "@/lib/site-config";
 import { detailSolutions } from "@/lib/solutions-data";
 
@@ -26,5 +27,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: path === "" ? 1 : 0.7,
   }));
 
-  return staticPages;
+  // Versões em espanhol e inglês das páginas já traduzidas.
+  const traduzidas = ["", "/crm", "/about", "/contact"].flatMap((path) =>
+    langs
+      .filter((l) => l !== "pt")
+      .map((l) => ({
+        url: `${BASE}${localHref(l, path || "/")}`,
+        changeFrequency: "weekly" as const,
+        priority: path === "" ? 0.9 : 0.6,
+      }))
+  );
+
+  return [...staticPages, ...traduzidas];
 }

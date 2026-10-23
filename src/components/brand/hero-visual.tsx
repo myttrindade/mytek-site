@@ -9,6 +9,7 @@ import { Me3D } from "@/components/brand/me-3d";
 import { BorderBeam } from "@/components/velora/border-beam";
 import { TiltCard } from "@/components/velora/tilt-card";
 import { cn } from "@/lib/utils";
+import { localHref, makeT, type Lang } from "@/lib/i18n";
 
 /**
  * Composição da capa: quatro cartões de interface, um por frente de trabalho
@@ -74,7 +75,8 @@ function Header({
   );
 }
 
-export function HeroVisual() {
+export function HeroVisual({ lang = "pt" }: { lang?: Lang }) {
+  const t = makeT(lang);
   return (
     <div className="hero-vis mx-auto">
       <div className="hero-vis-in relative">
@@ -99,24 +101,24 @@ export function HeroVisual() {
         {/* fileira de cima */}
         <Card float="a" tilt={-2} className="left-[-6px] top-[14px] h-[150px] w-[246px]">
           <div className="flex h-full flex-col gap-2.5 p-4">
-            <Header label="Agente de IA">
+            <Header label={t("Agente de IA")}>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-black/40 px-2 py-0.5 text-[10px] font-semibold text-white">
                 <SparklesIcon className="size-3 text-lima" />
-                respondendo
+                {t("respondendo")}
               </span>
             </Header>
             <p className="max-w-[88%] rounded-xl rounded-bl-sm bg-white/10 px-3 py-2 text-xs text-white">
-              Vocês atendem sábado?
+              {t("Vocês atendem sábado?")}
             </p>
             <p className="ml-auto max-w-[92%] rounded-xl rounded-br-sm bg-[#5E34F7] px-3 py-2 text-xs text-white">
-              Atendemos sim, das 9h às 13h. Quer reservar às 10h?
+              {t("Atendemos sim, das 9h às 13h. Quer reservar às 10h?")}
             </p>
           </div>
         </Card>
 
         <Card float="b" tilt={2.2} className="right-[-10px] top-[58px] h-[164px] w-[226px]">
           <div className="flex h-full flex-col gap-3 p-4">
-            <Header label="Radar · CRM">
+            <Header label={t("Radar · CRM")}>
               <BellRingIcon className="size-4 text-lima" />
             </Header>
             <div className="flex items-end gap-3">
@@ -124,14 +126,14 @@ export function HeroVisual() {
                 12
               </span>
               <span className="pb-1 text-xs text-white/70">
-                leads parados
+                {t("leads parados")}
                 <br />
-                <b className="text-white">R$ 18.400</b> em jogo
+                <b className="text-white">R$ 18.400</b> {t("em jogo")}
               </span>
             </div>
             <div className="mt-auto rounded-lg bg-white/[0.06] px-3 py-2 text-[11px] text-white/80">
-              <span className="font-semibold text-white">Alerta enviado</span>{" "}
-              para Carla · 2 dias sem andar
+              <span className="font-semibold text-white">{t("Alerta enviado")}</span>{" "}
+              {t("para Carla · 2 dias sem andar")}
             </div>
           </div>
         </Card>
@@ -139,7 +141,7 @@ export function HeroVisual() {
         {/* fileira de baixo */}
         <Card float="c" tilt={1.8} className="bottom-[78px] left-[-14px] h-[142px] w-[236px]">
           <div className="flex h-full flex-col gap-3 p-4">
-            <Header label="Automação">
+            <Header label={t("Automação")}>
               <WorkflowIcon className="size-4 text-white/70" />
             </Header>
             <div className="flex items-center justify-between">
@@ -153,7 +155,7 @@ export function HeroVisual() {
                         : "border-white/15 bg-white/[0.06] text-white"
                     )}
                   >
-                    {n}
+                    {t(n)}
                   </span>
                   {i < 2 && (
                     <span className="hero-dash relative mx-1.5 h-px w-5 bg-white/40" />
@@ -163,16 +165,16 @@ export function HeroVisual() {
             </div>
             <div className="mt-auto flex items-center gap-2 rounded-lg bg-white/[0.06] px-3 py-1.5 text-[11px] text-white/80">
               <CheckIcon className="size-3.5 shrink-0 text-lima" />
-              Lead novo vira card, sem planilha
+              {t("Lead novo vira card, sem planilha")}
             </div>
           </div>
         </Card>
 
         <Card float="d" tilt={-1.6} className="bottom-[20px] right-[6px] h-[170px] w-[268px]">
           <div className="flex h-full flex-col gap-2 p-4">
-            <Header label="Previsão de churn">
+            <Header label={t("Previsão de churn")}>
               <span className="rounded-full bg-lima px-2 py-0.5 text-[10px] font-bold text-lima-foreground">
-                14 em risco
+                {t("14 em risco")}
               </span>
             </Header>
             <svg viewBox="0 0 240 80" className="h-[84px] w-full" aria-hidden>
@@ -205,13 +207,13 @@ export function HeroVisual() {
               <circle cx="150" cy="30" r="4" fill="#C6FF00" />
             </svg>
             <p className="text-[11px] text-white/60">
-              tracejado = previsão do modelo
+              {t("tracejado = previsão do modelo")}
             </p>
           </div>
         </Card>
 
         <p className="absolute bottom-0 left-0 right-0 text-center text-[11px] text-white/45">
-          Interfaces ilustrativas, com dados de exemplo.
+          {t("Interfaces ilustrativas, com dados de exemplo.")}
         </p>
       </div>
     </div>

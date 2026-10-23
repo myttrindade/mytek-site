@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BorderBeam } from "@/components/velora/border-beam";
 import type { ProductShot as Shot } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
+import { makeT, type Lang } from "@/lib/i18n";
 
 /**
  * Uma captura de tela do produto, emoldurada e legendada.
@@ -21,6 +22,7 @@ export function ProductShot({
   className,
   caption = "Dados de exemplo, para ilustrar a interface.",
   beam = true,
+  lang = "pt",
 }: {
   shot: Shot;
   priority?: boolean;
@@ -28,7 +30,9 @@ export function ProductShot({
   caption?: string;
   /** Luz que corre pela borda (padrão dos mockups). */
   beam?: boolean;
+  lang?: Lang;
 }) {
+  const t = makeT(lang);
   if (!shot.src) return null;
 
   return (
@@ -40,7 +44,7 @@ export function ProductShot({
         {beam && <BorderBeam size={96} duration={10} />}
         <Image
           src={shot.src}
-          alt={shot.alt}
+          alt={t(shot.alt)}
           width={shot.size.width}
           height={shot.size.height}
           priority={priority}
@@ -49,7 +53,7 @@ export function ProductShot({
         />
       </div>
       <figcaption className="mt-3 text-center text-[11px] text-muted-foreground">
-        {caption}
+        {t(caption)}
       </figcaption>
     </figure>
   );

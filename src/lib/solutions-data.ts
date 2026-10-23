@@ -336,7 +336,8 @@ export const solutions: Solution[] = [
     title: "Previsão de churn",
     problem: "O cliente cancela e você só fica sabendo depois.",
     summary:
-      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir. Vem no pacote CRM + Churn ou avulsa, e os valores estão na página de preços.",
+      "Modelo treinado com o seu histórico que aponta quem tem risco de sair, a tempo de agir. Vem no pacote CRM + Churn ou avulsa" +
+      (mostrarValores ? ", e os valores estão na página de preços." : "."),
     headline: "Saiba quais clientes têm risco de sair antes que eles saiam.",
     intro:
       "Usamos o histórico de clientes da sua empresa para treinar um modelo de machine learning que estima o risco de cancelamento de cada um. A equipe passa a agir antes, com a lista de quem priorizar.",

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { makeT, type Lang } from "@/lib/i18n";
 import { emailValido, mascaraEmail, mascaraNome, mascaraTelefone } from "@/lib/masks";
 
 // As máscaras saíram daqui para `@/lib/masks` quando o chat passou a precisar
@@ -25,7 +26,8 @@ const isValidEmail = emailValido;
  * devolve sucesso/erro de verdade — um POST direto exigiria `no-cors`, que
  * esconde a resposta e faria a tela agradecer mesmo com o envio falhando.
  */
-export function ContactForm() {
+export function ContactForm({ lang = "pt" }: { lang?: Lang }) {
+  const t = makeT(lang);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -40,16 +42,16 @@ export function ContactForm() {
         <span className="flex size-12 items-center justify-center rounded-full bg-primary/15 text-primary">
           <CheckIcon className="size-6" />
         </span>
-        <h2 className="mt-4 text-lg font-semibold">Mensagem enviada</h2>
+        <h2 className="mt-4 text-lg font-semibold">{t("Mensagem enviada")}</h2>
         <p className="mt-2 max-w-xs text-sm text-muted-foreground">
-          Obrigado pelo contato. Respondemos em até um dia útil.
+          {t("Obrigado pelo contato. Respondemos em até um dia útil.")}
         </p>
         <Button
           variant="ghost"
           className="mt-6"
           onClick={() => setSent(false)}
         >
-          Enviar outra mensagem
+          {t("Enviar outra mensagem")}
         </Button>
       </div>
     );
@@ -95,7 +97,7 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="grid gap-2">
           <Label htmlFor="name">
-            Nome <span className="text-red-500">*</span>
+            {t("Nome")} <span className="text-red-500">*</span>
           </Label>
           <Input
             id="name"
@@ -109,7 +111,7 @@ export function ContactForm() {
         </div>
         <div className="grid gap-2">
           <Label htmlFor="email">
-            E-mail <span className="text-red-500">*</span>
+            {t("E-mail")} <span className="text-red-500">*</span>
           </Label>
           <Input
             id="email"
@@ -130,14 +132,14 @@ export function ContactForm() {
           />
           {emailError && (
             <p className="text-xs text-red-500">
-              E-mail inválido. Use o formato: exemplo@dominio.com
+              {t("E-mail inválido. Use o formato: exemplo@dominio.com")}
             </p>
           )}
         </div>
       </div>
       <div className="mt-5 grid gap-2">
         <Label htmlFor="phone">
-          Telefone <span className="text-red-500">*</span>
+          {t("Telefone")} <span className="text-red-500">*</span>
         </Label>
         <Input
           id="phone"
@@ -151,16 +153,15 @@ export function ContactForm() {
           required
         />
         <p className="text-xs text-muted-foreground">
-          Com o número a gente responde pelo WhatsApp, que costuma ser bem mais
-          rápido que o e-mail.
+          {t("Com o número a gente responde pelo WhatsApp, que costuma ser bem mais rápido que o e-mail.")}
         </p>
       </div>
       <div className="mt-5 grid gap-2">
-        <Label htmlFor="message">Mensagem</Label>
+        <Label htmlFor="message">{t("Mensagem")}</Label>
         <Textarea
           id="message"
           name="message"
-          placeholder="Conte um pouco sobre a sua empresa e o que você precisa…"
+          placeholder={t("Conte um pouco sobre a sua empresa e o que você precisa…")}
           className="min-h-36"
         />
       </div>
@@ -171,19 +172,18 @@ export function ContactForm() {
         disabled={sending}
       >
         <SendIcon className="size-4" />
-        {sending ? "Enviando…" : "Enviar mensagem"}
+        {sending ? t("Enviando…") : t("Enviar mensagem")}
       </Button>
       {failed ? (
         <p
           className="mt-4 text-center text-xs text-destructive"
           role="alert"
         >
-          Não conseguimos enviar agora. Tente de novo em instantes — ou chame a
-          gente no WhatsApp, ao lado.
+          {t("Não conseguimos enviar agora. Tente de novo em instantes — ou chame a gente no WhatsApp, ao lado.")}
         </p>
       ) : (
         <p className="mt-4 text-center text-xs text-muted-foreground">
-          Respondemos em até um dia útil.
+          {t("Respondemos em até um dia útil.")}
         </p>
       )}
     </form>

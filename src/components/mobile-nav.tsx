@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { MenuIcon, XIcon } from "lucide-react";
 
+import { LanguageSwitcher } from "@/components/language-switcher";
+import { makeT, type Lang } from "@/lib/i18n";
+
 /**
  * Navegação do celular.
  *
@@ -16,8 +19,9 @@ import { MenuIcon, XIcon } from "lucide-react";
  */
 export type NavLink = { href: string; label: string };
 
-export function MobileNav({ links }: { links: readonly NavLink[] }) {
+export function MobileNav({ links, lang = "pt" }: { links: readonly NavLink[]; lang?: Lang }) {
   const [aberto, setAberto] = useState(false);
+  const t = makeT(lang);
 
   // Trava o scroll do corpo enquanto o painel está aberto, e devolve depois.
   useEffect(() => {
@@ -39,7 +43,7 @@ export function MobileNav({ links }: { links: readonly NavLink[] }) {
         onClick={() => setAberto((v) => !v)}
         aria-expanded={aberto}
         aria-controls="menu-mobile"
-        aria-label={aberto ? "Fechar menu" : "Abrir menu"}
+        aria-label={aberto ? t("Fechar menu") : t("Abrir menu")}
         className="flex size-10 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground"
       >
         {aberto ? <XIcon className="size-5" /> : <MenuIcon className="size-5" />}
@@ -55,6 +59,7 @@ export function MobileNav({ links }: { links: readonly NavLink[] }) {
         hidden={!aberto}
         className="fixed inset-x-0 top-16 z-40 border-b border-border/40 bg-background/95 px-4 pb-6 backdrop-blur-xl"
       >
+        <LanguageSwitcher className="mt-4" />
         <nav className="flex flex-col">
           {links.map((l) => (
             <Link
